@@ -32,12 +32,6 @@ def fetch_gh(projects, dir='projects/py/'):
 
 def fetch_repositories(project)->list[str]:
 
-    # projects = pd.read_csv("projects.csv", sep=",")
-    # for index, row in projects.iterrows():
-    # repo = Repository(row['repo'], clone_repo_to="projects")
-    # for commit in Repository(row['repo'], clone_repo_to="projects").traverse_commits():
-    # project = row["name"]
-
     if not os.path.exists("output/pytlint"):
         os.mkdir("output/pytlint")
 
@@ -70,7 +64,7 @@ def fetch_repositories(project)->list[str]:
         return []
 
 
-def __get_method_name(node):  # -> str | None:
+def __get_method_name(node):  
     for child in node.children:
         if child.type == 'identifier':
             return child.text.decode("utf-8")
@@ -87,7 +81,7 @@ def collect_parser(files, project_name):
 
     file_stats = FileStats()
     pbar = tqdm(files)
-    func_defs: List[str] = []  # List[Node] = []
+    func_defs: List[str] = []  
     for file_path in pbar:
         pbar.set_description(f"Processing {str(file_path)[-40:].ljust(40)}")
 
@@ -139,7 +133,7 @@ def collect_parser(files, project_name):
 
     call_graph = generate_cfg(str(project_name), os.path.normpath(
         f"projects/py/{str(project_name)}"))
-    
+
     if call_graph is None:
         call_graph = {}
 
@@ -204,11 +198,6 @@ def collect_parser(files, project_name):
                 df.iloc[idx, df.columns.get_loc(
                     'str_uncaught_exceptions')] = (old_value + f' {func_name}:{uncaught_exception}').strip()
 
-    # func_defs_try_except = [
-    #     f for f in func_defs if check_function_has_except_handler(f)
-    # ]  # and not check_function_has_nested_try(f)    ]
-
-    # func_defs_try_pass = [f for f in func_defs if is_try_except_pass(f)]
     os.makedirs("output/parser/", exist_ok=True)
     logger.warning(f"Before write to csv: {df.shape}")
     df.to_csv(f"output/parser/{project_name}_stats.csv", index=False)

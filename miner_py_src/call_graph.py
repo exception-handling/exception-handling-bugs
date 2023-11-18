@@ -16,13 +16,6 @@ def generate_cfg(project_name, project_folder, files=[]):
 
     tqdm.write(f"Generating call graph for {project_name}...")
 
-    # python_src_files = [os.path.abspath(x)
-    #                     for x in glob.iglob(f"./**/{project_src_base}/**/*.py", recursive=True)]
-    # if len(python_src_files) == 0:
-    #     raise CallGraphError(f"No python files found in {project_src_base}")
-
-    #python_src_files = project_src_base
-
     if len(files) > 0:
         python_src_files = files
 
@@ -98,7 +91,6 @@ class CFG():
         self.catch_nodes = catch_nodes
         self.graph = graph
 
-    # def get_uncaught_exceptions(self, func_name: str, raise_types: list[str]) -> dict[str, list[str]]:
     def get_uncaught_exceptions(self, func_name: str, raise_types: list) -> dict:
         if (func_name not in self.graph.keys()):
             raise CallGraphError(f"CFG: {func_name} not found")
