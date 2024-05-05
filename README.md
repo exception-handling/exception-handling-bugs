@@ -5,8 +5,10 @@ Understanding Symptoms, Root Causes, Fixes and Anti-patterns".
 
 ## Datasets
 
-#### Dataset with the bugs, root causes, fixes and anti-patterns:
+#### Dataset with the bugs, root causes, fixes:
 `datasets\bugs\dataset_exception_bugs.csv`
+#### Dataset with the fixes and the respective anti-patterns:
+`datasets\bugs\dataset_exception_fixes_anti_patterns.csv`
 #### Output of our parser tool across all projects:
 `datasets\bugs\output_parser\`
 #### Projects:
