@@ -1,0 +1,3043 @@
+Unnamed: 0,project,type,issue_number,commit_msg,author_name,author_date,merge,issue_labels,url_issue_x,has_buggy,exception_bug,symptom_map,symptom_grp,root_cause_map,root_cause_grp,fix_map,fix_grp,commit_fix,repo_url
+682,lbry-sdk,issue,1352,"fix upnp edge case
+
+-fixes https://github.com/lbryio/lbry/issues/1352",Jack Robison,2018-08-09 08:39:17-04:00,FALSE,"type: bug,priority: blocker",https://github.com/lbryio/lbry-sdk/issues/1352,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Add a exception handling block,Exception handling block operations,0501f52805bb001fb70c42469b390da20ad01e7d,https://github.com/lbryio/lbry-sdk
+1319,ansible,issue,"resolve issues in netapp e-series host module (#39748)
+
+* resolve issues in netapp e-series host module
+
+the e-series host module had some bugs relating to the update/creation
+of host definitions when iscsi initiators when included in the
+configuration. this patch resolves this and other minor issues with
+correctly detecting updates.
+
+there were also several minor issues found that were causing issues with
+truly idepotent updates/changes to the host definition.
+
+this patch also provides some unit tests and integration tests to help
+catch future issues in these areas.
+
+fixes #28272
+
+* improve netapp e-series host module testing
+
+the netapp e-series host module integration test lacked feature test
+verification to verify the changes made to the storage array.
+
+the netapp e-series rest api was used to verify host create, update, and
+remove changes made to the netapp e-series storage arrays.",Michael Price,2018-08-24 09:44:59-05:00,FALSE,"test,module,shipit,support:community,support:core,bug,affects_2.6,netapp,storage",ad91793428736f7bb1b9e3e89f82de944cdab2fb,https://github.com/ansible/ansible/issues/39748,True,Y,Incorrect Behavior,Incorrect Behavior,Incorrect Logic,Incorrect Logic,Add a raise condition,Improve raising conditions,,
+576,ansible,issue,36800,"add http(s)_proxy support in yum module (#36800)
+
+* added set_env_proxy function for setting proxy environment
+
+added set_env_proxy function, that set system http(s)_proxy
+environment for fetching rpm if proxy settings set in yum.conf file
+that fix issue - #18979
+
+* fix automatic field numbering specification
+
+* changed if statement in setting http_proxy environment
+
+* change set_env_proxy function to function with decorator
+
+that decorator set system proxy environment from yum.conf and revert
+back to system configuration after fetching rpm
+
+* minor fix
+
+- rename variable schem  to scheme
+- change 'in' to 'startswith'
+
+* change decorator set_env_proxy to decorating through contextmanager
+
+- added import contextmanager from contextlib
+- set_env_proxy now decorating through contextmanager
+- fix http/https setting environment principle",Dmitry Ulyanov,2018-03-21 19:55:36+03:00,FALSE,"module,core_review,support:core,new_contributor,bug,packaging",https://github.com/ansible/ansible/issues/36800,True,Y,Aplication Crashing,Aplication Crashing,Missing Exception Type,Unhandled Exception,Add a exception handling block,Exception handling block operations,1d6bc094cf460a374d0e7da75954ea91bd41caa0,https://github.com/ansible/ansible
+1637,pandas,issue,21187,fix hashing string-casting error (#21187),jbrockmendel,2018-06-21 03:18:53-07:00,FALSE,"Bug,Output-Formatting",https://github.com/pandas-dev/pandas/issues/21187,True,N,,,,,,,,
+331,networkx,issue,5023,"bug fix for issue #5023 :  corner-case bug in single_source_dijkstra (#5033)
+
+some of the shortest_path functions have a fast-path for the case when source==target.
+in some of these functions, there was no check that the source node was in the graph,
+leading to incorrect results when a nodenotfound error would be more appropriate.
+this pr fixes these cases.
+
+in addition, checking that nodes are actually in the graph was formerly done in the internal
+`_dijkstra_multisource` function. these checks have been factored out and moved to the
+client functions for efficiency and to prevent redundant checking.
+
+co-authored-by: ross barnowski <rossbar@berkeley.edu>",Divyansh,2021-09-13 05:11:07+05:30,FALSE,"type: Bug fix,Needs PR,Good First Issue,Sprint",https://github.com/networkx/networkx/issues/5023,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Add a raise condition,Improve raising conditions,bcc7a7e42b6e152ac57658e884f5184b33463b0b,https://github.com/networkx/networkx
+904,awx,issue,4567,cli: fix a bug when printing complex data structures w/ -f human,Ryan Petrello,2019-08-26 12:39:39-04:00,FALSE,"type:bug,component:cli",https://github.com/ansible/awx/issues/4567,True,Y,Incorrect Exceptions,Incorrect Exceptions,Incorrect Logic,Incorrect Logic,Add a exception handling block,Exception handling block operations,,
+173,dirsearch,issue,24,fix issue 24,mauro,2016-02-14 17:59:28-03:00,FALSE,bug,https://github.com/maurosoria/dirsearch/issues/24,True,N,,,,,,,,
+829,ansible,issue,22423,"junos fixes (#22423)
+
+* fixes for junos_config errors
+
+* check transport settings for core junos
+
+* don't pop from the same list you iterate over
+
+* use of persistent connections are now explicitly enabled in junos
+
+* modules must now explicitly enable persistent connections
+* adds rpc support to junos_command
+
+fixes #22166",Peter Sprygada,2017-03-11 10:26:42-06:00,FALSE,"networking,affects_2.3,module,community_review,bug",https://github.com/ansible/ansible/issues/22423,True,N,,,,,,,,
+493,pandas,issue,4516,bug: gh4516 fixed issue with sorting a duplicate multi-index that has multiple dtypes,jreback,2013-08-09 09:40:28-04:00,FALSE,"Bug,Indexing",https://github.com/pandas-dev/pandas/issues/4516,True,Y,Errors in CI,Errors in CI,Missing Exception Type,Unhandled Exception,Change to apropriated exception type,Exception type operations,a12da2c86bc6b8a7f8f9b5016eb3e6abb4dde1b7,https://github.com/pandas-dev/pandas
+374,ansible,issue,15632,"api now connects to server lazily (#15632)
+
+this should fix most issues with offline operation.
+
+fixes #14486
+fixes #13991
+
+alternate to #15363 and #15593",Brian Coca,2016-04-28 23:28:02-04:00,FALSE,bug,https://github.com/ansible/ansible/issues/15632,True,N,,,,,,,,
+1569,dvc,issue,5611,"exp run: fix issue where duplicate workspace runs would incorrectly conflict (#5611)
+
+* exp run: gracefully handle duplicate workspace runs
+
+* exp run: fix issue where errors could be logged twice
+
+* move ref conflict check into its own function",Peter Rowlands (변기호),2021-03-12 20:13:49+09:00,FALSE,bugfix,https://github.com/iterative/dvc/issues/5611,True,Y,Incorrect Behavior,Incorrect Behavior,Incorrect Logic,Incorrect Logic,Add a raise condition,Improve raising conditions,d365e6d5b4881cf6a9ce8d08232c7289d9d1b786,https://github.com/iterative/dvc
+1594,pytorch-lightning,issue,3271,"limit auto scaling batch size to the size of the training dataset (#3271)
+
+* fix
+
+* fix and test
+
+* fix merge error
+
+* test for max dataset size
+
+* changelog
+
+* update docs
+
+* fix merge
+
+* unused imports
+
+* imports",Adrian Wälchli,2020-09-09 10:51:43+02:00,FALSE,"bug,ready",https://github.com/pytorchlightning/pytorch-lightning/issues/3271,True,N,,,,,,,,
+715,pandas,issue,24255,bug: fix overflow bugs in date_range (#24255),jbrockmendel,2018-12-23 09:32:49-08:00,FALSE,"Bug,Timeseries",https://github.com/pandas-dev/pandas/issues/24255,True,N,,,,,,,,
+1617,locust,issue,1206,"add on_stop and on_start stub methods to locust and taskset that can be implemented by end-user test scripts.
+fix bug where the taskset.on_stop method weren't called for nested tasksets (only called for the first taskset immediately under the locust). should fix #1206.",Jonatan Heyman,2020-04-02 18:23:37+02:00,FALSE,bug,https://github.com/locustio/locust/issues/1206,True,N,,,,,,,,
+637,numpy,issue,939,bug: core: fix refcount error in pyarray_take (#939),Pauli Virtanen,2010-07-31 13:48:52+00:00,FALSE,"00 - Bug,component: Other",https://github.com/numpy/numpy/issues/939,True,N,,,,,,,,
+479,ray,issue,3644,[rllib] discussion 3644: fix bug for complex obs spaces containing `box([2d shape])` and discrete component. (#18917),Sven Mika,2021-09-30 16:39:38+02:00,FALSE,bug,https://github.com/ray-project/ray/issues/3644,True,N,,,,,,,,
+1229,salt,issue,14604,resolve - https://github.com/saltstack/salt/issues/14604,Colin Johnson,2014-07-29 20:16:23+00:00,FALSE,"Bug,severity-medium,Salt-Cloud,P2,RIoT",https://github.com/saltstack/salt/issues/14604,True,Y,Incorrect Behavior,Incorrect Behavior,Incorrect Logic,Incorrect Logic,Move the exception handling block,Exception handling block operations,,
+532,netbox,issue,785,fixes #785: trigger validation error when importing a prefix assigned to a nonexistent vlan,Jeremy Stretch,2017-01-17 15:01:30-05:00,FALSE,type: bug,https://github.com/netbox-community/netbox/issues/785,True,Y,Aplication Crashing,Aplication Crashing,Missing Exception Type,Unhandled Exception,Add a exception handling block,Exception handling block operations,,
+422,pymc,issue,5803,"fix shape problem in gp priors
+
+shape asserts were added in existing tests that covered
+both reparameterize=true/false.
+
+closes #5803",Michael Osthege,2022-05-25 17:40:51+02:00,FALSE,"bug,shape problem,GP",https://github.com/pymc-devs/pymc/issues/5803,True,N,,,,,,,,
+741,tweepy,issue,8,fix some pep8 errors,Omer Murat Yildirim,2014-09-19 19:34:41+03:00,FALSE,"Bug,API",https://github.com/tweepy/tweepy/issues/8,True,N,,,,,,,,
+566,psutil,issue,94,fix issue 94: oserror was raised instead of nosuchprocess,Giampaolo Rodola',2010-06-11 20:14:19+00:00,FALSE,"bug,imported",https://github.com/giampaolo/psutil/issues/94,True,N,,,,,,,,
+985,recommenders,issue,115,"merge pull request #115 from microsoft/bug/reco_bare_tests_pyspark_import
+
+fixed :bug: python tests don't pass if we use only python environme…",Miguel González-Fierro,2018-10-24 10:47:11+02:00,TRUE,bug,https://github.com/microsoft/recommenders/issues/115,True,Y,Incorrect Behavior,Incorrect Behavior,Incorrect Logic,Incorrect Logic,Change the the exception code logic,Change the the exception code logic,,
+1599,robotframework,issue,979,"refactoring how stuff gets imported to get cleaner code and to fix bugs.
+this is work-in-progress and there's also one test that is know to fail.
+
+update issue 979
+status: started
+owner: pekka.klarck
+i looked at the importing related code and got annoyed how badly it
+was structured. i decided it's better to refactor the code, add unit
+tests, and at the same time fix the problems discusses in this issue.",Pekka Klärck,2011-12-22 12:31:46+02:00,FALSE,"bug,priority: medium",https://github.com/robotframework/robotframework/issues/979,True,Y,Incorrect Behavior,Incorrect Behavior,Incorrect Logic,Incorrect Logic,Add a exception handling block,Exception handling block operations,17de3ad69efe669e51e75f1f92d3fed23fbbcd73,https://github.com/robotframework/robotframework
+425,numba,issue,8105,"add explicit checks to all allocators in the nrt.
+
+this patch:
+
+* updates nrt.c to ensure that allocation routines return null if
+  the allocation fails. cf. malloc.
+* updates the nrt.context to add a check that wraps any allocation
+  routine to check if the allocation failed and if so raises a
+  memoryerror.
+* fixes the runtime system allocators to catch invalid allocation
+  requests and handle failed allocation requests.
+* adds tests for the above.
+* fixes a storage classifier issue in the c code in the nrt tests.
+* adds the option `--debuginfo` to the `build_ext` command in
+  setup.py, on unix systems this will ensure the dsos numba
+  produces are built with debug symbols.
+* adds an update to the notes in nrt_external.h about the expected
+  behaviour of an externally supplied allocation routine.
+
+fixes #8105
+(the segfault part).",Stuart Archibald,2022-06-01 14:29:57+01:00,FALSE,"bug - segfault,bug - incorrect behavior,needs design work",https://github.com/numba/numba/issues/8105,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Raising Condition,Missing Raising Condition,Add a raise condition,Improve raising conditions,0e2a6961c5e96c518ed4f3fc3114140f59b15728,https://github.com/numba/numba
+582,ansible,issue,23600,"check login_token for user before any operations (#23600)
+
+fix adds extra check if user is authorized or not while
+using login_token.
+
+fixes https://github.com/ansible/ansible/issues/23033
+
+signed-off-by: abhijeet kasurde <akasurde@redhat.com>",Abhijeet Kasurde,2017-05-09 18:10:13+05:18,FALSE,"module,community_review,affects_2.4,bug,gitlab",https://github.com/ansible/ansible/issues/23600,True,N,,,,,,,,
+1253,ansible,issue,52854,"lookup: redis: fix plugin returning repr'd byte objects (#52854)
+
+* fix default port of redis lookup plugin
+
+* fix redis plugin returning repr'd byte objects
+
+* fix error handling in redis lookup plugin",Jad Kik,2019-02-27 13:04:18+02:00,FALSE,"python3,community_review,support:community,new_contributor,bug,affects_2.8",https://github.com/ansible/ansible/issues/52854,True,Y,Incorrect Behavior,Incorrect Behavior,Incorrect Logic,Incorrect Logic,Change the exception type and raise a exception,Improve raising conditions,79eeea8ea6289b29ed55361813f2179f005b7332,https://github.com/ansible/ansible
+1492,pytest,issue,5991,"unittest: do not use testcase.debug() with `--pdb`
+
+fixes https://github.com/pytest-dev/pytest/issues/5991
+fixes https://github.com/pytest-dev/pytest/issues/3823
+
+ref: https://github.com/pytest-dev/pytest-django/issues/772
+ref: https://github.com/pytest-dev/pytest/pull/1890
+ref: https://github.com/pytest-dev/pytest-django/pull/782
+
+- inject wrapped testmethod
+
+- adjust test_trial_error
+
+- add test for `--trace` with unittests",Daniel Hahler,2019-10-18 18:26:03+02:00,FALSE,"type: bug,plugin: unittest,plugin: debugging",https://github.com/pytest-dev/pytest/issues/5991,True,N,,,,,,,,
+420,ansible,issue,75468,"try all galaxy servers when locating available versions for a collection (#75468)
+
+* if an exception occurs when getting a collection's metadata, continue to the next in the server list.
+
+* warn for unknown exceptions when finding versions of a collection
+
+* test that an invalid server is no longer fatal if a subsequent server has the collection
+
+* fix server for verify tests - compare checksums against the server from which it was installed
+
+* add tests for verify and fix that code path to mirror install/download behavior for server errors
+
+co-authored-by: sviatoslav sydorenko <wk.cvs.github@sydorenko.org.ua>",Sloane Hertel,2021-09-14 09:40:48-04:00,FALSE,"core_review,support:community,support:core,bug,has_issue,affects_2.12",https://github.com/ansible/ansible/issues/75468,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Re-raise a exception,Re-raise a exception,469b559ebe44451ad60b2e534e284b19090b1c18,https://github.com/ansible/ansible
+701,spyder,issue,38,interactive/external console: fixed issue 38 - code completion issue with vtk,Pierre Raybaut,2009-09-12 15:18:12+02:00,FALSE,"type:Bug,2–5 stars",https://github.com/spyder-ide/spyder/issues/38,True,N,,,,,,,,
+70,openbbterminal,issue,510,fix bugs and more refactoring (#510),DidierRLopes,2021-06-22 13:22:34+01:00,FALSE,"bug,docs,refactor",https://github.com/openbb-finance/openbbterminal/issues/510,True,Y,Incorrect Behavior,Incorrect Behavior,Missing Exception Type,Unhandled Exception,Change to apropriated exception type,Exception type operations,d1505359e595a50bf22c2c5601f261686117310f,https://github.com/openbb-finance/openbbterminal
+275,openbbterminal,issue,1310,"fix bugs (#1310)
+
+* added model fix
+
+* fixed nasdaq view issue
+
+* fixed fred_view bug
+
+* fixed screener view bug
+
+* improved oanda_model excption handling
+
+* fixed scripts
+
+* improved run_scripts",Colin Delahunty,2022-02-04 09:15:38-05:00,FALSE,bug,https://github.com/openbb-finance/openbbterminal/issues/1310,True,Y,Incorrect Messaging,Incorrect Messaging,Unproper Message,Unproper Message,Improve the message error,Improve the message error,b189ffa45dff708d172044e588fafbf8e5bcbc22,https://github.com/openbb-finance/openbbterminal
+1365,networkx,issue,fix issue #1948 and pep8 formatting,vpodpecan,2016-03-07 14:08:56+01:00,FALSE,type: Bug fix,172552fdcd44707997c33e9f4d14441eba210b22,https://github.com/networkx/networkx/issues/1948,True,N,,,,,,,,
+361,numpy,issue,10266,"merge pull request #10266 from xoviat/distutils-locale
+
+bug: distutils: fix locale decoding errors",Charles Harris,2017-12-26 08:39:45-07:00,TRUE,"00 - Bug,component: numpy.distutils",https://github.com/numpy/numpy/issues/10266,True,N,,,,,,,,
+707,openbbterminal,issue,3131,"fix forex bugs (#3131)
+
+* normalized way moving average is treated and prevent huge exception prompt
+
+* changed descriptions on docs
+
+* change to check_positive_float
+
+* fix linting
+
+* fix linting",Henrique Joaquim,2022-10-28 11:32:02+01:00,FALSE,bug,https://github.com/openbb-finance/openbbterminal/issues/3131,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Add a exception handling block,Exception handling block operations,,
+413,ansible,issue,77630,"fix ansible-galaxy traceback when unexpected version of resolvelib is installed (#77630)
+
+* fix traceback when a supported version of resolvelib is not installed
+
+try to read the supported version range from the package distribution info and fall back to a hardcoded lowerbound/upperbound (>=0.5.3,<0.6.0).
+
+* add tests for unsupported resolvelib versions
+
+* resolve remaining import sanity test issues.
+
+co-authored-by: matt clay <matt@mystile.com>
+co-authored-by: matt martz <matt@sivel.net>",Sloane Hertel,2022-05-24 15:35:55-04:00,FALSE,"test,core_review,support:community,support:core,bug,affects_2.14",https://github.com/ansible/ansible/issues/77630,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Add a exception handling block,Exception handling block operations,82f3a57bee274b52db8bbf1d1c072997f9c4f5f2,https://github.com/ansible/ansible
+720,scipy,issue,3714,"fix: corrected error message of eigsh.
+
+closes #3714",Bastian Venthur,2014-08-31 15:53:06+01:00,FALSE,"defect,scipy.sparse.linalg,Documentation",https://github.com/scipy/scipy/issues/3714,True,Y,Incorrect Messaging,Incorrect Messaging,Unproper Message,Unproper Message,Improve the message error,Improve the message error,,
+1414,ansible,issue,"update ansible doc formats (#71070)
+
+* fix tty_ify bugs and refactor
+
+* move tty_ify() and supporting attributes to the doccli class as that's
+  the only thing using it.
+* add unittest for the code.
+* fix a bug where the substitution macros can be detected when they are
+  a part of another word.
+* add support for l(), r(), and horizontalline which were added to the
+  website docs many years ago.
+
+* update test/units/cli/test_doc.py
+
+co-authored-by: matt clay <matt@mystile.com>
+
+co-authored-by: matt clay <matt@mystile.com>",Toshio Kuratomi,2020-08-05 10:53:25-07:00,FALSE,"needs_revision,support:community,support:core,bug,docs,docsite,affects_2.11",fb144c44144f8bd3542e71f5db62b6d322c7bd85,https://github.com/ansible/ansible/issues/71070,True,N,,,,,,,,
+1118,spyder,issue,3,"variable explorer: avoid errors when trying to sort its columns on python 3
+
+fixes issue 1891",Carlos Cordoba,2014-11-01 19:53:41-05:00,FALSE,"type:Bug,1 star",https://github.com/spyder-ide/spyder/issues/3,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Add a exception handling block,Exception handling block operations,80a19158d70a76d10030abdaf7f0d7cf8926eee8,https://github.com/spyder-ide/spyder
+29,pandas,issue,6893,bug/enh: warn when falling back to python parser,Matt Wittmann,2014-04-15 15:58:02-07:00,FALSE,"Bug,IO CSV,MultiIndex",https://github.com/pandas-dev/pandas/issues/6893,True,N,,,,,,,,
+494,lightning,issue,3271,"limit auto scaling batch size to the size of the training dataset (#3271)
+
+* fix
+
+* fix and test
+
+* fix merge error
+
+* test for max dataset size
+
+* changelog
+
+* update docs
+
+* fix merge
+
+* unused imports
+
+* imports",Adrian Wälchli,2020-09-09 10:51:43+02:00,FALSE,"bug,ready",https://github.com/lightning-ai/lightning/issues/3271,True,Y,Incorrect Behavior,Incorrect Behavior,Missing Raising Condition,Missing Raising Condition,Re-raise a exception,Re-raise a exception,,
+185,salt,issue,58822,"rename `salt.renderers.toml` to `salt.renderers.tomlmod`.
+
+this fixes the import error issues as described in #58822
+
+fixes #58822",Pedro Algarvio,2020-12-11 07:14:57+00:00,FALSE,"Bug,Regression,severity-high,Aluminium",https://github.com/saltstack/salt/issues/58822,True,N,,,,,,,,
+411,ansible,issue,64373,"fix up role version pagination for galaxy install (#64373)
+
+* fix up role version pagination for galaxy install
+
+* fix sanity issue",Jordan Borean,2019-11-06 01:34:50+10:00,FALSE,"core_review,support:community,support:core,bug,has_issue,affects_2.10",https://github.com/ansible/ansible/issues/64373,True,Y,Incorrect Messaging,Incorrect Messaging,Unproper Message,Unproper Message,Improve the message error,Improve the message error,7acae62fa849481b2a5e2e2d56961c5e1dcea96c,https://github.com/ansible/ansible
+982,spyder,issue,6731,"merge pull request #6731 from cam-gerlach/fix-attributeerror-varexp
+
+pr: fix various bugs in variable explorer, including an application crash to desktop",Carlos Cordoba,2018-03-12 10:03:19-05:00,TRUE,"type:Bug,component:Variable Explorer",https://github.com/spyder-ide/spyder/issues/6731,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Change to apropriated exception type,Exception type operations,221b5bbbbf50323b0f5dadc2f33c76fd192bc094,https://github.com/spyder-ide/spyder
+30,lightning,issue,6027,[hotfix] resolve tpu training (#6027),chaton,2021-02-17 16:40:13+00:00,FALSE,"bug,priority: 0,accelerator: tpu",https://github.com/lightning-ai/lightning/issues/6027,True,N,,,,,,,,
+342,pytorch-lightning,issue,6027,"[hotfix] resolve tpu training (#6027)
+
+* fix tpus
+
+* update
+
+* add back reduction in val_loss
+
+* resolve some bugs with tpus
+
+* update changelog
+
+* update on comments
+
+* forgot status
+
+* fix train_bn arg
+
+* resolve comments
+
+* update on comments
+
+co-authored-by: carlos mocholi <carlossmocholi@gmail.com>",chaton,2021-02-17 16:40:13+00:00,FALSE,"bug,priority: 0,accelerator: tpu",https://github.com/pytorchlightning/pytorch-lightning/issues/6027,True,Y,Incorrect Behavior,Incorrect Behavior,Missing Raising Condition,Missing Raising Condition,Add a raise condition,Improve raising conditions,,
+1479,awx,issue,654,"ac-654 add api support for token auth using x-auth-token header in addition to authorization header, fixes issue where api requests from the ui are picking up the basic auth from an api session.",Chris Church,2013-11-19 23:22:30-05:00,FALSE,"type:bug,component:ui",https://github.com/ansible/awx/issues/654,True,N,,,,,,,,
+1177,ansible,issue,61066,"removes deprecated parameters (#61066)
+
+adds diff functionality
+fixes issue with serverscope parameter not setting on device",Wojciech Wypior,2019-08-22 04:50:40+01:00,FALSE,"networking,test,module,shipit,support:core,support:certified,f5,bug,affects_2.9",https://github.com/ansible/ansible/issues/61066,True,N,,,,,,,,
+433,gamestonkterminal,issue,510,fix bugs and more refactoring (#510),DidierRLopes,2021-06-22 13:22:34+01:00,FALSE,"bug,docs,refactor",https://github.com/gamestonkterminal/gamestonkterminal/issues/510,True,N,,,,,,,,
+1094,ansible,issue,61071,"removed deprecated parameters (#61071)
+
+fixed multiple issues with integration tests
+added rd support for source parameter
+fixed a problem with name parameter in bigip_user module",Wojciech Wypior,2019-08-22 04:58:11+01:00,FALSE,"networking,module,shipit,owner_pr,support:certified,f5,bug,affects_2.9",https://github.com/ansible/ansible/issues/61071,True,N,,,,,,,,
+552,openbbterminal,issue,2566,"fix a bug and refactor stock helpers (#2566)
+
+* refactored stocks_helpers
+
+* fixed naming issue
+
+* reverted changes
+
+* added fixes
+
+* added pylint fixes
+
+* added fixes
+
+* fixed tests",Colin Delahunty,2022-09-23 15:24:27+01:00,FALSE,bug,https://github.com/openbb-finance/openbbterminal/issues/2566,True,N,,,,,,,,
+303,gamestonkterminal,issue,2770,"fixed errors in trading hours + tests (#2770)
+
+co-authored-by: james maslek <jmaslek11@gmail.com>",Gerard,2022-10-10 23:09:21+02:00,FALSE,"bug,enhancement,tests,HACKTOBERFEST",https://github.com/gamestonkterminal/gamestonkterminal/issues/2770,True,Y,Incorrect Behavior,Incorrect Behavior,Incorrect Logic,Incorrect Logic,Change the the exception code logic,Change the the exception code logic,4f189db935a67a6cc5bbe1de9c387c7c4bf6557f,https://github.com/gamestonkterminal/gamestonkterminal
+583,spyder,issue,3,variable explorer: fix other couple of sorting errors on python 3,Carlos Cordoba,2014-11-18 21:14:11-05:00,FALSE,"type:Bug,1 star",https://github.com/spyder-ide/spyder/issues/3,True,N,,,,,,,,
+901,gamestonkterminal,issue,3782,add fix for stocks menu not loading (#3782),Jeroen Bouma,2022-12-15 21:49:44+01:00,FALSE,"bug,feat XS",https://github.com/gamestonkterminal/gamestonkterminal/issues/3782,True,Y,Aplication Crashing,Aplication Crashing,Incorrect Logic,Incorrect Logic,Add a exception handling block,Exception handling block operations,,
+917,pyro,issue,459,fix recent issues in abstract_infer.py (#459),Fritz Obermeyer,2017-11-02 12:22:58-07:00,FALSE,"bug,easy",https://github.com/pyro-ppl/pyro/issues/459,True,Y,Incorrect Behavior,Incorrect Behavior,Wrong Exception Type,Wrong Exception Type,Remove the exception handling block,Exception handling block operations,,
+857,salt,issue,32571,"i32571-winrepo: `saltenv` is required to lookup the cache file (#32581)
+
+* i32571-winrepo: `saltenv` is required to lookup the cache file
+
+* `win_pkg` module: fix pep8 errors
+
+* i32571-winrepo: purged/remove also need to know the `saltenv`",quantonganh,2016-04-16 01:23:06+07:00,FALSE,"Bug,severity-medium,Windows,P3,Platform,stale",https://github.com/saltstack/salt/issues/32571,True,Y,Incorrect Behavior,Incorrect Behavior,Wrong Raise Type,Wrong Raise Type,Change the the exception code logic,Change the the exception code logic,b6659b5b7d73afba09a2d285e599de30d80d52c0,https://github.com/saltstack/salt
+483,openbbterminal,issue,2034,"remove print and fix issue with str on sia/vis (#2034)
+
+* remove print and fix issue with str on sia/vis
+
+* fix tests
+
+co-authored-by: jeroen bouma <jer.bouma@gmail.com>",DidierRLopes,2022-07-04 10:08:14+01:00,FALSE,bug,https://github.com/openbb-finance/openbbterminal/issues/2034,True,Y,Incorrect Behavior,Incorrect Behavior,Missing Raising Condition,Missing Raising Condition,Change to apropriated exception type,Exception type operations,,
+394,ansible,issue,44740,"win_reboot: fix minor issues with the latest refactor (#44740)
+
+* win_reboot: fix minor issues with the latest refactor
+
+* always return elapsed with win_reboot",Jordan Borean,2018-08-29 07:25:37+10:00,FALSE,"needs_revision,windows,test,support:core,bug,affects_2.7",https://github.com/ansible/ansible/issues/44740,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Re-raise a exception,Re-raise a exception,0c3216c5652411549ce32234a18c6ba2329d35ec,https://github.com/ansible/ansible
+1235,sympy,issue,3347,"add 'default' to dict of backends, and use it to fix issue 3347",Aaron Meurer,2012-08-09 22:33:03-06:00,FALSE,"imported,Bug",https://github.com/sympy/sympy/issues/3347,True,N,,,,,,,,
+65,pandas,issue,1068,"bug: fix searchsorted off by one error, close #1068",Wes McKinney,2012-04-16 16:45:37-04:00,FALSE,"Bug,Timeseries",https://github.com/pandas-dev/pandas/issues/1068,True,Y,Incorrect Exceptions,Incorrect Exceptions,Re-raising Exception,Re-raising Exception,Add a raise condition,Improve raising conditions,e1552a607be435b71e16da02940118b30a25b939,https://github.com/pandas-dev/pandas
+1067,spyder,issue,2,"merge from 2.2 (fix for issue 1595)
+
+- besides, don't turn autorefresh on for ipython kernels through preferences",Carlos Cordoba,2013-10-06 08:16:57-05:00,TRUE,"type:Bug,1 star",https://github.com/spyder-ide/spyder/issues/2,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Change to apropriated exception type,Exception type operations,83fb5fedcf284902263ffe50692ac9e8c372a91f,https://github.com/spyder-ide/spyder
+270,gamestonkterminal,issue,1089,"discordbot technical analysis (#1089)
+
+* fix bug with window size on discordbot
+
+* pylint and black fixes
+
+* black linter",Didier Rodrigues Lopes,2021-12-23 16:25:18+00:00,FALSE,"bug,discord",https://github.com/gamestonkterminal/gamestonkterminal/issues/1089,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Add a exception handling block,Exception handling block operations,a0a22ee2cff2be0f062de0ec60bf096e2cb1a51a,https://github.com/gamestonkterminal/gamestonkterminal
+188,pytorch_geometric,issue,7440,"fix error message when invalid values are passed to `linkneighborloader` (#7440)
+
+the main change is:
+```diff
+- while 'input_time' is
++ while 'time_attr' is
+```
+
+---------
+
+co-authored-by: pre-commit-ci[bot] <66853113+pre-commit-ci[bot]@users.noreply.github.com>
+co-authored-by: matthias fey <matthias.fey@tu-dortmund.de>",Akihiro Nitta,2023-05-27 09:52:20+01:00,FALSE,"bug,0 - Priority P0,loader,skip-changelog",https://github.com/rusty1s/pytorch_geometric/issues/7440,True,Y,Incorrect Messaging,Incorrect Messaging,Unproper Message,Unproper Message,Improve the message error,Improve the message error,,
+1540,pytorch_geometric,issue,6304,"fix `data.to_heterogeneous()` with empty `edge_index` (#6304)
+
+also fixes https://github.com/pyg-team/pytorch_geometric/issues/6299.",Matthias Fey,2022-12-27 13:19:39+01:00,FALSE,"bug,0 - Priority P0,explain,data",https://github.com/rusty1s/pytorch_geometric/issues/6304,True,Y,Incorrect Behavior,Incorrect Behavior,Incorrect Logic,Incorrect Logic,Add a raise condition,Improve raising conditions,,
+23,pymc,issue,2681,bugfix #2681 (#2683),Junpeng Lao,2017-11-01 15:59:14+01:00,FALSE,bug,https://github.com/pymc-devs/pymc/issues/2681,True,N,,,,,,,,
+1181,openbbterminal,issue,4433,"fix fa/income bugs + update integration tests (#4433)
+
+* fix bug
+
+* update test
+
+* fix yf bug on income statements
+
+* update integration test
+
+* fix yf cash, balance, bug
+
+* add enterprise test
+
+* fix dupont
+
+* fix av keys missing in request
+
+* ruff
+
+* av model api key
+
+* pylint
+
+* pylint
+
+---------
+
+co-authored-by: james maslek <jmaslek11@gmail.com>",montezdesousa,2023-03-08 21:13:36+00:00,FALSE,"bug,feat XS",https://github.com/openbb-finance/openbbterminal/issues/4433,True,Y,Aplication Crashing,Aplication Crashing,Missing Exception Type,Unhandled Exception,Add a exception handling block,Exception handling block operations,47f3e76987060b6f5709cc4a2d3644816fe6539c,https://github.com/openbb-finance/openbbterminal
+32,ansible,issue,8614,fix host pattern matching and enhance error detection,James Cammarata,2014-08-14 12:13:40-05:00,FALSE,"P2,bug",https://github.com/ansible/ansible/issues/8614,True,Y,Incorrect Behavior,Incorrect Behavior,Missing Exception Type,Unhandled Exception,Change to apropriated exception type,Exception type operations,f48fa3759adfa92c9ed618e771c4cf8b136b0470,https://github.com/ansible/ansible
+621,networkx,issue,6789,"refix minimum_cycle_basis and scipy.sparse conversions and add tests (#6789)
+
+* update tests to check basis independence
+
+* fix new minimum_cycle_basis
+
+* fix subtle type bug when converting from scipy sparse
+
+the nodes were being added as python int (via range(n))
+but the edges were being added as np.int32 from csr_matrix.indices
+the nodes are equal to the nodes used when forming the edges, so no
+new nodes were added and it all seems to work!
+but np.int32 raises a valueerror when comparing to tuples while python
+int shows `false`.  this leads to a very cryptic error message if the
+graph later adds any nodes that are tuples.",Dan Schult,2023-07-15 23:17:39-05:00,FALSE,type: Bug fix,https://github.com/networkx/networkx/issues/6789,True,Y,Incorrect Behavior,Incorrect Behavior,Missing Exception Type,Unhandled Exception,Add a exception handling block,Exception handling block operations,1fdbb7da51e95e306189d705ca91a7a8a9691980,https://github.com/networkx/networkx
+1514,scapy,issue,417,"merge pull request #417 from p-l-/romounet-srfix
+
+fixed a bug in the sendrecv method when using multi-threading",Pierre Lalet,2016-12-23 13:59:31+00:00,TRUE,bug,https://github.com/secdev/scapy/issues/417,True,Y,Performance,Performance,Incorrect Logic,Incorrect Logic,Change the the exception code logic,Change the the exception code logic,2a60580701f82df7d719c82b22d25a7ced1556e5,https://github.com/secdev/scapy
+602,spyder,issue,1066,"(fixes issue 1066) about dialog was broken with installed mercurial
+and absent .hg directory in spyder dir. subprocess.popen with
+shell=true didn't raise exception if hg returned with error code,
+so an empty string was converted to an empty tumple instead of failing.
+
+this fixes and refactors mercurial handling logic.
+followup to a fix in rce8c5309a6d1.",anatoly techtonik,2012-05-31 17:14:46+03:00,FALSE,"type:Bug,2–5 stars",https://github.com/spyder-ide/spyder/issues/1066,True,Y,Aplication Crashing,Aplication Crashing,Missing Raising Condition,Missing Raising Condition,Add apropriated exception type,Exception type operations,,
+693,salt,issue,22669,"fix the clustershell roster host names (clean)
+
+this fixes: https://github.com/saltstack/salt/issues/22669
+this closes: https://github.com/saltstack/salt/pull/22670",Mathieu Drapeau,2015-04-14 17:14:44-04:00,FALSE,"Bug,severity-medium,fixed-pls-verify,Core,Salt-SSH,P3",https://github.com/saltstack/salt/issues/22669,True,N,,,,,,,,
+1330,spyder,issue,"(fixes issue 429) variable explorer now allows multiple objects to be edited at once
+dicteditor, arrayeditor and texteditor (as well as derived classes used in spyder's internal console and main app) were affected by this major change",Pierre Raybaut,2010-10-27 16:09:34+02:00,FALSE,"type:Bug,1 star",6ab233fd7c734ebc3425b1a1958176851f7ea482,https://github.com/spyder-ide/spyder/issues/429,True,N,,,,,,,,
+481,pymc,issue,331,"fixed some import bugs with histogram and added the possibility to compute the optimum number of bins.
+
+git-svn-id: https://pymc.googlecode.com/svn/branches/trial@331 15d7aa0b-6f1a-0410-991a-d59f85d14984",david.huard,2007-05-08 16:53:51+00:00,FALSE,bug,https://github.com/pymc-devs/pymc/issues/331,True,N,,,,,,,,
+1375,spyder,issue,"fix get_package_version
+
+fixes https://github.com/spyder-ide/spyder/issues/14163",Quentin Peter,2020-11-06 17:18:22+01:00,FALSE,"type:Bug,component:Profiler",a49665a25002f8dee1af3cd6d5d015c409eb4f4d,https://github.com/spyder-ide/spyder/issues/14163,True,Y,Incorrect Exceptions,Incorrect Exceptions,Wrong Exception Type,Wrong Exception Type,Change to apropriated exception type,Exception type operations,,
+626,ansible,issue,19141,"cloud: ovirt: various fixes for ovirt modules (#19141)
+
+*  cloud: ovirt: fix various issues in ovirt modules
+
+* cloud: ovirt: add support for nfs version
+
+* cloud: ovirt: fix facts documentation
+
+* add proper documentation fragmet
+* add proper argument_spec
+* fix return values
+
+* cloud: ovirt: fix pep8",Ondra Machacek,2016-12-14 17:42:15+01:00,FALSE,"cloud,affects_2.3,module,owner_pr,bug,ovirt",https://github.com/ansible/ansible/issues/19141,True,N,,,,,,,,
+451,spyder,issue,2,merge from 2.3: fix for issue #1366 and other editor fixes,Carlos Cordoba,2015-03-15 22:11:31-05:00,TRUE,"type:Bug,1 star",https://github.com/spyder-ide/spyder/issues/2,True,N,,,,,,,,
+767,spyder,issue,4,"fixed: cannot open/save files from gui (qfiledialog issue with pyqt4 v4.6)
+
+the selectedfilter option (`initialfilter` in qt) has only been introduced
+in jan. 2010 for pyqt v4.7, that's why we handle here the typeerror exception
+which will be raised with pyqt v4.6
+
+fixes issue 960",Pierre Raybaut,2012-07-27 20:34:04+02:00,FALSE,"type:Bug,1 star",https://github.com/spyder-ide/spyder/issues/4,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Add a exception handling block,Exception handling block operations,,
+297,gamestonkterminal,issue,2314,fix issue 2314 (#2384),montezdesousa,2022-08-22 13:09:43+01:00,FALSE,bug,https://github.com/gamestonkterminal/gamestonkterminal/issues/2314,True,N,,,,,,,,
+944,ansible,issue,58647,dnf - fix error formatting of module name in error message (#58647),Sam Doran,2019-07-09 04:16:43-04:00,FALSE,"module,core_review,support:community,support:core,bug,packaging,affects_2.9",https://github.com/ansible/ansible/issues/58647,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Change to apropriated exception type,Exception type operations,1c2c1c15d0483e85b1addf4c6f15c80135ef02a3,https://github.com/ansible/ansible
+59,pip,issue,8,fix pep8 issue,Donald Stufft,2014-12-23 06:22:31-05:00,FALSE,"type: bug,auto-locked",https://github.com/pypa/pip/issues/8,True,N,,,,,,,,
+162,numpy,issue,7549,"merge pull request #7549 from matthew-brett/fix-no-compiler-errors
+
+bug: allow graceful recovery for no liux compiler",Nathaniel J. Smith,2016-04-15 18:11:15+00:00,TRUE,"00 - Bug,05 - Testing,component: numpy.distutils",https://github.com/numpy/numpy/issues/7549,True,Y,Compilation Error,Compilation Error,Incorrect Logic,Incorrect Logic,Move the exception handling block,Exception handling block operations,35097048522b8b0da12b49639fdfc2d96ae81666,https://github.com/numpy/numpy
+69,chalice,issue,565,fix iam role creation issue,Nick Plutt,2017-12-09 16:27:40-06:00,FALSE,bug,https://github.com/aws/chalice/issues/565,True,Y,Incorrect Behavior,Incorrect Behavior,Incorrect Logic,Incorrect Logic,Add a exception handling block,Exception handling block operations,5f640d5ca75b60a97bdff4a79de2edb5404e8c70,https://github.com/aws/chalice
+259,spyder,issue,774,(fixes issue 774) run configurations: now handling eventual corruption of these settings,Pierre Raybaut,2011-10-02 14:02:25+02:00,FALSE,"type:Bug,1 star",https://github.com/spyder-ide/spyder/issues/774,True,N,,,,,,,,
+807,qlib,issue,865,"remove arctic from qlib core to contrib (#865)
+
+* remove arctic from qlib core to contrib
+
+* fix empty df bug",you-n-g,2022-01-19 10:39:37+08:00,FALSE,bug,https://github.com/microsoft/qlib/issues/865,True,N,,,,,,,,
+1539,salt,issue,6912,fix pip tests for issue 6912 on windows,Daniel A. Wozniak,2020-05-17 05:40:27+00:00,FALSE,Bug,https://github.com/saltstack/salt/issues/6912,True,N,,,,,,,,
+271,pandas-profiling,issue,1104,"fix: issue#1104 empty dataframe (#1238)
+
+* fix: raise value error for empty dataframe
+
+* fix: empty dataframe unit test",Muhammad Sohaib Arshid,2023-01-24 11:47:51+01:00,FALSE,"bug 🐛,feature request 💬",https://github.com/ydataai/pandas-profiling/issues/1104,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Add a raise condition,Improve raising conditions,db60d48383acd70f6c5c09dc6b9c98e0a7dce57b,https://github.com/ydataai/pandas-profiling
+1328,ansible,issue,"fix for nxos_ospf_vrf invalid cmd and ntp errors (#27977)
+
+* fix for nxos_ospf_vrf invalid cmd
+
+* fix for nxos_ntp issues",saichint,2017-08-14 13:09:16-07:00,FALSE,"needs_revision,networking,module,affects_2.4,support:community,bug",9d84a4e530033e8b4a79be4f59e698dcb250cd82,https://github.com/ansible/ansible/issues/27977,True,Y,Aplication Crashing,Aplication Crashing,Missing Exception Type,Unhandled Exception,Add apropriated exception type,Exception type operations,,
+1287,ansible,issue,"fixes bugs in iapp template (#33478)
+
+fixes upstream bugs that broke downstream. also fixes a name
+matching error in the iapp's name",Tim Rupp,2017-12-01 21:30:13-08:00,FALSE,"networking,test,module,core_review,support:community,support:core,affects_2.5,f5,bug",2b1f056881de044e43022ed8e2d437b2dbb9c1b6,https://github.com/ansible/ansible/issues/33478,True,Y,Incorrect Behavior,Incorrect Behavior,Incorrect Logic,Incorrect Logic,Change the the exception code logic,Change the the exception code logic,,
+664,ansible,issue,55993,"nxos_install_os: fix nxapi local failures (#55993)
+
+* fix nxapi failures
+
+* remove logit debug calls
+
+* remove msg_timestamps
+
+* fix code alignment issue",Mike Wiebe,2019-06-06 00:05:08-04:00,FALSE,"needs_revision,networking,test,module,support:network,nxos,bug,cisco,affects_2.9",https://github.com/ansible/ansible/issues/55993,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Add a exception handling block,Exception handling block operations,,
+1245,streamlit,issue,3218,"fix 3218, patch pydantic in_ipython function (#6664)
+
+* fix 3218, patch pydantic in_ipython function to remove duplicate validator error
+pydantic by default disallows to reuse of validators with the same name, this combined with the streamlit execution model leads to an error on the second streamlit script rerun if the pydantic validator is registered in the streamlit script.
+
+it is important to note that the same issue exists for pydantic validators inside jupyter notebooks, pydantic/pydantic#312 , please see this comment and to fix that in pydantic they use the in_ipython function that checks that pydantic runs not in ipython environment (they try to eval('__ipython__') in that function)
+
+https://github.com/pydantic/pydantic/blob/d61792cc42c80b13b23e3ffa74bc37ec7c77f7d1/pydantic/class_validators.py#l149
+
+so to fix this error we have several options:
+
+- open pr to pydantic v1 repo with the suggestion to add the in_streamlit function
+this could be inefficient because active development in v1 branch is finished, and they concentrated to v2 development
+- set __ipython__ flag in streamlit
+this could lead to unexpected consequences, if other 3rd party libraries also refer to that flag.
+- redefine in_ipython function inside bootstrap.py to return always true
+changes in this commit
+
+another relevant note is that the mechanism of duplicate detection completely rewritten for pydantic v2 (which has not yet been released), and this should not be an issue for pydantic 2.
+pydantic/pydantic#5398 , and this should not be an issue for pydantic v2.
+
+resuming all the above, this change will relax rules for writing pydantic validators inside streamlit script a little bit, similar to how it works in jupyter, which should not be critical.
+
+this also should work correctly even if pydantic v2 is installed, since class_validators has been kept in v2 too.",Karen Javadyan,2023-05-31 14:18:30+04:00,FALSE,type:bug,https://github.com/streamlit/streamlit/issues/3218,True,N,,,,,,,,
+124,psutil,issue,292,fix issue 292: race condition in process files/threads/connections.,Giampaolo Rodola',2012-06-28 15:26:27+00:00,FALSE,"bug,imported,linux",https://github.com/giampaolo/psutil/issues/292,True,N,,,,,,,,
+1517,numpy,issue,14981,"merge pull request #14981 from seberg/issue-13103
+
+this reverts commit c088383cb290ca064d456e89d79177a0e234cb8d and
+uses the same kind casting rule for the additional keyword arguments
+``to_end`` and ``to_begin``. this results in slightly more leniant
+behaviour for integers (which can now have overflows that are
+hidden), but fixes an issue with the handling of nan.
+generally, this behaviour seems more conistent with what numpy does
+elsewhere. the overflow issue exists similar in many other places
+and should be solved by integer overflow warning machinery while
+the actual cast takes place.
+
+closes gh-13103",Matti Picus,2019-12-11 13:58:10+02:00,TRUE,"00 - Bug,component: numpy.core,triage review",https://github.com/numpy/numpy/issues/14981,True,Y,Incorrect Behavior,Incorrect Behavior,Wrong Raise Type,Wrong Raise Type,Change the raise type,Improve raising conditions,5856c486ac5dd62a6ac9b2a861aa86802e6e0edd,https://github.com/numpy/numpy
+1512,ansible,issue,21854,fix a few errors (#21854),Nathaniel Case,2017-02-25 21:12:49-05:00,FALSE,"networking,affects_2.3,c:plugins/action,bug",https://github.com/ansible/ansible/issues/21854,True,N,,,,,,,,
+1005,pandas,issue,20927,issue 20927 fix resolves read_sas error for dates/datetimes greater than 2262-04-11 (#28047),Paul Lilley,2020-05-25 23:47:52+02:00,FALSE,"Bug,IO SAS",https://github.com/pandas-dev/pandas/issues/20927,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Change to apropriated exception type,Exception type operations,d75100dab6f6737f647e537cee995788120e4106,https://github.com/pandas-dev/pandas
+78,qlib,issue,1050,fix tra dataset bug (#1050),you-n-g,2022-04-15 17:15:44+08:00,FALSE,bug,https://github.com/microsoft/qlib/issues/1050,True,N,,,,,,,,
+99,spyder,issue,1879,make bootstrap work again with pyq,Carlos Cordoba,2014-07-02 09:53:54-05:00,FALSE,"type:Bug,1 star",https://github.com/spyder-ide/spyder/issues/1879,True,N,,,,,,,,
+289,certbot,issue,1719,"revert ""revert ""fix ""global"" max_attempt bug (#1719)""""",Peter Eckersley,2016-01-18 12:46:10-08:00,FALSE,"bug,area: acme,has pr",https://github.com/certbot/certbot/issues/1719,True,Y,Incorrect Behavior,Incorrect Behavior,Missing Exception Type,Unhandled Exception,Change to apropriated exception type,Exception type operations,,
+1549,pytorch-lightning,issue,6746,"update mlflow with using resolve_tags (#6746)
+
+* update mlflow.py
+
+#6745 adds additional info about the run, as in the native api
+
+* update mlflow.py
+
+trying to fix some backward compatibility issues with `resolve_tags`
+
+* wip on backward compatibility
+
+added a default for `getattr` in case the `registry` object exists, but has no proper attribute (weird case but who knows...)
+
+* fix pep
+
+* impoert
+
+* fix registry import
+
+* try fix failing tests
+
+removed the first if statement, so that `resolve_tags` would be defined either case
+
+* fix formatting
+
+co-authored-by: jirka borovec <jirka.borovec@seznam.cz>",Oleg,2021-04-08 16:45:23+07:00,FALSE,"bug,ready,logger",https://github.com/pytorchlightning/pytorch-lightning/issues/6746,True,Y,Incorrect Behavior,Incorrect Behavior,Incorrect API Version,API Errors,Change the the exception code logic,Change the the exception code logic,,
+1578,pytest,issue,7,"only define gethookproxy, isinitpath on session
+
+this fixes an issue where pylint complains about missing implementations
+of abstract methods in subclasses of `file` which only override
+`collect()` (as they should).
+
+it is also cleaner and makes sense, these methods really don't need to
+be overridden.
+
+the previous methods defined directly on `fscollector` and `package` are
+deprecated, to be removed in pytest 7.
+
+see commits e2934c3f8c03c83469f4c6670c207773a6e02df4 and
+f10ab021e21a44e2f0fa2be66660c4a6d4b7a61a for reference.",Ran Benita,2020-08-15 11:35:54+03:00,FALSE,type: bug,https://github.com/pytest-dev/pytest/issues/7,True,N,,,,,,,,
+1134,pandas,issue,48526,"bug: fixed dataframe.__repr__ type error when column dtype is np.record (gh 48526) (#48637)
+
+* bug: fixed repr type error when column in np.record
+
+* reallocated the test to proposed destination and test the repr of the frame
+
+* assert has gone missing due to merge conflict
+
+* added new function that handles np.recarrays in _isna_array
+
+* addes 2 more tests + refined _isna_recarray_dtype + formatting fixed
+
+* reworked isna_recarray_dtype method + added test for inf value
+
+* pre-commit fix
+
+* fixing typing
+
+* fixed formatting
+
+* fixed pyright error
+
+---------
+
+co-authored-by: raphsku <rapsku.dev@gmail.com>",RaphSku,2023-04-21 19:27:54+02:00,FALSE,"Bug,Output-Formatting,Nested Data",https://github.com/pandas-dev/pandas/issues/48526,True,N,,,,,,,,
+478,ansible,issue,67887,"ldap_attr: fix small bug (using wrong variable) (#67887)
+
+changed self.name to name in ldap_attr module",Felix Fontein,2020-03-01 04:47:44+01:00,FALSE,"module,community_review,net_tools,support:community,bug,small_patch,affects_2.10",https://github.com/ansible/ansible/issues/67887,True,Y,Incorrect Behavior,Incorrect Behavior,Missing Exception Type,Unhandled Exception,Change to apropriated exception type,Exception type operations,db2d5b09eff918e981c9e10787a5f2c500d1784f,https://github.com/ansible/ansible
+1102,celery,issue,6930,"restart consumer if connection drops (#6930)
+
+* restart consumer if the celery connection drops
+
+original commit by @bremac https://github.com/celery/celery/commit/385a60df09201a17ad646c71eb1c00255d0a4431?diff=unified
+
+previously if an ack or reject message failed because the connection
+was unavailable then celery would stop accepting messages until it was
+restarted. this problem is that the main celery loop is responsible for
+detecting closed connections, but the connection errors would not always
+reach the main loop.
+
+there are three places in the celery that share a long-running amqp connection:
+
+  1. the core worker loop listens for new messages.
+  2. the ack / reject code that runs after a task completes.
+  3. the heartbeat loop that keeps the connection alive.
+
+neither of the first two are guaranteed to see an error if the connection drops.
+the main listener may never see an error if the connection drops since it may be
+swallowed by drain_events; the connection may drop while no work is being done,
+so the ack / reject code will never be triggered.
+
+fortunately the heartbeat loop is guaranteed to see an error if the connection
+dies: periodic writes to the socket will fail with a broken pipe error.
+unfortunately it runs in a separate thread, so previously connection errors were
+swallowed silently.
+
+this commit alters the heartbeat code so that heartbeat error are always
+re-raised in the main loop. this triggers existing code in the worker that
+restarts the worker, reestablishing the connection. with the fix in place i've
+been able to trigger ten long-running (three minute) rca queries without the
+worker hanging; without the fix it became unavailable after one or two queries.
+
+* fix: heartbeat_error to object
+
+* revert: heartbeat_error has to be pass by reference.
+
+- preallocating the list avoids it from growing on each check
+
+* fix: add comment
+
+* add unit tests
+
+* fix lint
+
+* update call to args in test
+
+co-authored-by: steven joseph <steven@pointzi.com>",Josue Balandrano Coronel,2021-08-26 02:49:51-05:00,FALSE,"Component: RabbitMQ Broker,PR Type: Bugfix",https://github.com/celery/celery/issues/6930,True,N,,,,,,,,
+1237,salt,issue,20531,"fix error when starting raet-master with systemd
+
+closes #20531",Mike Place,2015-03-09 16:47:35-06:00,FALSE,"Bug,fixed-pls-verify,severity-critical",https://github.com/saltstack/salt/issues/20531,True,Y,Aplication Crashing,Aplication Crashing,Missing Exception Type,Unhandled Exception,Change the the exception code logic,Change the the exception code logic,d50f603b25b490aebe03b5005becc8777a7f4313,https://github.com/saltstack/salt
+1164,ansible,issue,49262,"fix create home dir fallback (#49262)
+
+when a user home dir is not created with `useradd`, the home dir will now
+be created with umask from /etc/login.defs. also fixed a bug in which
+after a local user is deleted, and the same user exists in the central
+user management system, the module would create that user's home.",Strahinja Kustudic,2019-01-14 22:01:26+01:00,FALSE,"module,shipit,support:community,support:core,bug,affects_2.8",https://github.com/ansible/ansible/issues/49262,True,N,,,,,,,,
+968,robotframework,issue,241,fix and unit tests for handling charrefs (issue 241),Pekka Klärck,2009-02-28 20:52:58+00:00,FALSE,"bug,priority: critical",https://github.com/robotframework/robotframework/issues/241,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Add apropriated exception type,Exception type operations,,
+963,tvm,issue,12400,[relay] bug fix in relay.squeeze function for issue #12400 (#12684),padreofthegame,2022-12-12 23:17:33+01:00,FALSE,"type: bug,relay:op",https://github.com/apache/tvm/issues/12400,True,N,,,,,,,,
+522,psutil,issue,63,"(issue 63) fixes username issues on windows by using wmi.py module (requiring pywin32 extension) to retrieve the process username.
+
+in case pywin32 is not installed a notimplementederror exception is raised.
+
+wmi.py has been placed in psutil source tree and gets installed as a separated module by setup.py by temporarily copying it in the same directory as setup.py. this sucks but i really didn't find another way out.",Giampaolo Rodola',2010-02-10 20:09:22+00:00,FALSE,"bug,imported,windows,tests",https://github.com/giampaolo/psutil/issues/63,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Add a exception handling block,Exception handling block operations,b90e38810c11d44ff6a0cba0603946625fdf7958,https://github.com/giampaolo/psutil
+495,gamestonkterminal,issue,2819,"enhances error handling in economy menu (#2819)
+
+* lots of bug fixes
+
+* fixed issue",Colin Delahunty,2022-10-13 15:13:50+01:00,FALSE,bug,https://github.com/gamestonkterminal/gamestonkterminal/issues/2819,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Add a exception handling block,Exception handling block operations,4304a5c664700cf083f1432fa7523f051492754c,https://github.com/gamestonkterminal/gamestonkterminal
+1022,hanlp,issue,1569,fix check_outdated() mentioned in https://github.com/hankcs/hanlp/issues/1569,hankcs,2020-10-09 10:53:46-04:00,FALSE,bug,https://github.com/hankcs/hanlp/issues/1569,True,N,,,,,,,,
+1311,ansible,issue,"aws ssm parameter lookup - change to return nones for missing variables (#36456)
+
+* aws ssm parameter lookup - change to return nones for missing variables
+
+* aws ssm parameter lookup - fix error case message to dump response
+
+* aws ssm parameter lookup - fix integration test cases",mikedlr,2018-02-21 11:50:00+00:00,FALSE,"test,support:community,support:core,bug",52f20574729147e78f488ab8cf35621ca6907869,https://github.com/ansible/ansible/issues/36456,True,Y,Incorrect Exceptions,Incorrect Exceptions,Wrong Raise Type,Wrong Raise Type,Change the raise type,Improve raising conditions,,
+1334,moviepy,issue,fixed error message for build docs (#1118),Jonne Kaunisto,2020-03-30 16:52:50-07:00,FALSE,bug-fix,fc691e9de5d25c65c4a284544a36f27a7c270c4a,https://github.com/zulko/moviepy/issues/1118,True,Y,Incorrect Messaging,Incorrect Messaging,Unproper Message,Unproper Message,Improve the message error,Improve the message error,,
+168,ansible,issue,39213,"fixes some nic bugs (#39213)
+
+* add loadbalancer
+
+* dict check nullable
+
+* add default vallue when get list
+
+* create backend addr pool
+
+* fix the set
+
+* fix to dict
+
+* fix ideponement
+
+* use param security group name when create
+
+* nic can has no nsg
+
+* add test
+
+* fix
+
+* fix
+
+* fix
+
+* fix idemponet
+
+* add document
+
+* fix test
+
+* add configuration
+
+* fix
+
+* fix
+
+* remove all resources
+
+* fix
+
+* fix test
+
+* add version added
+
+* fix lint
+
+* fix lint
+
+* fix lint
+
+* remove new feature and only submit bugfix
+
+* remove useless test
+
+* fix",Yuwei Zhou,2018-04-25 09:54:19+08:00,FALSE,"cloud,azure,test,module,shipit,support:core,support:certified,bug",https://github.com/ansible/ansible/issues/39213,True,N,,,,,,,,
+1034,sqlmap,issue,532,fix for an issue #532,Miroslav Stampar,2013-09-30 09:33:14+02:00,FALSE,"bug,normal,enumeration",https://github.com/sqlmapproject/sqlmap/issues/532,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Add a exception handling block,Exception handling block operations,45c88b36c6009c2ea787932e348d9ea44e57860c,https://github.com/sqlmapproject/sqlmap
+344,ansible,issue,6056,"fix unicode decode error in syslog for modules
+
+fixes #6056",James Cammarata,2014-02-19 09:41:35-05:00,FALSE,bug,https://github.com/ansible/ansible/issues/6056,True,N,,,,,,,,
+745,openbbterminal,issue,3238,"fixes issues with the oss menu (#3238)
+
+* added docs and added auto suggest for country
+
+* fixes docs
+
+* added chavi fixes
+
+* reverted argument name change
+
+* added case fixing to countries
+
+co-authored-by: james maslek <jmaslek11@gmail.com>",Colin Delahunty,2022-11-04 15:19:37+01:00,FALSE,bug,https://github.com/openbb-finance/openbbterminal/issues/3238,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Add a exception handling block,Exception handling block operations,3e792d75de779053913364041dc14a290ab1e439,https://github.com/openbb-finance/openbbterminal
+1313,pwntools,issue,"fix some unicode problems in readline (#1029)
+
+technically this introduces issues with e.g. 'unhex ffdf | python foo.py' if
+foo.py uses .interactive().  however, that was already broken for other reasons.
+
+fixes #1004",Zach Riggle,2017-09-16 20:11:58-05:00,FALSE,bug,ebbe917713582ec0cc6e5ae49c01f07e70212667,https://github.com/gallopsled/pwntools/issues/1029,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Add a exception handling block,Exception handling block operations,,
+1527,octoprint,issue,3653,"🐛 fix for some bugs in auto detection
+
+probably related to #3653",Gina Häußge,2020-07-27 11:31:37+02:00,FALSE,"bug,done,regression",https://github.com/octoprint/octoprint/issues/3653,True,Y,Incorrect Behavior,Incorrect Behavior,Incorrect Logic,Incorrect Logic,Add a exception handling block,Exception handling block operations,5246e2ccb46931a07ace169fa2eda02afeeb3cf4,https://github.com/octoprint/octoprint
+1418,numpy,issue,"revert ""maint/bug/doc: fix errors in _add_newdocs (#13876)""
+
+this reverts commit 7ac7fa9a4621f7392f534b20f0cdd64967e9c7eb.",Eric Wieser,2019-07-08 20:36:12-07:00,FALSE,"00 - Bug,04 - Documentation,component: numpy.core,03 - Maintenance",42a086d93a256bd8df371d7f62a5b23592a25f60,https://github.com/numpy/numpy/issues/13876,True,N,,,,,,,,
+678,numba,issue,7730,"fix issues with locating/parsing source during debuginfo emission.
+
+this works around issues with source that cannot be parsed when
+looking for a line containing `def` so as to get the correct line
+info for use in debuginfo emission. it adds tests for this and
+also the case where the function source is simply unobtainable.
+
+fixes #7730
+
+conflicts:
+	numba/tests/test_debuginfo.py",Stuart Archibald,2022-01-14 12:51:40+00:00,FALSE,bug - DWARF,https://github.com/numba/numba/issues/7730,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Add a exception handling block,Exception handling block operations,2461dafb22554bce9cc291f2cfdcc3fec716a012,https://github.com/numba/numba
+651,ansible,issue,4925,"roll up of bug fixes for junos_config module (#4925)
+
+* fixed docstring referencing old arguments
+* changed out lxml for xml library to avoid import errors
+* fixed issue when trying to confirm a commit will end up a noop
+* fixed issue for passing replace argument to load_config method",Peter Sprygada,2016-09-19 22:27:07-04:00,FALSE,bug,https://github.com/ansible/ansible/issues/4925,True,Y,Incorrect Exceptions,Incorrect Exceptions,API Misuse,API Errors,Change to apropriated exception type,Exception type operations,82cf70e0f34329fc669bf9111f55b0fbabe15d1b,https://github.com/ansible/ansible
+1348,openbbterminal,issue,"update reddit connection client (#4478)
+
+* change deprecated psaw dependency to the maintained pmaw
+
+* fix docstring linting errors
+
+* remove deprecated watchlist command because it's taking too long to run
+
+* remove deprecated spac command because it's taking too long to run
+
+* update sdk and trailmap
+
+* fix legacy seaborn chart popping up when calling redditsent
+
+* clean up spacc code
+
+* refactor reddit ba commands to reflect the dependency change
+
+* change regex that searches for tickers
+
+* fix popular command error when no stock tickers found
+
+* update tests
+
+* update requirements.txt files
+
+* sync dependencies with upstream
+
+---------
+
+co-authored-by: james maslek <jmaslek11@gmail.com>",Theodore Aptekarev,2023-03-14 18:54:15+01:00,FALSE,"bug,feat M,refactor,dependencies",a276dc4dfe61b9f8018e7675c72a5387c171c920,https://github.com/openbb-finance/openbbterminal/issues/4478,True,N,,,,,,,,
+1277,wifiphisher,issue,"fix #213 bug
+
+this patch will fix the bug reported in issue #213. it also updates
+the test cases for the interfaces module.",Brian,2016-05-05 13:00:51-04:00,FALSE,"bug :bug:,solved",2f03bcde111542d5a9556747927dbf8944057ebb,https://github.com/wifiphisher/wifiphisher/issues/213,True,Y,Incorrect Exceptions,Incorrect Exceptions,Incorrect Logic,Incorrect Logic,Add a raise condition,Improve raising conditions,,
+1057,pyro,issue,8,fix new flake8 errors (#2477),eb8680,2020-05-11 17:38:53-07:00,FALSE,"bug,high priority",https://github.com/pyro-ppl/pyro/issues/8,True,Y,Incorrect Messaging,Incorrect Messaging,Unproper Message,Unproper Message,Improve the message error,Improve the message error,bae2f61474adc271497d05b0a1572f7ad234131e,https://github.com/pyro-ppl/pyro
+49,numba,issue,8860,fix issue 8860 - add more tests,Guilherme Leobas,2023-04-05 14:10:34-03:00,FALSE,"good second issue,bug - typing",https://github.com/numba/numba/issues/8860,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Raising Condition,Missing Raising Condition,Change to apropriated exception type,Exception type operations,,
+1146,ansible,issue,74324,"fix world readable setting (#74324)
+
+* fix world readable setting
+
+   now uses shell option in all cases, the old constant still exists
+    as 'documentation' but it not settable.
+   also fix the docsite link in warnings/errors
+
+* fix typose#
+
+* fix comment#
+
+* added deprecated to config
+
+* missing :
+
+* import cleanup",Brian Coca,2021-04-26 12:49:59-04:00,FALSE,"needs_revision,support:core,bug,affects_2.12",https://github.com/ansible/ansible/issues/74324,True,N,,,,,,,,
+561,pytest,issue,128,"fixed e128 flake8 errors
+
+continuation line under-indented for visual indent",Andras Tim,2017-07-17 01:25:07+02:00,FALSE,type: bug,https://github.com/pytest-dev/pytest/issues/128,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Raising Condition,Missing Raising Condition,Change to apropriated exception type,Exception type operations,cf97159009723be555aaa724df18f6f38a417bd2,https://github.com/pytest-dev/pytest
+597,spyder,issue,2,"merge from 2.3 (fix issues with the editor, variable explorer and ipython console)",Carlos Cordoba,2014-11-19 14:05:00-05:00,TRUE,"type:Bug,1 star",https://github.com/spyder-ide/spyder/issues/2,True,N,,,,,,,,
+596,erpnext,issue,997,"try to fix #997 ,when cart is disabled, it will not show error and it will dedirect to 'contact' page (#8636)",gmplab,2017-05-18 15:11:19+08:00,FALSE,"bug,website",https://github.com/frappe/erpnext/issues/997,True,Y,Incorrect Behavior,Incorrect Behavior,Missing Raising Condition,Missing Raising Condition,Add a raise condition,Improve raising conditions,,
+620,ansible,issue,4730,fix for issue #4730 - stacktrace when deferenencing a non-existent group,Janez Nemanic,2013-12-02 18:25:43+01:00,FALSE,bug,https://github.com/ansible/ansible/issues/4730,True,Y,Aplication Crashing,Aplication Crashing,Missing Exception Type,Unhandled Exception,Add a exception handling block,Exception handling block operations,8752ae690913053754e4a52390f5002d5d662d60,https://github.com/ansible/ansible
+1035,mypy,issue,2,"create a custom version of fastparse.py for python 2 (#2102)
+
+* add a modified version of fastparse for python 2.7
+
+this commit adds a modified version of the fastparse module that works
+specifically on a python 2 ast. this allows us to skip the step of first
+having to convert a python 2 ast into a python 3 ast, which helps boost
+performance on large codebases.
+
+* make mypy start using fastparse 2 when applicable
+
+this commit adjusts parse.py and fastparse.py slightly so that they
+defer to fastparse2.py as necessary when encountering python 2 code.
+
+* fix bugs with new python 2 ast converter
+
+this commit fixes a few bugs leftover from the conversion process, which
+were mainly remnants of wip items i forgot to fix.",Michael Lee,2016-09-06 18:45:18-07:00,FALSE,bug,https://github.com/python/mypy/issues/2,True,N,,,,,,,,
+1112,spyder,issue,174,"fixed issue 174: when running spyder with a special option ('all', 'basics', 'pylab') and if some required module is missing, spyder will show a critical message box to inform the user",Pierre Raybaut,2010-03-31 09:53:15+02:00,FALSE,"type:Bug,1 star",https://github.com/spyder-ide/spyder/issues/174,True,N,,,,,,,,
+962,lightning,issue,1801,bugfix: accumulation and suggestion for learning rate finder (#1801),Nicki Skafte,2020-05-13 20:40:44+02:00,FALSE,bug,https://github.com/lightning-ai/lightning/issues/1801,True,Y,Incorrect Exceptions,Incorrect Exceptions,Incorrect Logic,Incorrect Logic,Change to apropriated exception type,Exception type operations,663b90035c5743ced842713a6a3036737aeca16b,https://github.com/lightning-ai/lightning
+560,octoprint,issue,3396,"🐛 fix caching issue for freshly rendered timelapses
+
+closes #3396",Gina Häußge,2020-01-16 12:13:38+01:00,FALSE,"bug,done",https://github.com/octoprint/octoprint/issues/3396,True,Y,Incorrect Behavior,Incorrect Behavior,Missing Exception Type,Unhandled Exception,Add apropriated exception type,Exception type operations,e1a25a8913638f2f1962ede19cf36ba30bff24f9,https://github.com/octoprint/octoprint
+261,robotframework,issue,822,"refactored import logic and at the same time fixed problem with importing two libraries with same name using physical path
+
+update issue 822
+status: done
+the problem is now fixed (or at least the test i created earlier passes).
+
+the code changes were quite a bit larger than absolutely needed, but i wanted
+to cleanup the import logic at the same time. after the refactoring libs
+specified with a path are imported using the same code that is used for
+importing variable files which already had a fix for importing module with
+a same name as an earlier imported different module.",Pekka Klärck,2011-05-19 23:13:43+03:00,FALSE,"bug,priority: medium",https://github.com/robotframework/robotframework/issues/822,True,N,,,,,,,,
+743,pyright,issue,4876,"fixed bug that led to inconsistent behaviors when attempting to assign callable with a tuple parameter where the tuple was of indeterminate length. previously, this generated an error if the source type parameter was a tuple with zero elements. this addresses https://github.com/microsoft/pyright/issues/4876.",Eric Traut,2023-03-30 17:53:20-07:00,FALSE,"bug,addressed in next version",https://github.com/microsoft/pyright/issues/4876,True,N,,,,,,,,
+135,mailpile,issue,930,"make gpgp keylists more efficient, fix getkeys bugs (relates to #930)",Bjarni R. Einarsson,2015-01-26 18:26:19+00:00,FALSE,"Front End,Bugs,Back End,Privacy / Security",https://github.com/mailpile/mailpile/issues/930,True,Y,Incorrect Messaging,Incorrect Messaging,Unproper Message,Unproper Message,Add a raise condition,Improve raising conditions,4e2f687593ab244126fefe640f56c0ecad59074d,https://github.com/mailpile/mailpile
+1387,salt,issue,fix vmware cloud driver issue when required field devicechange not provided (not @optional). fixes #38370,Nitin Madhok,2017-03-28 14:53:47-04:00,FALSE,"Bug,fixed-pls-verify,Salt-Cloud,severity-high,severity-critical,RIoT,ZRELEASED - 2016.11.3",32bf7652c42ac09b960b6e4c6c2f3e5328bc1df7,https://github.com/saltstack/salt/issues/38370,True,Y,Incorrect Exceptions,Incorrect Exceptions,Wrong Raise Type,Wrong Raise Type,Change the raise type,Improve raising conditions,,
+1145,pytest,issue,8,merge branch 'fix-flake8-issues' into features,Bruno Oliveira,2017-07-17 21:05:39-03:00,TRUE,type: bug,https://github.com/pytest-dev/pytest/issues/8,True,N,,,,,,,,
+930,moviepy,issue,1147,fix default value bug in colorclip (#1147),Jonne Kaunisto,2020-05-07 03:01:47-07:00,FALSE,bug-fix,https://github.com/zulko/moviepy/issues/1147,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Raising Condition,Missing Raising Condition,Add a exception handling block,Exception handling block operations,5eb20a73c959d71482effe4f30713d7d2d7c0a65,https://github.com/zulko/moviepy
+1001,openbbterminal,issue,944,"fraud error (#944)
+
+* updated try except
+
+* added patch for fraud
+
+* updated tests
+
+* fix
+
+* attempting to resolve test issue
+
+* fixed again
+
+co-authored-by: colin delahunty <colindelahunty@colins-air.indiana.edu>",Colin Delahunty,2021-11-15 15:12:15-05:00,FALSE,bug,https://github.com/openbb-finance/openbbterminal/issues/944,True,N,,,,,,,,
+727,ansible,issue,38566,"fix nxos_igmp_snooping issues (#38566)
+
+* fix nxos_igmp_snooping issue
+
+* shippable error fix",saichint,2018-04-11 07:14:27-07:00,FALSE,"networking,test,module,core_review,support:core,support:network,nxos,bug,cisco",https://github.com/ansible/ansible/issues/38566,True,N,,,,,,,,
+808,pytest,issue,214,extended - fix issue214 - ignore attribute-access errors with objects in test modules that can blow up (for example flask's request object),holger krekel,2012-10-31 17:00:55+01:00,FALSE,type: bug,https://github.com/pytest-dev/pytest/issues/214,True,N,,,,,,,,
+73,sqlmap,issue,878,fix for an issue #878,Miroslav Stampar,2014-10-28 15:34:53+01:00,FALSE,"bug,normal,miscellaneous",https://github.com/sqlmapproject/sqlmap/issues/878,True,N,,,,,,,,
+109,wifiphisher,issue,545,fix(recon): fix issue #545,Brian Smith,2017-04-21 14:26:47-04:00,TRUE,"bug :bug:,solved",https://github.com/wifiphisher/wifiphisher/issues/545,True,Y,Incorrect Behavior,Incorrect Behavior,Missing Exception Type,Unhandled Exception,Add a exception handling block,Exception handling block operations,,
+490,pytube,issue,79,fixes cipher algorithm issue #79,Nick Ficano,2015-12-04 14:22:17-05:00,FALSE,bug,https://github.com/pytube/pytube/issues/79,True,N,,,,,,,,
+450,freqtrade,issue,8344,"merge pull request #8344 from freqtrade/fix/db_concurrent
+
+fix db concurrent problem",Matthias,2023-03-20 18:17:09+01:00,TRUE,Bug,https://github.com/freqtrade/freqtrade/issues/8344,True,Y,Aplication Crashing,Aplication Crashing,Missing Finally Block,Improper Finally Block,Add a finally mechanism,Improve the Finally Mechanism,56c2aa89bc6a873debd493db8053c025ea6de7f1,https://github.com/freqtrade/freqtrade
+381,ansible,issue,21154,fix module validation errors for avi_api_session (#21154),Matt Martz,2017-02-08 10:32:13-06:00,FALSE,"networking,affects_2.3,module,community_review,avi,bug",https://github.com/ansible/ansible/issues/21154,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Add a exception handling block,Exception handling block operations,c3fb4c837b473a8480c1512df6a8d5c8bab7eda1,https://github.com/ansible/ansible
+774,modin,issue,1568,"fixed bug #1568. dataframe.sparse and series.sparse api changed (#1571)
+
+signed-off-by: gregory shimansky <gregory.shimansky@intel.com>",Gregory Shimansky,2020-06-11 06:01:17-05:00,FALSE,bug 🦗,https://github.com/modin-project/modin/issues/1568,True,N,,,,,,,,
+881,pytest,issue,731,fixed e731 flake8 errors,Andras Tim,2017-07-17 01:25:10+02:00,FALSE,type: bug,https://github.com/pytest-dev/pytest/issues/731,True,N,,,,,,,,
+251,pytorch-lightning,issue,687,"fixing tensorboard (#687)
+
+* flake8
+
+* fix typo
+
+* fix tensorboardlogger
+drop test_tube dependence
+
+* formatting
+
+* fix tensorboard & tests
+
+* upgrade tensorboard
+
+* test formatting separately
+
+* try to fix jit issue
+
+* add tests for 1.4",Jirka Borovec,2020-01-16 13:22:29+01:00,FALSE,bug,https://github.com/pytorchlightning/pytorch-lightning/issues/687,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Add a exception handling block,Exception handling block operations,f72e354ee62e0d07c6394a020c615d388d4206c8,https://github.com/pytorchlightning/pytorch-lightning
+1161,salt,issue,39608,"explicitly remove support for managed_private_key
+
+it doesn't work and hasn't for a long time, see
+https://github.com/saltstack/salt/issues/39608#issuecomment-342346894.
+throwing a saltinvocationerror with a clear path to resolve the issue
+is more useful.",Glynn Forrest,2020-03-28 19:19:35+00:00,FALSE,"Bug,severity-medium,expected-behavior,Platform",https://github.com/saltstack/salt/issues/39608,True,N,,,,,,,,
+1595,requests,issue,2540,fix bug 2540,sh1buy,2015-04-11 01:41:02+03:00,FALSE,"Bug,Contributor Friendly",https://github.com/psf/requests/issues/2540,True,Y,Incorrect Messaging,Incorrect Messaging,Unproper Message,Unproper Message,Improve the message error,Improve the message error,f02d0f9e79a3aa3f0b716871f457ceb8f446bdba,https://github.com/psf/requests
+51,celery,issue,5681,fixed a bug where canvases with a group and tasks in the middle followed by a group fails to complete and indefinitely hangs. (#5681),Omer Katz,2019-08-20 13:35:19+03:00,FALSE,"Component: Canvas,PR Type: Bugfix",https://github.com/celery/celery/issues/5681,True,Y,Aplication Crashing,Aplication Crashing,Missing Raising Condition,Missing Raising Condition,Add a exception handling block,Exception handling block operations,f5c493dc71e7b75ef0a407927a7e0ce03c5d76fc,https://github.com/celery/celery
+203,spyder,issue,2,"merge from 2.3: fix for issues #2257 and #2259
+
+- also update translations",Carlos Cordoba,2015-03-21 12:57:20-05:00,TRUE,"type:Bug,1 star",https://github.com/spyder-ide/spyder/issues/2,True,N,,,,,,,,
+76,statsmodels,issue,3475,merge pull request #3475 from bashtage/fix-start-loc,Josef Perktold,2017-02-12 13:58:01-05:00,TRUE,"comp-tsa,type-bug,maintenance",https://github.com/statsmodels/statsmodels/issues/3475,True,N,,,,,,,,
+1438,numpy,issue,5737,"merged revisions 5737-5912 via svnmerge from 
+http://svn.scipy.org/svn/numpy/branches/clean_math_config
+
+................
+  r5738 | cdavid | 2008-09-01 21:18:52 +0900 (mon, 01 sep 2008) | 3 lines
+  
+  initialized merge tracking via ""svnmerge"" with revisions ""1-5737"" from 
+  http://svn.scipy.org/svn/numpy/trunk
+................
+  r5756 | cdavid | 2008-09-04 22:49:42 +0900 (thu, 04 sep 2008) | 1 line
+  
+  add a math_c99 compatibility module.
+................
+  r5757 | cdavid | 2008-09-04 22:58:47 +0900 (thu, 04 sep 2008) | 1 line
+  
+  add float and long double functions (c99).
+................
+  r5758 | cdavid | 2008-09-04 23:35:51 +0900 (thu, 04 sep 2008) | 1 line
+  
+  use code generator for c99_math.c
+................
+  r5759 | cdavid | 2008-09-04 23:37:29 +0900 (thu, 04 sep 2008) | 1 line
+  
+  move c99 math stuff to a .src file.
+................
+  r5760 | cdavid | 2008-09-04 23:40:00 +0900 (thu, 04 sep 2008) | 1 line
+  
+  add expm1 function in c99 compat module.
+................
+  r5761 | cdavid | 2008-09-04 23:45:33 +0900 (thu, 04 sep 2008) | 4 lines
+  
+  use c99 math compatibility module.
+  
+  completely broken for now, needs to update the configuration stage.
+................
+  r5762 | cdavid | 2008-09-04 23:55:01 +0900 (thu, 04 sep 2008) | 66 lines
+  
+  merged revisions 5738-5761 via svnmerge from 
+  http://svn.scipy.org/svn/numpy/trunk
+  
+  ........
+    r5739 | cdavid | 2008-09-01 21:50:46 +0900 (mon, 01 sep 2008) | 1 line
+    
+    disable memmap test which crashes nose tests on cygwin.
+  ........
+    r5740 | cdavid | 2008-09-01 22:07:30 +0900 (mon, 01 sep 2008) | 2 lines
+    
+    fix unused variable warning in object_arrtype_new.
+  ........
+    r5741 | cdavid | 2008-09-02 15:59:43 +0900 (tue, 02 sep 2008) | 5 lines
+    
+    fix regression test #771 on 64 bits architecture.
+    
+    the test assumed an item was 4 bytes. use itemsize instead of harcoding 4 bytes
+    per item.
+  ........
+    r5742 | jarrod.millman | 2008-09-03 05:13:17 +0900 (wed, 03 sep 2008) | 2 lines
+    
+    pulling out testing docs from distutils docs
+  ........
+    r5743 | jarrod.millman | 2008-09-03 05:32:38 +0900 (wed, 03 sep 2008) | 2 lines
+    
+    reindenting prior to release
+  ........
+    r5745 | jarrod.millman | 2008-09-03 08:52:37 +0900 (wed, 03 sep 2008) | 2 lines
+    
+    trunk is open for 1.3 development
+  ........
+    r5748 | alan.mcintyre | 2008-09-03 14:10:39 +0900 (wed, 03 sep 2008) | 3 lines
+    
+    fix __init__.py boilerplate example in distutils.txt, and moved content from 
+    scipy wiki entry on testing guidelines to tests.txt.
+  ........
+    r5749 | alan.mcintyre | 2008-09-03 15:11:28 +0900 (wed, 03 sep 2008) | 3 lines
+    
+    updated tests.txt to actually be rest.
+    capitalization nitpickery in distutils.txt: 'scipy' -> 'scipy'
+  ........
+    r5750 | alan.mcintyre | 2008-09-03 16:49:59 +0900 (wed, 03 sep 2008) | 2 lines
+    
+    added section discussing using subclassing to create similar tests.
+  ........
+    r5751 | pierregm | 2008-09-04 01:48:52 +0900 (thu, 04 sep 2008) | 1 line
+    
+    docstring update
+  ........
+    r5752 | cdavid | 2008-09-04 01:54:37 +0900 (thu, 04 sep 2008) | 1 line
+    
+    start a nep for warn-free numpy build.
+  ........
+    r5753 | cdavid | 2008-09-04 22:31:24 +0900 (thu, 04 sep 2008) | 1 line
+    
+    update the warnfix nep.
+  ........
+    r5754 | cdavid | 2008-09-04 22:36:53 +0900 (thu, 04 sep 2008) | 1 line
+    
+    start a nep for cleaning the math configuration.
+  ........
+    r5755 | cdavid | 2008-09-04 22:49:01 +0900 (thu, 04 sep 2008) | 1 line
+    
+    update clean math config nep.
+  ........
+................
+  r5763 | cdavid | 2008-09-05 00:12:45 +0900 (fri, 05 sep 2008) | 1 line
+  
+  put the setup code to check for match cap in a separate function.
+................
+  r5764 | cdavid | 2008-09-05 00:31:57 +0900 (fri, 05 sep 2008) | 1 line
+  
+  check for non-mandatory, basic, double functions.
+................
+  r5765 | cdavid | 2008-09-05 00:32:29 +0900 (fri, 05 sep 2008) | 1 line
+  
+  do not build math_c99.c, only set it as a dependency.
+................
+  r5766 | cdavid | 2008-09-05 00:39:38 +0900 (fri, 05 sep 2008) | 5 lines
+  
+  manually generate math_c99.c
+  
+  i did not find a way to generate math_c99.c from math_c99.src with distutils,
+  so let's include the generated file for now.
+................
+  r5767 | cdavid | 2008-09-05 01:29:09 +0900 (fri, 05 sep 2008) | 1 line
+  
+  keep the cruft for compatibility for now.
+................
+  r5773 | cdavid | 2008-09-05 12:12:37 +0900 (fri, 05 sep 2008) | 1 line
+  
+  check for all float/long double c99 math funcs explicitely.
+................
+  r5774 | cdavid | 2008-09-05 12:15:25 +0900 (fri, 05 sep 2008) | 1 line
+  
+  use calling version of check func.
+................
+  r5775 | cdavid | 2008-09-05 12:19:04 +0900 (fri, 05 sep 2008) | 1 line
+  
+  use the way formely used by setup to set backward-compatible defines.
+................
+  r5776 | cdavid | 2008-09-05 14:37:06 +0900 (fri, 05 sep 2008) | 1 line
+  
+  tell vim to recognize umathmodule.c.src as a c file.
+................
+  r5777 | cdavid | 2008-09-05 14:44:39 +0900 (fri, 05 sep 2008) | 1 line
+  
+  add fmod and modf as mandatory functions.
+................
+  r5778 | cdavid | 2008-09-05 14:49:32 +0900 (fri, 05 sep 2008) | 1 line
+  
+  add frexp and ldexp as the functions to lookf for c99 versions.
+................
+  r5779 | cdavid | 2008-09-05 15:11:26 +0900 (fri, 05 sep 2008) | 1 line
+  
+  add a check_funcs_once function to speed up func checks.
+................
+  r5780 | cdavid | 2008-09-05 15:21:18 +0900 (fri, 05 sep 2008) | 1 line
+  
+  use check_funcs_once to speed-up configuration on sane platforms.
+................
+  r5781 | cdavid | 2008-09-05 15:25:57 +0900 (fri, 05 sep 2008) | 1 line
+  
+  speed up the math configuration using check_funcs_once.
+................
+  r5782 | cdavid | 2008-09-05 15:34:55 +0900 (fri, 05 sep 2008) | 1 line
+  
+  fix indentation.
+................
+  r5783 | cdavid | 2008-09-05 15:47:10 +0900 (fri, 05 sep 2008) | 1 line
+  
+  remove have_float_funcs, and use function-specific have_ instead.
+................
+  r5784 | cdavid | 2008-09-05 15:47:40 +0900 (fri, 05 sep 2008) | 1 line
+  
+  remove have_inverse_* for inverse hyperbolic funcs: not needed anymore.
+................
+  r5785 | cdavid | 2008-09-05 15:49:48 +0900 (fri, 05 sep 2008) | 1 line
+  
+  check for isnan and isinf.
+................
+  r5786 | cdavid | 2008-09-05 15:59:44 +0900 (fri, 05 sep 2008) | 1 line
+  
+  do not check for the same functions twice.
+................
+  r5787 | cdavid | 2008-09-05 16:00:12 +0900 (fri, 05 sep 2008) | 1 line
+  
+  ldexp is a mandatory function.
+................
+  r5812 | cdavid | 2008-09-13 16:04:41 +0900 (sat, 13 sep 2008) | 105 lines
+  
+  merged revisions 5762-5811 via svnmerge from 
+  http://svn.scipy.org/svn/numpy/trunk
+  
+  ........
+    r5768 | ptvirtan | 2008-09-05 03:04:35 +0900 (fri, 05 sep 2008) | 1 line
+    
+    ufunc docstrings: show the 'out' arguments in a more standard way
+  ........
+    r5769 | alan.mcintyre | 2008-09-05 03:23:48 +0900 (fri, 05 sep 2008) | 4 lines
+    
+    replaced numpy.testing.decorators.skipknownfailure with knownfailureif, 
+    which allows flagging tests as known failures rather than skips.
+    updated test_umath to use knownfailureif.
+  ........
+    r5770 | alan.mcintyre | 2008-09-05 06:13:29 +0900 (fri, 05 sep 2008) | 2 lines
+    
+    renamed classes to conform to pep 8.
+  ........
+    r5771 | alan.mcintyre | 2008-09-05 07:06:01 +0900 (fri, 05 sep 2008) | 2 lines
+    
+    fix link to example.py.
+  ........
+    r5772 | alan.mcintyre | 2008-09-05 10:20:09 +0900 (fri, 05 sep 2008) | 2 lines
+    
+    remove debugging code.
+  ........
+    r5788 | dhuard | 2008-09-05 22:58:00 +0900 (fri, 05 sep 2008) | 1 line
+    
+    applied patch from r. may fixing ticket #905 (loadtxt). fixed other bug occurring when both usecols and converters are provided. added related regression tests.
+  ........
+    r5789 | oliphant | 2008-09-05 23:06:02 +0900 (fri, 05 sep 2008) | 1 line
+    
+    add final date-time proposal.
+  ........
+    r5791 | pierregm | 2008-09-06 08:38:44 +0900 (sat, 06 sep 2008) | 1 line
+    
+    * fixed deepcopy of masked arrays (bug #906)
+  ........
+    r5793 | cdavid | 2008-09-07 16:16:28 +0900 (sun, 07 sep 2008) | 8 lines
+    
+    scons command: fix one more issue related to build dir.
+    
+    the distutils installation directory relative to the scons build directory was
+    not always computed right. the relative position on the fs does not depend on
+    the source directory (in out-of-place builds), but on the package *name*
+    translated to a directly only.
+  ........
+    r5796 | pearu | 2008-09-09 19:55:30 +0900 (tue, 09 sep 2008) | 1 line
+    
+    fix typo.
+  ........
+    r5797 | stefan | 2008-09-09 22:38:34 +0900 (tue, 09 sep 2008) | 2 lines
+    
+    fix: loadtxt raises on empty input (closes #908).
+  ........
+    r5799 | alan.mcintyre | 2008-09-10 02:48:47 +0900 (wed, 10 sep 2008) | 2 lines
+    
+    removed unused imports.
+  ........
+    r5800 | pierregm | 2008-09-10 03:25:15 +0900 (wed, 10 sep 2008) | 1 line
+    
+    * make sure that minimum & maximum actually return a maskedarray
+  ........
+    r5803 | pierregm | 2008-09-12 04:54:31 +0900 (fri, 12 sep 2008) | 1 line
+    
+    * fixed view for maskedarrays w/ flexible dtype
+  ........
+    r5804 | jarrod.millman | 2008-09-13 04:20:26 +0900 (sat, 13 sep 2008) | 2 lines
+    
+    fix: broken links
+  ........
+    r5805 | jarrod.millman | 2008-09-13 04:23:20 +0900 (sat, 13 sep 2008) | 2 lines
+    
+    fix: broken links
+  ........
+    r5806 | alan.mcintyre | 2008-09-13 11:53:53 +0900 (sat, 13 sep 2008) | 2 lines
+    
+    fix failing doctests.
+  ........
+    r5807 | alan.mcintyre | 2008-09-13 11:56:33 +0900 (sat, 13 sep 2008) | 2 lines
+    
+    remove unused imports.
+  ........
+    r5808 | alan.mcintyre | 2008-09-13 12:40:57 +0900 (sat, 13 sep 2008) | 7 lines
+    
+    removed unused/duplicate imports.
+    removed repeated members of __all__.
+    fixed reference to undefined ""out"" in functions.py:take function.
+    fixed references to undefined ""n"" in functions.py.
+    rewrapped lines to conform to pep8.
+    fixed references to undefined fpe_* constants (from numpy) in util.py.
+  ........
+    r5809 | cdavid | 2008-09-13 15:03:30 +0900 (sat, 13 sep 2008) | 6 lines
+    
+    fix cygwin compilation
+    
+    recent version of binutils (2.18.50) do not accept 4 bytes operand for some
+    opcodes like fnstsw (which always expected a 2 bytes operand). replace the type
+    of the argument from unsigned 2 bytes to unsigned 4 bytes unsigned integer.
+  ........
+    r5810 | cdavid | 2008-09-13 15:27:46 +0900 (sat, 13 sep 2008) | 1 line
+    
+    tag ctypes load library tests as known failures on cygwin.
+  ........
+................
+  r5813 | cdavid | 2008-09-13 16:16:32 +0900 (sat, 13 sep 2008) | 1 line
+  
+  detect declaration of isnan and co only.
+................
+  r5814 | cdavid | 2008-09-13 16:25:51 +0900 (sat, 13 sep 2008) | 1 line
+  
+  clean ieee handling: define them as macro.
+................
+  r5815 | cdavid | 2008-09-13 16:27:25 +0900 (sat, 13 sep 2008) | 1 line
+  
+  update generated math_c99 compat module.
+................
+  r5816 | cdavid | 2008-09-13 16:28:08 +0900 (sat, 13 sep 2008) | 1 line
+  
+  remove trailing spaces.
+................
+  r5817 | cdavid | 2008-09-13 16:30:07 +0900 (sat, 13 sep 2008) | 1 line
+  
+  remove unused _isnan.c
+................
+  r5818 | cdavid | 2008-09-13 16:48:29 +0900 (sat, 13 sep 2008) | 1 line
+  
+  fix typo in setup.py
+................
+  r5819 | cdavid | 2008-09-13 17:08:16 +0900 (sat, 13 sep 2008) | 1 line
+  
+  do not depend on _isnan.c.
+................
+  r5820 | cdavid | 2008-09-13 17:09:02 +0900 (sat, 13 sep 2008) | 1 line
+  
+  rename signbit replacement to signbit_d to avoid clash between macro and function.
+................
+  r5836 | cdavid | 2008-09-20 17:22:25 +0900 (sat, 20 sep 2008) | 1 line
+  
+  include python.h before math.h for declaration tests in mathlib.
+................
+  r5837 | cdavid | 2008-09-20 17:47:19 +0900 (sat, 20 sep 2008) | 1 line
+  
+  remove the generated math_c99.c file from svn; generate it automatically from setup.py.
+................
+  r5838 | cdavid | 2008-09-20 18:48:01 +0900 (sat, 20 sep 2008) | 1 line
+  
+  test for msvc, because we will need to special case for this f***** compiler once again.
+................
+  r5839 | cdavid | 2008-09-20 19:05:52 +0900 (sat, 20 sep 2008) | 1 line
+  
+  assume mandatory funcs available with msvc.
+................
+  r5840 | cdavid | 2008-09-20 19:18:59 +0900 (sat, 20 sep 2008) | 1 line
+  
+  fix typo in cpp define.
+................
+  r5841 | cdavid | 2008-09-20 19:49:01 +0900 (sat, 20 sep 2008) | 1 line
+  
+  undef macro when using replacement functions in math_c99 module.
+................
+  r5842 | cdavid | 2008-09-20 19:51:35 +0900 (sat, 20 sep 2008) | 1 line
+  
+  forgot to define m_pi if not available.
+................
+  r5843 | cdavid | 2008-09-20 19:53:27 +0900 (sat, 20 sep 2008) | 1 line
+  
+  forgot to define float/long double version of log1p if not available on the platform.
+................
+  r5844 | cdavid | 2008-09-20 20:39:20 +0900 (sat, 20 sep 2008) | 78 lines
+  
+  merged revisions 5812-5843 via svnmerge from 
+  http://svn.scipy.org/svn/numpy/trunk
+  
+  ........
+    r5821 | alan.mcintyre | 2008-09-14 03:04:57 +0900 (sun, 14 sep 2008) | 3 lines
+    
+    removed unused imports.
+    standardize numpy import as ""import numpy as np"".
+  ........
+    r5822 | alan.mcintyre | 2008-09-14 03:10:48 +0900 (sun, 14 sep 2008) | 6 lines
+    
+    rewrapped __all__ definition to conform to pep8.
+    standardize numpy import as ""import numpy as np"".
+    removed unused imports.
+    fixed undefined reference to ndarray (should be np.ndarray).
+    fixed undefined references to exp (should be math.exp).
+  ........
+    r5823 | alan.mcintyre | 2008-09-14 03:15:38 +0900 (sun, 14 sep 2008) | 3 lines
+    
+    removed unused imports.
+    fixed undefined reference to ""getpackage"" (from nose.util).
+  ........
+    r5824 | pierregm | 2008-09-14 06:17:09 +0900 (sun, 14 sep 2008) | 1 line
+    
+    maskedarray.__new__ : make sure that we inherit the _hardmask from data (if any) instead of reverting to default.
+  ........
+    r5826 | alan.mcintyre | 2008-09-18 12:29:56 +0900 (thu, 18 sep 2008) | 4 lines
+    
+    added documentation for doctests and using the skipif and knownfailureif decorators.
+    fixed indentation on the last sample snippet in the ""__init__.py and setup.py"" 
+    section.
+  ........
+    r5827 | alan.mcintyre | 2008-09-18 12:33:15 +0900 (thu, 18 sep 2008) | 3 lines
+    
+    rewrapped __all__ to conform with pep8.
+    removed unused imports.
+  ........
+    r5828 | alan.mcintyre | 2008-09-18 12:33:58 +0900 (thu, 18 sep 2008) | 2 lines
+    
+    removed unused imports.
+  ........
+    r5829 | alan.mcintyre | 2008-09-18 12:45:53 +0900 (thu, 18 sep 2008) | 3 lines
+    
+    removed unused/redundant imports.
+    pep8 conformance (only one import per line).
+  ........
+    r5830 | alan.mcintyre | 2008-09-18 12:57:47 +0900 (thu, 18 sep 2008) | 2 lines
+    
+    removed redundant import.
+  ........
+    r5831 | pierregm | 2008-09-19 02:51:55 +0900 (fri, 19 sep 2008) | 1 line
+    
+    median : fixed a bug in _median1d (there shouldn't have been an axis)
+  ........
+    r5832 | jarrod.millman | 2008-09-19 03:53:53 +0900 (fri, 19 sep 2008) | 2 lines
+    
+    restified an url
+  ........
+    r5833 | rkern | 2008-09-19 06:48:57 +0900 (fri, 19 sep 2008) | 1 line
+    
+    bug: override setuptools' install.run() method to correctly allow 'python setup.py install' to work.
+  ........
+    r5834 | pierregm | 2008-09-19 12:33:40 +0900 (fri, 19 sep 2008) | 1 line
+    
+    * fixing view to recognize dtype and type parameters, for consistency with regular ndarrays.
+  ........
+    r5835 | pierregm | 2008-09-20 04:43:05 +0900 (sat, 20 sep 2008) | 8 lines
+    
+    core:
+    * add dtype to the repr of masked arrays w/ flexible type
+    * prevent __getitem__ to return masked on flexible-type masked array
+    * make sure __str__ returns something sensible for flexible dtype w/ masked fields
+    * simplify the count method
+    
+    mrecords:
+    * fixed a pb with fromrecords when the number of fields cannot be determined from the first element.
+  ........
+................
+  r5845 | cdavid | 2008-09-21 00:58:44 +0900 (sun, 21 sep 2008) | 1 line
+  
+  remove redundant definition of isnan and co in ufuncobject.h
+................
+  r5846 | cdavid | 2008-09-21 01:00:09 +0900 (sun, 21 sep 2008) | 1 line
+  
+  use a single macro for isnan replacement.
+................
+  r5847 | cdavid | 2008-09-21 01:01:22 +0900 (sun, 21 sep 2008) | 1 line
+  
+  use a single macro for isinf replacement.
+................
+  r5848 | cdavid | 2008-09-21 01:10:53 +0900 (sun, 21 sep 2008) | 1 line
+  
+  move isfinite macro with isinf and isnan.
+................
+  r5849 | cdavid | 2008-09-21 01:11:51 +0900 (sun, 21 sep 2008) | 1 line
+  
+  fix isfinite.
+................
+  r5850 | cdavid | 2008-09-21 01:12:59 +0900 (sun, 21 sep 2008) | 1 line
+  
+  autoconf suggestion is totally bogus: isinf(nan) is false, not true.
+................
+  r5851 | cdavid | 2008-09-21 01:13:48 +0900 (sun, 21 sep 2008) | 1 line
+  
+  define isfinite first, and define isinf in function of isfinite/isnan.
+................
+  r5852 | cdavid | 2008-09-21 01:26:30 +0900 (sun, 21 sep 2008) | 6 lines
+  
+  fix for isfinite on vs 2003.
+  
+  vs 2003 seems to think it is ok to simplify x-x to 0 for float, but this is
+  wrong for nan and inf. to  alleviate, we force the operation to occur with (x)
+  + (-x).
+................
+  r5853 | cdavid | 2008-09-21 01:56:08 +0900 (sun, 21 sep 2008) | 1 line
+  
+  more intrinsics.
+................
+  r5855 | cdavid | 2008-09-21 20:39:08 +0900 (sun, 21 sep 2008) | 1 line
+  
+  handle msvc intrisincs in check_func.
+................
+  r5856 | cdavid | 2008-09-21 20:39:27 +0900 (sun, 21 sep 2008) | 1 line
+  
+  handle msvc intrisincs in check_funcs_once.
+................
+  r5857 | cdavid | 2008-09-21 20:50:32 +0900 (sun, 21 sep 2008) | 1 line
+  
+  define -> pragma, stupid mistake.
+................
+  r5858 | cdavid | 2008-09-21 20:54:48 +0900 (sun, 21 sep 2008) | 1 line
+  
+  do not use msvc workaround anymore, since we now can test for function even when they are intrinsincs.
+................
+  r5861 | cdavid | 2008-09-23 12:48:01 +0900 (tue, 23 sep 2008) | 9 lines
+  
+  merged revisions 5844-5860 via svnmerge from 
+  http://svn.scipy.org/svn/numpy/trunk
+  
+  ........
+    r5860 | stefan | 2008-09-23 05:28:00 +0900 (tue, 23 sep 2008) | 2 lines
+    
+    ignore unused converters in `loadtxt`.
+  ........
+................
+  r5874 | charris | 2008-09-29 08:35:15 +0900 (mon, 29 sep 2008) | 4 lines
+  
+  enhance code_generator to allow continuation lines.
+  small clarification in arraytypes.inc.src.
+  practice merging ;)
+................
+  r5882 | cdavid | 2008-09-30 13:40:13 +0900 (tue, 30 sep 2008) | 27 lines
+  
+  merged revisions 5861-5881 via svnmerge from 
+  http://svn.scipy.org/svn/numpy/trunk
+  
+  ........
+    r5862 | ptvirtan | 2008-09-24 20:50:38 +0900 (wed, 24 sep 2008) | 1 line
+    
+    fix python2.5 dependency in lookfor
+  ........
+    r5869 | pierregm | 2008-09-29 02:27:37 +0900 (mon, 29 sep 2008) | 3 lines
+    
+    core:
+    * added __rmul and __radd__
+    * fixed concatenate for flexible-dtype
+  ........
+    r5878 | ptvirtan | 2008-09-30 02:23:43 +0900 (tue, 30 sep 2008) | 1 line
+    
+    umath tests: remove signed zero check on branch cut for log* as it fails on some platforms.
+  ........
+    r5879 | pierregm | 2008-09-30 05:24:29 +0900 (tue, 30 sep 2008) | 1 line
+    
+    use if ...: raise assertionerror instead of assert
+  ........
+    r5880 | pierregm | 2008-09-30 05:24:56 +0900 (tue, 30 sep 2008) | 1 line
+    
+    replaced assert with self.failunless
+  ........
+................
+  r5898 | cdavid | 2008-10-03 16:21:00 +0900 (fri, 03 oct 2008) | 1 line
+  
+  start updating numscons configuration for new math config.
+................
+  r5899 | cdavid | 2008-10-03 16:21:15 +0900 (fri, 03 oct 2008) | 1 line
+  
+  add an help function to check a list of functions in scons build.
+................
+  r5900 | cdavid | 2008-10-03 16:21:31 +0900 (fri, 03 oct 2008) | 1 line
+  
+  fix typo in check_funcs.
+................
+  r5901 | cdavid | 2008-10-03 16:21:46 +0900 (fri, 03 oct 2008) | 1 line
+  
+  check for some optional, c99 double math functions.
+................
+  r5902 | cdavid | 2008-10-03 16:22:02 +0900 (fri, 03 oct 2008) | 1 line
+  
+  check for float/long double c99 functions.
+................
+  r5903 | cdavid | 2008-10-03 16:22:18 +0900 (fri, 03 oct 2008) | 1 line
+  
+  add check for c99 macros related ieee-754.
+................
+  r5904 | cdavid | 2008-10-03 16:22:34 +0900 (fri, 03 oct 2008) | 1 line
+  
+  remove old configuration checks, supersded by new math config.
+................
+  r5905 | cdavid | 2008-10-03 16:22:57 +0900 (fri, 03 oct 2008) | 1 line
+  
+  generate math_c99.inc in numscons build.
+................
+  r5912 | cdavid | 2008-10-05 16:00:33 +0900 (sun, 05 oct 2008) | 39 lines
+  
+  merged revisions 5882-5911 via svnmerge from 
+  http://svn.scipy.org/svn/numpy/trunk
+  
+  ........
+    r5886 | charris | 2008-10-02 03:05:29 +0900 (thu, 02 oct 2008) | 4 lines
+    
+    make some error messages more informative.
+    improve error handling.
+    make continuation lines work.
+  ........
+    r5887 | charris | 2008-10-02 03:06:04 +0900 (thu, 02 oct 2008) | 2 lines
+    
+    small cleanup to clarify repeated string.
+  ........
+    r5888 | charris | 2008-10-02 03:08:41 +0900 (thu, 02 oct 2008) | 6 lines
+    
+    cleanup ufunc loops.
+    at this point loops are separated into variable kinds, so there is a fair amount
+    of duplication. i will probably merge loops that look the same in a later
+    commit. there are no changes to current behavior of loops, this will also be
+    changed in later work to deal with nans and such.
+  ........
+    r5889 | oliphant | 2008-10-03 05:27:17 +0900 (fri, 03 oct 2008) | 1 line
+    
+    fix problem with subclasses of object arrays.
+  ........
+    r5896 | cdavid | 2008-10-03 15:50:32 +0900 (fri, 03 oct 2008) | 1 line
+    
+    update the minimum version for numscons: had to change to cope with chuck changes to conv_template.py.
+  ........
+    r5897 | cdavid | 2008-10-03 15:51:03 +0900 (fri, 03 oct 2008) | 1 line
+    
+    update doall script: take the python version to build binaries from the command line instead of global variable.
+  ........
+    r5906 | oliphant | 2008-10-04 00:55:52 +0900 (sat, 04 oct 2008) | 1 line
+    
+    fix ticket #925
+  ........
+................",David Cournapeau,2008-10-05 08:28:42+00:00,TRUE,"00 - Bug,component: numpy.lib",https://github.com/numpy/numpy/issues/5737,True,N,,,,,,,,
+1023,spyder,issue,125,fixed issue 125 / dockable matplotlib figures: option to tabbify windows instead of open an undocked window,Pierre Raybaut,2010-01-01 18:20:00+01:00,FALSE,"type:Bug,2–5 stars",https://github.com/spyder-ide/spyder/issues/125,True,N,,,,,,,,
+351,ray,issue,7136,"[rllib] issue 7136: rollout not working for es and ars. (#7444)
+
+* fix.
+
+* fix issue #7136.
+
+* ars fix.",Eric Liang,2020-03-04 23:57:44-08:00,FALSE,"bug,P1",https://github.com/ray-project/ray/issues/7136,True,Y,Incorrect Messaging,Incorrect Messaging,Unproper Message,Unproper Message,Re-raise a exception,Re-raise a exception,,
+1572,spyder,issue,20106,"fix ""valueerror: not enough values to unpack"". this is the same issue that should be addressed by pr 20106.",Ryan Clary,2023-01-02 08:04:48-08:00,FALSE,"type:Bug,component:Pythonpath manager",https://github.com/spyder-ide/spyder/issues/20106,True,N,,,,,,,,
+514,sqlmap,issue,157,fix for an issue #157,Miroslav Stampar,2012-08-21 14:34:19+02:00,FALSE,"bug,low,request",https://github.com/sqlmapproject/sqlmap/issues/157,True,Y,Aplication Crashing,Aplication Crashing,Missing Exception Type,Unhandled Exception,Add apropriated exception type,Exception type operations,d421f9a61833487ab9a34a2419b993479f1ad8e6,https://github.com/sqlmapproject/sqlmap
+405,ansible,issue,58690,"- fixed error handling on aws_kms (#58690)
+
+while alias creation failes, this pr fixes the requirement of passing 2 arguments for the `fail_json_aws` method.",Avishay Bar,2019-07-04 02:35:56+03:00,FALSE,"cloud,aws,module,community_review,support:community,new_contributor,bug,traceback,small_patch,affects_2.9",https://github.com/ansible/ansible/issues/58690,True,Y,Incorrect Messaging,Incorrect Messaging,Unproper Message,Unproper Message,Improve the message error,Improve the message error,89be328a296a9801694fada6f2c72254629050c7,https://github.com/ansible/ansible
+123,sympy,issue,3174,"fix issue 3174: do substitution first in evalf_sum()
+
+    n.b.: xfailed test was changed due to adoption of
+    the karr convention for summation.",Sergey B Kirpichev,2013-08-24 12:49:06+04:00,FALSE,"imported,Bug",https://github.com/sympy/sympy/issues/3174,True,Y,Incorrect Behavior,Incorrect Behavior,Missing Exception Type,Unhandled Exception,Add a exception handling block,Exception handling block operations,8d4525086b6fbae9c8ebc2c682d9ab59df6656a4,https://github.com/sympy/sympy
+518,vision,issue,7838,"fix elastic error (#7838)
+
+co-authored-by: vfdev <vfdev.5@gmail.com>",Philip Meier,2023-08-16 15:55:45+02:00,FALSE,"bug,module: transforms,cla signed",https://github.com/pytorch/vision/issues/7838,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Add a exception handling block,Exception handling block operations,cdbbd6664bbd2e212739519aa0eb70c06252e88c,https://github.com/pytorch/vision
+1111,spyder,issue,8,fix pep8 errors,Edgar Andrés Margffoy Tuay,2017-08-15 18:18:26-05:00,FALSE,"type:Bug,1 star",https://github.com/spyder-ide/spyder/issues/8,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Change to apropriated exception type,Exception type operations,a98b8ce58338f15783560127ec63a91d2fd50873,https://github.com/spyder-ide/spyder
+1281,netbox,issue,fixes #2608: fixed null outer_unit error on rack import,Jeremy Stretch,2018-11-26 13:41:35-05:00,FALSE,"type: bug,status: accepted",a46f68c6e47eb848ce01faf0347753e6f24b9544,https://github.com/netbox-community/netbox/issues/2608,True,Y,Incorrect Exceptions,Incorrect Exceptions,Wrong Raise Type,Wrong Raise Type,Change the raise type,Improve raising conditions,,
+438,scikit-learn,issue,11295,fix an issue w/ large sparse matrix indices in countvectorizer (#11295),Gabriel Vacaliuc,2019-01-29 18:06:05-06:00,FALSE,Bug,https://github.com/scikit-learn/scikit-learn/issues/11295,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Raising Condition,Missing Raising Condition,Add a raise condition,Improve raising conditions,5fc5c6e62e163a20b890b64cb1efa8ed151bbc18,https://github.com/scikit-learn/scikit-learn
+239,sqlmap,issue,409,fix for an issue #409,stamparm,2013-02-22 10:18:22+01:00,FALSE,"bug,normal,miscellaneous",https://github.com/sqlmapproject/sqlmap/issues/409,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Add a exception handling block,Exception handling block operations,44a46d2b10d7c2bbfaef39411bc165b3ed525c11,https://github.com/sqlmapproject/sqlmap
+1535,ansible,issue,10938,"fix problem writing binary content to a temporary file in the uri module.
+
+fixes https://github.com/ansible/ansible/issues/10938
+fixes https://github.com/ansible/ansible/issues/7606",Toshio Kuratomi,2015-05-14 14:19:15-07:00,FALSE,bug,https://github.com/ansible/ansible/issues/10938,True,N,,,,,,,,
+1433,ansible,issue,37418,fix nxos_udld issues (#37418),saichint,2018-03-15 03:07:46-07:00,FALSE,"networking,test,module,core_review,support:network,nxos,bug,cisco",https://github.com/ansible/ansible/issues/37418,True,N,,,,,,,,
+555,ansible,issue,38542,"add troubleshooting url for persistent socket path related issue (#38542)
+
+* add troubleshooting url for persistent socket path related issue
+
+socket path timeout related error messages are not displayed on the
+console as the ansible-connection process does not have access to it.
+until this is fixed need to point to troubleshooting url so that
+users can take corrective actions.
+
+* fix ci issue",Ganesh Nalawade,2018-04-11 11:11:23+05:18,FALSE,"support:core,bug",https://github.com/ansible/ansible/issues/38542,True,Y,Aplication Crashing,Aplication Crashing,Missing Exception Type,Unhandled Exception,Change to apropriated exception type,Exception type operations,,
+889,pipenv,issue,2414,fix bug with `--system --deploy` overwriting pipfile,Dan Ryan,2018-06-25 21:22:35-04:00,FALSE,"Type: Bug :bug:,Category: Docker,Category: Dependency Resolution",https://github.com/pypa/pipenv/issues/2414,True,Y,Aplication Crashing,Aplication Crashing,Incorrect Logic,Incorrect Logic,Change to apropriated exception type,Exception type operations,7f7ae3244d6920bb4cd27cd835d7ee4b2ecc9a83,https://github.com/pypa/pipenv
+1614,pytorch-lightning,issue,5923,"fix: passing wrong strings for scheduler interval doesn't throw an error (#5923)
+
+* raise if scheduler interval not 'step' or 'epoch'
+
+* add test for unknown 'interval' value in scheduler
+
+* use boringmodel instead of evalmodeltemplate
+
+co-authored-by: jirka borovec <borda@users.noreply.github.com>
+
+* fix import order
+
+* apply yapf in test_datamodules
+
+* add missing imports to test_datamodules
+
+* fix too long comment
+
+* update pytorch_lightning/trainer/optimizers.py
+
+* fix unused imports and exception message
+
+* fix failing test
+
+co-authored-by: jirka borovec <borda@users.noreply.github.com>
+co-authored-by: carlos mocholí <carlossmocholi@gmail.com>",Dusan Drevicky,2021-02-12 21:01:22+01:00,FALSE,"bug,ready",https://github.com/pytorchlightning/pytorch-lightning/issues/5923,True,Y,Incorrect Behavior,Incorrect Behavior,Missing Exception Type,Unhandled Exception,Add a raise condition,Improve raising conditions,,
+240,psutil,issue,430,fix issue #430: [linux] process io counters report wrong number of r/w syscalls,Giampaolo Rodola',2013-09-21 16:35:56+02:00,FALSE,"bug,imported,linux",https://github.com/giampaolo/psutil/issues/430,True,N,,,,,,,,
+67,pandas,issue,709,"bug: closes #709, bug in ix + multiindex use case",Adam Klein,2012-01-30 11:48:24-05:00,FALSE,Bug,https://github.com/pandas-dev/pandas/issues/709,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Add a raise condition,Improve raising conditions,618ff03db3188c13aedc164f7068fdeb4c010da0,https://github.com/pandas-dev/pandas
+918,spyder,issue,434,(fixes issue 434) external shell/monitor--major enhancement: variable explorer is now refreshed directly by the monitor from the remote process (i.e. no more blocking request from spyder which may freeze the main window in case of high cpu usage),Pierre Raybaut,2010-11-04 23:11:36+01:00,FALSE,"type:Bug,2–5 stars",https://github.com/spyder-ide/spyder/issues/434,True,N,,,,,,,,
+383,pandas,issue,22074,[bug] fix various datetimeindex comparison bugs (#22074),jbrockmendel,2018-08-01 02:19:43-07:00,FALSE,"Bug,Timeseries",https://github.com/pandas-dev/pandas/issues/22074,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Add a exception handling block,Exception handling block operations,8d5c51bf2db07d34e03d06d0e758d1a59f366147,https://github.com/pandas-dev/pandas
+141,gunicorn,issue,1235,"merge pull request #1235 from marsoft/fix-traceback
+
+fixed traceback formatting for syntax errors",Randall Leeds,2016-03-24 14:15:18-07:00,TRUE,bug :(,https://github.com/benoitc/gunicorn/issues/1235,True,N,,,,,,,,
+1529,pandas,issue,6820,"merge pull request #6820 from cpcloud/replace-dtype-bool-fix
+
+bug: fix replace bug where different dtypes in a nested dict would only replace the first value",Phillip Cloud,2014-04-08 18:55:11-04:00,TRUE,"Bug,Missing-data",https://github.com/pandas-dev/pandas/issues/6820,True,N,,,,,,,,
+780,awx,issue,6280,"fix a bug in isolated event handling
+
+see: https://github.com/ansible/awx/issues/6280",Ryan Petrello,2020-03-16 13:15:10-04:00,FALSE,"type:bug,component:api",https://github.com/ansible/awx/issues/6280,True,N,,,,,,,,
+1359,ansible,issue,"acme: fix bug introduced in #49266, work around problem with pebble (#49407)",Felix Fontein,2018-12-02 10:07:21+01:00,FALSE,"shipit,support:community,bug,affects_2.8,crypto",34c57b4c4291f7d4fb51df8a0459b37428e344c4,https://github.com/ansible/ansible/issues/49266,True,Y,Incorrect Behavior,Incorrect Behavior,Missing Exception Type,Unhandled Exception,Change the the exception code logic,Change the the exception code logic,,
+1289,gunicorn,issue,"fix race condition error
+
+when the worker exited the tempfile is not available anymore so we can't
+get the last update and calculate the dynamic timeout introduced in
+d76bab4d716fed3f965fbde4ba1a1bba975f03d1 .
+
+this changes fix it by catching the io error.
+
+fix #863",benoitc,2014-08-30 09:26:54+02:00,FALSE,bug :(,4fe426cd669653ff8087c16718a29b21df3d1261,https://github.com/benoitc/gunicorn/issues/76,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Add a exception handling block,Exception handling block operations,,
+1439,sqlmap,issue,883,fix for an issue #883,Miroslav Stampar,2014-10-31 01:01:35+01:00,FALSE,"bug,normal,miscellaneous",https://github.com/sqlmapproject/sqlmap/issues/883,True,Y,Aplication Crashing,Aplication Crashing,Missing Exception Type,Unhandled Exception,Add a exception handling block,Exception handling block operations,5b0d74146e917290abe5ff79bdad9571b6747d5e,https://github.com/sqlmapproject/sqlmap
+1144,synapse,issue,13131,"fix application service not being able to join remote federated room without a profile set (#13131)
+
+fix https://github.com/matrix-org/synapse/issues/4778
+
+complement tests: https://github.com/matrix-org/complement/pull/399",Eric Eastwood,2022-07-05 05:56:06-05:00,FALSE,"A-Application-Service,T-Defect",https://github.com/matrix-org/synapse/issues/13131,True,Y,Aplication Crashing,Aplication Crashing,Missing Exception Type,Unhandled Exception,Add a exception handling block,Exception handling block operations,2c2a42cc107fb02bbf7c8d4e6141cbe601221629,https://github.com/matrix-org/synapse
+237,click,issue,362,fixed issue #362.,Torf,2015-06-19 19:56:24+02:00,FALSE,bug,https://github.com/pallets/click/issues/362,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Add apropriated exception type,Exception type operations,807c5df0b9528d387ff48f0e593907760b2ad6ce,https://github.com/pallets/click
+244,tqdm,issue,466,fix for issues #466,Guangshuo Chen,2017-10-11 14:44:50+08:00,FALSE,"p0-bug-critical ☢,to-review 🔍,need-feedback 📢,synchronisation ⇶",https://github.com/tqdm/tqdm/issues/466,True,N,,,,,,,,
+998,pytest,issue,8,merge branch 'fix-flake8-issues',Bruno Oliveira,2017-07-19 17:03:36-03:00,TRUE,type: bug,https://github.com/pytest-dev/pytest/issues/8,True,N,,,,,,,,
+674,pandas,issue,17452,fix bug where offset.copy() != offset (#17452),jbrockmendel,2017-09-14 15:52:53-07:00,FALSE,"Bug,Internals,Frequency",https://github.com/pandas-dev/pandas/issues/17452,True,N,,,,,,,,
+813,jupyterhub,issue,3716,"merge pull request #3716 from minrk/pre_spawn_start_msg
+
+fix error message about authenticator.pre_spawn_start",Simon Li,2021-12-15 14:00:18+00:00,TRUE,bug,https://github.com/jupyterhub/jupyterhub/issues/3716,True,Y,Incorrect Messaging,Incorrect Messaging,Unproper Message,Unproper Message,Improve the message error,Improve the message error,92c6a23a13cc75a45e750f25bc5d76ed5cb49445,https://github.com/jupyterhub/jupyterhub
+1388,awx,issue,"fix bug that would run --worker-info health checks on control or hybrid nodes (#11161)
+
+* fix bug that would run health check on control nodes
+
+* prevent running execution node health check against main cluster nodes",Alan Rominger,2021-09-29 09:34:22-04:00,FALSE,"type:bug,component:api",7c9626b0e7c0b7835c8ff42970c6f1740f3b10fe,https://github.com/ansible/awx/issues/11161,True,Y,Incorrect Behavior,Incorrect Behavior,Missing Raising Condition,Missing Raising Condition,Add a raise condition,Improve raising conditions,,
+756,ansible,issue,40661,"fixes #40661 fixed elasticache inventory node limit issue. (#40674)
+
+* fixed elasticache inventory node limit issue
+
+* fixed elasticache inventory node limit issue, sanity fixes
+
+* fixed elasticache inventory node limit issue, sanity fixes
+
+* fixed elasticache inventory node limit issue, spelling corrections
+
+* fixed elasticache inventory node limit issue, removed blank lines",rubal033,2018-06-01 00:12:37+05:18,FALSE,"cloud,aws,affects_2.3,module,inventory,support:core,bug",https://github.com/ansible/ansible/issues/40661,True,Y,Incorrect Exceptions,Incorrect Exceptions,Incorrect Logic,Incorrect Logic,Remove the exception handling block,Exception handling block operations,61c6f4fda1b52fe6b775d0094831a55f37bb7d80,https://github.com/ansible/ansible
+184,numpy,issue,970,"bug (#970): this commit should fix the actual bug, which albeeit linked to commir r6200, was caused in anoter code path.",David Cournapeau,2008-12-27 10:43:41+00:00,FALSE,"00 - Bug,component: Other",https://github.com/numpy/numpy/issues/970,True,N,,,,,,,,
+1114,crackmapexec,issue,4,"fixed bh_owned error on non-existing  values
+
+if a computer on the network has been compromised but is not listed in the neo4j database. cme won't crash any more.",Shariq Malik,2022-11-25 16:58:52+05:00,FALSE,bug,https://github.com/porchetta-industries/crackmapexec/issues/4,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Change to apropriated exception type,Exception type operations,b14fe7f94f150c1e34589476506fa230c2c7fed7,https://github.com/porchetta-industries/crackmapexec
+931,mailpile,issue,620,fix email parsing cache related bugs (issue #620),Bjarni R. Einarsson,2014-04-24 15:45:27+00:00,FALSE,"Bugs,Back End",https://github.com/mailpile/mailpile/issues/620,True,Y,Incorrect Messaging,Incorrect Messaging,Unproper Message,Unproper Message,Add a raise condition,Improve raising conditions,a72aff54a256ddc886d6f7835acae515694bd700,https://github.com/mailpile/mailpile
+948,pyro,issue,813,add tests for reshape distribution; fix some bugs (#813),Fritz Obermeyer,2018-02-26 09:20:33-08:00,FALSE,"bug,awaiting review",https://github.com/pyro-ppl/pyro/issues/813,True,Y,Incorrect Exceptions,Incorrect Exceptions,Re-raising Exception,Re-raising Exception,Add a raise condition,Improve raising conditions,,
+332,pyright,issue,5133,fixed a false positive error with the `reportimplicitoverride` check that occurs when the `@override` decorator is applied to a method that is decorated with a wrapper function that completely replaces the original function with another. this addresses https://github.com/microsoft/pyright/issues/5133.,Eric Traut,2023-05-17 21:18:11-07:00,FALSE,"bug,addressed in next version",https://github.com/microsoft/pyright/issues/5133,True,N,,,,,,,,
+1428,pip,issue,8,fix pep8 issue,Donald Stufft,2014-12-23 06:22:31-05:00,FALSE,"type: bug,auto-locked",https://github.com/pypa/pip/issues/8,True,N,,,,,,,,
+1417,ansible,issue,"[playbook/play.py] increase error test coverage (#74217)
+
+change:
+- mostly increase error coverage for various conditions in play.py
+- also fix a string in an error, where get_name() was called before
+  self.name was read in, so get_name() was always ''.
+
+test plan:
+- new tests
+
+signed-off-by: rick elrod <rick@elrod.me>
+
+* fix regex for py2 and py3
+
+signed-off-by: rick elrod <rick@elrod.me>
+
+* py2 hates me
+
+signed-off-by: rick elrod <rick@elrod.me>",Rick Elrod,2021-04-13 10:22:02-05:00,FALSE,"core_review,support:community,support:core,bug,small_patch,affects_2.12",bd1acb74c8c3e3587d807b723449ce55d8b99812,https://github.com/ansible/ansible/issues/74217,True,Y,Incorrect Exceptions,Incorrect Exceptions,Unproper Message,Unproper Message,Improve the message error,Improve the message error,,
+1050,ansible,issue,47076,"fix issue:#47076 onyx_l2_interface parameter trunk_allowed_vlans tries to remove all existing vlans on a port (#49418)
+
+signed-off-by: anas badaha <anasb@mellanox.com>",anasbadaha,2018-12-03 07:09:39+02:00,FALSE,"networking,module,support:community,bug,affects_2.8",https://github.com/ansible/ansible/issues/47076,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Change to apropriated exception type,Exception type operations,,
+1339,robotframework,issue,fix problem when piping output and pipe breaks. fixes #3264.,Pekka Klärck,2019-08-15 23:34:33+03:00,FALSE,"bug,priority: medium,alpha 1",c32496b779df13558a2976351d59d317064f1dc2,https://github.com/robotframework/robotframework/issues/3264,True,Y,Aplication Crashing,Aplication Crashing,Missing Exception Type,Unhandled Exception,Add a exception handling block,Exception handling block operations,,
+1078,ansible,issue,53968,"bigip: bugfix.bigip.data.group (#53968)
+
+* moving comparision functions to compare.py from common.py
+
+* fixes issue with data group elements containing ips with route domains
+refactors main() function and module_manager to accomodate new patterns
+updates doc variables",Wojciech Wypior,2019-03-19 05:25:54+01:00,FALSE,"networking,test,module,shipit,support:community,support:core,support:certified,f5,bug,affects_2.8",https://github.com/ansible/ansible/issues/53968,True,N,,,,,,,,
+212,psutil,issue,23,"(fix issue #23)
+created a special case for pid_exists(0) which now returns false on linux and os x.
+also modified prevent_zombie decorator which now uses pid_exists() instead of ""pid in get_pid_list()"" which is slower.",Giampaolo Rodola',2009-02-24 02:27:27+00:00,FALSE,"bug,imported,linux,macos",https://github.com/giampaolo/psutil/issues/23,True,N,,,,,,,,
+670,modin,issue,4564,"fix-#4564: workaround import issues in ray: auto-import pandas on python start if env var is set (#4603)
+
+co-authored-by: rehan sohail durrani <rdurrani@berkeley.edu>
+signed-off-by: vasily litvinov <fam1ly.n4me@yandex.ru>",Vasily Litvinov,2022-07-07 23:37:04+03:00,FALSE,"bug 🦗,CI",https://github.com/modin-project/modin/issues/4564,True,Y,Import Error,Incorrect Exceptions,Import Error,Import Error,Fix API call and/or version,Fix API version,05933a5f27fb96f5a7ff6025ae2573d033a31b11,https://github.com/modin-project/modin
+1239,pyright,issue,4557,"fixed a bug that led to a false positive error about an ""unknown type"" in certain cases when using an assignment expression (walrus operator) in a loop. this addresses https://github.com/microsoft/pyright/issues/4557.",Eric Traut,2023-01-31 16:52:11-08:00,FALSE,"bug,addressed in next version",https://github.com/microsoft/pyright/issues/4557,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Add a exception handling block,Exception handling block operations,,
+353,pysyft,issue,7998,"merge pull request #7998 from openmined/add_container_stack_tests
+
+add notebook container stack tests and fix bug",rasswanth,2023-08-15 09:11:01+05:30,TRUE,"Type: Bug :bug:,Type: Testing :test_tube:",https://github.com/openmined/pysyft/issues/7998,True,Y,Incorrect Behavior,Incorrect Behavior,Missing Raising Condition,Missing Raising Condition,Add a raise condition,Improve raising conditions,7521efd4053f9b6bdb858b8eb2825203beaca5a5,https://github.com/openmined/pysyft
+1252,ansible,issue,58176,"bigip: fixes issue with image installation on multiblade platforms (#58176)
+
+* fixes issue with image installation on multiblade platforms
+
+* test",Wojciech Wypior,2019-06-22 01:12:31+01:00,FALSE,"networking,module,shipit,owner_pr,support:certified,f5,bug,affects_2.9",https://github.com/ansible/ansible/issues/58176,True,Y,Aplication Crashing,Aplication Crashing,Incorrect Logic,Incorrect Logic,Change to apropriated exception type,Exception type operations,de03c007bc96a27cb4b400b1afcbf0d3451b45c1,https://github.com/ansible/ansible
+497,ansible,issue,53671,"use unicode string for auto interpreter warnings (#53671)
+
+* use unicode string for auto interpreter warnings
+
+* added some unit tests for interpreter selection
+
+* fix python 3 syntax issues",Jordan Borean,2019-03-12 14:16:49+10:00,FALSE,"needs_revision,support:core,bug,traceback,affects_2.8",https://github.com/ansible/ansible/issues/53671,True,Y,Errors in CI,Errors in CI,Missing Raising Condition,Missing Raising Condition,Add a exception handling block,Exception handling block operations,c8c326d88e10d6d0f9ea46824bdcd5305f5412da,https://github.com/ansible/ansible
+486,numba,issue,5599,fixes #5599. variable name collision problem.,Siu Kwan Lam,2020-04-24 14:17:35-05:00,FALSE,"bug,SSA",https://github.com/numba/numba/issues/5599,True,N,,,,,,,,
+1427,tpot,issue,946,fix a bug that tpot assign bad fitness scores to non-evaluated pipelines #946,weixuanfu,2020-01-03 11:08:16-05:00,FALSE,bug,https://github.com/epistasislab/tpot/issues/946,True,N,,,,,,,,
+247,cython,issue,572,"implement pep 572: named/assignment expressions (gh-3691)
+
+closes https://github.com/cython/cython/issues/2636",da-woods,2022-01-27 00:34:32+00:00,FALSE,"defect,Build System",https://github.com/cython/cython/issues/572,True,N,,,,,,,,
+1233,sqlmap,issue,904,fix for an issue #904,Miroslav Stampar,2014-11-06 11:19:05+01:00,FALSE,"bug,normal,enumeration",https://github.com/sqlmapproject/sqlmap/issues/904,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Add a exception handling block,Exception handling block operations,31f8d6e612acf1e7741ce21b1f9456452820773a,https://github.com/sqlmapproject/sqlmap
+631,pandas,issue,1537,"bug: fix multiindex indexing issues in #1537, python 2.5 api fix",Wes McKinney,2012-06-28 20:00:15-04:00,FALSE,Bug,https://github.com/pandas-dev/pandas/issues/1537,True,N,,,,,,,,
+1462,django-cms,issue,5107,fixes issue #5107,Paulo,2016-04-05 13:43:00-04:00,FALSE,kind: bug,https://github.com/django-cms/django-cms/issues/5107,True,N,,,,,,,,
+1315,spyder,issue,"ipython plugin (experimental): added support for ""execute in current interpreter""
++ some code cleaning in spyderlib/spyder.py
+
+fixes issue 1032",Pierre Raybaut,2012-05-23 22:46:32+02:00,FALSE,"type:Bug,2–5 stars,component:Editor,component:IPython Console",115dcc2ebd1186ca6028603ac1edacdc124027d9,https://github.com/spyder-ide/spyder/issues/1032,True,N,,,,,,,,
+1353,numpy,issue,"issue #957:
+- fix problems with test decorators when used on test generators.  
+- the skip/fail arguments for skipif and knownfailureif can now be 
+  either a bool or a callable that returns a bool.
+- added tests for the test decorators.",Alan McIntyre,2009-02-05 20:11:40+00:00,FALSE,"00 - Bug,component: numpy.core",aeb090d5f7081a166357fa850950da89feb25e97,https://github.com/numpy/numpy/issues/957,True,N,,,,,,,,
+350,scipy,issue,7044,"enh: added ""interior-point"" method to scipy.optimize.linprog
+
+the new file scipy/optimize/linprog_ip.py contains a new function,
+linprog, intended to replace the one in scipy/optimize/_linprog.py.
+the new linprog function works exactly the same way as the old one,
+except that now the 'method' argument can be either ""simplex"" or
+""interior-point"".
+
+scipy/optimize/_removeredundancy.py contains a function
+_removeredundancy that is used in the presolve procedure of
+the interior point method. it's in a separate file as
+scipy/optimize/_linprog/_linprog_simplex would benefit
+from calling it to eliminate redundancies in equality
+constraints. this would help fix some of its issues, e.g. #7044.
+
+scipy/optimize/tests/test_linprog_ip contains the unit tests for
+the new linprog function. it contains all the tests for the old
+simplex method and several new tests, some of which would be relevant
+to the old simplex method.
+
+please forgive the mess. i have no idea what i'm doing.",Matt Haberland,2017-03-02 16:08:03-08:00,FALSE,"defect,scipy.optimize",https://github.com/scipy/scipy/issues/7044,True,N,,,,,,,,
+818,lightning,issue,4979,"fix exception message for invalid custom string plugin (#4979)
+
+* fix exception error from generator to list of valid names
+
+* update pytorch_lightning/plugins/plugin_connector.py
+
+co-authored-by: rohit gupta <rohitgr1998@gmail.com>
+
+co-authored-by: rohit gupta <rohitgr1998@gmail.com>
+co-authored-by: jirka borovec <borda@users.noreply.github.com>",Sean Naren,2020-12-05 23:36:05+00:00,FALSE,"bug,ready",https://github.com/lightning-ai/lightning/issues/4979,True,Y,Incorrect Messaging,Incorrect Messaging,Unproper Message,Unproper Message,Improve the message error,Improve the message error,,
+841,spyder,issue,1785,merge remote-tracking branch 'spyder-ide/3.x' into spyder--fix-to-issue-#1785,Eric de Vulpillières,2017-06-28 22:34:36+02:00,TRUE,"type:Bug,1 star",https://github.com/spyder-ide/spyder/issues/1785,True,N,,,,,,,,
+1488,openbbterminal,issue,2647,"etf fix (#2647)
+
+* fixes economy controller
+
+* fixed basic etf issues
+
+* undid bad fix
+
+co-authored-by: james maslek <jmaslek11@gmail.com>",Colin Delahunty,2022-09-27 15:39:35+02:00,FALSE,bug,https://github.com/openbb-finance/openbbterminal/issues/2647,True,Y,Errors in CI,Errors in CI,Missing Exception Type,Unhandled Exception,Add apropriated exception type,Exception type operations,,
+1601,ansible,issue,42886,"add text output along with structured output in nxos_facts (#42886)
+
+* nxos_facts to use default output instead of structured output
+
+signed-off-by: trishna guha <trishnaguha17@gmail.com>
+
+* fix shippable error
+
+signed-off-by: trishna guha <trishnaguha17@gmail.com>
+
+* nxos_facts refactor
+
+signed-off-by: trishna guha <trishnaguha17@gmail.com>
+
+* add structured output back
+
+signed-off-by: trishna guha <trishnaguha17@gmail.com>",Trishna Guha,2018-07-23 22:33:55+05:18,FALSE,"networking,module,owner_pr,core_review,support:network,nxos,bug,affects_2.7,cisco",https://github.com/ansible/ansible/issues/42886,True,N,,,,,,,,
+590,pytest,issue,261,"fixed e261 flake8 errors
+
+at least two spaces before inline comment",Andras Tim,2017-07-17 01:25:09+02:00,FALSE,type: bug,https://github.com/pytest-dev/pytest/issues/261,True,N,,,,,,,,
+819,dvc,issue,4890,"experiments: preserve file permissions across tmpdir execution (#4890)
+
+* tree: use file_mode in upload() for trees that support modes
+
+* experiments: preserve file_mode for files in the workspace
+
+* skip permissions tests on windows
+
+* localtree: separate chmod from protect
+
+* fix rebase issue",Peter Rowlands (변기호),2020-11-18 00:47:57+09:00,FALSE,"A: experiments,skip-changelog,bugfix",https://github.com/iterative/dvc/issues/4890,True,N,,,,,,,,
+1085,impacket,issue,1069,"wmipersist.py: fixed filterbinding error (#1069)
+
+* sets the `filterbinding.deliveryqos` to `0` when defining the filterbinding in `wmipersist.py` example script.",Martin Gallo,2021-04-30 17:28:29-03:00,FALSE,bug,https://github.com/secureauthcorp/impacket/issues/1069,True,N,,,,,,,,
+861,octoprint,issue,4648,"🐛 fix invalid api key and guest behaviour vs csrf
+
+closes second issue discovered in #4648",Gina Häußge,2022-09-22 18:52:06+02:00,FALSE,"bug,done",https://github.com/octoprint/octoprint/issues/4648,True,Y,Incorrect Behavior,Incorrect Behavior,Incorrect Logic,Incorrect Logic,Add a raise condition,Improve raising conditions,147d982c875ff581eb3e9823d0e745e2b2dce4e6,https://github.com/octoprint/octoprint
+1487,openbbterminal,issue,4973,"hotfix/databento + bugs (#4973)
+
+* bump pywry
+
+* fix rm command (#4890)
+
+co-authored-by: henrique joaquim <h.joaquim@campus.fct.unl.pt>
+
+* fix `crypto/defi/anchor` (#4892)
+
+* handle defi anchor exceptions
+
+* reason
+
+* mypy
+
+---------
+
+co-authored-by: henrique joaquim <h.joaquim@campus.fct.unl.pt>
+
+* fix windows pyinstaller subprocess fail if space in path
+
+* remove api_iex_token
+
+* remove api_sentimentinvestor_token
+
+* fix data bento calls
+
+* fix options eod chain bug
+
+* fix finviz get
+
+* fix yf balance bug
+
+* removing breakline
+
+* add error message
+
+---------
+
+co-authored-by: teh_coderer <me@tehcoderer.com>
+co-authored-by: montezdesousa <79287829+montezdesousa@users.noreply.github.com>
+co-authored-by: henrique joaquim <h.joaquim@campus.fct.unl.pt>",James Maslek,2023-05-09 01:16:32-07:00,FALSE,"bug,feat S",https://github.com/openbb-finance/openbbterminal/issues/4973,True,Y,Incorrect Behavior,Incorrect Behavior,Incorrect Logic,Incorrect Logic,Remove a raise statement,Improve raising conditions,425b740eda00e2b6bd25211616438af7ca648cc5,https://github.com/openbb-finance/openbbterminal
+1307,lightning,issue,"bugfix/all gather (#5221)
+
+* resolve bug
+
+* add tests
+
+* add tests
+
+* resolve flake8
+
+* update
+
+* update
+
+* remove globals
+
+* typo
+
+* update pytorch_lightning/utilities/distributed.py
+
+co-authored-by: jirka borovec <borda@users.noreply.github.com>
+
+* update
+
+* update
+
+* add suport int, float
+
+* update
+
+* resolve pep8
+
+* update pytorch_lightning/core/lightning.py
+
+co-authored-by: adrian wälchli <aedu.waelchli@gmail.com>
+
+* update tests/utilities/test_all_gather_grad.py
+
+co-authored-by: adrian wälchli <aedu.waelchli@gmail.com>
+
+* update doc
+
+* add bool and np.ndarray
+
+* resolve conflicts
+
+* resolve conflicts
+
+* resolve pep8
+
+* add changelog
+
+* update pytorch_lightning/core/lightning.py
+
+co-authored-by: adrian wälchli <aedu.waelchli@gmail.com>
+
+co-authored-by: ubuntu <ubuntu@ip-172-31-62-109.ec2.internal>
+co-authored-by: jirka borovec <borda@users.noreply.github.com>
+co-authored-by: adrian wälchli <aedu.waelchli@gmail.com>",chaton,2021-01-09 13:37:44+01:00,FALSE,"bug,feature,design",be255de3063547df3cedbb0b98da1729a3b615f8,https://github.com/lightning-ai/lightning/issues/5221,True,N,,,,,,,,
+1029,aiohttp,issue,3628,close session on error in aiohttp.request (#3628) (#3640),Robert Nikolich,2019-07-19 16:44:10+03:00,FALSE,bug,https://github.com/aio-libs/aiohttp/issues/3628,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Add a exception handling block,Exception handling block operations,20bfadcbfcf2be8e03e9e7fb0868a196e12b8b1c,https://github.com/aio-libs/aiohttp
+170,great_expectations,issue,1378,"[bugfix] fix issue where building docs ignored the --site_name argument (#1378) (#1383)
+
+* * fixes #1378: bugfix for the cli command `docs build` ignoring the --site_name argument
+* datacontext.get_docs_sites_urls now raises error if non-existent site_name is specified
+
+* * some docstring cleanup
+* moved some tests around",Taylor Miller,2020-05-05 16:36:50-06:00,FALSE,bug,https://github.com/great-expectations/great_expectations/issues/1378,True,N,,,,,,,,
+1202,ansible,issue,19701,"fixed bug where it was impossible to set non-ephemeral external ips. (#19701)
+
+* fixed bug where it was impossible to set non-ephemeral external ips.
+
+* fixed variable reference.",rmarsa,2017-01-18 13:13:59-06:00,FALSE,"cloud,gce,affects_2.3,module,community_review,waiting_on_maintainer,bug",https://github.com/ansible/ansible/issues/19701,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Change the the exception code logic,Change the the exception code logic,32f39a195befdc0a656cbaf8f3ce287a12e0246a,https://github.com/ansible/ansible
+1628,ansible,issue,52515,"cyberark_user: fix validate-modules issue (#52515)
+
+this pr includes:
+- validate-modules fixes
+- fix parameter types
+- code bugfix",Dag Wieers,2019-02-22 12:28:04+01:00,FALSE,"test,module,core_review,support:core,support:certified,bug,affects_2.8,identity",https://github.com/ansible/ansible/issues/52515,True,N,,,,,,,,
+782,networkx,issue,2427,"fix for issue #2427 (#2712)
+
+* fix for issue #2427
+
+* improvement of fix for issue #2427
+
+* add tests for issue #2427 fix
+
+* fix for _bidirectional_{dijkstra, shortest_path}
+
+fix _bidirectional_dijkstra and _bidirectional_shortest_path to
+raise networkxnopath when ignore_nodes includes source and/or
+target vertex. also add tests for this possibility.",md0000,2017-10-16 01:29:55+02:00,FALSE,type: Bug fix,https://github.com/networkx/networkx/issues/2427,True,Y,Incorrect Behavior,Incorrect Behavior,Incorrect Logic,Incorrect Logic,Add a raise condition,Improve raising conditions,657f5794e8685153f3177279c1288e43f0642c11,https://github.com/networkx/networkx
+44,mlflow,issue,5359,parallelize download of artifacts and improve performance of downloading large models. (#5359),mehtayogita,2022-02-11 16:04:22-08:00,FALSE,"rn/bug-fix,area/artifacts",https://github.com/mlflow/mlflow/issues/5359,True,Y,Performance,Performance,Wrong Exception Type,Wrong Exception Type,Add a raise condition,Improve raising conditions,70fc2dd41162156d11f6070b2e75a478db7ad627,https://github.com/mlflow/mlflow
+415,spyder,issue,18,"fixed bug introduced with revision 18ffa1b921be: if matplotlib is not imported,
+the `from ipython.core.debugger import pdb as ipypdb` statement will fail.
+
+this is just a workaround.",Pierre Raybaut,2013-02-17 15:23:34+01:00,FALSE,"type:Bug,1 star",https://github.com/spyder-ide/spyder/issues/18,True,Y,Import Error,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Import with a exception handling code,Import with a exception handling code,9266507d1f4ac15c2be00f37de14a220efebcffb,https://github.com/spyder-ide/spyder
+416,pytest,issue,1338,fix issue 1338,Ronny Pfannschmidt,2016-01-23 19:12:10+01:00,FALSE,"type: bug,type: regression",https://github.com/pytest-dev/pytest/issues/1338,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Move the exception handling block,Exception handling block operations,60e9698530c7cda7d46cd8046ab26b48d22a2aa6,https://github.com/pytest-dev/pytest
+986,numpy,issue,1690,"bug: ticket #1690, fix overflow error in randint. slightly modified from the
+original by committer.",Justin Peel,2011-01-24 14:42:40-07:00,FALSE,"00 - Bug,component: Other",https://github.com/numpy/numpy/issues/1690,True,N,,,,,,,,
+893,spyder,issue,20297,merge pull request #20297 from mrclary/issue-20291,Carlos Cordoba,2023-01-04 23:07:58-05:00,TRUE,"type:Bug,Installers",https://github.com/spyder-ide/spyder/issues/20297,True,Y,Incorrect Behavior,Incorrect Behavior,Incorrect Logic,Incorrect Logic,Add a exception handling block,Exception handling block operations,b462b20ba68452415655bf0fd6c9a8d086053276,https://github.com/spyder-ide/spyder
+997,spyder,issue,89,"merge: fix the profiler sorting for numerics (pull request #89)
+
+fixes issue 2074",Carlos Cordoba,2014-12-18 13:56:06-05:00,TRUE,"type:Bug,resolution:Duplicate,1 star",https://github.com/spyder-ide/spyder/issues/89,True,N,,,,,,,,
+1393,spyder,issue,merge from 2.3 (fix for issue #2015),Carlos Cordoba,2014-10-20 12:52:13-05:00,TRUE,"type:Bug,1 star",3b77f858cf81cde0930c06f858b67c95b8851368,https://github.com/spyder-ide/spyder/issues/2,True,Y,Performance,Performance,Missing Exception Type,Unhandled Exception,Add a exception handling block,Exception handling block operations,,
+1392,awx,issue,"fix a bug which can cause isolated artifact cleanup to fail
+
+see: https://github.com/ansible/awx/issues/4376",Ryan Petrello,2019-07-25 15:44:13-04:00,FALSE,"type:bug,component:api",2608e8d47d2b98fcf1f551c47ce66d1cd5907e2e,https://github.com/ansible/awx/issues/4376,True,Y,Aplication Crashing,Aplication Crashing,Missing Exception Type,Unhandled Exception,Add a exception handling block,Exception handling block operations,,
+898,spyder,issue,1830,external console: don't modify system default encoding,Carlos Cordoba,2014-10-12 18:35:57-05:00,FALSE,"type:Bug,1 star,component:Python Console",https://github.com/spyder-ide/spyder/issues/1830,True,N,,,,,,,,
+1600,ansible,issue,41550,"fix nxos_linkagg issue (#41550)
+
+* fix nxos_linkagg issue
+
+* fix shippable",saichint,2018-06-16 07:53:29-07:00,FALSE,"networking,module,core_review,support:network,nxos,bug,affects_2.7,cisco",https://github.com/ansible/ansible/issues/41550,True,Y,Errors in CI,Errors in CI,API Misuse,API Errors,Add apropriated exception type,Exception type operations,,
+316,sympy,issue,3827,"heurisch_wrapper: leave the original poles alone.
+
+when integrating with heurisch_wrapper, we identify poles in the
+denominator and reevaluate the integral at those poles. this is
+pointless if the same poles where already in the integrand to
+start with, so we now leave these poles alone.
+
+fixes issue 3827:
+`integrate(sqrt(x**2/((y - x)*(y + x))), x)` showing some infinities
+https://code.google.com/p/sympy/issues/detail?id=3827",Julien Rioux,2013-05-16 11:21:14+02:00,FALSE,"imported,Bug",https://github.com/sympy/sympy/issues/3827,True,N,,,,,,,,
+513,gamestonkterminal,issue,1310,"fix bugs (#1310)
+
+* added model fix
+
+* fixed nasdaq view issue
+
+* fixed fred_view bug
+
+* fixed screener view bug
+
+* improved oanda_model excption handling
+
+* fixed scripts
+
+* improved run_scripts",Colin Delahunty,2022-02-04 09:15:38-05:00,FALSE,bug,https://github.com/gamestonkterminal/gamestonkterminal/issues/1310,True,N,,,,,,,,
+300,requests,issue,2540,fix bug 2540,sh1buy,2015-04-11 00:23:07+03:00,FALSE,"Bug,Contributor Friendly",https://github.com/psf/requests/issues/2540,True,Y,Incorrect Messaging,Incorrect Messaging,Unproper Message,Unproper Message,Change the the exception code logic,Change the the exception code logic,f89b5a5d90d7b45a7f59dbd2bb29ae2f400aba44,https://github.com/psf/requests
+1089,requests,issue,338,"potentially fixes #338
+
+this attempts to fix an issue where encoding of a string might fail when the
+encoding is set to some unknown format. here we attempt to catch the
+lookupexception and subsequently blindly encode the string one final time.
+that is we call str() over response.content without specifying an encoding.
+this may still fail in certain cases but does properly handle the case of #338
+by returning the expected string.",Max Countryman,2012-03-09 17:26:57-05:00,FALSE,"Bug,Contributor Friendly",https://github.com/psf/requests/issues/338,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Change to apropriated exception type,Exception type operations,bc5cc0dc92ae0b6edc356c90637a0d64e1d5042b,https://github.com/psf/requests
+115,pandas,issue,2057,"bug: fix concatenate bug causing #2057, but obscured by omitted asserts. close #2057",Wes McKinney,2012-11-18 23:59:31-05:00,FALSE,Bug,https://github.com/pandas-dev/pandas/issues/2057,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Change to apropriated exception type,Exception type operations,19dc2847afd74329664d6c42d98b75dcd70c14fa,https://github.com/pandas-dev/pandas
+398,ansible,issue,49272,"reboot - fix command not found, add apline support, fix solaris command (#49272)
+
+* fix various bugs related in reboot
+
+- use format strings for consistency and improve debug log messages
+- use local variables instead of class attributes in order to be thread safe
+- run setup module to get distribution and version
+- run find module to get full path of shutdown command
+- use ansible_os_family and ansible_distribution to find commands and args
+- use same command for all solaris/sunos distributions
+- move delay calculations to properties
+- reliably check for module run failure
+- fix bug in run_test_command() that accidentally made the method work properly
+- use better exceptions rather than exception
+- use dict literals rather than constructors
+- correct _check_delay() so it always returns a value, not none
+- don't store and return result in run_test_command() because it's not used anywhere
+- add test for post reboot command that fails
+- test negative values for delay parameters",Sam Doran,2018-12-11 11:05:10-05:00,FALSE,"windows,shipit,support:community,support:core,bug,affects_2.8,solaris",https://github.com/ansible/ansible/issues/49272,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Remove the exception handling block,Exception handling block operations,c1589c33c4331ad5b0045a807a26747df7e56d07,https://github.com/ansible/ansible
+429,gamestonkterminal,issue,4433,"fix fa/income bugs + update integration tests (#4433)
+
+* fix bug
+
+* update test
+
+* fix yf bug on income statements
+
+* update integration test
+
+* fix yf cash, balance, bug
+
+* add enterprise test
+
+* fix dupont
+
+* fix av keys missing in request
+
+* ruff
+
+* av model api key
+
+* pylint
+
+* pylint
+
+---------
+
+co-authored-by: james maslek <jmaslek11@gmail.com>",montezdesousa,2023-03-08 21:13:36+00:00,FALSE,"bug,feat XS",https://github.com/gamestonkterminal/gamestonkterminal/issues/4433,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Add a exception handling block,Exception handling block operations,47f3e76987060b6f5709cc4a2d3644816fe6539c,https://github.com/gamestonkterminal/gamestonkterminal
+414,spyder,issue,20106,"merge pull request #20106 from mrclary/issue-20097
+
+pr: fix issue where user environment variables with line endings were not parsed correctly on unix platforms",Carlos Cordoba,2023-02-03 16:30:21-05:00,TRUE,"type:Bug,component:Pythonpath manager",https://github.com/spyder-ide/spyder/issues/20106,True,Y,Incorrect Behavior,Incorrect Behavior,Incorrect Logic,Incorrect Logic,Change the the exception code logic,Change the the exception code logic,fe78c3436ee44766d0e93edf1b1891481aaa2da6,https://github.com/spyder-ide/spyder
+220,autokeras,issue,99,"[mrg] resolve issue #99 (#293)
+
+* change process.pool to subprocess to be compatible with google colab
+
+* update test
+
+* resolve conflict
+
+* resolve one more conflict
+
+* catch timeout exception from timeerror only
+
+* fix merge error",tl-yang,2018-11-05 20:27:44-06:00,FALSE,bug report,https://github.com/keras-team/autokeras/issues/99,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Change to apropriated exception type,Exception type operations,,
+643,gamestonkterminal,issue,3302,"updated check for new user (#3302)
+
+* updated check for new user
+
+* update docstring
+
+* fixed import error
+
+co-authored-by: james maslek <jmaslek11@gmail.com>",Colin Delahunty,2022-11-04 15:18:23+01:00,FALSE,"bug,enhancement",https://github.com/gamestonkterminal/gamestonkterminal/issues/3302,True,Y,Incorrect Behavior,Incorrect Behavior,Missing Exception Type,Unhandled Exception,Remove the exception handling block,Exception handling block operations,19660ff3ee39458bd78e729b97fca4a4e552c160,https://github.com/gamestonkterminal/gamestonkterminal
+764,pytest,issue,469,issue469: add fix junit double colon split issue,TomV,2016-03-01 15:49:55+00:00,FALSE,"type: bug,status: help wanted,topic: reporting,good first issue",https://github.com/pytest-dev/pytest/issues/469,True,N,,,,,,,,
+987,pytest,issue,181,"- fix issue181: --pdb now also works on collect errors.  this was
+  implemented by a slight internal refactoring and the introduction
+  of a new hook ``pytest_exception_interact`` hook.
+
+- fix issue341: introduce new experimental hook for ides/terminals to
+  intercept debugging: ``pytest_exception_interact(node, call, report)``.",holger krekel,2013-09-06 11:56:04+02:00,FALSE,type: bug,https://github.com/pytest-dev/pytest/issues/181,True,N,,,,,,,,
+925,ansible,issue,53955,fixes issue with sub collection for pool members (#53955),Wojciech Wypior,2019-03-19 04:49:21+01:00,FALSE,"networking,test,module,shipit,support:core,support:certified,f5,bug,affects_2.8",https://github.com/ansible/ansible/issues/53955,True,N,,,,,,,,
+175,pipenv,issue,2440,"update vendored dependencies
+
+- updated requirementslib
+- fix local relative path bug whici caused paths to be output as
+  absolute (test added to requirementslib)
+- fix ssh normalization bug (test added to requirementslib)
+- fixes #2440, #2441
+
+signed-off-by: dan ryan <dan@danryan.co>",Dan Ryan,2018-06-27 21:02:18-04:00,FALSE,Type: Bug :bug:,https://github.com/pypa/pipenv/issues/2440,True,N,,,,,,,,
+551,numba,issue,915,fix #915: passing a jit signature with the wrong type of arguments should raise an error,Antoine Pitrou,2015-01-14 17:51:24+01:00,FALSE,bug,https://github.com/numba/numba/issues/915,True,Y,Aplication Crashing,Aplication Crashing,Missing Exception Type,Unhandled Exception,Re-raise a exception,Re-raise a exception,11badc2d5f9c05012614b80aba5a4b75577e8607,https://github.com/numba/numba
+1347,octoprint,issue,"🐛 fix exception not being retrieved on socket error
+
+this should hopefully close #3689
+
+the actual result of writing to the web socket is async and a future,
+since `write_message` (https://github.com/tornadoweb/tornado/blob/v5.1.1/tornado/websocke.py#l848)
+returns a future. the error handling inside `send_pack` however
+so far assumed synchronous behaviour (same for `rawwebsocket.py`).
+thus the exception handler there will not trigger if there's an error
+while writing, and thus the connection will not have `on_close` called.
+
+this commit works around this through a `done_callback` on the future,
+which should hopefully solve it. i say should because even though i did
+my best in trying to simulate the error scenario, i was never able to
+trigger even the ""retrieved"" message, let alone a whole storm of them.",Gina Häußge,2020-09-04 17:37:29+02:00,FALSE,"unreproduced,bug,done,approved",e91fcd6387c96d8aa92070f7a14b6558773446d1,https://github.com/octoprint/octoprint/issues/3689,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Add apropriated exception type,Exception type operations,,
+427,gensim,issue,838,"fixed issue #838 (#895)
+
+* fixed issue #838
+
+fixed runtimewarning: overflow encountered in exp.
+
+* fixed issue #838
+
+fixed runtimewarning: overflow encountered in exp
+
+* fixed issue #838
+
+fixed runtimewarning: overflow encountered in exp",Mohit Rathore,2016-09-27 19:47:24+05:30,FALSE,"bug,difficulty easy",https://github.com/rare-technologies/gensim/issues/838,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Raising Condition,Missing Raising Condition,Add a raise condition,Improve raising conditions,b27612759d7b6fbbd583cc312e8b2ea6521299dd,https://github.com/rare-technologies/gensim
+1288,salt,issue,fix key error when interface has no inet adddr (fix #20422),Ahmed Kamal,2015-02-14 18:11:22+02:00,FALSE,"Bug,severity-low,fixed-pls-verify,help-wanted",231d4e64acea2e5d0e721b89afd5408269a37754,https://github.com/saltstack/salt/issues/20422,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Add a exception handling block,Exception handling block operations,,
+1246,ansible,issue,31618,"this patch fixes a number of outstanding bugs and code convention problems. (#31618)
+
+* documentation was not inline with other ansible modules
+* python 3 specific imports were missing
+* monitor_type is no longer required when creating a new pool; it is now the default.
+* a new monitor_type choice of ""single"" was added for a more intuitive way to specify ""a single monitor"". it uses ""and_list"" underneath, but provides additional checks to ensure that you are specifying only a single monitor.
+* host and port arguments have been deprecated for now. please use bigip_pool_member instead.
+* 'partition' field was missing from documentation.
+* a note that ""python 2.7 or greater is required"" has been added for those who were not aware that this applies for all f5 modules.
+* unit tests were fixed to support the above module",Tim Rupp,2017-10-13 09:47:49-07:00,FALSE,"networking,python3,module,owner_pr,community_review,support:community,affects_2.5,f5,bug",https://github.com/ansible/ansible/issues/31618,True,N,,,,,,,,
+910,ansible,issue,47166,postgresql_user: fix test errors on newer fedora versions (#47166),Jordan Borean,2018-10-17 14:01:11+10:00,FALSE,"module,community_review,support:community,bug,affects_2.8,postgresql,database",https://github.com/ansible/ansible/issues/47166,True,Y,Incorrect Exceptions,Incorrect Exceptions,Incorrect Logic,Incorrect Logic,Change to apropriated exception type,Exception type operations,dd46f953f6c88bc159c532b17e9b5c7e34f216bc,https://github.com/ansible/ansible
+198,spyder,issue,2,merge from 2.3: fix for issue #2036,Carlos Cordoba,2015-10-02 18:37:58-05:00,TRUE,"type:Bug,1 star",https://github.com/spyder-ide/spyder/issues/2,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Remove the exception handling block,Exception handling block operations,47a5a0c0531a16d9b3cfd6614a119d7c70f76857,https://github.com/spyder-ide/spyder
+15,rasa,issue,2,narrow pytest fixture scope to fix memory issues 2.8.x (#9687),Tobias Wochinger,2021-09-21 09:14:05+02:00,FALSE,"type:bug :bug:,help wanted",https://github.com/rasahq/rasa/issues/2,True,N,,,,,,,,
+1358,pandas,issue,fix #4554 and other issues with series.reshape(),Goyo,2013-09-29 00:55:51+02:00,FALSE,"Bug,API Design",89a65d206a6d8c4ae805f1402f36b76f54e17b62,https://github.com/pandas-dev/pandas/issues/4554,True,Y,Incorrect Exceptions,Incorrect Exceptions,Unexpected Raising,Unexpected Raising,Remove a raise statement,Improve raising conditions,,
+1188,salt,issue,55192,fix issue #55192,Pedro Algarvio,2020-05-11 12:27:39+01:00,FALSE,"Bug,severity-medium,fixed-pls-verify,Confirmed,Aluminium",https://github.com/saltstack/salt/issues/55192,True,Y,Aplication Crashing,Aplication Crashing,Missing Exception Type,Unhandled Exception,Add a exception handling block,Exception handling block operations,,
+1053,psutil,issue,503,fix issue 503 [linux]: catch esrch and translate it into nsp,Giampaolo Rodola',2014-05-08 18:34:32+03:00,FALSE,"bug,imported,linux",https://github.com/giampaolo/psutil/issues/503,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Change to apropriated exception type,Exception type operations,fdd4fd0531498944278ff70ca1c890dfb7890a92,https://github.com/giampaolo/psutil
+1007,numpy,issue,5812,"merged revisions 5812-5843 via svnmerge from 
+http://svn.scipy.org/svn/numpy/trunk
+
+........
+  r5821 | alan.mcintyre | 2008-09-14 03:04:57 +0900 (sun, 14 sep 2008) | 3 lines
+  
+  removed unused imports.
+  standardize numpy import as ""import numpy as np"".
+........
+  r5822 | alan.mcintyre | 2008-09-14 03:10:48 +0900 (sun, 14 sep 2008) | 6 lines
+  
+  rewrapped __all__ definition to conform to pep8.
+  standardize numpy import as ""import numpy as np"".
+  removed unused imports.
+  fixed undefined reference to ndarray (should be np.ndarray).
+  fixed undefined references to exp (should be math.exp).
+........
+  r5823 | alan.mcintyre | 2008-09-14 03:15:38 +0900 (sun, 14 sep 2008) | 3 lines
+  
+  removed unused imports.
+  fixed undefined reference to ""getpackage"" (from nose.util).
+........
+  r5824 | pierregm | 2008-09-14 06:17:09 +0900 (sun, 14 sep 2008) | 1 line
+  
+  maskedarray.__new__ : make sure that we inherit the _hardmask from data (if any) instead of reverting to default.
+........
+  r5826 | alan.mcintyre | 2008-09-18 12:29:56 +0900 (thu, 18 sep 2008) | 4 lines
+  
+  added documentation for doctests and using the skipif and knownfailureif decorators.
+  fixed indentation on the last sample snippet in the ""__init__.py and setup.py"" 
+  section.
+........
+  r5827 | alan.mcintyre | 2008-09-18 12:33:15 +0900 (thu, 18 sep 2008) | 3 lines
+  
+  rewrapped __all__ to conform with pep8.
+  removed unused imports.
+........
+  r5828 | alan.mcintyre | 2008-09-18 12:33:58 +0900 (thu, 18 sep 2008) | 2 lines
+  
+  removed unused imports.
+........
+  r5829 | alan.mcintyre | 2008-09-18 12:45:53 +0900 (thu, 18 sep 2008) | 3 lines
+  
+  removed unused/redundant imports.
+  pep8 conformance (only one import per line).
+........
+  r5830 | alan.mcintyre | 2008-09-18 12:57:47 +0900 (thu, 18 sep 2008) | 2 lines
+  
+  removed redundant import.
+........
+  r5831 | pierregm | 2008-09-19 02:51:55 +0900 (fri, 19 sep 2008) | 1 line
+  
+  median : fixed a bug in _median1d (there shouldn't have been an axis)
+........
+  r5832 | jarrod.millman | 2008-09-19 03:53:53 +0900 (fri, 19 sep 2008) | 2 lines
+  
+  restified an url
+........
+  r5833 | rkern | 2008-09-19 06:48:57 +0900 (fri, 19 sep 2008) | 1 line
+  
+  bug: override setuptools' install.run() method to correctly allow 'python setup.py install' to work.
+........
+  r5834 | pierregm | 2008-09-19 12:33:40 +0900 (fri, 19 sep 2008) | 1 line
+  
+  * fixing view to recognize dtype and type parameters, for consistency with regular ndarrays.
+........
+  r5835 | pierregm | 2008-09-20 04:43:05 +0900 (sat, 20 sep 2008) | 8 lines
+  
+  core:
+  * add dtype to the repr of masked arrays w/ flexible type
+  * prevent __getitem__ to return masked on flexible-type masked array
+  * make sure __str__ returns something sensible for flexible dtype w/ masked fields
+  * simplify the count method
+  
+  mrecords:
+  * fixed a pb with fromrecords when the number of fields cannot be determined from the first element.
+........",David Cournapeau,2008-09-20 11:39:20+00:00,TRUE,00 - Bug,https://github.com/numpy/numpy/issues/5812,True,N,,,,,,,,
+1456,cython,issue,5652,"avoid useless runtime type checks when coercing a none default argument to a python type argument. (gh-5652)
+
+for python int (which we turn into a plain python object type internally to avoid py2 int/long issues), we previously generated a type check which made the none default argument much more complex than it was.
+
+closes https://github.com/cython/cython/issues/5643",scoder,2023-08-26 22:43:25+02:00,FALSE,"defect,Type Analysis",https://github.com/cython/cython/issues/5652,True,N,,,,,,,,
+892,networkx,issue,3431,fix issue 3431: return error in case of bad input to make_small_graph (#3676),Aditya Pal,2019-10-24 06:13:54+05:30,FALSE,"type: Bug fix,Needs PR",https://github.com/networkx/networkx/issues/3431,True,N,,,,,,,,
+199,spyder,issue,2,variable explorer: fix error that is showing up in python 2 and macos,Carlos Cordoba,2018-09-08 21:38:55-05:00,FALSE,"type:Bug,1 star",https://github.com/spyder-ide/spyder/issues/2,True,N,,,,,,,,
+1435,ansible,issue,65078,"fix action plugin issue with network connection type in common collection (#65078)
+
+* fix action plugin isse with network connection type in common collection
+
+*  for network connection in common collection the value of
+   ansible_connection is the fqcn of the connection type
+   for example ansible_connection=network.common.network_cli
+
+*  add fix in supported network action plugins to extract
+   the connection name from fqcn
+
+* fix ci issue
+
+* fix review comments and update community network action plugins",Ganesh Nalawade,2019-12-13 19:10:56+05:18,FALSE,"needs_revision,networking,support:community,support:network,nxos,bug,ios,asa,cisco,iosxr,aireos,huawei,has_issue,affects_2.10",https://github.com/ansible/ansible/issues/65078,True,N,,,,,,,,
+711,lbry-sdk,issue,3136,"merge pull request #3136 from lbryio/fix-reflector-loop
+
+fix reflector loop crashing upon an unexpected error",Jack Robison,2021-01-08 12:40:18-05:00,TRUE,type: bug,https://github.com/lbryio/lbry-sdk/issues/3136,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Change to apropriated exception type,Exception type operations,a4db0820bc9275a3e10faffa5f3a7e98ea940682,https://github.com/lbryio/lbry-sdk
+966,ray,issue,14932,"fix unexpected error when handling the process that has exited in memory monitor. (#14932)
+
+co-authored-by: qing wang <jovany.wq@antgroup.com>",Qing Wang,2021-04-11 00:57:10+08:00,FALSE,bug,https://github.com/ray-project/ray/issues/14932,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Add apropriated exception type,Exception type operations,,
+1103,robotframework,issue,822,cleaned up importing specified file in order to make the code easier to reuse to fix issue 822,Pekka Klärck,2011-05-19 13:43:02+03:00,FALSE,"bug,priority: medium",https://github.com/robotframework/robotframework/issues/822,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Remove the exception handling block,Exception handling block operations,8f74ff70a112dd31da2371d8c01e83236f3e3d80,https://github.com/robotframework/robotframework
+453,aws-cli,issue,174,"merge branch 'fix-174' into develop
+
+* fix-174:
+  fix parsing issue with quoted shorthand values",James Saryerwinnie,2013-08-28 11:12:26-07:00,TRUE,bug,https://github.com/aws/aws-cli/issues/174,True,Y,Aplication Crashing,Aplication Crashing,Missing Exception Type,Unhandled Exception,Change the the exception code logic,Change the the exception code logic,,
+591,ansible,issue,58173,fixes issue with failure messages (#58173),Wojciech Wypior,2019-06-21 14:45:58+01:00,FALSE,"networking,module,shipit,owner_pr,support:certified,f5,bug,affects_2.9",https://github.com/ansible/ansible/issues/58173,True,Y,Incorrect Behavior,Incorrect Behavior,Missing Exception Type,Unhandled Exception,Change to apropriated exception type,Exception type operations,cee3d539cbfd6bfe39ed3902112a06461cf0ea39,https://github.com/ansible/ansible
+1040,ansible,issue,42894,"fix cloudflare_dns json response error handling (#42894)
+
+* the jsondecodeerror exception only exists in python 3.
+
+* without a properly parsed json response there is no more error
+  processing to be done, no matter the http response code.
+
+relates to #38178",Andreas Olsson,2018-07-24 06:21:44+02:00,FALSE,"python3,module,owner_pr,community_review,net_tools,support:community,bug,affects_2.7,small_patch",https://github.com/ansible/ansible/issues/42894,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Change to apropriated exception type,Exception type operations,c6854fde29659e2fbade78ae704e1e243b0781e9,https://github.com/ansible/ansible
+324,jax,issue,4734,"add shape checks for lax.fft.
+
+fixes https://github.com/google/jax/issues/4734",Peter Hawkins,2022-08-13 15:33:18+00:00,FALSE,bug,https://github.com/google/jax/issues/4734,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Raising Condition,Missing Raising Condition,Add a raise condition,Improve raising conditions,,
+56,pytest,issue,131,fixed e131 flake8 errors,Andras Tim,2017-07-17 01:25:07+02:00,FALSE,type: bug,https://github.com/pytest-dev/pytest/issues/131,True,N,,,,,,,,
+1292,fastapi,issue,"✨ add support for pydantic v2 (#9816)
+
+* ✨ pydantic v2 migration, initial implementation (#9500)
+
+* ✨ add compat layer, for pydantic v1 and v2
+
+* ✨ re-export pydantic needed internals from compat, to later patch them for v1
+
+* ♻️ refactor internals to use new compatibility layers and run with pydantic v2
+
+* 📝 update examples to run with pydantic v2
+
+* ✅ update tests to use pydantic v2
+
+* 🎨 [pre-commit.ci] auto format from pre-commit.com hooks
+
+* ✅ temporarily disable peewee tests, afterwards i'll enable them only for pydantic v1
+
+* 🐛 fix json schema generation and openapi ref template
+
+* 🐛 fix model field creation with defaults from pydantic v2
+
+* 🐛 fix body field creation, with new fieldinfo
+
+* ✨ use and check new responsevalidationerror for server validation errors
+
+* ✅ fix test_schema_extra_examples tests with responsevalidationerror
+
+* ✅ add dirty-equals to tests for compatibility with pydantic v1 and v2
+
+* ✨ add util to regenerate errors with custom loc
+
+* ✨ generate validation errors with loc
+
+* ✅ update tests for compatibility with pydantic v1 and v2
+
+* ✅ update tests for pydantic v2 in tests/test_filter_pydantic_sub_model.py
+
+* ✅ refactor tests in tests/test_dependency_overrides.py for pydantic v2, separate parameterized into independent tests to use insert_assert
+
+* ✅ refactor openapi test for tests/test_infer_param_optionality.py for consistency, and make it compatible with pydantic v1 and v2
+
+* ✅ update tests for tests/test_multi_query_errors.py for pydantic v1 and v2
+
+* ✅ update tests for tests/test_multi_body_errors.py for pydantic v1 and v2
+
+* ✅ update tests for tests/test_multi_body_errors.py for pydantic v1 and v2
+
+* 🎨 [pre-commit.ci] auto format from pre-commit.com hooks
+
+* ♻️ refactor tests for tests/test_path.py to inline pytest parameters, to make it easier to make them compatible with pydantic v2
+
+* ✅ refactor and udpate tests for tests/test_path.py for pydantic v1 and v2
+
+* ♻️ refactor and update tests for tests/test_query.py with compatibility for pydantic v1 and v2
+
+* ✅ fix test with optional field without default none
+
+* ✅ update tests for compatibility with pydantic v2
+
+* ✅ update tutorial tests for pydantic v2
+
+* ♻️ update oauth2 dependencies for pydantic v2
+
+* ♻️ refactor str check when checking for sequence types
+
+* ♻️ rename regex to pattern to keep in sync with pydantic v2
+
+* ♻️ refactor _compat.py, start moving conditional imports and declarations to specifics of pydantic v1 or v2
+
+* ✅ update tests for oauth2 security optional
+
+* ✅ refactor tests for oauth2 optional for pydantic v2
+
+* ✅ refactor tests for oauth2 security for compatibility with pydantic v2
+
+* 🐛 fix location in compat layer for pydantic v2 modelfield
+
+* ✅ refactor tests for pydantic v2 in tests/test_tutorial/test_bigger_applications/test_main_an_py39.py
+
+* 🐛 add missing markers in python 3.9 tests
+
+* ✅ refactor tests for bigger apps for consistency with annotated ones and with support for pydantic v2
+
+* 🐛 fix jsonable_encoder with new pydantic v2 data types and url
+
+* 🐛 fix invalid json error for compatibility with pydantic v2
+
+* ✅ update tests for behind_a_proxy for pydantic v2
+
+* ✅ update tests for tests/test_tutorial/test_body/test_tutorial001_py310.py for pydantic v2
+
+* ✅ update tests for tests/test_tutorial/test_body/test_tutorial001.py with pydantic v2 and consistency with python 3.10 tests
+
+* ✅ fix tests for tutorial/body_fields for pydantic v2
+
+* ✅ refactor tests for tutorial/body_multiple_params with pydantic v2
+
+* ✅ update tests for tutorial/body_nested_models for pydantic v2
+
+* ✅ update tests for tutorial/body_updates for pydantic v2
+
+* ✅ update test for tutorial/cookie_params for pydantic v2
+
+* ✅ fix tests for tests/test_tutorial/test_custom_request_and_route/test_tutorial002.py for pydantic v2
+
+* ✅ update tests for tutorial/dataclasses for pydantic v2
+
+* ✅ update tests for tutorial/dependencies for pydantic v2
+
+* ✅ update tests for tutorial/extra_data_types for pydantic v2
+
+* ✅ update tests for tutorial/handling_errors for pydantic v2
+
+* ✅ fix test markers for python 3.9
+
+* ✅ update tests for tutorial/header_params for pydantic v2
+
+* ✅ update tests for pydantic v2 in tests/test_tutorial/test_openapi_callbacks/test_tutorial001.py
+
+* ✅ fix extra tests for pydantic v2
+
+* ✅ refactor test for parameters, to later fix pydantic v2
+
+* ✅ update tests for tutorial/query_params for pydantic v2
+
+* ♻️ update examples in docs to use new pattern instead of the old regex
+
+* ✅ fix several tests for pydantic v2
+
+* ✅ update and fix test for responsevalidationerror
+
+* 🐛 fix check for sequences vs scalars, include bytes as scalar
+
+* 🐛 fix check for complex data types, include uploadfile
+
+* 🐛 add list to sequence annotation types
+
+* 🐛 fix checks for uploads and add utils to find if an annotation is an upload (or bytes)
+
+* ✨ add uniontype and nonetype to compat layer
+
+* ✅ update tests for request_files for compatibility with pydantic v2 and consistency with other tests
+
+* ✅ fix testsw for request_forms for pydantic v2
+
+* ✅ fix tests for request_forms_and_files for pydantic v2
+
+* ✅ fix tests in tutorial/security for compatibility with pydantic v2
+
+* ⬆️ upgrade required version of email_validator
+
+* ✅ fix tests for params repr
+
+* ✅ add pydantic v2 pytest markers
+
+* use match_pydantic_error_url
+
+* 🎨 [pre-commit.ci] auto format from pre-commit.com hooks
+
+* use field_serializer instead of encoders in some tests
+
+* show undefined as ... in repr
+
+* mark custom encoders test with xfail
+
+* update test to reflect new serialization of decimal as str
+
+* use `model_validate` instead of `from_orm`
+
+* update json schema to reflect required nullable
+
+* add dirty-equals to pyproject.toml
+
+* fix locs and error creation for use with pydantic 2.0a4
+
+* use the type adapter for serialization. this is hacky.
+
+* 🎨 [pre-commit.ci] auto format from pre-commit.com hooks
+
+* ✅ refactor test_multi_body_errors for compatibility with pydantic v1 and v2
+
+* ✅ refactor test_custom_encoder for pydantic v1 and v2
+
+* ✅ set input to none for now, for compatibility with current tests
+
+* 🐛 fix passing serialization params to model field when handling the response
+
+* ♻️ refactor exceptions to not depend on pydantic validationerror class
+
+* ♻️ revert/refactor params to simplify repr
+
+* ✅ tweak tests for custom class encoders for pydantic v1 and v2
+
+* ✅ tweak tests for jsonable_encoder for pydantic v1 and v2
+
+* ✅ tweak test for compatibility with pydantic v1 and v2
+
+* 🐛 fix filtering data with subclasses
+
+* 🐛 workaround examples in openapi schema
+
+* ✅ add skip marker for sql tutorial, needs to be updated either way
+
+* ✅ update test for broken json
+
+* ✅ fix test for broken json
+
+* ✅ update tests for timedeltas
+
+* ✅ fix test for plain text validation errors
+
+* ✅ add markers for pydantic v1 exclusive tests (for now)
+
+* ✅ update test for path_params with enums for compatibility with pydantic v1 and v2
+
+* ✅ update tests for extra examples in openapi
+
+* ✅ fix tests for response_model with compatibility with pydantic v1 and v2
+
+* 🐛 fix required double serialization for different types of models
+
+* ✅ fix tests for response model with compatibility with new pydantic v2
+
+* 🐛 import undefined from compat layer
+
+* ✅ fix tests for response_model for pydantic v2
+
+* ✅ fix tests for schema_extra for pydantic v2
+
+* ✅ add markers and update tests for pydantic v2
+
+* 💡 comment out logic for double encoding that breaks other usecases
+
+* ✅ update errors for int parsing
+
+* ♻️ refactor re-enabling compatibility for pydantic v1
+
+* ♻️ refactor openapi utils to re-enable support for pydantic v1
+
+* ♻️ refactor dependencies/utils and _compat for compatibility with pydantic v1
+
+* 🐛 fix and tweak compatibility with pydantic v1 and v2 in dependencies/utils
+
+* ✅ tweak tests and examples for pydantic v1
+
+* ♻️ tweak call to modelfield.validate for compatibility with pydantic v1
+
+* ✨ use new global override typeadapter from_attributes
+
+* ✅ update tests after updating from_attributes
+
+* 🔧 update pytest config to avoid collecting tests from docs, useful for editor-integrated tests
+
+* ✅ add test for data filtering, including inheritance and models in fields or lists of models
+
+* ♻️ make openapi models compatible with both pydantic v1 and v2
+
+* ♻️ fix compatibility for pydantic v1 and v2 in jsonable_encoder
+
+* ♻️ fix compatibility in params with pydantic v1 and v2
+
+* ♻️ fix compatibility when creating a fieldinfo in pydantic v1 and v2 in utils.py
+
+* ♻️ fix generation of flat_models and json schema definitions in _compat.py for pydantic v1 and v2
+
+* ♻️ update handling of errorwrappers for pydantic v1
+
+* ♻️ refactor checks and handling of types an sequences
+
+* ♻️ refactor and cleanup comments with compatibility for pydantic v1 and v2
+
+* ♻️ update uploadfile for compatibility with both pydantic v1 and v2
+
+* 🔥 remove commented out unneeded code
+
+* 🐛 fix mock of get_annotation_from_field_info for pydantic v1 and v2
+
+* 🐛 fix params with compatibility for pydantic v1 and v2, with schemas and new pattern vs regex
+
+* 🐛 fix check if field is sequence for pydantic v1
+
+* ✅ fix tests for custom_schema_fields, for compatibility with pydantic v1 and v2
+
+* ✅ simplify and fix tests for jsonable_encoder with compatibility for pydantic v1 and v2
+
+* ✅ fix tests for orm_mode with pydantic v1 and compatibility with pydantic v2
+
+* ♻️ refactor logic for normalizing pydantic v1 errorwrappers
+
+* ♻️ workaround for params with examples, before defining what to deprecate in pydantic v1 and v2 for examples with json schema vs openapi
+
+* ✅ fix tests for pydantic v1 and v2 for response_by_alias
+
+* ✅ fix test for schema_extra with compatibility with pydantic v1 and v2
+
+* ♻️ tweak error regeneration with loc
+
+* ♻️ update error handling and serializationwith compatibility for pydantic v1 and v2
+
+* ♻️ re-enable custom encoders for pydantic v1
+
+* ♻️ update errorwrapper reserialization in pydantic v1, do it outside of fastapi validationexceptions
+
+* ✅ update test for filter_submodel, re-structure to simplify testing while keeping division of pydantic v1 and v2
+
+* ✅ refactor pydantic v1 only test that requires modifying environment variables
+
+* 🔥 update test for plaintext error responses, for pydantic v1 and v2
+
+* ⏪️ revert changes in db tutorial to use pydantic v1 (the new guide will have sqlmodel)
+
+* ✅ mark current sql db tutorial tests as pydantic only
+
+* ♻️ update datastructures for compatibility with pydantic v1, not requiring pydantic-core
+
+* ♻️ update encoders.py for compatibility with pydantic v1
+
+* ⏪️ revert changes to peewee, the docs for that are gonna live in a new howto section, not in the main tutorials
+
+* ♻️ simplify response body kwargs generation
+
+* 🔥 clean up comments
+
+* 🔥 clean some tests and comments
+
+* ✅ refactor tests to match new pydantic error string urls
+
+* ✅ refactor tests for recursive models for pydantic v1 and v2
+
+* ✅ update tests for peewee, re-enable, pydantic-v1-only
+
+* ♻️ update fastapi params to take regex and pattern arguments
+
+* ⏪️ revert tutorial examples for pattern, it will be done in a subsequent pr
+
+* ⏪️ revert changes in schema extra examples, it will be added later in a docs-specific pr
+
+* 💡 add todo comment to document str validations with pattern
+
+* 🔥 remove unneeded comment
+
+* 📌 upgrade pydantic pin dependency
+
+* ⬆️ upgrade email_validator dependency
+
+* 🐛 tweak type annotations in _compat.py
+
+* 🔇 tweak mypy errors for compat, for pydantic v1 re-imports
+
+* 🐛 tweak and fix type annotations
+
+* ➕ update requirements-test.txt, re-add dirty-equals
+
+* 🔥 remove unnecessary config
+
+* 🐛 tweak type annotations
+
+* 🔥 remove unnecessary type in dependencies/utils.py
+
+* 💡 update comment in routing.py
+
+---------
+
+co-authored-by: david montague <35119617+dmontagu@users.noreply.github.com>
+co-authored-by: pre-commit-ci[bot] <66853113+pre-commit-ci[bot]@users.noreply.github.com>
+
+* 👷 add ci for both pydantic v1 and v2 (#9688)
+
+* 👷 test and install pydantic v1 and v2 in ci
+
+* 💚 tweak ci config for pydantic v1 and v2
+
+* 💚 fix pydantic v2 specification in ci
+
+* 🐛 fix type annotations for compatibility with python 3.7
+
+* 💚 install pydantic v2 for lints
+
+* 🐛 fix type annotations for pydantic v2
+
+* 💚 re-use test cache for lint
+
+* ♻️ refactor internals for test coverage and performance (#9691)
+
+* ♻️ tweak import of annotated from typing_extensions, they are installed anyway
+
+* ♻️ refactor _compat to define functions for pydantic v1 or v2 once instead of checking inside
+
+* ✅ add test for uploadfile for pydantic v2
+
+* ♻️ refactor types and remove logic for impossible cases
+
+* ✅ add missing tests from test refactor for path params
+
+* ✅ add tests for new decimal encoder
+
+* 💡 add todo comment for decimals in encoders
+
+* 🔥 remove unneeded dummy function
+
+* 🔥 remove section of code in field_annotation_is_scalar covered by sub-call to field_annotation_is_complex
+
+* ♻️ refactor and tweak variables and types in _compat
+
+* ✅ add tests for corner cases and compat with pydantic v1 and v2
+
+* ♻️ refactor type annotations
+
+* 🔖 release version 0.100.0-beta1
+
+* ♻️ refactor parts that use optional requirements to make them compatible with installations without them (#9707)
+
+* ♻️ refactor parts that use optional requirements to make them compatible with installations without them
+
+* ♻️ update json schema for email field without email-validator installed
+
+* 🐛 fix support for pydantic v2.0, small changes in their final release (#9771)
+
+co-authored-by: pre-commit-ci[bot] <66853113+pre-commit-ci[bot]@users.noreply.github.com>
+co-authored-by: sebastián ramírez <tiangolo@gmail.com>
+
+* 🔖 release version 0.100.0-beta2
+
+* ✨ openapi 3.1.0 with pydantic v2, merge `master` (#9773)
+
+* ➕ add dirty-equals as a testing dependency (#9778)
+
+➕ add dirty-equals as a testing dependency, it seems it got lsot at some point
+
+* 🔀 merge master, fix valid json schema accepting bools (#9782)
+
+* ⏪️ revert usage of custom logic for typeadapter json schema, solved on the pydantic side (#9787)
+
+⏪️ revert usage of custom logic for typeadapter json schema, solved on pydantic side
+
+* ♻️ deprecate parameter `regex`, use `pattern` instead (#9786)
+
+* 📝 update docs to deprecate regex, recommend pattern
+
+* ♻️ update examples to use new pattern instead of regex
+
+* 📝 add new example with deprecated regex
+
+* ♻️ add deprecation notes and warnings for regex
+
+* ✅ add tests for regex deprecation
+
+* ✅ update tests for compatibility with pydantic v1
+
+* ✨ update docs to use pydantic v2 settings and add note and example about v1 (#9788)
+
+* ➕ add pydantic-settings to all extras
+
+* 📝 update docs for pydantic settings
+
+* 📝 update settings source examples to use pydantic v2, and add a pydantic v1 version
+
+* ✅ add tests for settings with pydantic v1 and v2
+
+* 🔥 remove solved todo comment
+
+* ♻️ update conditional openapi to use new pydantic v2 settings
+
+* ✅ update tests to import annotated from typing_extensions for python < 3.9 (#9795)
+
+* ➕ add pydantic-extra-types to fastapi[extra]
+
+* ➕ temp: install pydantic from source to test json schema metadata fixes (#9777)
+
+* ➕ install pydantic from source, from branch for json schema with metadata
+
+* ➕ update dependencies, install pydantic main
+
+* ➕ fix dependency url for pydantic from source
+
+* ➕ add pydantic-settings for test requirements
+
+* 💡 add todo comments to re-enable pydantic main (not from source) (#9796)
+
+* ✨ add new pydantic field param options to query, cookie, body, etc. (#9797)
+
+* 📝 add docs for pydantic v2 for `docs/en/docs/advanced/path-operation-advanced-configuration.md` (#9798)
+
+* 📝 update docs in examples for settings with pydantic v2 (#9799)
+
+* 📝 update json schema `examples` docs with pydantic v2 (#9800)
+
+* ♻️ use new pydantic v2 json schema generator (#9813)
+
+co-authored-by: david montague <35119617+dmontagu@users.noreply.github.com>
+
+* ♻️ tweak type annotations and pydantic version range (#9801)
+
+* 📌 re-enable ga pydantic, for v2, require minimum 2.0.2 (#9814)
+
+* 🔖 release version 0.100.0-beta3
+
+* 🔥 remove duplicate type declaration from merge conflicts (#9832)
+
+* 👷‍♂️ run tests with pydantic v2 ga (#9830)
+
+👷 run tests for pydantic v2 ga
+
+* 📝 add notes to docs expecting pydantic v2 and future updates (#9833)
+
+* 📝 update index with new extras
+
+* 📝 update release notes
+
+---------
+
+co-authored-by: david montague <35119617+dmontagu@users.noreply.github.com>
+co-authored-by: pre-commit-ci[bot] <66853113+pre-commit-ci[bot]@users.noreply.github.com>
+co-authored-by: pastukhov nikita <diementros@yandex.ru>",Sebastián Ramírez,2023-07-07 19:12:13+02:00,FALSE,"bug,reviewed",0976185af96ab2ee39c949c0456be616b01f8669,https://github.com/tiangolo/fastapi/issues/2,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Add a raise condition,Improve raising conditions,,
+43,gamestonkterminal,issue,3882,issue #3882 fixed (#3885),Mert Nuhuz,2023-01-12 18:14:58+03:00,FALSE,bug,https://github.com/gamestonkterminal/gamestonkterminal/issues/3882,True,Y,Incorrect Behavior,Incorrect Behavior,Incorrect Logic,Incorrect Logic,Remove the exception handling block,Exception handling block operations,4303bdc682e67d26e9ed92ab647cf5afae4e142c,https://github.com/gamestonkterminal/gamestonkterminal
+100,openbbterminal,issue,2650,fixed the bug in crypto/dd/oi (#2650),Colin Delahunty,2022-09-27 18:30:06+02:00,FALSE,bug,https://github.com/openbb-finance/openbbterminal/issues/2650,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Add a exception handling block,Exception handling block operations,,
+274,numpy,issue,1283,* fixed rec.fromrecords for an explicit dtype with an object field (bug #1283),pierregm,2009-11-10 19:55:19+00:00,FALSE,"00 - Bug,component: Other",https://github.com/numpy/numpy/issues/1283,True,N,,,,,,,,
+1149,ansible,issue,13453,"fix issue when var name is the same as content.
+see https://github.com/ansible/ansible/issues/13453 for more details.",Yannig Perré,2015-12-07 09:25:37+01:00,FALSE,bug,https://github.com/ansible/ansible/issues/13453,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Add a exception handling block,Exception handling block operations,2c8eee956fb574ab0ef2ae362a2936f95a2d80cf,https://github.com/ansible/ansible
+101,pipenv,issue,3017,upgrade vendored dependencies,Dan Ryan,2018-10-19 20:57:20-04:00,FALSE,Type: Bug :bug:,https://github.com/pypa/pipenv/issues/3017,True,Y,Aplication Crashing,Aplication Crashing,Missing Exception Type,Unhandled Exception,Change to apropriated exception type,Exception type operations,baef2e78a632168bddce0a428969b9f6fb32693c,https://github.com/pypa/pipenv
+1593,pytest,issue,6,"fixes issue 6 by reverting back to issuing attributeerror
+
+--hg--
+branch : trunk",holger krekel,2009-05-07 19:07:22+02:00,FALSE,type: bug,https://github.com/pytest-dev/pytest/issues/6,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Change to apropriated exception type,Exception type operations,,
+107,numpy,issue,9522,merge pull request #9522 from eric-wieser/stop-using-obj2sctype,Charles Harris,2017-08-06 17:22:20-05:00,TRUE,"00 - Bug,component: numpy.core",https://github.com/numpy/numpy/issues/9522,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Change to apropriated exception type,Exception type operations,91b06c021319faccb008a8ee485d26ae227bf079,https://github.com/numpy/numpy
+611,spyder,issue,2,merge from 2.3: fix import error on ipython 3,Carlos Cordoba,2015-08-20 16:41:14-05:00,TRUE,"type:Bug,1 star",https://github.com/spyder-ide/spyder/issues/2,True,N,,,,,,,,
+1386,ansible,issue,"multiple fixs for na_ontap_user (#54610)
+
+* fix ontap user for 9.1
+
+* fix bugs:
+
+* update unit tests",Chris Archibald,2019-04-01 09:22:48-07:00,FALSE,"module,shipit,support:core,support:certified,bug,netapp,storage,affects_2.8",ec03ddd33606b05e7bf048a60e20ee3b75f17ca8,https://github.com/ansible/ansible/issues/54610,True,Y,Incorrect Behavior,Incorrect Behavior,Incorrect Logic,Incorrect Logic,Change the the exception code logic,Change the the exception code logic,,
+617,bottle,issue,109,"moved request_method handling into the router and fixed issue #109 for named routes.
+
+i also special-cased wsgi.run_once environments to improve cgi/gae performance. (issue #94)",Marcel Hellkamp,2011-01-08 21:33:37+01:00,FALSE,Bug,https://github.com/bottlepy/bottle/issues/109,True,N,,,,,,,,
+529,pytest,issue,47,"visit() now returns paths in depth-first order.  fixes issue #47
+
+--hg--
+branch : trunk",holger krekel,2009-09-22 19:13:33+02:00,FALSE,type: bug,https://github.com/pytest-dev/pytest/issues/47,True,N,,,,,,,,
+1174,scikit-learn,issue,1993,fix issue #1993: passing a multilabel indicator is no more noop,Arnaud Joly,2013-09-11 20:46:14+02:00,FALSE,"Bug,Easy",https://github.com/scikit-learn/scikit-learn/issues/1993,True,N,,,,,,,,
+618,jax,issue,11882,"fix jax_cuda_visible_devices for distributed gpu clusters.
+
+we were incorrectly assuming that the local device ordinals formed a dense set.
+
+fixes https://github.com/google/jax/issues/11882
+
+piperorigin-revid: 468529654",Peter Hawkins,2022-08-18 13:09:38-07:00,FALSE,"bug,P0 (urgent),NVIDIA GPU",https://github.com/google/jax/issues/11882,True,N,,,,,,,,
+839,aiohttp,issue,7237,"fix permissionerror when loading .netrc (#7237) (#7378)
+
+## what do these changes do?
+
+if no netrc environment variable is provided and the .netrc path cannot
+be accessed due to missing permission, a permissionerror was raised
+instead of returning none. see issue #7237. this pr fixes the issue.
+
+if the changes look good, i can also prepare backports.
+
+## are there changes in behavior for the user?
+
+if the .netrc cannot be accessed due to a permission problem (and the
+`netrc` environment variable is unset), no `permissionerror` will be
+raised. instead it will be silently ignored.
+
+## related issue number
+
+fixes #7237",Jan Gosmann,2023-07-18 22:54:36+02:00,FALSE,bug,https://github.com/aio-libs/aiohttp/issues/7237,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Change the the exception code logic,Change the the exception code logic,0d2e43bf2a920975a5da4d9295e0ba887080bf5b,https://github.com/aio-libs/aiohttp
+1501,tweepy,issue,8,fix some pep8 errors,Omer Murat Yildirim,2014-09-19 19:34:41+03:00,FALSE,"Bug,API",https://github.com/tweepy/tweepy/issues/8,True,N,,,,,,,,
+128,pandas,issue,4294,bug: fixed a bug in multi-level indexing with a timestamp partial indexer (gh4294),jreback,2013-10-01 22:21:44-04:00,FALSE,"Bug,Timeseries,Indexing,Error Reporting",https://github.com/pandas-dev/pandas/issues/4294,True,Y,Incorrect Messaging,Incorrect Messaging,Missing Exception Type,Unhandled Exception,Change to apropriated exception type,Exception type operations,ffe49199d5f319a94f7c08ccd3f59457d26b4999,https://github.com/pandas-dev/pandas
+352,numba,issue,7730,"fix issues with locating/parsing source during debuginfo emission.
+
+this works around issues with source that cannot be parsed when
+looking for a line containing `def` so as to get the correct line
+info for use in debuginfo emission. it adds tests for this and
+also the case where the function source is simply unobtainable.
+
+fixes #7730",Stuart Archibald,2022-01-14 12:51:40+00:00,FALSE,bug - DWARF,https://github.com/numba/numba/issues/7730,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Add a exception handling block,Exception handling block operations,bb7049ccaadafe2cd1c1cb73feb0dcd88ba640c1,https://github.com/numba/numba
+298,openbbterminal,issue,2486,"[bug] fixes the stocks ca cashflow command (#2486)
+
+fixes issue #2478
+
+co-authored-by: james maslek <jmaslek11@gmail.com>
+co-authored-by: colin delahunty <72827203+colin99d@users.noreply.github.com>",northern-64bit,2022-09-05 11:34:04+02:00,FALSE,bug,https://github.com/openbb-finance/openbbterminal/issues/2486,True,Y,Incorrect Behavior,Incorrect Behavior,Missing Exception Type,Unhandled Exception,Add a exception handling block,Exception handling block operations,9c5ad13e2a6368c91bb4c00399442fec6d6cbf12,https://github.com/openbb-finance/openbbterminal
+817,ipython,issue,6864,"silence tokenization errors in ultratb.
+
+currently, the ultratb module attempts to tokenize the code it finds in
+tracebacks, and issues a scary-sounding warnings about potentially invalid
+tracebacks if it fails. however, this tokenization is known to fail in some
+cases, notably if the reported error line is the terminating line of a
+multiline, triple-quoted string literal.
+
+this change fixes the issue by switching this to a `logging.debug` message,
+which silences it by default without completely removing it for debugging
+purposes.
+
+fixes #6864.",Craig Citro,2017-09-27 21:21:28-07:00,FALSE,"bug,core",https://github.com/ipython/ipython/issues/6864,True,Y,Incorrect Messaging,Incorrect Messaging,Incorrect Logic,Incorrect Logic,Improve the message error,Improve the message error,0fdcb43a9b4fa4282cd6ae8bb4186b6d80d5a01b,https://github.com/ipython/ipython
+367,lightning,issue,12885,"fix zero division error for empty dataloaders (#12885)
+
+co-authored-by: carlos mocholí <carlossmocholi@gmail.com>",Rohit Gupta,2022-05-04 02:10:30+05:30,FALSE,"bug,ready,data handling,breaking change",https://github.com/lightning-ai/lightning/issues/12885,True,Y,Incorrect Behavior,Incorrect Behavior,Incorrect Logic,Incorrect Logic,Change the the exception code logic,Change the the exception code logic,9bfbd9ea80c4c5daf48800a1ab9a14683a0bc1ce,https://github.com/lightning-ai/lightning
+1026,ansible,issue,41683,"fix azure_rm_keyvaultkey/azure_rm_keyvaultsecret bugs (#41683)
+
+* fix keyvault tests
+
+* missing keyvault requirement
+
+* fix keyvault auth bug
+
+* apply fix in secret
+
+* fix lint
+
+* enable keyvault key and secret tests
+
+* add azure service principal object_id lookup plugin
+
+* fix lint
+
+* add dependency in integration test
+
+* fix bug
+
+* put azure sp lookup plugin into test
+
+* fix lint
+
+* move lookup plugin
+
+* repath lookup plugin
+
+* repath lookup plugin
+
+* repath files
+
+* put az sp lookup plugin to lookup_plugins folder",Yunge Zhu,2018-07-23 11:49:30+08:00,FALSE,"cloud,azure,test,module,core_review,stale_ci,support:community,support:core,bug,affects_2.7",https://github.com/ansible/ansible/issues/41683,True,N,,,,,,,,
+1577,ansible,issue,15985,"merge pull request #15985 from alikins/vault_keyring_15984_fix
+
+fix vault-keyring.py 'no [vault] section' error",Matt Martz,2016-05-24 18:11:29-05:00,TRUE,bug,https://github.com/ansible/ansible/issues/15985,True,Y,Incorrect Exceptions,Incorrect Exceptions,Incorrect API Version,API Errors,Add apropriated exception type,Exception type operations,,
+1244,pandas,issue,1352,bug: fix multiindex partial slicing bug in .ix close #1352,Wes McKinney,2012-06-03 11:53:57-04:00,FALSE,Bug,https://github.com/pandas-dev/pandas/issues/1352,True,Y,Incorrect Exceptions,Incorrect Exceptions,Wrong Exception Type,Wrong Exception Type,Change to apropriated exception type,Exception type operations,911fec2bb2081887ef4396a1993f2ea4ee9c9f0a,https://github.com/pandas-dev/pandas
+1055,ansible,issue,51637,"fixes indentation style issues (#51637)
+
+fixes docstrings",Wojciech Wypior,2019-02-02 01:49:33+00:00,FALSE,"networking,module,committer_review,support:certified,f5,bug,affects_2.8",https://github.com/ansible/ansible/issues/51637,True,N,,,,,,,,
+932,spyder,issue,85,merge: handle the case of a new host for the connection to a remote kernel (pull request #85),Carlos Cordoba,2014-11-21 16:41:45-05:00,TRUE,"type:Bug,2–5 stars",https://github.com/spyder-ide/spyder/issues/85,True,N,,,,,,,,
+1168,pysyft,issue,3807,"fix issues in handle_func_command for syft tensors (#3807)
+
+* fix issues in handle_func_command in syft tensors
+
+* fix handle_func_cmd in native",Théo Ryffel,2020-07-07 23:57:50+02:00,FALSE,Type: Bug :bug:,https://github.com/openmined/pysyft/issues/3807,True,Y,Incorrect Behavior,Incorrect Behavior,Missing Exception Type,Unhandled Exception,Add a exception handling block,Exception handling block operations,5c8e7b78eba693ea29e07eac7476aa7517e5dfef,https://github.com/openmined/pysyft
+1013,pytest,issue,718,"added workaround to still show the diff on containers with unsortable elements.
+
+fix issue #718",Edison Gustavo Muenz,2015-06-17 17:31:31-03:00,FALSE,"type: bug,topic: reporting",https://github.com/pytest-dev/pytest/issues/718,True,Y,Incorrect Exceptions,Incorrect Exceptions,Missing Exception Type,Unhandled Exception,Add a exception handling block,Exception handling block operations,48d91def7e630abce1b156ee752091efa19f780a,https://github.com/pytest-dev/pytest
+599,beets,issue,2615,fixes issue #2615,Michal Koutenský,2017-07-04 15:53:02+02:00,FALSE,bug,https://github.com/beetbox/beets/issues/2615,True,N,,,,,,,,
+754,spyder,issue,1461,"external console: disconnect signals from kill and terminate buttons before creating a new process
+
+fixes issue 1461
+
+- this was slowing down creating a new process after several times of killing
+the previous one.",Carlos Cordoba,2015-01-31 00:05:40-05:00,FALSE,"type:Bug,1 star,component:Python Console,community:Easy",https://github.com/spyder-ide/spyder/issues/1461,True,Y,Incorrect Exceptions,Incorrect Exceptions,Incorrect Logic,Incorrect Logic,Add a exception handling block,Exception handling block operations,3fe066f0fa1b6b0de2e3807c3c1eb868a7f16ad2,https://github.com/spyder-ide/spyder
+371,pandas,issue,13985,"api: sparseseries comparison now returns sparse
+
+because #13985 has been fixed, ``sparseseries`` comparison op now can return
+``sparseseries`` (it returns normal ``series`` on current master).
+also fixed a bug when ``sparsearray`` created from ``sparseseries``
+may not inherit ``dtype``.
+
+author: sinhrks <sinhrks@gmail.com>
+
+closes #13999 from sinhrks/sparse_comparison and squashes the following commits:
+
+eafc94c [sinhrks] api: sparseseries comparison now returns sparse",sinhrks,2016-08-20 09:31:43-04:00,FALSE,"Bug,Indexing,Sparse",https://github.com/pandas-dev/pandas/issues/13985,True,N,,,,,,,,
+1362,pandas,issue,"bug: fix parse_dates processing with usecols and c engine
+
+closes #9755
+closes #12678
+
+`read_csv` bugs, this pr fixes a bug brought up in #9755 in processing
+`parse_dates` with the c engine in which the wrong indices (those of
+the filtered column names) were being used to determine the date
+columns to not be dtype-parsed by the c engine. the correct indices
+are those of the original column names, as they are used later on in
+the actual data processing.
+
+author: gfyoung <gfyoung17@gmail.com>
+
+closes #12512 from gfyoung/parse_dates_usecols and squashes the following commits:
+
+f0543a4 [gfyoung] bug: prevent mixed-typed usecols
+83caa3b [gfyoung] bug: fix parse_dates processing with usecols and c engine",gfyoung,2016-04-06 15:13:34-04:00,FALSE,"Bug,IO CSV",c6c201e27c7ed57a823ec7261340dfeec1e0226a,https://github.com/pandas-dev/pandas/issues/9755,True,Y,Incorrect Behavior,Incorrect Behavior,Missing Raising Condition,Missing Raising Condition,Add a raise condition,Improve raising conditions,,
+887,instapy,issue,3594,fix the error occured while liking a comment,Qulu,2018-12-15 15:44:21+04:00,FALSE,bug,https://github.com/instapy/instapy/issues/3594,True,Y,Aplication Crashing,Aplication Crashing,Incorrect Logic,Incorrect Logic,Change to apropriated exception type,Exception type operations,37028354b87058ba9a36b79d9b6393078c2ecd68,https://github.com/instapy/instapy
+1402,pandas,issue,"bug: fixed handling of non-list value_vars in melt
+
+the value_vars argument of melt is now cast to list like the
+id_vars argument.
+
+closes #15348
+
+author: joshua bradt <bradt@nscl.msu.edu>
+author: joshua bradt <jbradt26@gmail.com>
+
+closes #15351 from jbradt/fix-melt and squashes the following commits:
+
+a2f2510 [joshua bradt] changed to tm.assertraisesregexp for python 2 compat.
+3038f64 [joshua bradt] merge remote-tracking branch 'upstream/master' into fix-melt
+e907135 [joshua bradt] split test into two parts
+20159c1 [joshua bradt] changed exception classes to valueerror.
+129d531 [joshua bradt] moved binary operators to satisfy flake8
+70d7256 [joshua bradt] merge branch 'master' into fix-melt
+455a310 [joshua bradt] tested types when using multiindex to ensure they are lists.
+7406222 [joshua bradt] fixed formatting. added comment with issue number to test.
+d4c5da3 [joshua bradt] improved type checking and tests. added whatsnew note.
+33728de [joshua bradt] bug: fixed handling of non-list value_vars in melt",Joshua Bradt,2017-02-10 14:48:11-05:00,FALSE,"Bug,Reshaping,API Design",61deba5cfc43425e35c8fc61bcad1123c83a6a5a,https://github.com/pandas-dev/pandas/issues/15348,True,Y,Incorrect Exceptions,Incorrect Exceptions,Unexpected Raising,Unexpected Raising,Add a raise condition,Improve raising conditions,,
+339,netbox,issue,5564,fixes: #5564 - raise validation error if a powerporttemplate's draw exceeds maximum,Daniel Sheppard,2021-01-05 09:52:11-06:00,FALSE,"type: bug,status: accepted",https://github.com/netbox-community/netbox/issues/5564,True,N,,,,,,,,
