@@ -1,0 +1,13 @@
+root_cause_grp,Change the the exception code logic,EH Anti-Patterns,Exception handling block operations,Exception type operations,Fix API version,Import with a exception handling code,Improve raising conditions,Improve the Finally Mechanism,Improve the message error,Python version incompatibility errors,Re-raise a exception
+API-Related Exception Handling Errors,2,0,2,7,1,3,3,0,0,0,0
+Import-Related Exception,1,3,0,0,1,4,0,0,0,0,0
+Improper Exception Message,1,0,3,4,0,0,8,0,45,0,1
+Improper Finally Block Usage,1,0,0,0,0,0,0,2,0,0,0
+Incorrect Handling Action,56,2,60,39,0,0,42,2,5,0,0
+Incorrect Re-raising of Exceptions,0,0,2,6,0,0,11,0,0,0,0
+Missing Exception Raising Condition,0,0,14,13,0,0,69,0,1,0,2
+Python Version Compatibility Issue,0,0,2,0,0,0,0,0,0,1,0
+Unexpected Raising,0,0,5,4,0,0,5,0,0,0,0
+Unhandled Exception,31,1,259,139,0,4,35,0,0,0,8
+Wrong Exception Type,1,1,3,11,0,0,2,0,0,0,0
+Wrong Raise Type,2,0,0,2,0,0,10,0,0,0,0

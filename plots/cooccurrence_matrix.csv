@@ -1,0 +1,14 @@
+symptom_grp,API-Related Exception Handling Errors,Import-Related Exception,Improper Exception Message,Improper Finally Block Usage,Incorrect Handling Action,Incorrect Re-raising of Exceptions,Missing Exception Raising Condition,Python Version Compatibility Issue,Unexpected Raising,Unhandled Exception,Wrong Exception Type,Wrong Raise Type
+Compatibility Errors Due to Python Version or Dependencies,0,0,0,0,1,0,0,0,0,2,0,0
+Database Query Failure or Data Inconsistency,0,0,0,0,0,0,0,0,0,1,0,0
+Failure Due to External API Change or Misuse,2,1,0,0,1,0,0,0,0,1,0,0
+Failure in Continuous Integration (CI) Pipeline,2,2,1,0,7,0,5,0,0,16,1,0
+Failure to Handle Expected Exceptions,6,3,1,1,49,5,40,3,4,205,4,2
+Incorrect Error Recovery,2,2,2,1,26,1,14,0,5,81,4,7
+Incorrect or Misleading Error Message,0,0,58,0,5,1,6,0,1,13,2,0
+Partial Functionality,0,0,0,0,37,2,7,0,1,29,3,3
+Performance Degradation Due to Exception Handling,0,0,0,0,8,0,0,0,0,7,1,0
+System Freeze or Deadlock,0,0,0,0,0,0,0,0,0,1,0,0
+UI Malfunction or Rendering Issues,0,0,0,0,0,0,0,0,0,2,0,0
+Unexpected Application Crash,2,1,0,1,19,7,11,0,1,71,1,1
+Unexpected Control Flow,4,0,0,0,53,3,16,0,2,48,2,1

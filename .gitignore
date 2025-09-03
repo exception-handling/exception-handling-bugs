@@ -5,6 +5,7 @@ __pycache__
 /output
 /build
 /tree-sitter-python
+venv/
 
 .idea
 *.iml
