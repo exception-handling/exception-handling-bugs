@@ -1,0 +1,11 @@
+fix_grp,Too Broad Except,Bare Except,Swallowing Exception,Nested Try,Bare Raise,Too Broad Raising,Try and Return,Bare Raise Inside Finally
+Change the the exception code logic,18,8,12,4,9,2,1,1
+Exception type operations,54,22,34,7,28,2,2,
+Exception handling block operations,74,33,41,18,37,3,,
+Improve raising conditions,24,7,3,1,22,3,,
+Improve the message error,4,1,1,2,1,,,
+EH Anti-Patterns,3,2,4,1,,,,
+Re-raise a exception,6,,,1,3,,,
+Fix API version,1,2,,,,,,
+Improve the Finally Mechanism,1,,,,,,,
+Import with a exception handling code,,,1,,,,,
