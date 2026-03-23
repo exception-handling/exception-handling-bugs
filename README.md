@@ -1,7 +1,6 @@
 Exception Handling Bugs in Python
 ---
-This repository includes the source code and data for our paper "Slithering Through Exception Handling Bugs in Python:
-Understanding Symptoms, Root Causes, Fixes and Anti-patterns".
+This repository includes the source code and data for our paper "Exception Handling Bugs in Python: An Empirical Study of Root Causes, Fix Patterns, and Anti-Patterns".
 
 ## Datasets
 
