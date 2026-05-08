@@ -1,0 +1,3099 @@
+project,file,function,func_body,anti_pattern,confidence_level,has_ap
+numpy,/home/r4ph/desenv/exception-miner/projects/py/numpy/vendored-meson/meson/mesonbuild/dependencies/cuda.py,_read_toolkit_version_txt,"def _read_toolkit_version_txt(self, path: str) -> T.Optional[str]:
+        # Read 'version.txt' at the root of the CUDA Toolkit directory to determine the toolkit version
+        version_file_path = os.path.join(path, 'version.txt')
+        try:
+            with open(version_file_path, encoding='utf-8') as version_file:
+                version_str = version_file.readline() # e.g. 'CUDA Version 10.1.168'
+                m = self.toolkit_version_regex.match(version_str)
+                if m:
+                    return self._strip_patch_version(m.group(1))
+        except Exception as e:
+            mlog.debug(f'Could not read CUDA Toolkit\'s version file {version_file_path}: {e!s}')
+
+        return None",Too Broad Except,absolute,Y
+jumpserver,/home/r4ph/desenv/exception-miner/projects/py/jumpserver/apps/terminal/applets/chrome/common.py,check_pid_alive,"def check_pid_alive(pid) -> bool:
+    # tasklist  /fi ""PID eq 508"" /fo csv
+    # '""映像名称"",""PID"",""会话名      "",""会话#   "",""内存使用 ""\r\n""wininit.exe"",""508"",""Services"",""0"",""6,920 K""\r\n'
+    try:
+
+        csv_ret = subprocess.check_output([""tasklist"", ""/fi"", f'PID eq {pid}', ""/fo"", ""csv""],
+                                          creationflags=CREATE_NO_WINDOW)
+        content = decode_content(csv_ret)
+        content_list = content.strip().split(""\r\n"")
+        if len(content_list) != 2:
+            print(""check pid {} ret invalid: {}"".format(pid, content))
+            return False
+        ret_pid = content_list[1].split("","")[1].strip('""')
+        return str(pid) == ret_pid
+    except Exception as e:
+        print(""check pid {} err: {}"".format(pid, e))
+        return False",Too Broad Except,absolute,Y
+ray,/home/r4ph/desenv/exception-miner/projects/py/ray/python/ray/air/util/data_batch_conversion.py,_unwrap_ndarray_object_type_if_needed,"def _unwrap_ndarray_object_type_if_needed(arr: np.ndarray) -> np.ndarray:
+    """"""Unwrap an object-dtyped NumPy ndarray containing ndarray pointers into a single
+    contiguous ndarray, if needed/possible.
+    """"""
+    if arr.dtype.type is np.object_:
+        try:
+            # Try to convert the NumPy ndarray to a non-object dtype.
+            arr = np.array([np.asarray(v) for v in arr])
+        except Exception:
+            # This may fail if the subndarrays are of heterogeneous shape
+            pass
+    return arr",Too Broad Except,absolute,Y
+django,/home/r4ph/desenv/exception-miner/projects/py/django/tests/servers/test_basehttp.py,test_broken_pipe_errors,"def test_broken_pipe_errors(self):
+        """"""WSGIServer handles broken pipe errors.""""""
+        request = WSGIRequest(self.request_factory.get(""/"").environ)
+        client_address = (""192.168.2.0"", 8080)
+        msg = f""- Broken pipe from {client_address}""
+        tests = [
+            BrokenPipeError,
+            ConnectionAbortedError,
+            ConnectionResetError,
+        ]
+        for exception in tests:
+            with self.subTest(exception=exception):
+                try:
+                    server = WSGIServer((""localhost"", 0), WSGIRequestHandler)
+                    try:
+                        raise exception()
+                    except Exception:
+                        with captured_stderr() as err:
+                            with self.assertLogs(""django.server"", ""INFO"") as cm:
+                                server.handle_error(request, client_address)
+                        self.assertEqual(err.getvalue(), """")
+                        self.assertEqual(cm.records[0].getMessage(), msg)
+                finally:
+                    server.server_close()",Too Broad Except,absolute,Y
+ray,/home/r4ph/desenv/exception-miner/projects/py/ray/python/ray/tests/test_usage_stats.py,test_usage_report_e2e,"def test_usage_report_e2e(
+    monkeypatch, ray_start_cluster, tmp_path, reset_usage_stats, gcs_storage_type
+):
+    """"""
+    Test usage report works e2e with env vars.
+    """"""
+    cluster_config_file_path = tmp_path / ""ray_bootstrap_config.yaml""
+    cluster_config_file_path.write_text(
+        """"""
+cluster_name: minimal
+max_workers: 1
+provider:
+    type: aws
+    region: us-west-2
+    availability_zone: us-west-2a
+""""""
+    )
+    with monkeypatch.context() as m:
+        m.setenv(""HOME"", str(tmp_path))
+        m.setenv(""RAY_USAGE_STATS_ENABLED"", ""1"")
+        m.setenv(""RAY_USAGE_STATS_REPORT_URL"", ""http://127.0.0.1:8000"")
+        m.setenv(""RAY_USAGE_STATS_REPORT_INTERVAL_S"", ""1"")
+        m.setenv(""RAY_USAGE_STATS_EXTRA_TAGS"", ""extra_k1=extra_v1"")
+        cluster = ray_start_cluster
+        cluster.add_node(num_cpus=3)
+        if os.environ.get(""RAY_MINIMAL"") != ""1"":
+            from ray import train  # noqa: F401
+            from ray.rllib.algorithms.ppo import PPO  # noqa: F401
+
+        ray_usage_lib.record_extra_usage_tag(ray_usage_lib.TagKey._TEST1, ""extra_v2"")
+
+        ray.init(address=cluster.address)
+
+        ray_usage_lib.record_extra_usage_tag(ray_usage_lib.TagKey._TEST2, ""extra_v3"")
+
+        if os.environ.get(""RAY_MINIMAL"") != ""1"":
+            from ray import tune  # noqa: F401
+
+            def objective(*args):
+                pass
+
+            tuner = tune.Tuner(objective)
+            tuner.fit()
+
+        @ray.remote(num_cpus=0)
+        class StatusReporter:
+            def __init__(self):
+                self.reported = 0
+                self.payload = None
+
+            def report_payload(self, payload):
+                self.payload = payload
+
+            def reported(self):
+                self.reported += 1
+
+            def get(self):
+                return self.reported
+
+            def get_payload(self):
+                return self.payload
+
+        reporter = StatusReporter.remote()
+
+        class UsageStatsServer(BaseHTTPRequestHandler):
+            reporter = None
+
+            def do_POST(self):
+                content_length = int(self.headers[""Content-Length""])
+                post_data = self.rfile.read(content_length)
+                self.reporter.reported.remote()
+                self.reporter.report_payload.remote(json.loads(post_data))
+                self.send_response(200)
+                self.send_header(""Content-type"", ""text/html"")
+                self.end_headers()
+
+        @ray.remote(num_cpus=0)
+        def run_usage_stats_server(reporter):
+            UsageStatsServer.reporter = reporter
+            server = HTTPServer((""127.0.0.1"", 8000), UsageStatsServer)
+            server.serve_forever()
+
+        run_usage_stats_server.remote(reporter)
+
+        """"""
+        Verify the usage stats are reported to the server.
+        """"""
+        print(""Verifying usage stats report."")
+        # Since the interval is 1 second, there must have been
+        # more than 5 requests sent within 30 seconds.
+        try:
+            wait_for_condition(lambda: ray.get(reporter.get.remote()) > 5, timeout=30)
+        except Exception:
+            print_dashboard_log()
+            raise
+        payload = ray.get(reporter.get_payload.remote())
+        ray_version, python_version = ray._private.utils.compute_version_info()
+        assert payload[""ray_version""] == ray_version
+        assert payload[""python_version""] == python_version
+        assert payload[""schema_version""] == ""0.1""
+        assert payload[""os""] == sys.platform
+        if sys.platform != ""linux"":
+            payload[""libc_version""] is None
+        else:
+            import platform
+
+            assert (
+                payload[""libc_version""]
+                == f""{platform.libc_ver()[0]}:{platform.libc_ver()[1]}""
+            )
+
+        assert payload[""source""] == ""OSS""
+        assert payload[""cloud_provider""] == ""aws""
+        assert payload[""min_workers""] is None
+        assert payload[""max_workers""] == 1
+        assert payload[""head_node_instance_type""] is None
+        assert payload[""worker_node_instance_types""] is None
+        assert payload[""total_num_cpus""] == 3
+        assert payload[""total_num_gpus""] is None
+        assert payload[""total_memory_gb""] > 0
+        assert payload[""total_object_store_memory_gb""] > 0
+        assert int(payload[""extra_usage_tags""][""actor_num_created""]) >= 0
+        assert int(payload[""extra_usage_tags""][""pg_num_created""]) >= 0
+        assert int(payload[""extra_usage_tags""][""num_actor_creation_tasks""]) >= 0
+        assert int(payload[""extra_usage_tags""][""num_actor_tasks""]) >= 0
+        assert int(payload[""extra_usage_tags""][""num_normal_tasks""]) >= 0
+        assert int(payload[""extra_usage_tags""][""num_drivers""]) >= 0
+        payload[""extra_usage_tags""][""actor_num_created""] = ""0""
+        payload[""extra_usage_tags""][""pg_num_created""] = ""0""
+        payload[""extra_usage_tags""][""num_actor_creation_tasks""] = ""0""
+        payload[""extra_usage_tags""][""num_actor_tasks""] = ""0""
+        payload[""extra_usage_tags""][""num_normal_tasks""] = ""0""
+        payload[""extra_usage_tags""][""num_drivers""] = ""0""
+        expected_payload = {
+            ""extra_k1"": ""extra_v1"",
+            ""_test1"": ""extra_v2"",
+            ""_test2"": ""extra_v3"",
+            ""dashboard_metrics_grafana_enabled"": ""False"",
+            ""dashboard_metrics_prometheus_enabled"": ""False"",
+            ""actor_num_created"": ""0"",
+            ""pg_num_created"": ""0"",
+            ""num_actor_creation_tasks"": ""0"",
+            ""num_actor_tasks"": ""0"",
+            ""num_normal_tasks"": ""0"",
+            ""num_drivers"": ""0"",
+            ""gcs_storage"": gcs_storage_type,
+            ""dashboard_used"": ""False"",
+        }
+        if os.environ.get(""RAY_MINIMAL"") != ""1"":
+            expected_payload[""tune_scheduler""] = ""FIFOScheduler""
+            expected_payload[""tune_searcher""] = ""BasicVariantGenerator""
+            expected_payload[""air_entrypoint""] = ""Tuner.fit""
+            expected_payload[""air_storage_configuration""] = ""local""
+        assert payload[""extra_usage_tags""] == expected_payload
+        assert payload[""total_num_nodes""] == 1
+        assert payload[""total_num_running_jobs""] == 1
+        if os.environ.get(""RAY_MINIMAL"") == ""1"":
+            assert set(payload[""library_usages""]) == set()
+        else:
+            assert set(payload[""library_usages""]) == {""rllib"", ""train"", ""tune""}
+        validate(instance=payload, schema=schema)
+        """"""
+        Verify the usage_stats.json is updated.
+        """"""
+        print(""Verifying usage stats write."")
+        global_node = ray._private.worker._global_node
+        temp_dir = pathlib.Path(global_node.get_session_dir_path())
+
+        wait_for_condition(lambda: file_exists(temp_dir), timeout=30)
+
+        timestamp_old = read_file(temp_dir, ""usage_stats"")[""collect_timestamp_ms""]
+        success_old = read_file(temp_dir, ""usage_stats"")[""total_success""]
+        # Test if the timestampe has been updated.
+        wait_for_condition(
+            lambda: timestamp_old
+            < read_file(temp_dir, ""usage_stats"")[""collect_timestamp_ms""]
+        )
+        wait_for_condition(
+            lambda: success_old < read_file(temp_dir, ""usage_stats"")[""total_success""]
+        )
+        assert read_file(temp_dir, ""success"")",Too Broad Except,absolute,Y
+xx-net,/home/r4ph/desenv/exception-miner/projects/py/xx-net/code/default/lib/noarch/xconfig.py,load,"def load(self):
+        self.last_load_time = time.time()
+        if os.path.isfile(self.config_path):
+            with open(self.config_path, 'r') as f:
+                content = f.read()
+                content = content.strip()
+                content = content.replace(""\r"", """")
+                content = content.replace(""\n"", """")
+                content = content.replace("",}"", ""}"")
+                try:
+                    self.file_config = json.loads(content)
+                except Exception as e:
+                    xlog.warn(""Loading config:%s content:%s fail:%r"", self.config_path, content, e)
+                    self.file_config = {}
+
+        for var_name in self.default_config:
+            if self.file_config and var_name in self.file_config:
+                setattr(self, var_name, self.file_config[var_name])
+            else:
+                setattr(self, var_name, self.default_config[var_name])",Too Broad Except,absolute,Y
+fairseq,/home/r4ph/desenv/exception-miner/projects/py/fairseq/fairseq/trainer.py,train_step,"def train_step(self, samples, raise_oom=False):
+        """"""Do forward, backward and parameter update.""""""
+        self._set_seed()
+        self.model.train()
+        self.criterion.train()
+        self.zero_grad()
+
+        metrics.log_start_time(""train_wall"", priority=800, round=0)
+
+        # If EMA is enabled through store_ema=True
+        # and task.uses_ema is True, pass the EMA model as a keyword
+        # argument to the task.
+        extra_kwargs = {}
+        if self.cfg.ema.store_ema and getattr(self.task, ""uses_ema"", False):
+            extra_kwargs[""ema_model""] = self.ema.get_model()
+
+        has_oom = False
+
+        # forward and backward pass
+        logging_outputs, sample_size, ooms = [], 0, 0
+        for i, sample in enumerate(samples):  # delayed update loop
+            sample, is_dummy_batch = self._prepare_sample(sample)
+
+            def maybe_no_sync():
+                """"""
+                Whenever *samples* contains more than one mini-batch, we
+                want to accumulate gradients locally and only call
+                all-reduce in the last backwards pass.
+                """"""
+                if (
+                    self.data_parallel_world_size > 1
+                    and hasattr(self.model, ""no_sync"")
+                    and i < len(samples) - 1
+                    # The no_sync context manager results in increased memory
+                    # usage with FSDP, since full-size gradients will be
+                    # accumulated on each GPU. It's typically a better tradeoff
+                    # to do the extra communication with FSDP.
+                    and not self.is_fsdp
+                ):
+                    return self.model.no_sync()
+                else:
+                    return contextlib.ExitStack()  # dummy contextmanager
+
+            try:
+                with maybe_no_sync():
+                    # forward and backward
+                    loss, sample_size_i, logging_output = self.task.train_step(
+                        sample=sample,
+                        model=self.model,
+                        criterion=self.criterion,
+                        optimizer=self.optimizer,
+                        update_num=self.get_num_updates(),
+                        ignore_grad=is_dummy_batch,
+                        **extra_kwargs,
+                    )
+                    del loss
+
+                logging_outputs.append(logging_output)
+                sample_size += sample_size_i
+
+                # emptying the CUDA cache after the first step can
+                # reduce the chance of OOM
+                if self.cuda and self.get_num_updates() == 0:
+                    torch.cuda.empty_cache()
+            except RuntimeError as e:
+                if ""out of memory"" in str(e):
+                    self._log_oom(e)
+                    has_oom = True
+                    if raise_oom:
+                        raise e
+                else:
+                    raise e
+            except Exception:
+                self.consolidate_optimizer()
+                self.save_checkpoint(
+                    os.path.join(self.cfg.checkpoint.save_dir, ""crash.pt""), {}
+                )
+                raise
+
+            if has_oom:
+                logger.warning(
+                    ""attempting to recover from OOM in forward/backward pass""
+                )
+                ooms += 1
+                self.zero_grad()
+                if self.cuda:
+                    torch.cuda.empty_cache()
+
+                if self.cfg.distributed_training.distributed_world_size == 1:
+                    return None
+
+            if self.tpu and i < len(samples) - 1:
+                # tpu-comment: every XLA operation before marking step is
+                # appended to the IR graph, and processing too many batches
+                # before marking step can lead to OOM errors.
+                # To handle gradient accumulation use case, we explicitly
+                # mark step here for every forward pass without a backward pass
+                self._xla_markstep_and_send_to_cpu()
+
+        if is_dummy_batch:
+            if torch.is_tensor(sample_size):
+                sample_size.zero_()
+            else:
+                sample_size *= 0.0
+
+        if torch.is_tensor(sample_size):
+            sample_size = sample_size.float()
+        else:
+            sample_size = float(sample_size)
+
+        # gather logging outputs from all replicas
+        if self._sync_stats():
+            train_time = self._local_cumulative_training_time()
+            (
+                logging_outputs,
+                (
+                    sample_size,
+                    ooms,
+                    total_train_time,
+                ),
+            ) = self._aggregate_logging_outputs(
+                logging_outputs, sample_size, ooms, train_time, ignore=is_dummy_batch
+            )
+            self._cumulative_training_time = (
+                total_train_time / self.data_parallel_world_size
+            )
+
+        overflow = False
+        try:
+            with torch.autograd.profiler.record_function(""reduce-grads""):
+                # reduce gradients across workers
+                self.optimizer.all_reduce_grads(self.model)
+                if utils.has_parameters(self.criterion):
+                    self.optimizer.all_reduce_grads(self.criterion)
+
+            with torch.autograd.profiler.record_function(""multiply-grads""):
+                # multiply gradients by (data_parallel_size / sample_size) since
+                # DDP normalizes by the number of data parallel workers for
+                # improved fp16 precision.
+                # Thus we get (sum_of_gradients / sample_size) at the end.
+                # In case of fp16, this step also undoes loss scaling.
+                # (Debugging note: Some optimizers perform this scaling on the
+                # fly, so inspecting model.parameters() or optimizer.params may
+                # still show the original, unscaled gradients.)
+                numer = (
+                    self.data_parallel_world_size
+                    if not self.cfg.optimization.use_bmuf or self._sync_stats()
+                    else 1
+                )
+                self.optimizer.multiply_grads(numer / (sample_size or 1.0))
+                # Note: (sample_size or 1.0) handles the case of a zero gradient, in a
+                # way that avoids CPU/device transfers in case sample_size is a GPU or
+                # TPU object. The assumption is that the gradient itself is also 0.
+
+            with torch.autograd.profiler.record_function(""clip-grads""):
+                # clip grads
+                grad_norm = self.clip_grad_norm(self.cfg.optimization.clip_norm)
+
+            # check that grad norms are consistent across workers
+            # on tpu check tensor is slow
+            if not self.tpu:
+                if (
+                    not self.cfg.optimization.use_bmuf
+                    and self.cfg.distributed_training.ddp_backend != ""slowmo""
+                ):
+                    self._check_grad_norms(grad_norm)
+                if not torch.isfinite(grad_norm).all():
+                    # in case of AMP, if gradients are Nan/Inf then
+                    # optimizer step is still required
+                    if self.cfg.common.amp:
+                        overflow = True
+                    else:
+                        # check local gradnorm single GPU case, trigger NanDetector
+                        raise FloatingPointError(""gradients are Nan/Inf"")
+
+            with torch.autograd.profiler.record_function(""optimizer""):
+                # take an optimization step
+                self.task.optimizer_step(
+                    self.optimizer, model=self.model, update_num=self.get_num_updates()
+                )
+                if self.cfg.common.amp and overflow:
+                    if self._amp_retries == self.cfg.common.amp_batch_retries:
+                        logger.info(""AMP: skipping this batch."")
+                        self._amp_retries = 0
+                    else:
+                        self._amp_retries += 1
+                        return self.train_step(
+                            samples, raise_oom
+                        )  # recursion to feed in same batch
+
+        except FloatingPointError:
+
+            self.consolidate_optimizer()
+            self.save_checkpoint(
+                os.path.join(self.cfg.checkpoint.save_dir, ""crash.pt""), {}
+            )
+
+            # re-run the forward and backward pass with hooks attached to print
+            # out where it fails
+            self.zero_grad()
+            with NanDetector(self.get_model()):
+                for _, sample in enumerate(samples):
+                    sample, _ = self._prepare_sample(sample)
+                    self.task.train_step(
+                        sample,
+                        self.model,
+                        self.criterion,
+                        self.optimizer,
+                        self.get_num_updates(),
+                        ignore_grad=False,
+                        **extra_kwargs,
+                    )
+            raise
+        except OverflowError as e:
+            overflow = True
+            logger.info(
+                f""NOTE: gradient overflow detected, ignoring gradient, {str(e)}""
+            )
+
+            if hasattr(self, ""param_names"") and hasattr(
+                self.optimizer, ""fp32_optimizer""
+            ):
+                for p, n in zip(self.optimizer.fp32_optimizer.params, self.param_names):
+                    if torch.isinf(p.grad).any() or torch.isnan(p.grad).any():
+                        logger.info(f""overflow in param {n}"")
+
+            grad_norm = torch.tensor(0.0).cuda()
+            self.zero_grad()
+        except RuntimeError as e:
+            if ""out of memory"" in str(e):
+                self._log_oom(e)
+                logger.error(""OOM during optimization, irrecoverable"")
+            raise e
+
+        # Some distributed wrappers (e.g., SlowMo) need access to the optimizer
+        # after the step
+        if hasattr(self.model, ""perform_slowmo""):
+            self.model.perform_slowmo(
+                self.optimizer.optimizer, getattr(self.optimizer, ""fp32_params"", None)
+            )
+
+        logging_output = None
+        if not overflow or self.cfg.distributed_training.ddp_backend == ""slowmo"":
+            self.set_num_updates(self.get_num_updates() + 1)
+
+            if self.cfg.ema.store_ema:
+                # Step EMA forward with new model.
+                self.ema.step(
+                    self.get_model(),
+                    self.get_num_updates(),
+                )
+                metrics.log_scalar(
+                    ""ema_decay"",
+                    self.ema.get_decay(),
+                    priority=10000,
+                    round=5,
+                    weight=0,
+                )
+
+            if self.tpu:
+                import torch_xla.core.xla_model as xm
+
+                # mark step on TPUs
+                self._xla_markstep_and_send_to_cpu()
+
+                # only log stats every log_interval steps
+                # this causes wps to be misreported when log_interval > 1
+                logging_output = {}
+                if self.get_num_updates() % self.cfg.common.log_interval == 0:
+                    # log memory usage
+                    mem_info = xm.get_memory_info(self.device)
+                    gb_free = mem_info[""kb_free""] / 1024 / 1024
+                    gb_total = mem_info[""kb_total""] / 1024 / 1024
+                    metrics.log_scalar(
+                        ""gb_free"", gb_free, priority=1500, round=1, weight=0
+                    )
+                    metrics.log_scalar(
+                        ""gb_total"", gb_total, priority=1600, round=1, weight=0
+                    )
+                    logging_outputs = self._xla_markstep_and_send_to_cpu(
+                        logging_outputs
+                    )
+                    logging_output = self._reduce_and_log_stats(
+                        logging_outputs, sample_size, grad_norm
+                    )
+
+                # log whenever there's an XLA compilation, since these
+                # slow down training and may indicate opportunities for
+                # optimization
+                self._check_xla_compilation()
+            else:
+                if self.cuda and self.cuda_env is not None:
+                    # log minimum free memory over the iteration
+                    gb_used = torch.cuda.max_memory_allocated() / 1024 / 1024 / 1024
+                    torch.cuda.reset_peak_memory_stats()
+                    gb_free = self.cuda_env.total_memory_in_GB - gb_used
+                    metrics.log_scalar(
+                        ""gb_free"", gb_free, priority=1500, round=1, weight=0
+                    )
+
+                # log stats
+                logging_output = self._reduce_and_log_stats(
+                    logging_outputs, sample_size, grad_norm
+                )
+
+                # clear CUDA cache to reduce memory fragmentation
+                if (
+                    self.cuda
+                    and self.cfg.common.empty_cache_freq > 0
+                    and (
+                        (self.get_num_updates() + self.cfg.common.empty_cache_freq - 1)
+                        % self.cfg.common.empty_cache_freq
+                    )
+                    == 0
+                ):
+                    torch.cuda.empty_cache()
+
+        if self.cfg.common.fp16 or self.cfg.common.amp:
+            metrics.log_scalar(
+                ""loss_scale"",
+                (
+                    self.optimizer.scaler.loss_scale
+                    if self.cfg.common.fp16
+                    else self.optimizer.scaler.get_scale()
+                ),
+                priority=700,
+                round=4,
+                weight=0,
+            )
+
+        metrics.log_stop_time(""train_wall"")
+        return logging_output",Too Broad Except,absolute,Y
+streamlit,/home/r4ph/desenv/exception-miner/projects/py/streamlit/lib/streamlit/runtime/runtime.py,_loop_coroutine,"async def _loop_coroutine(self) -> None:
+        """"""The main Runtime loop.
+
+        This function won't exit until `stop` is called.
+
+        Notes
+        -----
+        Threading: UNSAFE. Must be called on the eventloop thread.
+        """"""
+
+        async_objs = self._get_async_objs()
+
+        try:
+            if self._state == RuntimeState.INITIAL:
+                self._set_state(RuntimeState.NO_SESSIONS_CONNECTED)
+            elif self._state == RuntimeState.ONE_OR_MORE_SESSIONS_CONNECTED:
+                pass
+            else:
+                raise RuntimeError(f""Bad Runtime state at start: {self._state}"")
+
+            # Signal that we're started and ready to accept sessions
+            async_objs.started.set_result(None)
+
+            while not async_objs.must_stop.is_set():
+                if self._state == RuntimeState.NO_SESSIONS_CONNECTED:
+                    await asyncio.wait(
+                        (
+                            asyncio.create_task(async_objs.must_stop.wait()),
+                            asyncio.create_task(async_objs.has_connection.wait()),
+                        ),
+                        return_when=asyncio.FIRST_COMPLETED,
+                    )
+
+                elif self._state == RuntimeState.ONE_OR_MORE_SESSIONS_CONNECTED:
+                    async_objs.need_send_data.clear()
+
+                    for active_session_info in self._session_mgr.list_active_sessions():
+                        msg_list = active_session_info.session.flush_browser_queue()
+                        for msg in msg_list:
+                            try:
+                                self._send_message(active_session_info, msg)
+                            except SessionClientDisconnectedError:
+                                self._session_mgr.disconnect_session(
+                                    active_session_info.session.id
+                                )
+
+                            # Yield for a tick after sending a message.
+                            await asyncio.sleep(0)
+
+                    # Yield for a few milliseconds between session message
+                    # flushing.
+                    await asyncio.sleep(0.01)
+
+                else:
+                    # Break out of the thread loop if we encounter any other state.
+                    break
+
+                await asyncio.wait(
+                    (
+                        asyncio.create_task(async_objs.must_stop.wait()),
+                        asyncio.create_task(async_objs.need_send_data.wait()),
+                    ),
+                    return_when=asyncio.FIRST_COMPLETED,
+                )
+
+            # Shut down all AppSessions.
+            for session_info in self._session_mgr.list_sessions():
+                # NOTE: We want to fully shut down sessions when the runtime stops for
+                # now, but this may change in the future if/when our notion of a session
+                # is no longer so tightly coupled to a browser tab.
+                self._session_mgr.close_session(session_info.session.id)
+
+            self._set_state(RuntimeState.STOPPED)
+            async_objs.stopped.set_result(None)
+
+        except Exception as e:
+            async_objs.stopped.set_exception(e)
+            traceback.print_exc()
+            LOGGER.info(
+                """"""
+Please report this bug at https://github.com/streamlit/streamlit/issues.
+""""""
+            )",Too Broad Except,absolute,Y
+bokeh,/home/r4ph/desenv/exception-miner/projects/py/bokeh/src/bokeh/io/webdriver.py,_try_create_firefox_webdriver,"def _try_create_firefox_webdriver() -> WebDriver | None:
+    try:
+        return create_firefox_webdriver()
+    except Exception:
+        return None",Too Broad Except,absolute,Y
+transformers,/home/r4ph/desenv/exception-miner/projects/py/transformers/utils/update_tiny_models.py,get_tiny_model_summary_from_hub,"def get_tiny_model_summary_from_hub(output_path):
+    special_models = COMPOSITE_MODELS.values()
+
+    # All tiny model base names on Hub
+    model_names = get_all_model_names()
+    models = hf_api.list_models(
+        filter=ModelFilter(
+            author=""hf-internal-testing"",
+        )
+    )
+    _models = set()
+    for x in models:
+        model = x.modelId
+        org, model = model.split(""/"")
+        if not model.startswith(""tiny-random-""):
+            continue
+        model = model.replace(""tiny-random-"", """")
+        if not model[0].isupper():
+            continue
+        if model not in model_names and model not in special_models:
+            continue
+        _models.add(model)
+
+    models = sorted(_models)
+    # All tiny model names on Hub
+    summary = {}
+    for model in models:
+        repo_id = f""hf-internal-testing/tiny-random-{model}""
+        model = model.split(""-"")[0]
+        try:
+            repo_info = hf_api.repo_info(repo_id)
+            content = {
+                ""tokenizer_classes"": set(),
+                ""processor_classes"": set(),
+                ""model_classes"": set(),
+                ""sha"": repo_info.sha,
+            }
+        except Exception:
+            continue
+        try:
+            time.sleep(1)
+            tokenizer_fast = AutoTokenizer.from_pretrained(repo_id)
+            content[""tokenizer_classes""].add(tokenizer_fast.__class__.__name__)
+        except Exception:
+            pass
+        try:
+            time.sleep(1)
+            tokenizer_slow = AutoTokenizer.from_pretrained(repo_id, use_fast=False)
+            content[""tokenizer_classes""].add(tokenizer_slow.__class__.__name__)
+        except Exception:
+            pass
+        try:
+            time.sleep(1)
+            img_p = AutoImageProcessor.from_pretrained(repo_id)
+            content[""processor_classes""].add(img_p.__class__.__name__)
+        except Exception:
+            pass
+        try:
+            time.sleep(1)
+            feat_p = AutoFeatureExtractor.from_pretrained(repo_id)
+            if not isinstance(feat_p, BaseImageProcessor):
+                content[""processor_classes""].add(feat_p.__class__.__name__)
+        except Exception:
+            pass
+        try:
+            time.sleep(1)
+            model_class = getattr(transformers, model)
+            m = model_class.from_pretrained(repo_id)
+            content[""model_classes""].add(m.__class__.__name__)
+        except Exception:
+            pass
+        try:
+            time.sleep(1)
+            model_class = getattr(transformers, f""TF{model}"")
+            m = model_class.from_pretrained(repo_id)
+            content[""model_classes""].add(m.__class__.__name__)
+        except Exception:
+            pass
+
+        content[""tokenizer_classes""] = sorted(content[""tokenizer_classes""])
+        content[""processor_classes""] = sorted(content[""processor_classes""])
+        content[""model_classes""] = sorted(content[""model_classes""])
+
+        summary[model] = content
+        with open(os.path.join(output_path, ""hub_tiny_model_summary.json""), ""w"") as fp:
+            json.dump(summary, fp, ensure_ascii=False, indent=4)",Too Broad Except,absolute,Y
+archivebox,/home/r4ph/desenv/exception-miner/projects/py/archivebox/deb_dist/archivebox-0.5.3/debian/archivebox/usr/lib/python3/dist-packages/archivebox/config.py,load_config,"def load_config(defaults: ConfigDefaultDict,
+                config: Optional[ConfigDict]=None,
+                out_dir: Optional[str]=None,
+                env_vars: Optional[os._Environ]=None,
+                config_file_vars: Optional[Dict[str, str]]=None) -> ConfigDict:
+    
+    env_vars = env_vars or os.environ
+    config_file_vars = config_file_vars or load_config_file(out_dir=out_dir)
+
+    extended_config: ConfigDict = config.copy() if config else {}
+    for key, default in defaults.items():
+        try:
+            extended_config[key] = load_config_val(
+                key,
+                default=default['default'],
+                type=default.get('type'),
+                aliases=default.get('aliases'),
+                config=extended_config,
+                env_vars=env_vars,
+                config_file_vars=config_file_vars,
+            )
+        except KeyboardInterrupt:
+            raise SystemExit(0)
+        except Exception as e:
+            stderr()
+            stderr(f'[X] Error while loading configuration value: {key}', color='red', config=extended_config)
+            stderr('    {}: {}'.format(e.__class__.__name__, e))
+            stderr()
+            stderr('    Check your config for mistakes and try again (your archive data is unaffected).')
+            stderr()
+            stderr('    For config documentation and examples see:')
+            stderr('        https://github.com/ArchiveBox/ArchiveBox/wiki/Configuration')
+            stderr()
+            raise
+            raise SystemExit(2)
+    
+    return extended_config",Too Broad Except,absolute,Y
+ray,/home/r4ph/desenv/exception-miner/projects/py/ray/rllib/utils/pre_checks/env.py,check_env,"def check_env(env: EnvType, config: Optional[""AlgorithmConfig""] = None) -> None:
+    """"""Run pre-checks on env that uncover common errors in environments.
+
+    Args:
+        env: Environment to be checked.
+        config: Additional checks config.
+
+    Raises:
+        ValueError: If env is not an instance of SUPPORTED_ENVIRONMENT_TYPES.
+        ValueError: See check_gym_env docstring for details.
+    """"""
+    from ray.rllib.algorithms.algorithm_config import AlgorithmConfig
+    from ray.rllib.env import (
+        BaseEnv,
+        ExternalEnv,
+        ExternalMultiAgentEnv,
+        MultiAgentEnv,
+        RemoteBaseEnv,
+        VectorEnv,
+    )
+
+    if hasattr(env, ""_skip_env_checking"") and env._skip_env_checking:
+        # This is a work around for some environments that we already have in RLlb
+        # that we want to skip checking for now until we have the time to fix them.
+        if log_once(""skip_env_checking""):
+            logger.warning(""Skipping env checking for this experiment"")
+        return
+
+    try:
+        if not isinstance(
+            env,
+            (
+                BaseEnv,
+                gym.Env,
+                MultiAgentEnv,
+                RemoteBaseEnv,
+                VectorEnv,
+                ExternalMultiAgentEnv,
+                ExternalEnv,
+                ActorHandle,
+            ),
+        ) and (not old_gym or not isinstance(env, old_gym.Env)):
+            raise ValueError(
+                ""Env must be of one of the following supported types: BaseEnv, ""
+                ""gymnasium.Env, gym.Env, ""
+                ""MultiAgentEnv, VectorEnv, RemoteBaseEnv, ExternalMultiAgentEnv, ""
+                f""ExternalEnv, but instead is of type {type(env)}.""
+            )
+
+        if isinstance(env, MultiAgentEnv):
+            check_multiagent_environments(env)
+        elif isinstance(env, VectorEnv):
+            check_vector_env(env)
+        elif isinstance(env, gym.Env) or old_gym and isinstance(env, old_gym.Env):
+            check_gym_environments(env, AlgorithmConfig() if config is None else config)
+        elif isinstance(env, BaseEnv):
+            check_base_env(env)
+        else:
+            logger.warning(
+                ""Env checking isn't implemented for RemoteBaseEnvs, ""
+                ""ExternalMultiAgentEnv, ExternalEnvs or environments that are ""
+                ""Ray actors.""
+            )
+    except Exception:
+        actual_error = traceback.format_exc()
+        raise ValueError(
+            f""{actual_error}\n""
+            ""The above error has been found in your environment! ""
+            ""We've added a module for checking your custom environments. It ""
+            ""may cause your experiment to fail if your environment is not set up ""
+            ""correctly. You can disable this behavior via calling `config.""
+            ""environment(disable_env_checking=True)`. You can run the ""
+            ""environment checking module standalone by calling ""
+            ""ray.rllib.utils.check_env([your env]).""
+        )",Too Broad Except,absolute,Y
+ray,/home/r4ph/desenv/exception-miner/projects/py/ray/python/ray/serve/_private/deployment_state.py,_detect_and_remove_leaked_placement_groups,"def _detect_and_remove_leaked_placement_groups(
+        self,
+        all_current_actor_names: List[str],
+        all_current_placement_group_names: List[str],
+    ):
+        """"""Detect and remove any placement groups not associated with a replica.
+
+        This can happen under certain rare circumstances:
+            - The controller creates a placement group then crashes before creating
+            the associated replica actor.
+            - While the controller is down, a replica actor crashes but its placement
+            group still exists.
+
+        In both of these (or any other unknown cases), we simply need to remove the
+        leaked placement groups.
+        """"""
+        leaked_pg_names = []
+        for pg_name in all_current_placement_group_names:
+            if (
+                ReplicaName.is_replica_name(pg_name)
+                and pg_name not in all_current_actor_names
+            ):
+                leaked_pg_names.append(pg_name)
+
+        if len(leaked_pg_names) > 0:
+            logger.warning(
+                f""Detected leaked placement groups: {leaked_pg_names}. ""
+                ""The placement groups will be removed. This can happen in rare ""
+                ""circumstances when the controller crashes and should not cause any ""
+                ""issues. If this happens repeatedly, please file an issue on GitHub.""
+            )
+
+        for leaked_pg_name in leaked_pg_names:
+            try:
+                pg = ray.util.get_placement_group(leaked_pg_name)
+                ray.util.remove_placement_group(pg)
+            except Exception:
+                logger.exception(
+                    f""Failed to remove leaked placement group {leaked_pg_name}.""
+                )",Too Broad Except,absolute,Y
+saleor,/home/r4ph/desenv/exception-miner/projects/py/saleor/saleor/plugins/email_common.py,validate_default_email_configuration,"def validate_default_email_configuration(
+    plugin_configuration: ""PluginConfiguration"", configuration: dict
+):
+    """"""Validate if provided configuration is correct.""""""
+
+    if not plugin_configuration.active:
+        return
+
+    if configuration[""use_tls""] and configuration[""use_ssl""]:
+        error_msg = (
+            ""Use TLS and Use SSL are mutually exclusive, so only set one of ""
+            ""those settings to True.""
+        )
+        raise ValidationError(
+            {
+                ""use_ssl"": ValidationError(
+                    error_msg,
+                    code=PluginErrorCode.INVALID.value,
+                ),
+                ""use_tls"": ValidationError(
+                    error_msg,
+                    code=PluginErrorCode.INVALID.value,
+                ),
+            }
+        )
+    config = EmailConfig(
+        host=configuration[""host""],
+        port=configuration[""port""],
+        username=configuration[""username""],
+        password=configuration[""password""],
+        sender_name=configuration[""sender_name""],
+        sender_address=configuration[""sender_address""],
+        use_tls=configuration[""use_tls""],
+        use_ssl=configuration[""use_ssl""],
+    )
+
+    if not config.sender_address:
+        raise ValidationError(
+            {
+                ""sender_address"": ValidationError(
+                    ""Missing sender address value."",
+                    code=PluginErrorCode.PLUGIN_MISCONFIGURED.value,
+                )
+            }
+        )
+
+    EmailValidator(
+        message={  # type: ignore[arg-type] # the code below is a hack
+            ""sender_address"": ValidationError(
+                ""Invalid email"", code=PluginErrorCode.INVALID.value
+            )
+        }
+    )(config.sender_address)
+
+    try:
+        validate_email_config(config)
+    except Exception as e:
+        logger.warning(""Unable to connect to email backend."", exc_info=e)
+        error_msg = (
+            f""Unable to connect to email backend. Make sure that you provided ""
+            f""correct values. {e}""
+        )
+
+        raise ValidationError(
+            {
+                c: ValidationError(
+                    error_msg, code=PluginErrorCode.PLUGIN_MISCONFIGURED.value
+                )
+                for c in asdict(config).keys()
+            }
+        )",Too Broad Except,absolute,Y
+kitty,/home/r4ph/desenv/exception-miner/projects/py/kitty/kitty/options/utils.py,symbol_map_parser,"def symbol_map_parser(val: str, min_size: int = 2) -> Iterable[Tuple[Tuple[int, int], str]]:
+    parts = val.split()
+
+    def abort() -> None:
+        log_error(f'Symbol map: {val} is invalid, ignoring')
+
+    if len(parts) < min_size:
+        return abort()
+    family = ' '.join(parts[1:])
+
+    def to_chr(x: str) -> int:
+        if not x.startswith('U+'):
+            raise ValueError(f'{x} is not a unicode codepoint of the form U+number')
+        return int(x[2:], 16)
+
+    for x in parts[0].split(','):
+        a_, b_ = x.replace('–', '-').partition('-')[::2]
+        b_ = b_ or a_
+        try:
+            a, b = map(to_chr, (a_, b_))
+        except Exception:
+            return abort()
+        if b < a or max(a, b) > sys.maxunicode or min(a, b) < 1:
+            return abort()
+        yield (a, b), family",Too Broad Except,absolute,Y
+tornado,/home/r4ph/desenv/exception-miner/projects/py/tornado/tornado/locale.py,load_gettext_translations,"def load_gettext_translations(directory: str, domain: str) -> None:
+    """"""Loads translations from `gettext`'s locale tree
+
+    Locale tree is similar to system's ``/usr/share/locale``, like::
+
+        {directory}/{lang}/LC_MESSAGES/{domain}.mo
+
+    Three steps are required to have your app translated:
+
+    1. Generate POT translation file::
+
+        xgettext --language=Python --keyword=_:1,2 -d mydomain file1.py file2.html etc
+
+    2. Merge against existing POT file::
+
+        msgmerge old.po mydomain.po > new.po
+
+    3. Compile::
+
+        msgfmt mydomain.po -o {directory}/pt_BR/LC_MESSAGES/mydomain.mo
+    """"""
+    global _translations
+    global _supported_locales
+    global _use_gettext
+    _translations = {}
+
+    for filename in glob.glob(
+        os.path.join(directory, ""*"", ""LC_MESSAGES"", domain + "".mo"")
+    ):
+        lang = os.path.basename(os.path.dirname(os.path.dirname(filename)))
+        try:
+            _translations[lang] = gettext.translation(
+                domain, directory, languages=[lang]
+            )
+        except Exception as e:
+            gen_log.error(""Cannot load translation for '%s': %s"", lang, str(e))
+            continue
+    _supported_locales = frozenset(list(_translations.keys()) + [_default_locale])
+    _use_gettext = True
+    gen_log.debug(""Supported locales: %s"", sorted(_supported_locales))",Too Broad Except,absolute,Y
+celery,/home/r4ph/desenv/exception-miner/projects/py/celery/t/unit/backends/test_elasticsearch.py,test_encode_exception_as_json,"def test_encode_exception_as_json(self):
+        self.app.conf.elasticsearch_save_meta_as_text, prev = False, self.app.conf.elasticsearch_save_meta_as_text
+        try:
+            x = ElasticsearchBackend(app=self.app)
+            try:
+                raise Exception(""failed"")
+            except Exception as exc:
+                einfo = ExceptionInfo()
+                result_meta = x._get_result_meta(
+                    x.encode_result(exc, states.FAILURE),
+                    states.FAILURE,
+                    einfo.traceback,
+                    None,
+                )
+                assert x.encode(result_meta) == result_meta
+        finally:
+            self.app.conf.elasticsearch_save_meta_as_text = prev",Too Broad Except,absolute,Y
+youcompleteme,/home/r4ph/desenv/exception-miner/projects/py/youcompleteme/third_party/ycmd/ycmd/tests/cs/__init__.py,WaitUntilCsCompleterIsReady,"def WaitUntilCsCompleterIsReady( app, filepath ):
+  WaitUntilCompleterServerReady( app, 'cs' )
+  # Omnisharp isn't ready when it says it is, so wait until Omnisharp returns
+  # at least one diagnostic multiple times.
+  success_count = 0
+  for reraise_error in [ False ] * 39 + [ True ]:
+    try:
+      if len( GetDiagnostics( app, filepath ) ) == 0:
+        raise RuntimeError( ""No diagnostic"" )
+      success_count += 1
+      if success_count > 2:
+        break
+    except Exception:
+      success_count = 0
+      if reraise_error:
+        raise
+
+    time.sleep( .5 )
+  else:
+    raise RuntimeError( ""Never was ready"" )",Too Broad Except,absolute,Y
+pytorch-lightning,/home/r4ph/desenv/exception-miner/projects/py/pytorch-lightning/src/lightning/app/utilities/commands/base.py,_process_api_request,"def _process_api_request(app, request: _APIRequest):
+    flow = app.get_component_by_name(request.name)
+    method = getattr(flow, request.method_name)
+    try:
+        response = _RequestResponse(content=method(*request.args, **request.kwargs), status_code=200)
+    except HTTPException as ex:
+        logger.error(repr(ex))
+        response = _RequestResponse(status_code=ex.status_code, content=ex.detail)
+    except Exception:
+        logger.error(traceback.print_exc())
+        response = _RequestResponse(status_code=500)
+    return {""response"": response, ""id"": request.id}",Too Broad Except,absolute,Y
+saleor,/home/r4ph/desenv/exception-miner/projects/py/saleor/saleor/core/utils/lazyobjects.py,lazy_no_retry,"def lazy_no_retry(func: Callable) -> SimpleLazyObject:
+    """"""Wrap SimpleLazyObject while ensuring it is never re-evaluated on failure.
+
+    Wraps a given function into a ``SimpleLazyObject`` class while ensuring
+    if ``func`` fails, then ``func`` is never invoked again.
+
+    This mitigates an issue where an expensive ``func`` can be rerun for
+    each GraphQL resolver instead of flagging it as rejected/failed.
+    """"""
+    error: Optional[Exception] = None
+
+    @functools.wraps(func)
+    def _wrapper():
+        nonlocal error
+
+        # If it was already evaluated, and it crashed, then do not re-attempt.
+        if error:
+            raise error
+
+        try:
+            return func()
+        except Exception as exc:
+            error = exc
+            raise
+
+    return SimpleLazyObject(_wrapper)",Too Broad Except,absolute,Y
+xx-net,/home/r4ph/desenv/exception-miner/projects/py/xx-net/code/default/gae_proxy/local/check_ip.py,checker,"def checker(self):
+        while True:
+            try:
+                ip = self.get_ip()
+            except Exception as e:
+                xlog.info(""no ip left"")
+                return
+
+            try:
+                res = self.check_ip.check_ip(ip)
+            except Exception as e:
+                xlog.warn(""check except:%r"", e)
+                continue
+
+            if not res or not res.ok:
+                xlog.debug(""ip:%s fail"", ip)
+                continue
+
+            if res.h2:
+                self.write_ip(ip, res.domain, res.handshake_time)",Too Broad Except,absolute,Y
+sentry,/home/r4ph/desenv/exception-miner/projects/py/sentry/src/sentry/ratelimits/concurrent.py,finish_request,"def finish_request(self, key: str, request_uid: str) -> None:
+        try:
+            self.client.zrem(self.namespaced_key(key), request_uid)
+        except Exception:
+            logger.exception(""Could not finish request"", dict(key=key, request_uid=request_uid))",Too Broad Except,absolute,Y
+sentry,/home/r4ph/desenv/exception-miner/projects/py/sentry/src/sentry/debug/utils/thread_collector.py,disable,"def disable(self, thread=None):
+        if thread is None:
+            thread = threading.currentThread()
+        try:
+            del self.collections[thread]
+        except KeyError:
+            pass",Swallowing Exceptions,absolute,Y
+ipython,/home/r4ph/desenv/exception-miner/projects/py/ipython/IPython/terminal/pt_inputhooks/qt.py,inputhook,"def inputhook(context):
+    global _appref
+    app = QtCore.QCoreApplication.instance()
+    if not app:
+        if sys.platform == 'linux':
+            if not os.environ.get('DISPLAY') \
+                    and not os.environ.get('WAYLAND_DISPLAY'):
+                import warnings
+                global _already_warned
+                if not _already_warned:
+                    _already_warned = True
+                    warnings.warn(
+                        'The DISPLAY or WAYLAND_DISPLAY environment variable is '
+                        'not set or empty and Qt5 requires this environment '
+                        'variable. Deactivate Qt5 code.'
+                    )
+                return
+        try:
+            QtCore.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling)
+        except AttributeError:  # Only for Qt>=5.6, <6.
+            pass
+        try:
+            QtCore.QApplication.setHighDpiScaleFactorRoundingPolicy(
+                QtCore.Qt.HighDpiScaleFactorRoundingPolicy.PassThrough
+            )
+        except AttributeError:  # Only for Qt>=5.14.
+            pass
+        _appref = app = QtGui.QApplication(["" ""])
+
+        # ""reclaim"" IPython sys.excepthook after event loop starts
+        # without this, it defaults back to BaseIPythonApplication.excepthook
+        # and exceptions in the Qt event loop are rendered without traceback
+        # formatting and look like ""bug in IPython"".
+        QtCore.QTimer.singleShot(0, _reclaim_excepthook)
+
+    event_loop = QtCore.QEventLoop(app)
+
+    if sys.platform == 'win32':
+        # The QSocketNotifier method doesn't appear to work on Windows.
+        # Use polling instead.
+        timer = QtCore.QTimer()
+        timer.timeout.connect(event_loop.quit)
+        while not context.input_is_ready():
+            # NOTE: run the event loop, and after 50 ms, call `quit` to exit it.
+            timer.start(50)  # 50 ms
+            _exec(event_loop)
+            timer.stop()
+    else:
+        # On POSIX platforms, we can use a file descriptor to quit the event
+        # loop when there is input ready to read.
+        notifier = QtCore.QSocketNotifier(
+            context.fileno(), enum_helper(""QtCore.QSocketNotifier.Type"").Read
+        )
+        try:
+            # connect the callback we care about before we turn it on
+            # lambda is necessary as PyQT inspect the function signature to know
+            # what arguments to pass to. See https://github.com/ipython/ipython/pull/12355
+            notifier.activated.connect(lambda: event_loop.exit())
+            notifier.setEnabled(True)
+            # only start the event loop we are not already flipped
+            if not context.input_is_ready():
+                _exec(event_loop)
+        finally:
+            notifier.setEnabled(False)",Swallowing Exceptions,high,Y
+freqtrade,/home/r4ph/desenv/exception-miner/projects/py/freqtrade/freqtrade/rpc/api_server/ws/channel.py,cancel_channel_tasks,"async def cancel_channel_tasks(self):
+        """"""
+        Cancel and wait on all channel tasks
+        """"""
+        for task in self._channel_tasks:
+            task.cancel()
+
+            # Wait for tasks to finish cancelling
+            try:
+                await task
+            except (
+                asyncio.CancelledError,
+                asyncio.TimeoutError,
+                WebSocketDisconnect,
+                ConnectionClosed,
+                RuntimeError
+            ):
+                pass
+            except Exception as e:
+                logger.info(f""Encountered unknown exception: {e}"", exc_info=e)
+
+        self._channel_tasks = []",Swallowing Exceptions,high,Y
+freqtrade,/home/r4ph/desenv/exception-miner/projects/py/freqtrade/freqtrade/rpc/api_server/web_ui.py,is_relative_to,"def is_relative_to(path, base) -> bool:
+    # Helper function simulating behaviour of is_relative_to, which was only added in python 3.9
+    try:
+        path.relative_to(base)
+        return True
+    except ValueError:
+        pass
+    return False",Swallowing Exceptions,high,Y
+mitmproxy,/home/r4ph/desenv/exception-miner/projects/py/mitmproxy/mitmproxy/http.py,refresh,"def refresh(self, now=None):
+        """"""
+        This fairly complex and heuristic function refreshes a server
+        response for replay.
+
+         - It adjusts date, expires, and last-modified headers.
+         - It adjusts cookie expiration.
+        """"""
+        if not now:
+            now = time.time()
+        delta = now - self.timestamp_start
+        refresh_headers = [
+            ""date"",
+            ""expires"",
+            ""last-modified"",
+        ]
+        for i in refresh_headers:
+            if i in self.headers:
+                d = parsedate_tz(self.headers[i])
+                if d:
+                    new = mktime_tz(d) + delta
+                    try:
+                        self.headers[i] = formatdate(new, usegmt=True)
+                    except OSError:  # pragma: no cover
+                        pass  # value out of bounds on Windows only (which is why we exclude it from coverage).
+        c = []
+        for set_cookie_header in self.headers.get_all(""set-cookie""):
+            try:
+                refreshed = cookies.refresh_set_cookie_header(set_cookie_header, delta)
+            except ValueError:
+                refreshed = set_cookie_header
+            c.append(refreshed)
+        if c:
+            self.headers.set_all(""set-cookie"", c)",Swallowing Exceptions,high,Y
+archivebox,/home/r4ph/desenv/exception-miner/projects/py/archivebox/deb_dist/archivebox-0.5.3/build/lib/archivebox/index/__init__.py,get_orphaned_folders,"def get_orphaned_folders(snapshots, out_dir: Path=OUTPUT_DIR) -> Dict[str, Optional[Link]]:
+    """"""dirs that contain a valid index but aren't listed in the main index""""""
+    orphaned_folders = {}
+
+    for entry in (Path(out_dir) / ARCHIVE_DIR_NAME).iterdir():
+        if entry.is_dir():
+            link = None
+            try:
+                link = parse_json_link_details(str(entry))
+            except Exception:
+                pass
+
+            if link and not snapshots.filter(timestamp=entry.name).exists():
+                # folder is a valid link data dir with index details, but it's not in the main index
+                orphaned_folders[str(entry)] = link
+
+    return orphaned_folders",Swallowing Exceptions,absolute,Y
+archivebox,/home/r4ph/desenv/exception-miner/projects/py/archivebox/deb_dist/archivebox-0.4.24/archivebox/extractors/__init__.py,archive_link,"def archive_link(link: Link, overwrite: bool=False, methods: Optional[Iterable[str]]=None, out_dir: Optional[Path]=None, skip_index: bool=False) -> Link:
+    """"""download the DOM, PDF, and a screenshot into a folder named after the link's timestamp""""""
+
+    ARCHIVE_METHODS = get_default_archive_methods()
+    
+    if methods:
+        ARCHIVE_METHODS = [
+            method for method in ARCHIVE_METHODS
+            if method[0] in methods
+        ]
+
+    out_dir = out_dir or Path(link.link_dir)
+    try:
+        is_new = not Path(out_dir).exists()
+        if is_new:
+            os.makedirs(out_dir)
+
+        link = load_link_details(link, out_dir=out_dir)
+        write_link_details(link, out_dir=out_dir, skip_sql_index=skip_index)
+        log_link_archiving_started(link, out_dir, is_new)
+        link = link.overwrite(updated=datetime.now())
+        stats = {'skipped': 0, 'succeeded': 0, 'failed': 0}
+
+        for method_name, should_run, method_function in ARCHIVE_METHODS:
+            try:
+                if method_name not in link.history:
+                    link.history[method_name] = []
+
+                if should_run(link, out_dir) or overwrite:
+                    log_archive_method_started(method_name)
+
+                    result = method_function(link=link, out_dir=out_dir)
+
+                    link.history[method_name].append(result)
+
+                    stats[result.status] += 1
+                    log_archive_method_finished(result)
+                else:
+                    # print('{black}      X {}{reset}'.format(method_name, **ANSI))
+                    stats['skipped'] += 1
+            except Exception as e:
+                raise Exception('Exception in archive_methods.save_{}(Link(url={}))'.format(
+                    method_name,
+                    link.url,
+                )) from e
+
+        # print('    ', stats)
+
+        try:
+            latest_title = link.history['title'][-1].output.strip()
+            if latest_title and len(latest_title) >= len(link.title or ''):
+                link = link.overwrite(title=latest_title)
+        except Exception:
+            pass
+
+        write_link_details(link, out_dir=out_dir, skip_sql_index=skip_index)
+
+        log_link_archiving_finished(link, link.link_dir, is_new, stats)
+
+    except KeyboardInterrupt:
+        try:
+            write_link_details(link, out_dir=link.link_dir)
+        except:
+            pass
+        raise
+
+    except Exception as err:
+        print('    ! Failed to archive link: {}: {}'.format(err.__class__.__name__, err))
+        raise
+
+    return link",Swallowing Exceptions,absolute,Y
+archivebox,/home/r4ph/desenv/exception-miner/projects/py/archivebox/deb_dist/archivebox-0.4.24/archivebox/index/json.py,parse_json_link_details,"def parse_json_link_details(out_dir: Union[Path, str], guess: Optional[bool]=False) -> Optional[Link]:
+    """"""load the json link index from a given directory""""""
+    existing_index = Path(out_dir) / JSON_INDEX_FILENAME
+    if existing_index.exists():
+        with open(existing_index, 'r', encoding='utf-8') as f:
+            try:
+                link_json = pyjson.load(f)
+                return Link.from_json(link_json, guess)
+            except pyjson.JSONDecodeError:
+                pass
+    return None",Swallowing Exceptions,high,Y
+numpy,/home/r4ph/desenv/exception-miner/projects/py/numpy/numpy/f2py/crackfortran.py,analyzeline,"def analyzeline(m, case, line):
+    global groupcounter, groupname, groupcache, grouplist, filepositiontext
+    global currentfilename, f77modulename, neededinterface, neededmodule
+    global expectbegin, gotnextfile, previous_context
+
+    block = m.group('this')
+    if case != 'multiline':
+        previous_context = None
+    if expectbegin and case not in ['begin', 'call', 'callfun', 'type'] \
+       and not skipemptyends and groupcounter < 1:
+        newname = os.path.basename(currentfilename).split('.')[0]
+        outmess(
+            'analyzeline: no group yet. Creating program group with name ""%s"".\n' % newname)
+        gotnextfile = 0
+        groupcounter = groupcounter + 1
+        groupname[groupcounter] = 'program'
+        groupcache[groupcounter] = {}
+        grouplist[groupcounter] = []
+        groupcache[groupcounter]['body'] = []
+        groupcache[groupcounter]['vars'] = {}
+        groupcache[groupcounter]['block'] = 'program'
+        groupcache[groupcounter]['name'] = newname
+        groupcache[groupcounter]['from'] = 'fromsky'
+        expectbegin = 0
+    if case in ['begin', 'call', 'callfun']:
+        # Crack line => block,name,args,result
+        block = block.lower()
+        if re.match(r'block\s*data', block, re.I):
+            block = 'block data'
+        elif re.match(r'python\s*module', block, re.I):
+            block = 'python module'
+        elif re.match(r'abstract\s*interface', block, re.I):
+            block = 'abstract interface'
+        if block == 'type':
+            name, attrs, _ = _resolvetypedefpattern(m.group('after'))
+            groupcache[groupcounter]['vars'][name] = dict(attrspec = attrs)
+            args = []
+            result = None
+        else:
+            name, args, result, bindcline = _resolvenameargspattern(m.group('after'))
+        if name is None:
+            if block == 'block data':
+                name = '_BLOCK_DATA_'
+            else:
+                name = ''
+            if block not in ['interface', 'block data', 'abstract interface']:
+                outmess('analyzeline: No name/args pattern found for line.\n')
+
+        previous_context = (block, name, groupcounter)
+        if args:
+            args = rmbadname([x.strip()
+                              for x in markoutercomma(args).split('@,@')])
+        else:
+            args = []
+        if '' in args:
+            while '' in args:
+                args.remove('')
+            outmess(
+                'analyzeline: argument list is malformed (missing argument).\n')
+
+        # end of crack line => block,name,args,result
+        needmodule = 0
+        needinterface = 0
+
+        if case in ['call', 'callfun']:
+            needinterface = 1
+            if 'args' not in groupcache[groupcounter]:
+                return
+            if name not in groupcache[groupcounter]['args']:
+                return
+            for it in grouplist[groupcounter]:
+                if it['name'] == name:
+                    return
+            if name in groupcache[groupcounter]['interfaced']:
+                return
+            block = {'call': 'subroutine', 'callfun': 'function'}[case]
+        if f77modulename and neededmodule == -1 and groupcounter <= 1:
+            neededmodule = groupcounter + 2
+            needmodule = 1
+            if block not in ['interface', 'abstract interface']:
+                needinterface = 1
+        # Create new block(s)
+        groupcounter = groupcounter + 1
+        groupcache[groupcounter] = {}
+        grouplist[groupcounter] = []
+        if needmodule:
+            if verbose > 1:
+                outmess('analyzeline: Creating module block %s\n' %
+                        repr(f77modulename), 0)
+            groupname[groupcounter] = 'module'
+            groupcache[groupcounter]['block'] = 'python module'
+            groupcache[groupcounter]['name'] = f77modulename
+            groupcache[groupcounter]['from'] = ''
+            groupcache[groupcounter]['body'] = []
+            groupcache[groupcounter]['externals'] = []
+            groupcache[groupcounter]['interfaced'] = []
+            groupcache[groupcounter]['vars'] = {}
+            groupcounter = groupcounter + 1
+            groupcache[groupcounter] = {}
+            grouplist[groupcounter] = []
+        if needinterface:
+            if verbose > 1:
+                outmess('analyzeline: Creating additional interface block (groupcounter=%s).\n' % (
+                    groupcounter), 0)
+            groupname[groupcounter] = 'interface'
+            groupcache[groupcounter]['block'] = 'interface'
+            groupcache[groupcounter]['name'] = 'unknown_interface'
+            groupcache[groupcounter]['from'] = '%s:%s' % (
+                groupcache[groupcounter - 1]['from'], groupcache[groupcounter - 1]['name'])
+            groupcache[groupcounter]['body'] = []
+            groupcache[groupcounter]['externals'] = []
+            groupcache[groupcounter]['interfaced'] = []
+            groupcache[groupcounter]['vars'] = {}
+            groupcounter = groupcounter + 1
+            groupcache[groupcounter] = {}
+            grouplist[groupcounter] = []
+        groupname[groupcounter] = block
+        groupcache[groupcounter]['block'] = block
+        if not name:
+            name = 'unknown_' + block.replace(' ', '_')
+        groupcache[groupcounter]['prefix'] = m.group('before')
+        groupcache[groupcounter]['name'] = rmbadname1(name)
+        groupcache[groupcounter]['result'] = result
+        if groupcounter == 1:
+            groupcache[groupcounter]['from'] = currentfilename
+        else:
+            if f77modulename and groupcounter == 3:
+                groupcache[groupcounter]['from'] = '%s:%s' % (
+                    groupcache[groupcounter - 1]['from'], currentfilename)
+            else:
+                groupcache[groupcounter]['from'] = '%s:%s' % (
+                    groupcache[groupcounter - 1]['from'], groupcache[groupcounter - 1]['name'])
+        for k in list(groupcache[groupcounter].keys()):
+            if not groupcache[groupcounter][k]:
+                del groupcache[groupcounter][k]
+
+        groupcache[groupcounter]['args'] = args
+        groupcache[groupcounter]['body'] = []
+        groupcache[groupcounter]['externals'] = []
+        groupcache[groupcounter]['interfaced'] = []
+        groupcache[groupcounter]['vars'] = {}
+        groupcache[groupcounter]['entry'] = {}
+        # end of creation
+        if block == 'type':
+            groupcache[groupcounter]['varnames'] = []
+
+        if case in ['call', 'callfun']:  # set parents variables
+            if name not in groupcache[groupcounter - 2]['externals']:
+                groupcache[groupcounter - 2]['externals'].append(name)
+            groupcache[groupcounter]['vars'] = copy.deepcopy(
+                groupcache[groupcounter - 2]['vars'])
+            try:
+                del groupcache[groupcounter]['vars'][name][
+                    groupcache[groupcounter]['vars'][name]['attrspec'].index('external')]
+            except Exception:
+                pass
+        if block in ['function', 'subroutine']:  # set global attributes
+            # name is fortran name
+            if bindcline:
+                bindcdat = re.search(crackline_bindlang, bindcline)
+                if bindcdat:
+                    groupcache[groupcounter]['bindlang'] = {name : {}}
+                    groupcache[groupcounter]['bindlang'][name][""lang""] = bindcdat.group('lang')
+                    if bindcdat.group('lang_name'):
+                        groupcache[groupcounter]['bindlang'][name][""name""] = bindcdat.group('lang_name')
+            try:
+                groupcache[groupcounter]['vars'][name] = appenddecl(
+                    groupcache[groupcounter]['vars'][name], groupcache[groupcounter - 2]['vars'][''])
+            except Exception:
+                pass
+            if case == 'callfun':  # return type
+                if result and result in groupcache[groupcounter]['vars']:
+                    if not name == result:
+                        groupcache[groupcounter]['vars'][name] = appenddecl(
+                            groupcache[groupcounter]['vars'][name], groupcache[groupcounter]['vars'][result])
+            # if groupcounter>1: # name is interfaced
+            try:
+                groupcache[groupcounter - 2]['interfaced'].append(name)
+            except Exception:
+                pass
+        if block == 'function':
+            t = typespattern[0].match(m.group('before') + ' ' + name)
+            if t:
+                typespec, selector, attr, edecl = cracktypespec0(
+                    t.group('this'), t.group('after'))
+                updatevars(typespec, selector, attr, edecl)
+
+        if case in ['call', 'callfun']:
+            grouplist[groupcounter - 1].append(groupcache[groupcounter])
+            grouplist[groupcounter - 1][-1]['body'] = grouplist[groupcounter]
+            del grouplist[groupcounter]
+            groupcounter = groupcounter - 1  # end routine
+            grouplist[groupcounter - 1].append(groupcache[groupcounter])
+            grouplist[groupcounter - 1][-1]['body'] = grouplist[groupcounter]
+            del grouplist[groupcounter]
+            groupcounter = groupcounter - 1  # end interface
+
+    elif case == 'entry':
+        name, args, result, _= _resolvenameargspattern(m.group('after'))
+        if name is not None:
+            if args:
+                args = rmbadname([x.strip()
+                                  for x in markoutercomma(args).split('@,@')])
+            else:
+                args = []
+            assert result is None, repr(result)
+            groupcache[groupcounter]['entry'][name] = args
+            previous_context = ('entry', name, groupcounter)
+    elif case == 'type':
+        typespec, selector, attr, edecl = cracktypespec0(
+            block, m.group('after'))
+        last_name = updatevars(typespec, selector, attr, edecl)
+        if last_name is not None:
+            previous_context = ('variable', last_name, groupcounter)
+    elif case in ['dimension', 'intent', 'optional', 'required', 'external', 'public', 'private', 'intrinsic']:
+        edecl = groupcache[groupcounter]['vars']
+        ll = m.group('after').strip()
+        i = ll.find('::')
+        if i < 0 and case == 'intent':
+            i = markouterparen(ll).find('@)@') - 2
+            ll = ll[:i + 1] + '::' + ll[i + 1:]
+            i = ll.find('::')
+            if ll[i:] == '::' and 'args' in groupcache[groupcounter]:
+                outmess('All arguments will have attribute %s%s\n' %
+                        (m.group('this'), ll[:i]))
+                ll = ll + ','.join(groupcache[groupcounter]['args'])
+        if i < 0:
+            i = 0
+            pl = ''
+        else:
+            pl = ll[:i].strip()
+            ll = ll[i + 2:]
+        ch = markoutercomma(pl).split('@,@')
+        if len(ch) > 1:
+            pl = ch[0]
+            outmess('analyzeline: cannot handle multiple attributes without type specification. Ignoring %r.\n' % (
+                ','.join(ch[1:])))
+        last_name = None
+
+        for e in [x.strip() for x in markoutercomma(ll).split('@,@')]:
+            m1 = namepattern.match(e)
+            if not m1:
+                if case in ['public', 'private']:
+                    k = ''
+                else:
+                    print(m.groupdict())
+                    outmess('analyzeline: no name pattern found in %s statement for %s. Skipping.\n' % (
+                        case, repr(e)))
+                    continue
+            else:
+                k = rmbadname1(m1.group('name'))
+            if case in ['public', 'private'] and \
+               (k == 'operator' or k == 'assignment'):
+                k += m1.group('after')
+            if k not in edecl:
+                edecl[k] = {}
+            if case == 'dimension':
+                ap = case + m1.group('after')
+            if case == 'intent':
+                ap = m.group('this') + pl
+                if _intentcallbackpattern.match(ap):
+                    if k not in groupcache[groupcounter]['args']:
+                        if groupcounter > 1:
+                            if '__user__' not in groupcache[groupcounter - 2]['name']:
+                                outmess(
+                                    'analyzeline: missing __user__ module (could be nothing)\n')
+                            # fixes ticket 1693
+                            if k != groupcache[groupcounter]['name']:
+                                outmess('analyzeline: appending intent(callback) %s'
+                                        ' to %s arguments\n' % (k, groupcache[groupcounter]['name']))
+                                groupcache[groupcounter]['args'].append(k)
+                        else:
+                            errmess(
+                                'analyzeline: intent(callback) %s is ignored\n' % (k))
+                    else:
+                        errmess('analyzeline: intent(callback) %s is already'
+                                ' in argument list\n' % (k))
+            if case in ['optional', 'required', 'public', 'external', 'private', 'intrinsic']:
+                ap = case
+            if 'attrspec' in edecl[k]:
+                edecl[k]['attrspec'].append(ap)
+            else:
+                edecl[k]['attrspec'] = [ap]
+            if case == 'external':
+                if groupcache[groupcounter]['block'] == 'program':
+                    outmess('analyzeline: ignoring program arguments\n')
+                    continue
+                if k not in groupcache[groupcounter]['args']:
+                    continue
+                if 'externals' not in groupcache[groupcounter]:
+                    groupcache[groupcounter]['externals'] = []
+                groupcache[groupcounter]['externals'].append(k)
+            last_name = k
+        groupcache[groupcounter]['vars'] = edecl
+        if last_name is not None:
+            previous_context = ('variable', last_name, groupcounter)
+    elif case == 'moduleprocedure':
+        groupcache[groupcounter]['implementedby'] = \
+            [x.strip() for x in m.group('after').split(',')]
+    elif case == 'parameter':
+        edecl = groupcache[groupcounter]['vars']
+        ll = m.group('after').strip()[1:-1]
+        last_name = None
+        for e in markoutercomma(ll).split('@,@'):
+            try:
+                k, initexpr = [x.strip() for x in e.split('=')]
+            except Exception:
+                outmess(
+                    'analyzeline: could not extract name,expr in parameter statement ""%s"" of ""%s""\n' % (e, ll))
+                continue
+            params = get_parameters(edecl)
+            k = rmbadname1(k)
+            if k not in edecl:
+                edecl[k] = {}
+            if '=' in edecl[k] and (not edecl[k]['='] == initexpr):
+                outmess('analyzeline: Overwriting the value of parameter ""%s"" (""%s"") with ""%s"".\n' % (
+                    k, edecl[k]['='], initexpr))
+            t = determineexprtype(initexpr, params)
+            if t:
+                if t.get('typespec') == 'real':
+                    tt = list(initexpr)
+                    for m in real16pattern.finditer(initexpr):
+                        tt[m.start():m.end()] = list(
+                            initexpr[m.start():m.end()].lower().replace('d', 'e'))
+                    initexpr = ''.join(tt)
+                elif t.get('typespec') == 'complex':
+                    initexpr = initexpr[1:].lower().replace('d', 'e').\
+                        replace(',', '+1j*(')
+            try:
+                v = eval(initexpr, {}, params)
+            except (SyntaxError, NameError, TypeError) as msg:
+                errmess('analyzeline: Failed to evaluate %r. Ignoring: %s\n'
+                        % (initexpr, msg))
+                continue
+            edecl[k]['='] = repr(v)
+            if 'attrspec' in edecl[k]:
+                edecl[k]['attrspec'].append('parameter')
+            else:
+                edecl[k]['attrspec'] = ['parameter']
+            last_name = k
+        groupcache[groupcounter]['vars'] = edecl
+        if last_name is not None:
+            previous_context = ('variable', last_name, groupcounter)
+    elif case == 'implicit':
+        if m.group('after').strip().lower() == 'none':
+            groupcache[groupcounter]['implicit'] = None
+        elif m.group('after'):
+            if 'implicit' in groupcache[groupcounter]:
+                impl = groupcache[groupcounter]['implicit']
+            else:
+                impl = {}
+            if impl is None:
+                outmess(
+                    'analyzeline: Overwriting earlier ""implicit none"" statement.\n')
+                impl = {}
+            for e in markoutercomma(m.group('after')).split('@,@'):
+                decl = {}
+                m1 = re.match(
+                    r'\s*(?P<this>.*?)\s*(\(\s*(?P<after>[a-z-, ]+)\s*\)\s*|)\Z', e, re.I)
+                if not m1:
+                    outmess(
+                        'analyzeline: could not extract info of implicit statement part ""%s""\n' % (e))
+                    continue
+                m2 = typespattern4implicit.match(m1.group('this'))
+                if not m2:
+                    outmess(
+                        'analyzeline: could not extract types pattern of implicit statement part ""%s""\n' % (e))
+                    continue
+                typespec, selector, attr, edecl = cracktypespec0(
+                    m2.group('this'), m2.group('after'))
+                kindselect, charselect, typename = cracktypespec(
+                    typespec, selector)
+                decl['typespec'] = typespec
+                decl['kindselector'] = kindselect
+                decl['charselector'] = charselect
+                decl['typename'] = typename
+                for k in list(decl.keys()):
+                    if not decl[k]:
+                        del decl[k]
+                for r in markoutercomma(m1.group('after')).split('@,@'):
+                    if '-' in r:
+                        try:
+                            begc, endc = [x.strip() for x in r.split('-')]
+                        except Exception:
+                            outmess(
+                                'analyzeline: expected ""<char>-<char>"" instead of ""%s"" in range list of implicit statement\n' % r)
+                            continue
+                    else:
+                        begc = endc = r.strip()
+                    if not len(begc) == len(endc) == 1:
+                        outmess(
+                            'analyzeline: expected ""<char>-<char>"" instead of ""%s"" in range list of implicit statement (2)\n' % r)
+                        continue
+                    for o in range(ord(begc), ord(endc) + 1):
+                        impl[chr(o)] = decl
+            groupcache[groupcounter]['implicit'] = impl
+    elif case == 'data':
+        ll = []
+        dl = ''
+        il = ''
+        f = 0
+        fc = 1
+        inp = 0
+        for c in m.group('after'):
+            if not inp:
+                if c == ""'"":
+                    fc = not fc
+                if c == '/' and fc:
+                    f = f + 1
+                    continue
+            if c == '(':
+                inp = inp + 1
+            elif c == ')':
+                inp = inp - 1
+            if f == 0:
+                dl = dl + c
+            elif f == 1:
+                il = il + c
+            elif f == 2:
+                dl = dl.strip()
+                if dl.startswith(','):
+                    dl = dl[1:].strip()
+                ll.append([dl, il])
+                dl = c
+                il = ''
+                f = 0
+        if f == 2:
+            dl = dl.strip()
+            if dl.startswith(','):
+                dl = dl[1:].strip()
+            ll.append([dl, il])
+        vars = groupcache[groupcounter].get('vars', {})
+        last_name = None
+        for l in ll:
+            l[0], l[1] = l[0].strip(), l[1].strip()
+            if l[0].startswith(','):
+                l[0] = l[0][1:]
+            if l[0].startswith('('):
+                outmess('analyzeline: implied-DO list ""%s"" is not supported. Skipping.\n' % l[0])
+                continue
+            for idx, v in enumerate(rmbadname([x.strip() for x in markoutercomma(l[0]).split('@,@')])):
+                if v.startswith('('):
+                    outmess('analyzeline: implied-DO list ""%s"" is not supported. Skipping.\n' % v)
+                    # XXX: subsequent init expressions may get wrong values.
+                    # Ignoring since data statements are irrelevant for
+                    # wrapping.
+                    continue
+                if '!' in l[1]:
+                    # Fixes gh-24746 pyf generation
+                    # XXX: This essentially ignores the value for generating the pyf which is fine:
+                    # integer dimension(3) :: mytab
+                    # common /mycom/ mytab
+                    # Since in any case it is initialized in the Fortran code
+                    outmess('Comment line in declaration ""%s"" is not supported. Skipping.\n' % l[1])
+                    continue
+                vars.setdefault(v, {})
+                vtype = vars[v].get('typespec')
+                vdim = getdimension(vars[v])
+                matches = re.findall(r""\(.*?\)"", l[1]) if vtype == 'complex' else l[1].split(',')
+                try:
+                    new_val = ""(/{}/)"".format("", "".join(matches)) if vdim else matches[idx]
+                except IndexError:
+                    # gh-24746
+                    # Runs only if above code fails. Fixes the line
+                    # DATA IVAR1, IVAR2, IVAR3, IVAR4, EVAR5 /4*0,0.0D0/
+                    # by expanding to ['0', '0', '0', '0', '0.0d0']
+                    if any(""*"" in m for m in matches):
+                        expanded_list = []
+                        for match in matches:
+                            if ""*"" in match:
+                                try:
+                                    multiplier, value = match.split(""*"")
+                                    expanded_list.extend([value.strip()] * int(multiplier))
+                                except ValueError: # if int(multiplier) fails
+                                    expanded_list.append(match.strip())
+                            else:
+                                expanded_list.append(match.strip())
+                        matches = expanded_list
+                    new_val = ""(/{}/)"".format("", "".join(matches)) if vdim else matches[idx]
+                current_val = vars[v].get('=')
+                if current_val and (current_val != new_val):
+                    outmess('analyzeline: changing init expression of ""%s"" (""%s"") to ""%s""\n' % (v, current_val, new_val))
+                vars[v]['='] = new_val
+                last_name = v
+        groupcache[groupcounter]['vars'] = vars
+        if last_name:
+            previous_context = ('variable', last_name, groupcounter)
+    elif case == 'common':
+        line = m.group('after').strip()
+        if not line[0] == '/':
+            line = '//' + line
+        cl = []
+        f = 0
+        bn = ''
+        ol = ''
+        for c in line:
+            if c == '/':
+                f = f + 1
+                continue
+            if f >= 3:
+                bn = bn.strip()
+                if not bn:
+                    bn = '_BLNK_'
+                cl.append([bn, ol])
+                f = f - 2
+                bn = ''
+                ol = ''
+            if f % 2:
+                bn = bn + c
+            else:
+                ol = ol + c
+        bn = bn.strip()
+        if not bn:
+            bn = '_BLNK_'
+        cl.append([bn, ol])
+        commonkey = {}
+        if 'common' in groupcache[groupcounter]:
+            commonkey = groupcache[groupcounter]['common']
+        for c in cl:
+            if c[0] not in commonkey:
+                commonkey[c[0]] = []
+            for i in [x.strip() for x in markoutercomma(c[1]).split('@,@')]:
+                if i:
+                    commonkey[c[0]].append(i)
+        groupcache[groupcounter]['common'] = commonkey
+        previous_context = ('common', bn, groupcounter)
+    elif case == 'use':
+        m1 = re.match(
+            r'\A\s*(?P<name>\b\w+\b)\s*((,(\s*\bonly\b\s*:|(?P<notonly>))\s*(?P<list>.*))|)\s*\Z', m.group('after'), re.I)
+        if m1:
+            mm = m1.groupdict()
+            if 'use' not in groupcache[groupcounter]:
+                groupcache[groupcounter]['use'] = {}
+            name = m1.group('name')
+            groupcache[groupcounter]['use'][name] = {}
+            isonly = 0
+            if 'list' in mm and mm['list'] is not None:
+                if 'notonly' in mm and mm['notonly'] is None:
+                    isonly = 1
+                groupcache[groupcounter]['use'][name]['only'] = isonly
+                ll = [x.strip() for x in mm['list'].split(',')]
+                rl = {}
+                for l in ll:
+                    if '=' in l:
+                        m2 = re.match(
+                            r'\A\s*(?P<local>\b\w+\b)\s*=\s*>\s*(?P<use>\b\w+\b)\s*\Z', l, re.I)
+                        if m2:
+                            rl[m2.group('local').strip()] = m2.group(
+                                'use').strip()
+                        else:
+                            outmess(
+                                'analyzeline: Not local=>use pattern found in %s\n' % repr(l))
+                    else:
+                        rl[l] = l
+                    groupcache[groupcounter]['use'][name]['map'] = rl
+            else:
+                pass
+        else:
+            print(m.groupdict())
+            outmess('analyzeline: Could not crack the use statement.\n')
+    elif case in ['f2pyenhancements']:
+        if 'f2pyenhancements' not in groupcache[groupcounter]:
+            groupcache[groupcounter]['f2pyenhancements'] = {}
+        d = groupcache[groupcounter]['f2pyenhancements']
+        if m.group('this') == 'usercode' and 'usercode' in d:
+            if isinstance(d['usercode'], str):
+                d['usercode'] = [d['usercode']]
+            d['usercode'].append(m.group('after'))
+        else:
+            d[m.group('this')] = m.group('after')
+    elif case == 'multiline':
+        if previous_context is None:
+            if verbose:
+                outmess('analyzeline: No context for multiline block.\n')
+            return
+        gc = groupcounter
+        appendmultiline(groupcache[gc],
+                        previous_context[:2],
+                        m.group('this'))
+    else:
+        if verbose > 1:
+            print(m.groupdict())
+            outmess('analyzeline: No code implemented for line.\n')",Swallowing Exceptions,absolute,Y
+numpy,/home/r4ph/desenv/exception-miner/projects/py/numpy/numpy/lib/tests/test_polynomial.py,test_zero_dims,"def test_zero_dims(self):
+        try:
+            np.poly(np.zeros((0, 0)))
+        except ValueError:
+            pass",Swallowing Exceptions,high,Y
+django,/home/r4ph/desenv/exception-miner/projects/py/django/tests/staticfiles_tests/test_liveserver.py,raises_exception,"def raises_exception(cls):
+        try:
+            super().setUpClass()
+        except ImproperlyConfigured:
+            # This raises ImproperlyConfigured(""You're using the staticfiles
+            # app without having set the required STATIC_URL setting."")
+            pass
+        else:
+            raise Exception(""setUpClass() should have raised an exception."")",Swallowing Exceptions,high,Y
+ray,/home/r4ph/desenv/exception-miner/projects/py/ray/rllib/policy/sample_batch.py,attempt_count_timesteps,"def attempt_count_timesteps(tensor_dict: dict):
+    """"""Attempt to count timesteps based on dimensions of individual elements.
+
+    Returns the first successfully counted number of timesteps.
+    We do not attempt to count on INFOS or any state_in_* and state_out_* keys. The
+    number of timesteps we count in cases where we are unable to count is zero.
+
+    Args:
+        tensor_dict: A SampleBatch or another dict.
+
+    Returns:
+        count: The inferred number of timesteps >= 0.
+    """"""
+    # Try to infer the ""length"" of the SampleBatch by finding the first
+    # value that is actually a ndarray/tensor.
+    # Skip manual counting routine if we can directly infer count from sequence lengths
+    if (
+        tensor_dict.get(SampleBatch.SEQ_LENS) is not None
+        and not (tf and tf.is_tensor(tensor_dict[SampleBatch.SEQ_LENS]))
+        and len(tensor_dict[SampleBatch.SEQ_LENS]) > 0
+    ):
+        if torch and torch.is_tensor(tensor_dict[SampleBatch.SEQ_LENS]):
+            return tensor_dict[SampleBatch.SEQ_LENS].sum().item()
+        else:
+            return sum(tensor_dict[SampleBatch.SEQ_LENS])
+
+    for k, v in tensor_dict.items():
+        if k == SampleBatch.SEQ_LENS:
+            continue
+
+        assert isinstance(k, str), tensor_dict
+
+        if (
+            k == SampleBatch.INFOS
+            or k.startswith(""state_in_"")
+            or k.startswith(""state_out_"")
+        ):
+            # Don't attempt to count on infos since we make no assumptions
+            # about its content
+            # Don't attempt to count on state since nesting can potentially mess
+            # things up
+            continue
+
+        # If this is a nested dict (for example a nested observation),
+        # try to flatten it, assert that all elements have the same length (batch
+        # dimension)
+        v_list = tree.flatten(v) if isinstance(v, (dict, tuple)) else [v]
+        # TODO: Drop support for lists and Numbers as values.
+        # If v_list contains lists or Numbers, convert them to arrays, too.
+        v_list = [
+            np.array(_v) if isinstance(_v, (Number, list)) else _v for _v in v_list
+        ]
+        try:
+            # Add one of the elements' length, since they are all the same
+            _len = len(v_list[0])
+            if _len:
+                return _len
+        except Exception:
+            pass
+
+    # Return zero if we are unable to count
+    return 0",Swallowing Exceptions,absolute,Y
+archivebox,/home/r4ph/desenv/exception-miner/projects/py/archivebox/deb_dist/archivebox-0.5.6/archivebox/index/__init__.py,get_unrecognized_folders,"def get_unrecognized_folders(snapshots, out_dir: Path=OUTPUT_DIR) -> Dict[str, Optional[Link]]:
+    """"""dirs that don't contain recognizable archive data and aren't listed in the main index""""""
+    unrecognized_folders: Dict[str, Optional[Link]] = {}
+
+    for entry in (Path(out_dir) / ARCHIVE_DIR_NAME).iterdir():
+        if entry.is_dir():
+            index_exists = (entry / ""index.json"").exists()
+            link = None
+            try:
+                link = parse_json_link_details(str(entry))
+            except KeyError:
+                # Try to fix index
+                if index_exists:
+                    try:
+                        # Last attempt to repair the detail index
+                        link_guessed = parse_json_link_details(str(entry), guess=True)
+                        write_json_link_details(link_guessed, out_dir=str(entry))
+                        link = parse_json_link_details(str(entry))
+                    except Exception:
+                        pass
+
+            if index_exists and link is None:
+                # index exists but it's corrupted or unparseable
+                unrecognized_folders[str(entry)] = link
+            
+            elif not index_exists:
+                # link details index doesn't exist and the folder isn't in the main index
+                timestamp = entry.name
+                if not snapshots.filter(timestamp=timestamp).exists():
+                    unrecognized_folders[str(entry)] = link
+
+    return unrecognized_folders",Swallowing Exceptions,absolute,Y
+ray,/home/r4ph/desenv/exception-miner/projects/py/ray/python/ray/tests/test_autoscaling_policy.py,_launch_nodes,"def _launch_nodes(self):
+        """"""Launch all queued nodes. Since this will be run serially after
+        `autoscaler.update` there are no race conditions in checking if the
+        queue is empty.
+        """"""
+        while not self.node_launcher.queue.empty():
+            config, count, node_type = self.node_launcher.queue.get()
+            try:
+                self.node_launcher._launch_node(config, count, node_type)
+            except Exception:
+                pass
+            finally:
+                self.node_launcher.pending.dec(node_type, count)",Swallowing Exceptions,absolute,Y
+archivebox,/home/r4ph/desenv/exception-miner/projects/py/archivebox/deb_dist/archivebox-0.6.2/debian/archivebox/usr/lib/python3/dist-packages/archivebox/index/__init__.py,get_present_folders,"def get_present_folders(snapshots, out_dir: Path=OUTPUT_DIR) -> Dict[str, Optional[Link]]:
+    """"""dirs that actually exist in the archive/ folder""""""
+
+    all_folders = {}
+
+    for entry in (out_dir / ARCHIVE_DIR_NAME).iterdir():
+        if entry.is_dir():
+            link = None
+            try:
+                link = parse_json_link_details(entry.path)
+            except Exception:
+                pass
+
+            all_folders[entry.name] = link
+
+    return all_folders",Swallowing Exceptions,absolute,Y
+openpilot,/home/r4ph/desenv/exception-miner/projects/py/openpilot/third_party/acados/acados_template/acados_ocp.py,nphi_e,"def nphi_e(self, nphi_e):
+        if isinstance(nphi_e, int) and nphi_e > -1:
+            self.__nphi_e = nphi_e
+        else:
+            raise Exception('Invalid nphi_e value, expected nonnegative integer. Exiting.')",Too Broad Raising,absolute,Y
+localstack,/home/r4ph/desenv/exception-miner/projects/py/localstack/localstack/services/cloudformation/engine/template_deployer.py,_resolve_refs_recursively,"def _resolve_refs_recursively(
+    stack: Union[Stack, ""TemplateDeployer""], value: dict | list | str | bytes | None
+):
+    if isinstance(value, dict):
+        keys_list = list(value.keys())
+        stripped_fn_lower = keys_list[0].lower().split(""::"")[-1] if len(keys_list) == 1 else None
+
+        # process special operators
+        if keys_list == [""Ref""]:
+            ref = resolve_ref(stack, value[""Ref""], attribute=""Ref"")
+            if ref is None:
+                resources = stack.resources
+                msg = 'Unable to resolve Ref for resource ""%s"" (yet)' % value[""Ref""]
+                LOG.debug(""%s - %s"", msg, resources.get(value[""Ref""]) or set(resources.keys()))
+                raise DependencyNotYetSatisfied(resource_ids=value[""Ref""], message=msg)
+            ref = resolve_refs_recursively(stack, ref)
+            return ref
+
+        if stripped_fn_lower == ""getatt"":
+            attr_ref = value[keys_list[0]]
+            attr_ref = attr_ref.split(""."") if isinstance(attr_ref, str) else attr_ref
+            return resolve_ref(stack, attr_ref[0], attribute=attr_ref[1])
+
+        if stripped_fn_lower == ""join"":
+            join_values = value[keys_list[0]][1]
+            join_values = [resolve_refs_recursively(stack, v) for v in join_values]
+            none_values = [v for v in join_values if v is None]
+            if none_values:
+                raise Exception(
+                    ""Cannot resolve CF fn::Join %s due to null values: %s"" % (value, join_values)
+                )
+            return value[keys_list[0]][0].join([str(v) for v in join_values])
+
+        if stripped_fn_lower == ""sub"":
+            item_to_sub = value[keys_list[0]]
+
+            attr_refs = {r: {""Ref"": r} for r in STATIC_REFS}
+            if not isinstance(item_to_sub, list):
+                item_to_sub = [item_to_sub, {}]
+            result = item_to_sub[0]
+            item_to_sub[1].update(attr_refs)
+
+            for key, val in item_to_sub[1].items():
+                val = resolve_refs_recursively(stack, val)
+                result = result.replace(""${%s}"" % key, val)
+
+            # resolve placeholders
+            result = resolve_placeholders_in_string(result, stack=stack)
+            return result
+
+        if stripped_fn_lower == ""findinmap"":
+            attr = resolve_refs_recursively(stack, value[keys_list[0]][1])
+            result = resolve_ref(stack, value[keys_list[0]][0], attribute=attr)
+            if not result:
+                resources = stack.resources
+                raise Exception(
+                    f""Cannot resolve fn::FindInMap: {value[keys_list[0]]} {list(resources.keys())}""
+                )
+
+            key = value[keys_list[0]][2]
+            if not isinstance(key, str):
+                key = resolve_refs_recursively(stack, key)
+
+            return result.get(key)
+
+        if stripped_fn_lower == ""importvalue"":
+            import_value_key = resolve_refs_recursively(stack, value[keys_list[0]])
+            exports = exports_map()
+            stack_export = exports.get(import_value_key) or {}
+            if not stack_export.get(""Value""):
+                LOG.info(
+                    'Unable to find export ""%s"" in stack ""%s"", existing export names: %s',
+                    import_value_key,
+                    stack.stack_name,
+                    list(exports.keys()),
+                )
+                return None
+            return stack_export[""Value""]
+
+        if stripped_fn_lower == ""if"":
+            condition, option1, option2 = value[keys_list[0]]
+            condition = evaluate_condition(stack, condition)
+            return resolve_refs_recursively(stack, option1 if condition else option2)
+
+        if stripped_fn_lower == ""condition"":
+            result = evaluate_condition(stack, value[keys_list[0]])
+            return result
+
+        if stripped_fn_lower == ""not"":
+            condition = value[keys_list[0]][0]
+            condition = resolve_refs_recursively(stack, condition)
+            return not condition
+
+        if stripped_fn_lower in [""and"", ""or""]:
+            conditions = value[keys_list[0]]
+            results = [resolve_refs_recursively(stack, cond) for cond in conditions]
+            result = all(results) if stripped_fn_lower == ""and"" else any(results)
+            return result
+
+        if stripped_fn_lower == ""equals"":
+            operand1, operand2 = value[keys_list[0]]
+            operand1 = resolve_refs_recursively(stack, operand1)
+            operand2 = resolve_refs_recursively(stack, operand2)
+            return str(operand1) == str(operand2)
+
+        if stripped_fn_lower == ""select"":
+            index, values = value[keys_list[0]]
+            index = resolve_refs_recursively(stack, index)
+            values = resolve_refs_recursively(stack, values)
+            return values[index]
+
+        if stripped_fn_lower == ""split"":
+            delimiter, string = value[keys_list[0]]
+            delimiter = resolve_refs_recursively(stack, delimiter)
+            string = resolve_refs_recursively(stack, string)
+            return string.split(delimiter)
+
+        if stripped_fn_lower == ""getazs"":
+            region = resolve_refs_recursively(stack, value[""Fn::GetAZs""]) or aws_stack.get_region()
+            azs = []
+            for az in (""a"", ""b"", ""c"", ""d""):
+                azs.append(""%s%s"" % (region, az))
+
+            return azs
+
+        if stripped_fn_lower == ""base64"":
+            value_to_encode = value[keys_list[0]]
+            value_to_encode = resolve_refs_recursively(stack, value_to_encode)
+            return to_str(base64.b64encode(to_bytes(value_to_encode)))
+
+        for key, val in dict(value).items():
+            value[key] = resolve_refs_recursively(stack, val)
+
+    if isinstance(value, list):
+        # in some cases, intrinsic functions are passed in as, e.g., `[['Fn::Sub', '${MyRef}']]`
+        if len(value) == 1 and isinstance(value[0], list) and len(value[0]) == 2:
+            inner_list = value[0]
+            if str(inner_list[0]).lower().startswith(""fn::""):
+                return resolve_refs_recursively(stack, {inner_list[0]: inner_list[1]})
+
+        for i in range(len(value)):
+            value[i] = resolve_refs_recursively(stack, value[i])
+
+    return value",Too Broad Raising,absolute,Y
+django,/home/r4ph/desenv/exception-miner/projects/py/django/tests/transactions/tests.py,test_merged_inner_savepoint_rollback,"def test_merged_inner_savepoint_rollback(self):
+        with transaction.atomic():
+            reporter = Reporter.objects.create(first_name=""Tintin"")
+            with transaction.atomic():
+                Reporter.objects.create(first_name=""Archibald"", last_name=""Haddock"")
+                with self.assertRaisesMessage(Exception, ""Oops""):
+                    with transaction.atomic(savepoint=False):
+                        Reporter.objects.create(first_name=""Calculus"")
+                        raise Exception(""Oops, that's his last name"")
+                # The third insert couldn't be roll back. Temporarily mark the
+                # connection as not needing rollback to check it.
+                self.assertTrue(transaction.get_rollback())
+                transaction.set_rollback(False)
+                self.assertEqual(Reporter.objects.count(), 3)
+                transaction.set_rollback(True)
+            # The second block has a savepoint and must roll back.
+            self.assertEqual(Reporter.objects.count(), 1)
+        self.assertSequenceEqual(Reporter.objects.all(), [reporter])",Too Broad Raising,absolute,Y
+deepfacelab,/home/r4ph/desenv/exception-miner/projects/py/deepfacelab/facelib/XSegNet.py,__init__,"def __init__ (self, name, 
+                        resolution=256, 
+                        load_weights=True, 
+                        weights_file_root=None, 
+                        training=False, 
+                        place_model_on_cpu=False, 
+                        run_on_cpu=False, 
+                        optimizer=None, 
+                        data_format=""NHWC"",
+                        raise_on_no_model_files=False):
+                
+        self.resolution = resolution
+        self.weights_file_root = Path(weights_file_root) if weights_file_root is not None else Path(__file__).parent
+        
+        nn.initialize(data_format=data_format)
+        tf = nn.tf
+        
+        model_name = f'{name}_{resolution}'
+        self.model_filename_list = []
+        
+        with tf.device ('/CPU:0'):
+            #Place holders on CPU
+            self.input_t  = tf.placeholder (nn.floatx, nn.get4Dshape(resolution,resolution,3) )
+            self.target_t = tf.placeholder (nn.floatx, nn.get4Dshape(resolution,resolution,1) )
+
+        # Initializing model classes
+        with tf.device ('/CPU:0' if place_model_on_cpu else nn.tf_default_device_name):
+            self.model = nn.XSeg(3, 32, 1, name=name)
+            self.model_weights = self.model.get_weights()
+            if training:
+                if optimizer is None:
+                    raise ValueError(""Optimizer should be provided for training mode."")                
+                self.opt = optimizer              
+                self.opt.initialize_variables (self.model_weights, vars_on_cpu=place_model_on_cpu)                    
+                self.model_filename_list += [ [self.opt, f'{model_name}_opt.npy' ] ]
+                
+        
+        self.model_filename_list += [ [self.model, f'{model_name}.npy'] ]
+
+        if not training:
+            with tf.device ('/CPU:0' if run_on_cpu else nn.tf_default_device_name):
+                _, pred = self.model(self.input_t)
+
+            def net_run(input_np):
+                return nn.tf_sess.run ( [pred], feed_dict={self.input_t :input_np})[0]
+            self.net_run = net_run
+
+        self.initialized = True
+        # Loading/initializing all models/optimizers weights
+        for model, filename in self.model_filename_list:
+            do_init = not load_weights
+
+            if not do_init:
+                model_file_path = self.weights_file_root / filename
+                do_init = not model.load_weights( model_file_path )
+                if do_init:
+                    if raise_on_no_model_files:
+                        raise Exception(f'{model_file_path} does not exists.')
+                    if not training:
+                        self.initialized = False
+                        break
+
+            if do_init:
+                model.init_weights()",Too Broad Raising,absolute,Y
+openpilot,/home/r4ph/desenv/exception-miner/projects/py/openpilot/third_party/acados/acados_template/acados_ocp.py,Jbx_e,"def Jbx_e(self, Jbx_e):
+        if isinstance(Jbx_e, np.ndarray):
+            self.__idxbx_e = J_to_idx(Jbx_e)
+        else:
+            raise Exception('Invalid Jbx_e value. Exiting.')",Too Broad Raising,absolute,Y
+flask,/home/r4ph/desenv/exception-miner/projects/py/flask/tests/test_appctx.py,test_app_tearing_down_with_handled_exception_by_except_block,"def test_app_tearing_down_with_handled_exception_by_except_block(app):
+    cleanup_stuff = []
+
+    @app.teardown_appcontext
+    def cleanup(exception):
+        cleanup_stuff.append(exception)
+
+    with app.app_context():
+        try:
+            raise Exception(""dummy"")
+        except Exception:
+            pass
+
+    assert cleanup_stuff == [None]",Too Broad Raising,absolute,Y
+openpilot,/home/r4ph/desenv/exception-miner/projects/py/openpilot/third_party/acados/acados_template/acados_ocp.py,exact_hess_constr,"def exact_hess_constr(self, exact_hess_constr):
+        if exact_hess_constr in [0, 1]:
+            self.__exact_hess_constr = exact_hess_constr
+        else:
+            raise Exception('Invalid exact_hess_constr value. exact_hess_constr takes one of the values 0, 1. Exiting')",Too Broad Raising,absolute,Y
+ray,/home/r4ph/desenv/exception-miner/projects/py/ray/python/ray/util/client/server/dataservicer.py,Datapath,"def Datapath(self, request_iterator, context):
+        start_time = time.time()
+        # set to True if client shuts down gracefully
+        cleanup_requested = False
+        metadata = {k: v for k, v in context.invocation_metadata()}
+        client_id = metadata.get(""client_id"")
+        if client_id is None:
+            logger.error(""Client connecting with no client_id"")
+            return
+        logger.debug(f""New data connection from client {client_id}: "")
+        accepted_connection = self._init(client_id, context, start_time)
+        response_cache = self.response_caches[client_id]
+        # Set to False if client requests a reconnect grace period of 0
+        reconnect_enabled = True
+        if not accepted_connection:
+            return
+        try:
+            request_queue = Queue()
+            queue_filler_thread = Thread(
+                target=fill_queue, daemon=True, args=(request_iterator, request_queue)
+            )
+            queue_filler_thread.start()
+            """"""For non `async get` requests, this loop yields immediately
+            For `async get` requests, this loop:
+                 1) does not yield, it just continues
+                 2) When the result is ready, it yields
+            """"""
+            for req in iter(request_queue.get, None):
+                if isinstance(req, ray_client_pb2.DataResponse):
+                    # Early shortcut if this is the result of an async get.
+                    yield req
+                    continue
+
+                assert isinstance(req, ray_client_pb2.DataRequest)
+                if _should_cache(req) and reconnect_enabled:
+                    cached_resp = response_cache.check_cache(req.req_id)
+                    if isinstance(cached_resp, Exception):
+                        # Cache state is invalid, raise exception
+                        raise cached_resp
+                    if cached_resp is not None:
+                        yield cached_resp
+                        continue
+
+                resp = None
+                req_type = req.WhichOneof(""type"")
+                if req_type == ""init"":
+                    resp_init = self.basic_service.Init(req.init)
+                    resp = ray_client_pb2.DataResponse(
+                        init=resp_init,
+                    )
+                    with self.clients_lock:
+                        self.reconnect_grace_periods[
+                            client_id
+                        ] = req.init.reconnect_grace_period
+                        if req.init.reconnect_grace_period == 0:
+                            reconnect_enabled = False
+
+                elif req_type == ""get"":
+                    if req.get.asynchronous:
+                        get_resp = self.basic_service._async_get_object(
+                            req.get, client_id, req.req_id, request_queue
+                        )
+                        if get_resp is None:
+                            # Skip sending a response for this request and
+                            # continue to the next requst. The response for
+                            # this request will be sent when the object is
+                            # ready.
+                            continue
+                    else:
+                        get_resp = self.basic_service._get_object(req.get, client_id)
+                    resp = ray_client_pb2.DataResponse(get=get_resp)
+                elif req_type == ""put"":
+                    if not self.put_request_chunk_collector.add_chunk(req, req.put):
+                        # Put request still in progress
+                        continue
+                    put_resp = self.basic_service._put_object(
+                        self.put_request_chunk_collector.data,
+                        req.put.client_ref_id,
+                        client_id,
+                        req.put.owner_id,
+                    )
+                    self.put_request_chunk_collector.reset()
+                    resp = ray_client_pb2.DataResponse(put=put_resp)
+                elif req_type == ""release"":
+                    released = []
+                    for rel_id in req.release.ids:
+                        rel = self.basic_service.release(client_id, rel_id)
+                        released.append(rel)
+                    resp = ray_client_pb2.DataResponse(
+                        release=ray_client_pb2.ReleaseResponse(ok=released)
+                    )
+                elif req_type == ""connection_info"":
+                    resp = ray_client_pb2.DataResponse(
+                        connection_info=self._build_connection_response()
+                    )
+                elif req_type == ""prep_runtime_env"":
+                    with self.clients_lock:
+                        resp_prep = self.basic_service.PrepRuntimeEnv(
+                            req.prep_runtime_env
+                        )
+                        resp = ray_client_pb2.DataResponse(prep_runtime_env=resp_prep)
+                elif req_type == ""connection_cleanup"":
+                    cleanup_requested = True
+                    cleanup_resp = ray_client_pb2.ConnectionCleanupResponse()
+                    resp = ray_client_pb2.DataResponse(connection_cleanup=cleanup_resp)
+                elif req_type == ""acknowledge"":
+                    # Clean up acknowledged cache entries
+                    response_cache.cleanup(req.acknowledge.req_id)
+                    continue
+                elif req_type == ""task"":
+                    with self.clients_lock:
+                        task = req.task
+                        if not self.client_task_chunk_collector.add_chunk(req, task):
+                            # Not all serialized arguments have arrived
+                            continue
+                        arglist, kwargs = loads_from_client(
+                            self.client_task_chunk_collector.data, self.basic_service
+                        )
+                        self.client_task_chunk_collector.reset()
+                        resp_ticket = self.basic_service.Schedule(
+                            req.task, arglist, kwargs, context
+                        )
+                        resp = ray_client_pb2.DataResponse(task_ticket=resp_ticket)
+                elif req_type == ""terminate"":
+                    with self.clients_lock:
+                        response = self.basic_service.Terminate(req.terminate, context)
+                        resp = ray_client_pb2.DataResponse(terminate=response)
+                elif req_type == ""list_named_actors"":
+                    with self.clients_lock:
+                        response = self.basic_service.ListNamedActors(
+                            req.list_named_actors
+                        )
+                        resp = ray_client_pb2.DataResponse(list_named_actors=response)
+                else:
+                    raise Exception(
+                        f""Unreachable code: Request type ""
+                        f""{req_type} not handled in Datapath""
+                    )
+                resp.req_id = req.req_id
+                if _should_cache(req) and reconnect_enabled:
+                    response_cache.update_cache(req.req_id, resp)
+                yield resp
+        except Exception as e:
+            logger.exception(""Error in data channel:"")
+            recoverable = _propagate_error_in_context(e, context)
+            invalid_cache = response_cache.invalidate(e)
+            if not recoverable or invalid_cache:
+                context.set_code(grpc.StatusCode.FAILED_PRECONDITION)
+                # Connection isn't recoverable, skip cleanup
+                cleanup_requested = True
+        finally:
+            logger.debug(f""Stream is broken with client {client_id}"")
+            queue_filler_thread.join(QUEUE_JOIN_SECONDS)
+            if queue_filler_thread.is_alive():
+                logger.error(
+                    ""Queue filler thread failed to join before timeout: {}"".format(
+                        QUEUE_JOIN_SECONDS
+                    )
+                )
+            cleanup_delay = self.reconnect_grace_periods.get(client_id)
+            if not cleanup_requested and cleanup_delay is not None:
+                logger.debug(
+                    ""Cleanup wasn't requested, delaying cleanup by""
+                    f""{cleanup_delay} seconds.""
+                )
+                # Delay cleanup, since client may attempt a reconnect
+                # Wait on the ""stopped"" event in case the grpc server is
+                # stopped and we can clean up earlier.
+                self.stopped.wait(timeout=cleanup_delay)
+            else:
+                logger.debug(""Cleanup was requested, cleaning up immediately."")
+            with self.clients_lock:
+                if client_id not in self.client_last_seen:
+                    logger.debug(""Connection already cleaned up."")
+                    # Some other connection has already cleaned up this
+                    # this client's session. This can happen if the client
+                    # reconnects and then gracefully shut's down immediately.
+                    return
+                last_seen = self.client_last_seen[client_id]
+                if last_seen > start_time:
+                    # The client successfully reconnected and updated
+                    # last seen some time during the grace period
+                    logger.debug(""Client reconnected, skipping cleanup"")
+                    return
+                # Either the client shut down gracefully, or the client
+                # failed to reconnect within the grace period. Clean up
+                # the connection.
+                self.basic_service.release_all(client_id)
+                del self.client_last_seen[client_id]
+                if client_id in self.reconnect_grace_periods:
+                    del self.reconnect_grace_periods[client_id]
+                if client_id in self.response_caches:
+                    del self.response_caches[client_id]
+                self.num_clients -= 1
+                logger.debug(
+                    f""Removed client {client_id}, "" f""remaining={self.num_clients}""
+                )
+
+                # It's important to keep the Ray shutdown
+                # within this locked context or else Ray could hang.
+                # NOTE: it is strange to start ray in server.py but shut it
+                # down here. Consider consolidating ray lifetime management.
+                with disable_client_hook():
+                    if self.num_clients == 0:
+                        logger.debug(""Shutting down ray."")
+                        ray.shutdown()",Too Broad Raising,absolute,Y
+sentry,/home/r4ph/desenv/exception-miner/projects/py/sentry/src/sentry/utils/prompts.py,add,"def add(self, name, config):
+        if self.has(name):
+            raise Exception(f""Prompt key {name} is already in use"")
+        if ""required_fields"" not in config:
+            raise Exception(""'required_fields' must be present in the config dict"")
+
+        self.prompts[name] = config",Too Broad Raising,absolute,Y
+python-spider,/home/r4ph/desenv/exception-miner/projects/py/python-spider/geetest.py,get_slider,"def get_slider(self):
+		""""""
+		获取滑块
+		:return: 滑块对象
+		""""""
+		while True:
+			try:
+				slider = self.browser.find_element_by_xpath(""//div[@class='gt_slider_knob gt_show']"")
+				break
+			except:
+				time.sleep(0.5)
+		return slider",Bare Except Catch Block,absolute,Y
+sherlock,/home/r4ph/desenv/exception-miner/projects/py/sherlock/sherlock/sherlock.py,timeout_check,"def timeout_check(value):
+    """"""Check Timeout Argument.
+
+    Checks timeout for validity.
+
+    Keyword Arguments:
+    value                  -- Time in seconds to wait before timing out request.
+
+    Return Value:
+    Floating point number representing the time (in seconds) that should be
+    used for the timeout.
+
+    NOTE:  Will raise an exception if the timeout in invalid.
+    """"""
+    from argparse import ArgumentTypeError
+
+    try:
+        timeout = float(value)
+    except:
+        raise ArgumentTypeError(f""Timeout '{value}' must be a number."")
+    if timeout <= 0:
+        raise ArgumentTypeError(
+            f""Timeout '{value}' must be greater than 0.0s."")
+    return timeout",Bare Except Catch Block,absolute,Y
+sqlmap,/home/r4ph/desenv/exception-miner/projects/py/sqlmap/lib/core/common.py,parseJson,"def parseJson(content):
+    """"""
+    This function parses POST_HINT.JSON and POST_HINT.JSON_LIKE content
+
+    >>> parseJson(""{'id':1}"")[""id""] == 1
+    True
+    >>> parseJson('{""id"":1}')[""id""] == 1
+    True
+    """"""
+
+    quote = None
+    retVal = None
+
+    for regex in (r""'[^']+'\s*:"", r'""[^""]+""\s*:'):
+        match = re.search(regex, content)
+        if match:
+            quote = match.group(0)[0]
+
+    try:
+        if quote == '""':
+            retVal = json.loads(content)
+        elif quote == ""'"":
+            content = content.replace('""', '\\""')
+            content = content.replace(""\\'"", BOUNDARY_BACKSLASH_MARKER)
+            content = content.replace(""'"", '""')
+            content = content.replace(BOUNDARY_BACKSLASH_MARKER, ""'"")
+            retVal = json.loads(content)
+    except:
+        pass
+
+    return retVal",Bare Except Catch Block,absolute,Y
+archivebox,/home/r4ph/desenv/exception-miner/projects/py/archivebox/deb_dist/archivebox-0.5.4/debian/archivebox/usr/lib/python3/dist-packages/archivebox/index/__init__.py,search_filter,"def search_filter(snapshots: QuerySet, filter_patterns: List[str], filter_type: str='search') -> QuerySet:
+    if not search_backend_enabled():
+        stderr()
+        stderr(
+                '[X] The search backend is not enabled, set config.USE_SEARCHING_BACKEND = True',
+                color='red',
+            )
+        raise SystemExit(2)
+    from core.models import Snapshot
+
+    qsearch = Snapshot.objects.none()
+    for pattern in filter_patterns:
+        try:
+            qsearch |= query_search_index(pattern)
+        except:
+            raise SystemExit(2)
+    
+    return snapshots & qsearch",Bare Except Catch Block,absolute,Y
+xx-net,/home/r4ph/desenv/exception-miner/projects/py/xx-net/code/default/launcher/web_control.py,req_config_handler,"def req_config_handler(self):
+        req = urlparse(self.path).query
+        reqs = parse_qs(req, keep_blank_values=True)
+        reqs = self.unpack_reqs(reqs)
+        data = ''
+
+        if reqs['cmd'] == 'get_config':
+
+            if module_init.xargs.get(""allow_remote"", 0):
+                allow_remote_connect = 1
+            else:
+                allow_remote_connect = config.allow_remote_connect
+
+            dat = {
+                ""platform"": sys_platform.platform,
+                ""check_update"": config.check_update,
+                ""language"": config.language or i18n_translator.lang,
+                ""popup_webui"": config.popup_webui,
+                ""allow_remote_connect"": allow_remote_connect,
+                ""allow_remote_switch"": config.allow_remote_connect,
+                ""show_systray"": config.show_systray,
+                ""show_android_notification"": config.show_android_notification,
+                ""auto_start"": config.auto_start,
+                ""show_detail"": config.gae_show_detail,
+                ""gae_proxy_enable"": config.enable_gae_proxy,
+                ""x_tunnel_enable"": config.enable_x_tunnel,
+                ""smart_router_enable"": config.enable_smart_router,
+                ""system-proxy"": config.os_proxy_mode,
+                ""show-compat-suggest"": config.show_compat_suggest,
+                ""no_mess_system"": config.no_mess_system,
+                ""keep_old_ver_num"": config.keep_old_ver_num,
+                ""postUpdateStat"": config.postUpdateStat,
+            }
+            data = json.dumps(dat)
+        elif reqs['cmd'] == 'set_config':
+            if 'skip_version' in reqs:
+                skip_version = reqs['skip_version']
+                skip_version_type = reqs['skip_version_type']
+                if skip_version_type not in [""stable"", ""test""]:
+                    data = '{""res"":""fail""}'
+                else:
+                    setattr(config, ""skip_%s_version"" % skip_version_type, skip_version)
+                    config.save()
+                    if skip_version in update_from_github.update_info:
+                        update_from_github.update_info = ''
+                    data = '{""res"":""success""}'
+            elif 'check_update' in reqs:
+                check_update = reqs['check_update']
+                if check_update not in [""dont-check"", ""stable"", ""notice-stable"", ""test"", ""notice-test""]:
+                    data = '{""res"":""fail, check_update:%s""}' % check_update
+                else:
+                    if config.check_update != check_update:
+                        update_from_github.init_update_info(check_update)
+                        config.check_update = check_update
+                        config.save()
+
+                    data = '{""res"":""success""}'
+            elif 'language' in reqs:
+                language = reqs['language']
+
+                if language not in valid_language:
+                    data = '{""res"":""fail, language:%s""}' % language
+                else:
+                    config.language = language
+                    config.save()
+
+                    i18n_translator.lang = language
+                    self.load_module_menus()
+
+                    data = '{""res"":""success""}'
+            elif 'popup_webui' in reqs:
+                popup_webui = int(reqs['popup_webui'])
+                if popup_webui != 0 and popup_webui != 1:
+                    data = '{""res"":""fail, popup_webui:%s""}' % popup_webui
+                else:
+                    config.popup_webui = popup_webui
+                    config.save()
+
+                    data = '{""res"":""success""}'
+            elif 'allow_remote_switch' in reqs:
+                allow_remote_switch = int(reqs['allow_remote_switch'])
+                if allow_remote_switch != 0 and allow_remote_switch != 1:
+                    data = '{""res"":""fail, allow_remote_connect:%s""}' % allow_remote_switch
+                else:
+
+                    try:
+                        del module_init.xargs[""allow_remote""]
+                    except:
+                        pass
+
+                    if allow_remote_switch:
+                        module_init.call_each_module(""set_bind_ip"", {
+                            ""ip"": ""0.0.0.0""
+                        })
+                    else:
+                        module_init.call_each_module(""set_bind_ip"", {
+                            ""ip"": ""127.0.0.1""
+                        })
+
+                    config.allow_remote_connect = allow_remote_switch
+                    config.save()
+
+                    xlog.debug(""restart web control."")
+                    stop()
+                    module_init.stop_all()
+                    time.sleep(1)
+                    start(allow_remote_switch)
+                    module_init.start_all_auto()
+
+                    xlog.debug(""launcher web control restarted."")
+                    data = '{""res"":""success""}'
+            elif 'show_systray' in reqs:
+                show_systray = int(reqs['show_systray'])
+                if show_systray != 0 and show_systray != 1:
+                    data = '{""res"":""fail, show_systray:%s""}' % show_systray
+                else:
+                    config.show_systray = show_systray
+                    config.save()
+
+                    data = '{""res"":""success""}'
+            elif 'show_android_notification' in reqs:
+                show_android_notification = int(reqs['show_android_notification'])
+                if show_android_notification != 0 and show_android_notification != 1:
+                    data = '{""res"":""fail, show_systray:%s""}' % show_android_notification
+                else:
+                    config.show_android_notification = show_android_notification
+                    config.save()
+
+                    data = '{""res"":""success""}'
+            elif 'show_compat_suggest' in reqs:
+                show_compat_suggest = int(reqs['show_compat_suggest'])
+                if show_compat_suggest != 0 and show_compat_suggest != 1:
+                    data = '{""res"":""fail, show_compat_suggest:%s""}' % show_compat_suggest
+                else:
+                    config.show_compat_suggest = show_compat_suggest
+                    config.save()
+
+                    data = '{""res"":""success""}'
+            elif 'no_mess_system' in reqs:
+                no_mess_system = int(reqs['no_mess_system'])
+                if no_mess_system != 0 and no_mess_system != 1:
+                    data = '{""res"":""fail, no_mess_system:%s""}' % no_mess_system
+                else:
+                    config.no_mess_system = no_mess_system
+                    config.save()
+
+                    data = '{""res"":""success""}'
+            elif 'keep_old_ver_num' in reqs:
+                keep_old_ver_num = int(reqs['keep_old_ver_num'])
+                if keep_old_ver_num < 0 or keep_old_ver_num > 99:
+                    data = '{""res"":""fail, keep_old_ver_num:%s not in range 0 to 99""}' % keep_old_ver_num
+                else:
+                    config.keep_old_ver_num = keep_old_ver_num
+                    config.save()
+
+                    data = '{""res"":""success""}'
+            elif 'auto_start' in reqs:
+                auto_start = int(reqs['auto_start'])
+                if auto_start != 0 and auto_start != 1:
+                    data = '{""res"":""fail, auto_start:%s""}' % auto_start
+                else:
+                    if auto_start:
+                        autorun.enable()
+                    else:
+                        autorun.disable()
+
+                    config.auto_start = auto_start
+                    config.save()
+
+                    data = '{""res"":""success""}'
+            elif 'show_detail' in reqs:
+                show_detail = int(reqs['show_detail'])
+                if show_detail != 0 and show_detail != 1:
+                    data = '{""res"":""fail, show_detail:%s""}' % show_detail
+                else:
+                    config.gae_show_detail = show_detail
+                    config.save()
+
+                    data = '{""res"":""success""}'
+            elif 'gae_proxy_enable' in reqs:
+                gae_proxy_enable = int(reqs['gae_proxy_enable'])
+                if gae_proxy_enable != 0 and gae_proxy_enable != 1:
+                    data = '{""res"":""fail, gae_proxy_enable:%s""}' % gae_proxy_enable
+                else:
+                    config.enable_gae_proxy = gae_proxy_enable
+                    config.save()
+                    if gae_proxy_enable:
+                        module_init.start(""gae_proxy"")
+                    else:
+                        module_init.stop(""gae_proxy"")
+
+                    if config.enable_smart_router:
+                        module_init.stop(""smart_router"")
+                        module_init.start(""smart_router"")
+
+                    self.load_module_menus()
+                    data = '{""res"":""success""}'
+            elif 'x_tunnel_enable' in reqs:
+                x_tunnel_enable = int(reqs['x_tunnel_enable'])
+                if x_tunnel_enable != 0 and x_tunnel_enable != 1:
+                    data = '{""res"":""fail, x_tunnel_enable:%s""}' % x_tunnel_enable
+                else:
+                    config.enable_x_tunnel = x_tunnel_enable
+                    config.save()
+                    if x_tunnel_enable:
+                        module_init.start(""x_tunnel"")
+                    else:
+                        module_init.stop(""x_tunnel"")
+                    self.load_module_menus()
+                    data = '{""res"":""success""}'
+            elif 'smart_router_enable' in reqs:
+                smart_router_enable = int(reqs['smart_router_enable'])
+                if smart_router_enable != 0 and smart_router_enable != 1:
+                    data = '{""res"":""fail, smart_router_enable:%s""}' % smart_router_enable
+                else:
+                    config.enable_smart_router = smart_router_enable
+                    config.save()
+                    if smart_router_enable:
+                        module_init.start(""smart_router"")
+                    else:
+                        module_init.stop(""smart_router"")
+                    self.load_module_menus()
+                    data = '{""res"":""success""}'
+            elif 'postUpdateStat' in reqs:
+                postUpdateStat = reqs['postUpdateStat']
+                if postUpdateStat not in [""noChange"", ""isNew"", ""isPostUpdate""]:
+                    data = '{""res"":""fail, postUpdateStat:%s""}' % postUpdateStat
+                else:
+                    config.postUpdateStat = postUpdateStat
+                    config.save()
+                    data = '{""res"":""success""}'
+            else:
+                data = '{""res"":""fail""}'
+        elif reqs['cmd'] == 'get_version':
+            current_version = update_from_github.current_version()
+            data = '{""current_version"":""%s""}' % current_version
+
+        self.send_response('text/html', data)",Bare Except Catch Block,absolute,Y
+pyspider,/home/r4ph/desenv/exception-miner/projects/py/pyspider/pyspider/libs/pprint.py,_safe_repr,"def _safe_repr(object, context, maxlevels, level):
+    typ = _type(object)
+    if typ is str:
+        string = object
+        string = string.replace('\n', '\\n').replace('\r', '\\r').replace('\t', '\\t')
+        if 'locale' not in _sys.modules:
+            return repr(object), True, False
+        if ""'"" in object and '""' not in object:
+            closure = '""'
+            quotes = {'""': '\\""'}
+            string = string.replace('""', '\\""')
+        else:
+            closure = ""'""
+            quotes = {""'"": ""\\'""}
+            string = string.replace(""'"", ""\\'"")
+        try:
+            string.decode('utf8').encode('gbk', 'replace')
+            return (""%s%s%s"" % (closure, string, closure)), True, False
+        except:
+            pass
+        qget = quotes.get
+        sio = StringIO()
+        write = sio.write
+        for char in object:
+            if char.isalpha():
+                write(char)
+            else:
+                write(qget(char, repr(char)[1:-1]))
+        return (""%s%s%s"" % (closure, sio.getvalue(), closure)), True, False
+
+    if typ is six.text_type:
+        string = object.encode(""utf8"", 'replace')
+        string = string.replace('\n', '\\n').replace('\r', '\\r').replace('\t', '\\t')
+        if ""'"" in object and '""' not in object:
+            closure = '""'
+            quotes = {'""': '\\""'}
+            string = string.replace('""', '\\""')
+        else:
+            closure = ""'""
+            quotes = {""'"": ""\\'""}
+            string = string.replace(""'"", ""\\'"")
+        return (""u%s%s%s"" % (closure, string, closure)), True, False
+
+    r = getattr(typ, ""__repr__"", None)
+    if issubclass(typ, dict) and r is dict.__repr__:
+        if not object:
+            return ""{}"", True, False
+        objid = _id(object)
+        if maxlevels and level >= maxlevels:
+            return ""{...}"", False, objid in context
+        if objid in context:
+            return _recursion(object), False, True
+        context[objid] = 1
+        readable = True
+        recursive = False
+        components = []
+        append = components.append
+        level += 1
+        saferepr = _safe_repr
+        for k, v in _sorted(object.items()):
+            krepr, kreadable, krecur = saferepr(k, context, maxlevels, level)
+            vrepr, vreadable, vrecur = saferepr(v, context, maxlevels, level)
+            append(""%s: %s"" % (krepr, vrepr))
+            readable = readable and kreadable and vreadable
+            if krecur or vrecur:
+                recursive = True
+        del context[objid]
+        return ""{%s}"" % _commajoin(components), readable, recursive
+
+    if (issubclass(typ, list) and r is list.__repr__) or \
+            (issubclass(typ, tuple) and r is tuple.__repr__):
+        if issubclass(typ, list):
+            if not object:
+                return ""[]"", True, False
+            format = ""[%s]""
+        elif _len(object) == 1:
+            format = ""(%s,)""
+        else:
+            if not object:
+                return ""()"", True, False
+            format = ""(%s)""
+        objid = _id(object)
+        if maxlevels and level >= maxlevels:
+            return format % ""..."", False, objid in context
+        if objid in context:
+            return _recursion(object), False, True
+        context[objid] = 1
+        readable = True
+        recursive = False
+        components = []
+        append = components.append
+        level += 1
+        for o in object:
+            orepr, oreadable, orecur = _safe_repr(o, context, maxlevels, level)
+            append(orepr)
+            if not oreadable:
+                readable = False
+            if orecur:
+                recursive = True
+        del context[objid]
+        return format % _commajoin(components), readable, recursive
+
+    rep = repr(object)
+    return rep, (rep and not rep.startswith('<')), False",Bare Except Catch Block,absolute,Y
+transformers,/home/r4ph/desenv/exception-miner/projects/py/transformers/src/transformers/modeling_tf_utils.py,load_tf_shard,"def load_tf_shard(model, model_layer_map, resolved_archive_file, ignore_mismatched_sizes=False, _prefix=None):
+    """"""
+    Loads a shard from a sharded checkpoint file. Handles the missing keys and unexpected keys.
+
+    Args:
+        model (`tf.keras.models.Model`): Model in which the weights are loaded
+        model_layer_map (`Dict`): A dictionary mapping the layer name to the index of the layer in the model.
+        resolved_archive_file (`str`): Path to the checkpoint file from which the weights will be loaded
+        ignore_mismatched_sizes (`bool`, *optional*, defaults to `False`): Whether to ignore the mismatched keys
+
+    Returns:
+        `tf.keras.models.Model`: Three lists, one for the layers that were found and succesfully restored (from the
+        shard file), one for the mismatched layers, and another one for the unexpected layers.
+    """"""
+    saved_weight_names_set = set()
+    saved_weights = {}
+    mismatched_keys = set()
+    unexpected_keys = set()
+    # Read the H5 file
+    try:
+        with h5py.File(resolved_archive_file, ""r"") as sharded_checkpoint_file:
+            # Retrieve the name of each layer from the H5 file
+            saved_h5_model_layers_name = set(
+                hdf5_format.load_attributes_from_hdf5_group(sharded_checkpoint_file, ""layer_names"")
+            )
+            weight_value_tuples = []
+
+            # Compute missing and unexpected sub layers
+            # Store the weights in list of tuples that looks like [(weight_object, value_of_weight),...]
+            for layer_name in saved_h5_model_layers_name:
+                h5_layer_object = sharded_checkpoint_file[layer_name]
+                saved_weights[layer_name] = np.asarray(h5_layer_object)
+
+                saved_weight_names_set.add(layer_name)
+
+                if layer_name not in model_layer_map:
+                    unexpected_keys.add(layer_name)
+                else:
+                    symbolic_weight = model.weights[model_layer_map[layer_name]]
+
+                    saved_weight_value = saved_weights[layer_name]
+                    # If the current weight is found
+                    if saved_weight_value is not None:
+                        # Check if the shape of the current weight and the one from the H5 file are different
+                        if K.int_shape(symbolic_weight) != saved_weight_value.shape:
+                            # If yes we reshape the weight from the H5 file accordingly to the current weight
+                            # If the two shapes are not compatible we raise an issue
+                            try:
+                                array = np.reshape(saved_weight_value, K.int_shape(symbolic_weight))
+                            except ValueError as e:
+                                if ignore_mismatched_sizes:
+                                    mismatched_keys.add(
+                                        (layer_name, saved_weight_value.shape, K.int_shape(symbolic_weight))
+                                    )
+                                    continue
+                                else:
+                                    raise e
+                        else:
+                            array = saved_weight_value
+
+                    # We create the tuple that will be loaded and add it to the final list
+                    weight_value_tuples.append((symbolic_weight, array))
+
+        K.batch_set_value(weight_value_tuples)
+
+        return saved_weight_names_set, unexpected_keys, mismatched_keys
+
+    except Exception as e:
+        try:
+            with open(resolved_archive_file) as f:
+                if f.read().startswith(""version""):
+                    raise OSError(
+                        ""You seem to have cloned a repository without having git-lfs installed. Please install ""
+                        ""git-lfs and run `git lfs install` followed by `git lfs pull` in the folder ""
+                        ""you cloned.""
+                    )
+                else:
+                    raise ValueError(
+                        f""Unable to locate the file {resolved_archive_file} which is necessary to load this pretrained""
+                        "" model. Make sure you have saved the model properly.""
+                    ) from e
+        except (UnicodeDecodeError, ValueError):
+            raise OSError(
+                f""Unable to load weights from TF checkpoint file for '{resolved_archive_file}' ""
+                f""at '{resolved_archive_file}'. ""
+                ""If you tried to load a TF model from a sharded checkpoint, you should try converting the model""
+                ""by loading it in pytorch and saving it localy. A convertion script should be realeased soon.""
+            )",Nested Try-Except Blocks,absolute,Y
