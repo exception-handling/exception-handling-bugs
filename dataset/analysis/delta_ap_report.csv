@@ -1,0 +1,8 @@
+anti_pattern,column,introduced,removed,increased,decreased,unchanged,net
+Bare Except Catch Block,n_bare_except,258,237,4,2,111,21
+Too Broad Except,n_generic_except,1282,1197,34,18,904,85
+Too Broad Raising,n_captures_broad_raise,234,223,15,8,27,11
+Swallowing Exceptions,n_try_pass,1057,985,17,14,274,72
+Bare Raise inside Finally,n_bare_raise_finally,0,0,0,0,1,0
+Bare Raise Block,n_captures_misplaced_bare_raise,10,14,0,0,1,-4
+Nested Try-Except Blocks,n_nested_try,6,5,0,0,11,1
