@@ -74,7 +74,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
         raise MultipleSymbolsFoundForFuzzySymbol(
             symbol=symbol,
             options=self.retrieve_all(owner.sid for owner in owners),
-        )",,
+        )",Y,
 2,pytorch-lightning,pytorch-lightning/src/lightning/app/core/api.py,post_state,raise,"raise Exception(""Missing X-Lightning-Session-UUID header"")","async def post_state(
     request: Request,
     response: Response,
@@ -110,7 +110,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
         deep_diff = DeepDiff(last_state, state, verbose_level=2)
     assert api_app_delta_queue is not None
     api_app_delta_queue.put(_DeltaRequest(delta=Delta(deep_diff)))
-    return None",,
+    return None",Y,
 3,zipline,zipline/zipline/testing/core.py,patched_read_csv,raise,"raise AssertionError(
                 'attempted to call read_csv on  %r which not in the url map' %
                 filepath_or_buffer,
@@ -123,7 +123,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
             raise AssertionError(
                 'attempted to call read_csv on  %r which not in the url map' %
                 filepath_or_buffer,
-            )",,
+            )",Y,
 4,serverless-application-model,serverless-application-model/samtranslator/model/sam_resources.py,_validate_package_type_image,raise,"raise InvalidResourceException(
                     lambda_function.logical_id,
                     f""Runtime, Handler, Layers cannot be present when PackageType is of type `{IMAGE}`"",
@@ -137,7 +137,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
                 raise InvalidResourceException(
                     lambda_function.logical_id,
                     f""ImageUri needs to be present when PackageType is of type `{IMAGE}`"",
-                )",,
+                )",Y,
 5,tensorlayer,tensorlayer/tensorlayer/nlp.py,sample,try-except,"try:
         if temperature == 1:
             return np.argmax(np.random.multinomial(1, a, 1))
@@ -205,7 +205,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
         warnings.warn(message, Warning)
         # tl.logging.info(a)
         # tl.logging.info(b)
-        return np.argmax(np.random.multinomial(1, b, 1))",,
+        return np.argmax(np.random.multinomial(1, b, 1))",Y,
 6,gitsome,gitsome/xonsh/jobs.py,give_terminal_to,try-finally,"try:
             os.tcsetpgrp(FD_STDERR, pgid)
             return True
@@ -256,7 +256,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
         finally:
             if oldmask:
                 # only reset the mask if it is non-empty! See #2989
-                _pthread_sigmask(signal.SIG_SETMASK, oldmask)",,
+                _pthread_sigmask(signal.SIG_SETMASK, oldmask)",Y,
 7,certbot,certbot/certbot-apache/certbot_apache/_internal/tests/dualnode_test.py,test_find_blocks_first_passing,try-except,"try:
                 assertions.assertEqual(block.primary, block.secondary)
             except AssertionError: # pragma: no cover
@@ -281,7 +281,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
             except AssertionError: # pragma: no cover
                 self.fail(""Assertion should have passed"")
             assert assertions.isPassDirective(block.primary) is True
-            assert assertions.isPassDirective(block.secondary) is False",,
+            assert assertions.isPassDirective(block.secondary) is False",Y,
 8,calibre,calibre/src/calibre/web/site_parsers/nytimes.py,json_to_html,try-except,"try:
         data = data['initialData']['data']
     except TypeError:
@@ -305,7 +305,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
             process_paragraph(lines, item)
         elif tn == 'ImageBlock':
             process_image_block(lines, item)
-    return '<html><body>' + '\n'.join(lines) + '</body></html>'",,
+    return '<html><body>' + '\n'.join(lines) + '</body></html>'",Y,
 9,scapy,scapy/scapy/contrib/automotive/scanner/executor.py,scan,try-finally,"try:
                     if not self.enter_state_path(p):
                         log_automotive.error(
@@ -391,7 +391,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
                 break
 
         self.cleanup_state()
-        self.reset_target()",,
+        self.reset_target()",Y,
 10,chalice,chalice/chalice/app.py,lambda_context,raise,"raise RuntimeError(
                 ""Can only access Blueprint.lambda_context if it's registered ""
                 ""to an app.""
@@ -401,7 +401,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
                 ""Can only access Blueprint.lambda_context if it's registered ""
                 ""to an app.""
             )
-        return self._current_app.lambda_context",,
+        return self._current_app.lambda_context",Y,
 11,auto-sklearn,auto-sklearn/autosklearn/pipeline/components/data_preprocessing/feature_type.py,transform,raise,"raise ValueError(
                 ""Cannot call transform on a Datapreprocessor that has not""
                 ""yet been fit. Please check the log files for errors ""
@@ -413,7 +413,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
                 ""yet been fit. Please check the log files for errors ""
                 ""while trying to fit the model.""
             )
-        return self.column_transformer.transform(X)",,
+        return self.column_transformer.transform(X)",Y,
 12,ipython,ipython/IPython/core/formatters.py,__call__,try-except,"try:
                 printer = self.lookup(obj)
             except KeyError:
@@ -442,7 +442,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
                 return method(include=include, exclude=exclude)
             return None
         else:
-            return None",,
+            return None",Y,
 13,tvm,tvm/python/tvm/relay/op/image/image.py,resize3d,raise,"raise NotImplementedError(
             ""dyn.resize3d is not yet implemented, got size"", size, ""and roi"", roi
         )","def resize3d(
@@ -537,7 +537,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
         cubic_exclude,
         extrapolation_value,
         out_dtype,
-    )",,
+    )",Y,
 14,recommenders,recommenders/recommenders/datasets/criteo.py,extract_criteo,raise,"raise Exception(""Attempted Path Traversal in Tar File"")","def extract_criteo(size, compressed_file, path=None):
     """"""Extract Criteo dataset tar.
 
@@ -579,7 +579,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
         safe_extract(tar, extracted_dir)
 
     filename_selector = {""sample"": ""dac_sample.txt"", ""full"": ""train.txt""}
-    return os.path.join(extracted_dir, filename_selector[size])",,
+    return os.path.join(extracted_dir, filename_selector[size])",Y,
 15,powerline,powerline/powerline/lint/checks.py,listed_key,try-except,"try:
 				return [d[k]]
 			except KeyError:
@@ -587,14 +587,14 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
 			try:
 				return [d[k]]
 			except KeyError:
-				return []",,
+				return []",Y,
 16,auto-sklearn,auto-sklearn/autosklearn/pipeline/components/regression/sgd.py,predict,raise,raise NotImplementedError(),"def predict(self, X):
         if self.estimator is None:
             raise NotImplementedError()
         Y_pred = self.estimator.predict(X)
-        return self.scaler.inverse_transform(Y_pred)",,
+        return self.scaler.inverse_transform(Y_pred)",Y,
 17,discord.py,discord.py/discord/template.py,__getattr__,raise,raise AttributeError(f'PartialTemplateState does not support {attr!r}.'),"def __getattr__(self, attr):
-        raise AttributeError(f'PartialTemplateState does not support {attr!r}.')",,
+        raise AttributeError(f'PartialTemplateState does not support {attr!r}.')",Y,
 18,gym,gym/gym/envs/toy_text/frozen_lake.py,_render_gui,raise,"raise DependencyNotInstalled(
                 ""pygame is not installed, run `pip install gym[toy_text]`""
             )","def _render_gui(self, mode):
@@ -693,7 +693,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
         elif mode == ""rgb_array"":
             return np.transpose(
                 np.array(pygame.surfarray.pixels3d(self.window_surface)), axes=(1, 0, 2)
-            )",,
+            )",Y,
 19,python-prompt-toolkit,python-prompt-toolkit/src/prompt_toolkit/output/windows10.py,is_win_vt100_enabled,try-finally,"try:
         # Try to enable VT100 sequences.
         result: int = windll.kernel32.SetConsoleMode(
@@ -724,7 +724,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
 
         return result == 1
     finally:
-        windll.kernel32.SetConsoleMode(hconsole, original_mode)",,
+        windll.kernel32.SetConsoleMode(hconsole, original_mode)",Y,
 20,unilm,unilm/edgelm/fairseq/data/token_block_dataset.py,_build_slice_indices,raise,"raise ImportError(
                 ""Please build Cython components with: `pip install --editable .` ""
                 ""or `python setup.py build_ext --inplace`""
@@ -784,7 +784,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
         slice_indices = slice_indices.astype(slice_indices_dtype)
         _sizes = _sizes.astype(size_dtype)
         block_to_dataset_index = block_to_dataset_index.astype(slice_indices_dtype)
-        return _sizes, block_to_dataset_index, slice_indices",,
+        return _sizes, block_to_dataset_index, slice_indices",Y,
 21,borg,borg/src/borg/archive.py,process_file,try-except,"try:
                     if hl_chunks is not None:  # create_helper gave us chunks from a previous hardlink
                         item.chunks = []
@@ -967,7 +967,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
                         cache.chunk_decref(chunk.id, self.stats, wait=False)
                     # Now that we have cleaned up the chunk references, we can re-raise the exception.
                     # This will skip processing of this file, but might retry or continue with the next one.
-                    raise",,
+                    raise",Y,
 22,frida,frida/releng/meson/mesonbuild/utils/universal.py,do_define,try-except,"try:
                 v, _ = confdata.get(token)
                 define_value += [str(v)]
@@ -1030,7 +1030,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
     elif isinstance(v, int):
         return '#define %s %d\n' % (varname, v)
     else:
-        raise MesonException('#mesondefine argument ""%s"" is of unknown type.' % varname)",,
+        raise MesonException('#mesondefine argument ""%s"" is of unknown type.' % varname)",Y,
 23,memray,memray/tests/integration/test_main.py,test_live_tracking_server_exits_properly_on_sigint,try-except,"try:
             _, stderr = server.communicate(timeout=TIMEOUT)
         except subprocess.TimeoutExpired:
@@ -1072,7 +1072,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
         assert server.returncode == 0
         assert b""Exception ignored"" not in stderr
         assert b""Traceback (most recent call last):"" not in stderr
-        assert b""Interrupted system call"" not in stderr",,
+        assert b""Interrupted system call"" not in stderr",Y,
 24,django,django/tests/view_tests/tests/test_debug.py,test_highlight_error_position,try-except,"try:
                 raise AttributeError(""Top level"")
             except AttributeError as explicit:
@@ -1144,7 +1144,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
             '    raise IndexError(""Final exception"")\n'
             ""    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"",
             text,
-        )",,
+        )",Y,
 25,paddlehub,paddlehub/paddlehub/commands/run.py,execute,try-except,"try:
                 module = Module.load(module_name)
             except InvalidHubModule:
@@ -1181,7 +1181,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
             result = module._run_func(argv[1:])
 
         print(result)
-        return True",,
+        return True",Y,
 26,mitmproxy,mitmproxy/mitmproxy/addons/dumper.py,format_websocket_error,try-except,"try:
             ret = CloseReason(websocket.close_code).name  # type: ignore
         except ValueError:
@@ -1192,10 +1192,10 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
             ret = f""UNKNOWN_ERROR={websocket.close_code}""
         if websocket.close_reason:
             ret += f"" (reason: {websocket.close_reason})""
-        return ret",,
+        return ret",Y,
 27,networkx,networkx/networkx/tests/test_exceptions.py,test_raises_networkx_no_path,raise,raise nx.NetworkXNoPath,"def test_raises_networkx_no_path():
     with pytest.raises(nx.NetworkXNoPath):
-        raise nx.NetworkXNoPath",,
+        raise nx.NetworkXNoPath",Y,
 28,models,models/research/delf/delf/python/feature_aggregation_similarity.py,_AsmkSimilarity,raise,"raise ValueError('Incorrect input descriptor type: %s' %
                          aggregated_descriptors_1.dtype)","def _AsmkSimilarity(self,
                       aggregated_descriptors_1,
@@ -1288,7 +1288,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
     if self._use_l2_normalization:
       final_similarity /= np.sqrt(num_visual_words_1 * num_visual_words_2)
 
-    return final_similarity",,
+    return final_similarity",Y,
 29,archivebox,archivebox/deb_dist/archivebox-0.5.6/debian/archivebox/usr/lib/python3/dist-packages/archivebox/index/__init__.py,get_present_folders,try-except,"try:
                 link = parse_json_link_details(entry.path)
             except Exception:
@@ -1307,7 +1307,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
 
             all_folders[entry.name] = link
 
-    return all_folders",,
+    return all_folders",Y,
 30,sentry,sentry/src/sentry/incidents/endpoints/organization_incident_comment_details.py,delete,raise,raise ResourceDoesNotExist,"def delete(self, request: Request, organization, incident, activity) -> Response:
         """"""
         Delete a comment
@@ -1320,7 +1320,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
         except IncidentActivity.DoesNotExist:
             raise ResourceDoesNotExist
 
-        return Response(status=204)",,
+        return Response(status=204)",Y,
 31,calibre,calibre/src/calibre/db/lazy.py,pp_getter,try-except,"try:
             return cache[field]
         except KeyError:
@@ -1334,7 +1334,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
             db = dbref()
             cache[field] = ret = postprocess(db.field_for(field, book_id, default_value=default_value))
             return ret
-    return func",,
+    return func",Y,
 32,ray,ray/dashboard/modules/serve/serve_rest_api_impl.py,get_all_deployments,try-except,"try:
                     config = await controller.get_app_config.remote()
                     if config is None:
@@ -1381,7 +1381,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
             return Response(
                 text=json.dumps(config),
                 content_type=""application/json"",
-            )",,
+            )",Y,
 33,unilm,unilm/s2s-ft/s2s_ft/modeling_decoding.py,get_extended_attention_mask,raise,raise NotImplementedError,"def get_extended_attention_mask(self, input_ids, token_type_ids, attention_mask):
         if attention_mask is None:
             attention_mask = torch.ones_like(input_ids)
@@ -1408,7 +1408,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
         extended_attention_mask = extended_attention_mask.to(
             dtype=next(self.parameters()).dtype)  # fp16 compatibility
         extended_attention_mask = (1.0 - extended_attention_mask) * -10000.0
-        return extended_attention_mask",,
+        return extended_attention_mask",Y,
 34,pwntools,pwntools/pwnlib/util/iters.py,roundrobin,try-except,"try:
             for nxt in nexts:
                 yield next(nxt)
@@ -1441,7 +1441,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
                 yield next(nxt)
         except StopIteration:
             pending -= 1
-            nexts = cycle(islice(nexts, pending))",,
+            nexts = cycle(islice(nexts, pending))",Y,
 35,dash,dash/tests/integration/test_integration.py,test_inin017_late_component_register,raise,raise PreventUpdate,"def test_inin017_late_component_register(dash_duo):
     app = Dash()
 
@@ -1461,7 +1461,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
     btn = dash_duo.find_element(""#btn-insert"")
     btn.click()
 
-    dash_duo.find_element(""#inserted-input"")",,
+    dash_duo.find_element(""#inserted-input"")",Y,
 36,ansible,ansible/lib/ansible/playbook/play.py,_load_tasks,raise,"raise AnsibleParserError(""A malformed block was encountered while loading tasks: %s"" % to_native(e), obj=self._ds, orig_exc=e)","def _load_tasks(self, attr, ds):
         '''
         Loads a list of blocks from a list which may be mixed tasks/blocks.
@@ -1470,7 +1470,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
         try:
             return load_list_of_blocks(ds=ds, play=self, variable_manager=self._variable_manager, loader=self._loader)
         except AssertionError as e:
-            raise AnsibleParserError(""A malformed block was encountered while loading tasks: %s"" % to_native(e), obj=self._ds, orig_exc=e)",,
+            raise AnsibleParserError(""A malformed block was encountered while loading tasks: %s"" % to_native(e), obj=self._ds, orig_exc=e)",Y,
 37,theano,theano/theano/gof/type.py,c_literal,raise,"raise MethodNotDefined(""c_literal"", type(self),
                                self.__class__.__name__)","def c_literal(self, data):
         """"""
@@ -1488,7 +1488,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
 
         """"""
         raise MethodNotDefined(""c_literal"", type(self),
-                               self.__class__.__name__)",,
+                               self.__class__.__name__)",Y,
 38,ray,ray/python/ray/serve/scripts.py,deploy,try-except,"try:
             ServeApplicationSchema.parse_obj(config)
             cli_logger.warning(
@@ -1544,7 +1544,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
         ""\nSent deploy request successfully.\n ""
         ""* Use `serve status` to check applications' statuses.\n ""
         ""* Use `serve config` to see the current application config(s).\n""
-    )",,
+    )",Y,
 39,calibre,calibre/src/calibre/ebooks/lrf/meta.py,__set__,raise,"raise LRFException(""Trying to set fixed_stringfield with a "" +
                                ""string of  incorrect length"")","def __set__(self, obj, val):
         if not isinstance(val, string_or_bytes):
@@ -1554,9 +1554,9 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
         if len(val) != self._length:
             raise LRFException(""Trying to set fixed_stringfield with a "" +
                                ""string of  incorrect length"")
-        obj.pack(val, start=self._start, fmt=""<""+str(len(val))+""s"")",,
+        obj.pack(val, start=self._start, fmt=""<""+str(len(val))+""s"")",Y,
 40,statsmodels,statsmodels/statsmodels/stats/power.py,power,raise,raise NotImplementedError,"def power(self, *args, **kwds):
-        raise NotImplementedError",,
+        raise NotImplementedError",Y,
 41,faceswap,faceswap/plugins/train/trainer/_base.py,_print_loss,try-except,"try:
             print(f""\r{output}"", end="""")
         except OSError as err:
@@ -1578,7 +1578,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
             print(f""\r{output}"", end="""")
         except OSError as err:
             logger.warning(""Swallowed OS Error caused by Tensorflow distributed training. output ""
-                           ""line: %s, error: %s"", output, str(err))",,
+                           ""line: %s, error: %s"", output, str(err))",Y,
 42,meshroom,meshroom/meshroom/core/graph.py,GraphModification,try-except,"try:
         yield  # Execute nested block
     except Exception:
@@ -1604,7 +1604,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
         raise
     finally:
         # Restore update policy
-        graph.updateEnabled = enabled",,
+        graph.updateEnabled = enabled",Y,
 43,reddit,reddit/r2/r2/controllers/policies.py,GET_policy_page,try-except,"try:
                 display_rev = WikiRevision.get(requested_rev, wp._id)
             except (tdb_cassandra.NotFound, WikiBadRevision):
@@ -1667,7 +1667,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
         return PolicyPage(
             pagename=pagename,
             content=content,
-        ).render()",,
+        ).render()",Y,
 44,trax,trax/trax/data/text_encoder.py,encode,raise,"raise NotImplementedError(""Image reading not implemented."")","def encode(self, s):
     """"""Transform a string with a filename into a list of RGB integers.
 
@@ -1683,7 +1683,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
       logging.warning(
           ""Reading an image requires matplotlib to be installed: %s"", e)
       raise NotImplementedError(""Image reading not implemented."")
-    return im.imread(s)",,
+    return im.imread(s)",Y,
 45,models,models/official/modeling/multitask/multitask.py,__init__,raise,"raise ValueError(""Duplicated tasks found, task.name is %s"" %
                            task.name)","def __init__(self,
                tasks: Union[Dict[Text, base_task.Task], List[base_task.Task]],
@@ -1717,7 +1717,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
     self._task_weights = task_weights or {}
     self._task_weights = dict([
         (name, self._task_weights.get(name, 1.0)) for name in self.tasks
-    ])",,
+    ])",Y,
 46,qutebrowser,qutebrowser/tests/unit/browser/webkit/http/test_http.py,test_content_disposition_directly_hypothesis,try-except,"try:
         cd = http.ContentDisposition.parse(s)
         cd.filename()
@@ -1728,7 +1728,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
         cd = http.ContentDisposition.parse(s)
         cd.filename()
     except http.ContentDispositionError:
-        pass",,
+        pass",Y,
 47,lightning,lightning/src/lightning/pytorch/utilities/data.py,extract_batch_size,try-except,"try:
         for bs in _extract_batch_size(batch):
             if batch_size is None:
@@ -1767,7 +1767,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
     if batch_size is None:
         raise MisconfigurationException(error_msg)
 
-    return batch_size",,
+    return batch_size",Y,
 48,calibre,calibre/src/calibre/utils/threadpool.py,__init__,try-except,"try:
                 hash(requestID)
             except TypeError:
@@ -1807,7 +1807,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
         self.exc_callback = exc_callback
         self.callable = callable
         self.args = args or []
-        self.kwds = kwds or {}",,
+        self.kwds = kwds or {}",Y,
 49,vaex,vaex/packages/vaex-server/vaex/server/tornado_server.py,mainloop,try-except,"try:
             self.ioloop.start()
         except RuntimeError:
@@ -1832,7 +1832,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
         try:
             self.ioloop.start()
         except RuntimeError:
-            pass",,
+            pass",Y,
 50,bokeh,bokeh/src/bokeh/core/property/datetime.py,validate,try-except,"try:
                 datetime.time.fromisoformat(value)
                 return
@@ -1851,7 +1851,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
                 pass
 
         msg = """" if not detail else f""Expected a time object, or ISO formatted time string, got {value!r}""
-        raise ValueError(msg)",,
+        raise ValueError(msg)",Y,
 51,synapse,synapse/synapse/rest/consent/consent_resource.py,_async_render_POST,try-except,"try:
             await self.store.user_set_consent_version(qualified_user_id, version)
         except StoreError as e:
@@ -1881,7 +1881,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
         try:
             self._render_template(request, ""success.html"")
         except TemplateNotFound:
-            raise NotFoundError(""success.html not found"")",,
+            raise NotFoundError(""success.html not found"")",Y,
 52,archivebox,archivebox/deb_dist/archivebox-0.4.24/build/lib/archivebox/config.py,load_config,try-except,"try:
             extended_config[key] = load_config_val(
                 key,
@@ -1941,16 +1941,16 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
             raise
             raise SystemExit(2)
     
-    return extended_config",,
+    return extended_config",Y,
 53,bokeh,bokeh/tests/unit/bokeh/application/handlers/test_directory.py,load,raise,raise RuntimeError(handler.error),"def load(filename: str):
             handler = bahd.DirectoryHandler(filename=filename)
             result['handler'] = handler
             handler.modify_document(doc)
             if handler.failed:
-                raise RuntimeError(handler.error)",,
+                raise RuntimeError(handler.error)",Y,
 54,numpy,numpy/numpy/distutils/_shell_utils.py,split,raise,raise NotImplementedError,"def split(cmd):
         """""" Split a command line string into a list of arguments """"""
-        raise NotImplementedError",,
+        raise NotImplementedError",Y,
 55,thumbor,thumbor/thumbor/handlers/__init__.py,execute_image_operations,try-except,"try:
                 result = await self.context.modules.result_storage.get()
             except Exception as error:
@@ -2050,7 +2050,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
         await self.filters_runner.apply_filters(
             thumbor.filters.PHASE_PRE_LOAD,
         )
-        await self.get_image()",,
+        await self.get_image()",Y,
 56,keras,keras/keras/layers/merging/concatenate.py,compute_output_shape,raise,"raise ValueError(
                 ""A `Concatenate` layer should be called on a list of inputs. ""
                 f""Received: input_shape={input_shape}""
@@ -2073,7 +2073,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
                 output_shape[self.axis] = None
                 break
             output_shape[self.axis] += shape[self.axis]
-        return tuple(output_shape)",,
+        return tuple(output_shape)",Y,
 57,hanlp,hanlp/hanlp/utils/file_read_backwards/file_read_backwards.py,next,raise,raise StopIteration,"def next(self):
         """"""Returns unicode string from the last line until the beginning of file.
         
@@ -2100,7 +2100,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
             raise StopIteration
         self.__buf.read_until_yieldable()
         r = self.__buf.return_line()
-        return r.decode(self.encoding)",,
+        return r.decode(self.encoding)",Y,
 58,yolov5,yolov5/benchmarks.py,run,try-except,"try:
             assert i not in (9, 10), 'inference not supported'  # Edge TPU and TF.js are unsupported
             assert i != 5 or platform.system() == 'Darwin', 'inference only supported on macOS>=10.13'  # CoreML
@@ -2198,7 +2198,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
         metrics = py['mAP50-95'].array  # values to compare to floor
         floor = eval(hard_fail)  # minimum metric floor to pass, i.e. = 0.29 mAP for YOLOv5n
         assert all(x > floor for x in metrics if pd.notna(x)), f'HARD FAIL: mAP50-95 < floor {floor}'
-    return py",,
+    return py",Y,
 59,seaborn,seaborn/seaborn/external/docscrape.py,__init__,try-except,"try:
                             doc_item = pydoc.getdoc(getattr(self._cls, name))
                             doc_list.append(
@@ -2254,7 +2254,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
                                 Parameter(name, '', splitlines_x(doc_item)))
                         except AttributeError:
                             pass  # method doesn't exist
-                    self[field] = doc_list",,
+                    self[field] = doc_list",Y,
 60,transformers,transformers/src/transformers/utils/doc.py,add_code_sample_docstrings,raise,"raise ValueError(f""Docstring can't be built for model {model_class}"")","def add_code_sample_docstrings(
     *docstr,
     processor_class=None,
@@ -2340,7 +2340,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
         fn.__doc__ = func_doc + output_doc + built_doc
         return fn
 
-    return docstring_decorator",,
+    return docstring_decorator",Y,
 61,awx,awx/awx/main/utils/update_model.py,update_model,try-except,"try:
         with transaction.atomic():
             # Retrieve the model instance.
@@ -2415,7 +2415,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
             return update_model(model, pk, _attempt=_attempt + 1, _max_attempts=_max_attempts, **updates)
         else:
             logger.warning(f'Failed to update {model._meta.object_name} pk={pk} after {_attempt} retries.')
-            raise",,
+            raise",Y,
 62,transformers,transformers/src/transformers/models/table_transformer/modeling_table_transformer.py,__init__,raise,"raise ValueError(""All costs of the Matcher can't be 0"")","def __init__(self, class_cost: float = 1, bbox_cost: float = 1, giou_cost: float = 1):
         super().__init__()
         requires_backends(self, [""scipy""])
@@ -2424,7 +2424,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
         self.bbox_cost = bbox_cost
         self.giou_cost = giou_cost
         if class_cost == 0 and bbox_cost == 0 and giou_cost == 0:
-            raise ValueError(""All costs of the Matcher can't be 0"")",,
+            raise ValueError(""All costs of the Matcher can't be 0"")",Y,
 63,great_expectations,great_expectations/contrib/great_expectations_semantic_types_expectations/great_expectations_semantic_types_expectations/expectations/expect_column_values_url_has_got_valid_cert.py,get_certificate_exp_date,try-except,"try:
         context = ssl.create_default_context()
         conn = socket.create_connection((host, port))
@@ -2450,7 +2450,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
     except Exception:
         return parse(""1900-01-01""), parse(""1900-01-01"")
     finally:
-        sock.close()",,
+        sock.close()",Y,
 64,tornado,tornado/demos/blog/blog.py,post,raise,"raise tornado.web.HTTPError(400, ""author already created"")","async def post(self):
         if await self.any_author_exists():
             raise tornado.web.HTTPError(400, ""author already created"")
@@ -2468,7 +2468,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
             tornado.escape.to_unicode(hashed_password),
         )
         self.set_signed_cookie(""blogdemo_user"", str(author.id))
-        self.redirect(self.get_argument(""next"", ""/""))",,
+        self.redirect(self.get_argument(""next"", ""/""))",Y,
 65,unilm,unilm/deltalm/fairseq/fairseq/file_utils.py,cached_path,raise,"raise EnvironmentError(""file {} not found"".format(url_or_filename))","def cached_path(url_or_filename, cache_dir=None):
     """"""
     Given something that might be a URL (or might be a local path),
@@ -2501,7 +2501,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
         # Something unknown
         raise ValueError(
             ""unable to parse {} as a URL or as a local path"".format(url_or_filename)
-        )",,
+        )",Y,
 66,models,models/research/object_detection/metrics/coco_tools.py,ExportKeypointsToCOCO,raise,"raise ValueError('All entries in detection_classes and detection_scores'
                        'expected to be of rank 1.')","def ExportKeypointsToCOCO(image_ids,
                           detection_keypoints,
@@ -2599,7 +2599,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
   if output_path:
     with tf.gfile.GFile(output_path, 'w') as fid:
       json_utils.Dump(keypoints_export_list, fid, float_digits=4, indent=2)
-  return keypoints_export_list",,
+  return keypoints_export_list",Y,
 67,impacket,impacket/impacket/structure.py,fromString,raise,raise,"def fromString(self, data):
         self.rawData = data
         for field in self.commonHdr+self.structure:
@@ -2622,7 +2622,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
                 size += self.alignment - (size % self.alignment)
             data = data[size:]
 
-        return self",,
+        return self",Y,
 68,horovod,horovod/horovod/torch/mpi_ops.py,_allgather_async,try-except,"try:
         handle = getattr(mpi_lib, function)(
             tensor, output, name.encode() if name is not None else _NULL,
@@ -2637,7 +2637,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
     except RuntimeError as e:
         raise HorovodInternalError(e)
     _handle_map[handle] = (tensor, output)
-    return handle",,
+    return handle",Y,
 69,glances,glances/glances/plugins/glances_gpu.py,msg_curse,try-else,"try:
                 mean_mem = sum(s['mem'] for s in self.stats if s is not None) / len(self.stats)
             except TypeError:
@@ -2753,7 +2753,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
                 msg = '{}: {} mem: {}'.format(id_msg, proc_msg, mem_msg)
                 ret.append(self.curse_add_line(msg))
 
-        return ret",,
+        return ret",Y,
 70,reddit,reddit/r2/r2/models/token.py,revoke,try-except,"try:
                 tba = self._by_user_view()._byID(self.user_id)
                 del tba[self._id]
@@ -2777,7 +2777,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
             else:
                 tba._commit()
 
-        hooks.get_hook(""oauth2.revoke_token"").call(token=self)",,
+        hooks.get_hook(""oauth2.revoke_token"").call(token=self)",Y,
 71,recommenders,recommenders/recommenders/utils/tf_utils.py,build_optimizer,try-except,"try:
         optimizer_class = OPTIMIZERS[name]
     except KeyError:
@@ -2813,9 +2813,9 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
     elif name == ""momentum"" or name == ""rmsprop"":
         params[""momentum""] = kwargs.get(""momentum"", 0.0)
 
-    return optimizer_class(learning_rate=lr, **params)",,
+    return optimizer_class(learning_rate=lr, **params)",Y,
 72,streamlit,streamlit/lib/streamlit/runtime/caching/cache_utils.py,cache_type,raise,raise NotImplementedError,"def cache_type(self) -> CacheType:
-        raise NotImplementedError",,
+        raise NotImplementedError",Y,
 73,openpilot,openpilot/selfdrive/thermald/power_monitoring.py,calculate,try-except,"try:
       now = sec_since_boot()
 
@@ -2907,7 +2907,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
         # Do the integration
         self._perform_integration(now, current_power)
     except Exception:
-      cloudlog.exception(""Power monitoring calculation failed"")",,
+      cloudlog.exception(""Power monitoring calculation failed"")",Y,
 74,pytorch-lightning,pytorch-lightning/src/lightning/pytorch/utilities/deepspeed.py,ds_checkpoint_dir,raise,"raise ValueError(f""Unable to find 'latest' file at {latest_path}"")","def ds_checkpoint_dir(checkpoint_dir: _PATH, tag: str | None = None) -> str:
     if tag is None:
         latest_path = os.path.join(checkpoint_dir, ""latest"")
@@ -2921,7 +2921,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
 
     if not os.path.isdir(directory):
         raise FileNotFoundError(f""Directory '{ds_checkpoint_dir}' doesn't exist"")
-    return directory",,
+    return directory",Y,
 75,scapy,scapy/scapy/tools/automotive/xcpscanner.py,init_socket,try-except,"try:
         sock = CANSocket(scan_params.channel)
     except Exception as e:
@@ -2934,7 +2934,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
         sys.stderr.write(""\nSocket could not be created: "" + str(e) + ""\n"")
         sys.exit(1)
     sock.basecls = XCPOnCAN
-    return sock",,
+    return sock",Y,
 76,mindsdb,mindsdb/mindsdb/integrations/libs/base.py,create,raise,raise NotImplementedError,"def create(self, target: str, df: Optional[pd.DataFrame] = None, args: Optional[Dict] = None) -> None:
         """"""
         Saves a model inside the engine registry for later usage.
@@ -2944,7 +2944,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
 
         Any other arguments required to register the model can be passed in an `args` dictionary.
         """"""
-        raise NotImplementedError",,
+        raise NotImplementedError",Y,
 77,prefect,prefect/src/prefect/client/orchestration.py,reset_concurrency_limit_by_tag,try-except,"try:
             await self._client.post(
                 f""/concurrency_limits/tag/{tag}/reset"",
@@ -2986,7 +2986,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
             if e.response.status_code == status.HTTP_404_NOT_FOUND:
                 raise prefect.exceptions.ObjectNotFound(http_exc=e) from e
             else:
-                raise",,
+                raise",Y,
 78,luigi,luigi/test/contrib/gcs_test.py,setUp,raise,raise,"def setUp(self):
         self.client = gcs.GCSClient(CREDENTIALS)
 
@@ -3002,7 +3002,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
             ATTEMPTED_BUCKET_CREATE = True
 
         self.client.remove(bucket_url(''), recursive=True)
-        self.client.mkdir(bucket_url(''))",,
+        self.client.mkdir(bucket_url(''))",Y,
 79,mlflow,mlflow/mlflow/gateway/utils.py,set_gateway_uri,raise,"raise MlflowException.invalid_parameter_value(
             ""The gateway uri provided is missing required elements. Ensure that the schema ""
             ""and netloc are provided.""
@@ -3022,9 +3022,9 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
         )
 
     global _gateway_uri
-    _gateway_uri = gateway_uri",,
+    _gateway_uri = gateway_uri",Y,
 80,unilm,unilm/deltalm/fairseq/fairseq/model_parallel/megatron/fp16/fp16.py,__setstate__,raise,"raise RuntimeError(""FP16_Optimizer should be deserialized using load_state_dict()."")","def __setstate__(self, state):
-        raise RuntimeError(""FP16_Optimizer should be deserialized using load_state_dict()."")",,
+        raise RuntimeError(""FP16_Optimizer should be deserialized using load_state_dict()."")",Y,
 81,streamlink,streamlink/src/streamlink/plugins/gulli.py,_get_streams,try-except,"try:
                 if "".m3u8"" in video_url:
                     yield from HLSStream.parse_variant_playlist(self.session, video_url).items()
@@ -3077,13 +3077,13 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
             except OSError as err:
                 if ""403 Client Error"" in str(err):
                     log.error(""Failed to access stream, may be due to geo-restriction"")
-                raise",,
+                raise",Y,
 82,deep-learning-for-image-processing,deep-learning-for-image-processing/pytorch_segmentation/u2net/train_utils/distributed_utils.py,mkdir,raise,raise,"def mkdir(path):
     try:
         os.makedirs(path)
     except OSError as e:
         if e.errno != errno.EEXIST:
-            raise",,
+            raise",Y,
 83,jupyterhub,jupyterhub/jupyterhub/orm.py,check_token,raise,"raise ValueError(""Collision on token: %s..."" % token[: cls.prefix_length])","def check_token(cls, db, token):
         """"""Check if a token is acceptable""""""
         if len(token) < cls.min_length:
@@ -3093,7 +3093,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
             )
         found = cls.find(db, token)
         if found:
-            raise ValueError(""Collision on token: %s..."" % token[: cls.prefix_length])",,
+            raise ValueError(""Collision on token: %s..."" % token[: cls.prefix_length])",Y,
 84,pupy,pupy/pupy/packages/windows/all/powershell.py,get_results,raise,raise PowerHostUninitialized(),"def get_results():
     powershell = pupy.manager.get(PowerHost)
     if not powershell:
@@ -3101,7 +3101,7 @@ id,project,file,function,mechanism_type,mechanism_snippet,func_body,is_correct,n
 
     return {
         ctx:results.keys() for ctx, results in powershell.results.iteritems()
-    }",,
+    }",Y,
 85,plotly.py,plotly.py/packages/python/plotly/plotly/_subplots.py,_get_grid_subplot,raise,"raise ValueError(
             """"""
 The col argument to get_subplot must be an integer where 1 <= row <= {cols}
@@ -3167,7 +3167,7 @@ The col argument to get_subplot must be an integer where 1 <= row <= {cols}
 Unexpected subplot type with layout_keys of {}"""""".format(
                 layout_keys
             )
-        )",,
+        )",Y,
 86,nni,nni/nni/nas/oneshot/pytorch/strategy.py,configure_oneshot_module,raise,raise ValueError(f'Invalid temperature: {self.temperature}'),"def configure_oneshot_module(self, training_module: LightningModule) -> BaseOneShotLightningModule:
         if isinstance(self.temperature, float):
             temperature = LinearTemperatureScheduler(self.temperature, self.temperature)
@@ -3188,7 +3188,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
             log_prob_every_n_step=self.log_prob_every_n_step,
             warmup_epochs=self.warmup_epochs,
             penalty=self.penalty
-        )",,
+        )",Y,
 87,transformers,transformers/src/transformers/integrations.py,run_hp_search_wandb,raise,"raise ImportError(""This function needs wandb installed: `pip install wandb`"")","def run_hp_search_wandb(trainer, n_trials: int, direction: str, **kwargs) -> BestRun:
     from .integrations import is_wandb_available
 
@@ -3255,7 +3255,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
     logger.info(f""wandb sweep id - {sweep_id}"")
     wandb.agent(sweep_id, function=_objective, count=n_trials)
 
-    return BestRun(best_trial[""run_id""], best_trial[""objective""], best_trial[""hyperparameters""])",,
+    return BestRun(best_trial[""run_id""], best_trial[""objective""], best_trial[""hyperparameters""])",Y,
 88,zipline,zipline/zipline/assets/assets.py,lookup_generic,raise,"raise NotAssetConvertible(
                 ""Input was not a AssetConvertible ""
                 ""or iterable of AssetConvertible.""
@@ -3326,7 +3326,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
                 missing=missing,
             )
 
-        return matches, missing",,
+        return matches, missing",Y,
 89,celery,celery/t/integration/test_canvas.py,test_chaining_upgraded_chords_starting_with_chord,try-except,"try:
             manager.app.backend.ensure_chords_allowed()
         except NotImplementedError as e:
@@ -3377,7 +3377,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
                 assert sorted(actual) == sorted(expected)
 
         # Cleanup
-        redis_connection.delete(redis_key, 'Done')",,
+        redis_connection.delete(redis_key, 'Done')",Y,
 90,statsmodels,statsmodels/statsmodels/tsa/statespace/initialization.py,__call__,raise,"raise ValueError('Cannot construct initialization representation'
                              ' because not all states have been initialized.')","def __call__(self, index=None, model=None, initial_state_mean=None,
                  initial_diffuse_state_cov=None,
@@ -3511,7 +3511,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
                      initial_stationary_state_cov=initial_stationary_state_cov)
 
         return (initial_state_mean, initial_diffuse_state_cov,
-                initial_stationary_state_cov)",,
+                initial_stationary_state_cov)",Y,
 91,theano,theano/theano/gpuarray/tests/test_dnn.py,test_conv_guess_once_with_dtypes,raise,raise SkipTest(dnn.dnn_available.msg),"def test_conv_guess_once_with_dtypes():
     # This test checks that runtime conv algorithm selection does not raise any exception
     # when consecutive functions with different dtypes and precisions are executed.
@@ -3545,7 +3545,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
         assert 'CUDNN_STATUS_ARCH_MISMATCH' in str(e)
     f_pseudo_half_config()
     f_float_config()
-    f_double_config()",,
+    f_double_config()",Y,
 92,plotly.py,plotly.py/packages/python/plotly/plotly/express/imshow_utils.py,_output_dtype,try-except,"try:
             # if it's a canonical numpy dtype, convert
             return np.dtype(dtype_or_range).type
@@ -3592,7 +3592,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
         raise ValueError(
             ""Incorrect value for out_range, should be a valid image data ""
             ""type or a pair of values, got %s."" % str(dtype_or_range)
-        )",,
+        )",Y,
 93,reddit,reddit/r2/r2/lib/validator/validator.py,run,try-except,"try:
                 cid = int(cid, 36)
                 return Comment._byID(cid, True)
@@ -3603,9 +3603,9 @@ Unexpected subplot type with layout_keys of {}"""""".format(
                 cid = int(cid, 36)
                 return Comment._byID(cid, True)
             except (NotFound, ValueError):
-                pass",,
+                pass",Y,
 94,great_expectations,great_expectations/great_expectations/datasource/data_connector/file_path_data_connector.py,_get_regex_config,raise,raise NotImplementedError,"def _get_regex_config(self, data_asset_name: Optional[str] = None) -> dict:
-        raise NotImplementedError",,
+        raise NotImplementedError",Y,
 95,glances,glances/glances/plugins/glances_gpu.py,exit,try-except,"try:
                 pynvml.nvmlShutdown()
             except Exception as e:
@@ -3618,7 +3618,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
                 logger.debug(""pynvml failed to shutdown correctly ({})"".format(e))
 
         # Call the father exit method
-        super(Plugin, self).exit()",,
+        super(Plugin, self).exit()",Y,
 96,great_expectations,great_expectations/great_expectations/expectations/core/expect_column_values_to_not_be_null.py,_diagnostic_observed_value_renderer,try-except,"try:
             null_percent = result_dict[""unexpected_percent""]
             return (
@@ -3647,7 +3647,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
             return ""unknown % not null""
         except TypeError:
             return ""NaN% not null""
-        return ""--""",,
+        return ""--""",Y,
 97,archivebox,archivebox/deb_dist/archivebox-0.5.4/.pybuild/cpython3_3.8_archivebox/build/archivebox/main.py,schedule,raise,raise SystemExit(1),"def schedule(add: bool=False,
              show: bool=False,
              clear: bool=False,
@@ -3760,7 +3760,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
                     print(result)
             except KeyboardInterrupt:
                 print('\n{green}[√] Stopped.{reset}'.format(**ANSI))
-                raise SystemExit(1)",,
+                raise SystemExit(1)",Y,
 98,synapse,synapse/synapse/federation/federation_client.py,backfill,raise,"raise InvalidResponseError(""transaction_data.pdus is not a list."")","async def backfill(
         self, dest: str, room_id: str, limit: int, extremities: Collection[str]
     ) -> Optional[List[EventBase]]:
@@ -3803,7 +3803,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
             dest, pdus, room_version=room_version
         )
 
-        return pdus",,
+        return pdus",Y,
 99,pysc2,pysc2/pysc2/lib/point.py,__new__,raise,"raise TypeError(
         ""Unexpected arguments to Rect. Takes 1 or 2 Points, or 4 coords."")","def __new__(cls, *args):
     if len(args) == 1 or (len(args) == 2 and args[1] is None):
@@ -3824,7 +3824,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
       # TODO(b/117657518): Remove the disable once the pytype bug is fixed.
       return super(Rect, cls).__new__(cls, *args)  # pytype: disable=missing-parameter
     raise TypeError(
-        ""Unexpected arguments to Rect. Takes 1 or 2 Points, or 4 coords."")",,
+        ""Unexpected arguments to Rect. Takes 1 or 2 Points, or 4 coords."")",Y,
 100,opensnitch,opensnitch/ui/opensnitch/dialogs/firewall_rule.py,_load_ct_statement,try-except,"try:
             if exp.Statement.Values[0].Key == Fw.ExprCt.STATE.value:
                 self.statements[idx]['what'].setCurrentIndex(self.STATM_CT_STATE+1)
@@ -3899,7 +3899,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
 
         except Exception as e:
             print(""_load_ct_statement() exception:"", e)
-            self._set_status_message(e)",,
+            self._set_status_message(e)",Y,
 101,datasette,datasette/datasette/default_magic_parameters.py,random,raise,raise KeyError,"def random(key, request):
     if key.startswith(""chars_"") and key.split(""chars_"")[-1].isdigit():
         num_chars = int(key.split(""chars_"")[-1])
@@ -3909,9 +3909,9 @@ Unexpected subplot type with layout_keys of {}"""""".format(
             urandom_len = num_chars / 2
         return os.urandom(int(urandom_len)).hex()[:num_chars]
     else:
-        raise KeyError",,
+        raise KeyError",Y,
 102,ray,ray/python/ray/train/tests/test_mosaic_trainer.py,fit_start,raise,raise ValueError,"def fit_start(self, state: State, logger: Logger) -> None:
-            raise ValueError",,
+            raise ValueError",Y,
 103,tornado,tornado/tornado/test/iostream_test.py,test_async_read_error_logging,try-finally,"try:
             # Start a read that will be fulfilled asynchronously.
             server.read_bytes(1)
@@ -3950,7 +3950,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
                 yield closed.wait()
         finally:
             server.close()
-            client.close()",,
+            client.close()",Y,
 104,scipy,scipy/scipy/spatial/distance.py,_validate_seuclidean_kwargs,raise,"raise ValueError('Variance vector V must be of the same '
                              'dimension as the vectors on which the distances '
                              'are computed.')","def _validate_seuclidean_kwargs(X, m, n, **kwargs):
@@ -3969,7 +3969,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
                              'dimension as the vectors on which the distances '
                              'are computed.')
     kwargs['V'] = _convert_to_double(V)
-    return kwargs",,
+    return kwargs",Y,
 105,awx,awx/awxkit/awxkit/api/pages/page.py,objectify_response_json,try-except,"try:
         json = response.json()
     except ValueError:
@@ -3984,7 +3984,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
     # TODO: Assess if list elements should be PseudoNamespace
     if isinstance(json, dict):
         return PseudoNamespace(json)
-    return json",,
+    return json",Y,
 106,archivebox,archivebox/deb_dist/archivebox-0.5.6/archivebox/vendor/python-atomicwrites/atomicwrites/__init__.py,_open,try-except,"try:
                     self.rollback(f)
                 except Exception:
@@ -4002,9 +4002,9 @@ Unexpected subplot type with layout_keys of {}"""""".format(
                 try:
                     self.rollback(f)
                 except Exception:
-                    pass",,
+                    pass",Y,
 107,sentry,sentry/src/sentry/plugins/providers/integration_repository.py,get_config,raise,raise NotImplementedError,"def get_config(self, organization):
-        raise NotImplementedError",,
+        raise NotImplementedError",Y,
 108,pydantic,pydantic/pydantic/v1/validators.py,validate_json,raise,raise errors.JsonTypeError(),"def validate_json(v: Any, config: 'BaseConfig') -> Any:
     if v is None:
         # pass None through to other validators
@@ -4014,7 +4014,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
     except ValueError:
         raise errors.JsonError()
     except TypeError:
-        raise errors.JsonTypeError()",,
+        raise errors.JsonTypeError()",Y,
 109,universe,universe/universe/vncdriver/vendor/pydes.py,_padData,raise,"raise ValueError(""Cannot use a pad character with PAD_PKCS5"")","def _padData(self, data, pad, padmode):
 		# Pad data depending on the mode
 		if padmode is None:
@@ -4042,7 +4042,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
 			else:
 				data += bytes([pad_len] * pad_len)
 
-		return data",,
+		return data",Y,
 110,tornado,tornado/tornado/ioloop.py,add_callback,raise,raise NotImplementedError(),"def add_callback(self, callback: Callable, *args: Any, **kwargs: Any) -> None:
         """"""Calls the given callback on the next I/O loop iteration.
 
@@ -4056,7 +4056,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
         To add a callback from a signal handler, see
         `add_callback_from_signal`.
         """"""
-        raise NotImplementedError()",,
+        raise NotImplementedError()",Y,
 111,scipy,scipy/scipy/sparse/tests/test_base.py,wrap,try-except,"try:
                     return fc(*a, **kw)
                 except (NotImplementedError, TypeError, ValueError,
@@ -4070,7 +4070,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
                         IndexError, AttributeError):
                     raise pytest.skip(""feature not implemented"")
 
-            return wrapper",,
+            return wrapper",Y,
 112,nni,nni/nni/tools/nnictl/legacy_launcher.py,set_platform_config,try-except,"try:
             kill_command(rest_process.pid)
         except Exception:
@@ -4097,7 +4097,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
             kill_command(rest_process.pid)
         except Exception:
             raise Exception(ERROR_INFO % 'Rest server stopped!')
-        exit(1)",,
+        exit(1)",Y,
 113,pydantic,pydantic/pydantic/v1/types.py,set_length_validator,raise,raise errors.SetMinLengthError(limit_value=cls.min_items),"def set_length_validator(cls, v: 'Optional[Set[T]]') -> 'Optional[Set[T]]':
         if v is None:
             return None
@@ -4111,7 +4111,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
         if cls.max_items is not None and v_len > cls.max_items:
             raise errors.SetMaxLengthError(limit_value=cls.max_items)
 
-        return v",,
+        return v",Y,
 114,ipython,ipython/IPython/utils/ipstruct.py,__getattr__,try-except,"try:
             result = self[key]
         except KeyError as e:
@@ -4142,7 +4142,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
         except KeyError as e:
             raise AttributeError(key) from e
         else:
-            return result",,
+            return result",Y,
 115,numba,numba/numba/np/linalg.py,_impl,raise,"raise TypingError(
                     ""np.dot() arguments must all have the same dtype"")","def _impl(typingcontext, left, right, out):
             def codegen(context, builder, sig, args):
@@ -4161,7 +4161,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
                 raise TypingError(
                     ""np.dot() arguments must all have the same dtype"")
 
-            return signature(out, left, right, out), codegen",,
+            return signature(out, left, right, out), codegen",Y,
 116,models,models/official/projects/movinet/modeling/movinet_layers.py,call,raise,"raise ValueError('Unknown Squeeze Excitation type {}'.format(
           self._se_type))","def call(self,
            inputs: tf.Tensor,
@@ -4203,7 +4203,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
     x = self._se_reduce(x)
     x = self._se_expand(x)
 
-    return x * inputs, states",,
+    return x * inputs, states",Y,
 117,great_expectations,great_expectations/great_expectations/core/util.py,get_or_create_spark_session,raise,"raise ValueError(""SparkContext stopped unexpectedly."")","def get_or_create_spark_session(
     spark_config: Optional[Dict[str, str]] = None,
 ) -> pyspark.SparkSession | None:
@@ -4249,7 +4249,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
         )
         spark_session = None
 
-    return spark_session",,
+    return spark_session",Y,
 118,fairseq,fairseq/fairseq/checkpoint_utils.py,verify_checkpoint_directory,raise,raise e,"def verify_checkpoint_directory(save_dir: str) -> None:
     if not os.path.exists(save_dir):
         os.makedirs(save_dir, exist_ok=True)
@@ -4263,7 +4263,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
         )
         raise e
     else:
-        os.remove(temp_file_path)",,
+        os.remove(temp_file_path)",Y,
 119,transformers,transformers/src/transformers/models/roberta/modeling_flax_roberta.py,setup,raise,"raise ValueError(
                 ""`config.hidden_size`: {self.config.hidden_size} has to be a multiple of `config.num_attention_heads` ""
                 ""                   : {self.config.num_attention_heads}""
@@ -4294,7 +4294,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
         if self.causal:
             self.causal_mask = make_causal_mask(
                 jnp.ones((1, self.config.max_position_embeddings), dtype=""bool""), dtype=""bool""
-            )",,
+            )",Y,
 120,paddlehub,paddlehub/modules/image/object_detection/yolov3_darknet53_pedestrian/module.py,object_detection,raise,"raise RuntimeError(
                     ""Attempt to use GPU for prediction, but environment variable CUDA_VISIBLE_DEVICES was not set correctly.""
                 )","def object_detection(self,
@@ -4363,7 +4363,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
                                  handle_id=iter_id * batch_size,
                                  visualization=visualization)
             res.extend(output)
-        return res",,
+        return res",Y,
 121,deep-learning-for-image-processing,deep-learning-for-image-processing/pytorch_keypoint/HRNet/train_utils/group_by_aspect_ratio.py,__init__,raise,"raise ValueError(
                 ""sampler should be an instance of ""
                 ""torch.utils.data.Sampler, but got sampler={}"".format(sampler)
@@ -4375,7 +4375,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
             )
         self.sampler = sampler
         self.group_ids = group_ids
-        self.batch_size = batch_size",,
+        self.batch_size = batch_size",Y,
 122,lbry-sdk,lbry-sdk/lbry/extras/daemon/daemon.py,get_channel_or_error,raise,"raise ValueError(f""Couldn't find channel with channel_{key} '{value}'."")","async def get_channel_or_error(
             self, wallet: Wallet, account_ids: List[str], channel_id: str = None,
             channel_name: str = None, for_signing: bool = False) -> Output:
@@ -4402,7 +4402,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
                 f""pass a channel_id to narrow it down.""
             )
         # TODO: use error from lbry.error
-        raise ValueError(f""Couldn't find channel with channel_{key} '{value}'."")",,
+        raise ValueError(f""Couldn't find channel with channel_{key} '{value}'."")",Y,
 123,celery,celery/celery/events/cursesmon.py,draw,try-else,"try:
                     selection = self.state.tasks[self.selected_task]
                 except KeyError:
@@ -4503,7 +4503,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
             self.safe_add_str(my - 2, x, self.help_title, curses.A_BOLD)
             self.safe_add_str(my - 2, x + len(self.help_title), self.help,
                               curses.A_DIM)
-            win.refresh()",,
+            win.refresh()",Y,
 124,xx-net,xx-net/code/default/lib/noarch/front_base/pyopenssl_wrap.py,recv,raise,raise,"def recv(self, bufsiz, flags=0):
         pending = self._connection.pending()
         if pending:
@@ -4520,7 +4520,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
                 return """"
             elif e[0] == 10053 or e[0] == 10054 or e[0] == 10038:
                 return """"
-            raise",,
+            raise",Y,
 125,yolox,yolox/yolox/exp/build.py,get_exp_by_file,raise,"raise ImportError(""{} doesn't contains class named 'Exp'"".format(exp_file))","def get_exp_by_file(exp_file):
     try:
         sys.path.append(os.path.dirname(exp_file))
@@ -4528,7 +4528,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
         exp = current_exp.Exp()
     except Exception:
         raise ImportError(""{} doesn't contains class named 'Exp'"".format(exp_file))
-    return exp",,
+    return exp",Y,
 126,youcompleteme,youcompleteme/python/ycm/tests/test_utils.py,MockVimBuffers,raise,"raise RuntimeError( 'Second parameter must be a list of VimBuffer objects '
                         'representing the window layout.' )","def MockVimBuffers( buffers, window_buffers, cursor_position = ( 1, 1 ) ):
   """"""Simulates the Vim buffers list |buffers| where |current_buffer| is the
@@ -4550,7 +4550,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
       VimTabpage( 1, window_buffers, cursor_position ) ) ) as tabpages:
       with patch( 'vim.windows', tabpages[ 1 ] ) as windows:
         with patch( 'vim.current', VimCurrent( windows[ 0 ] ) ):
-          yield VIM_MOCK",,
+          yield VIM_MOCK",Y,
 127,archivebox,archivebox/deb_dist/archivebox-0.5.4/.pybuild/cpython3_3.8_archivebox/build/archivebox/logging_util.py,log_removal_started,raise,raise SystemExit(0),"def log_removal_started(links: List[""Link""], yes: bool, delete: bool):
     print('{lightyellow}[i] Found {} matching URLs to remove.{reset}'.format(len(links), **ANSI))
     if delete:
@@ -4571,7 +4571,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
         try:
             assert input('    y/[n]: ').lower() == 'y'
         except (KeyboardInterrupt, EOFError, AssertionError):
-            raise SystemExit(0)",,
+            raise SystemExit(0)",Y,
 128,peewee,peewee/peewee.py,prefetch,raise,raise ValueError('Unrecognized arguments: %s' % kwargs),"def prefetch(sq, *subqueries, **kwargs):
     if not subqueries:
         return sq
@@ -4600,7 +4600,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
                 for rel in rel_map[query_model]:
                     rel.populate_instance(instance, deps[rel.model])
 
-    return list(pq.query)",,
+    return list(pq.query)",Y,
 129,mypy,mypy/mypy/plugins/attrs.py,_attribute_from_attrib_maker,try-except,"try:
             un_type = expr_to_unanalyzed_type(type_arg, ctx.api.options, ctx.api.is_stub_file)
         except TypeTranslationError:
@@ -4674,14 +4674,14 @@ Unexpected subplot type with layout_keys of {}"""""".format(
     name = unmangle(lhs.name)
     return Attribute(
         name, ctx.cls.info, attr_has_default, init, kw_only, converter_info, stmt, init_type
-    )",,
+    )",Y,
 130,starlette,starlette/tests/test_exceptions.py,with_headers,raise,"raise HTTPException(status_code=200, headers={""x-potato"": ""always""})","def with_headers(request):
-    raise HTTPException(status_code=200, headers={""x-potato"": ""always""})",,
+    raise HTTPException(status_code=200, headers={""x-potato"": ""always""})",Y,
 131,gitsome,gitsome/tests/mock_github_api.py,raise_mock_unprocessableentity,raise,raise UnprocessableEntity(response),"def raise_mock_unprocessableentity(self):
         response = mock.Mock()
         response.json = lambda: exec('raise(Exception())')
         response.content = 'foobar'
-        raise UnprocessableEntity(response)",,
+        raise UnprocessableEntity(response)",Y,
 132,pupy,pupy/pupy/network/lib/rpc/utils/server.py,_serve_client,try-finally,"try:
             config = dict(self.protocol_config, credentials = credentials,
                 endpoints = (sock.getsockname(), addrinfo), logger = self.logger)
@@ -4704,7 +4704,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
             conn._init_service()
             self._handle_connection(conn)
         finally:
-            self.logger.info(""goodbye %s"", addrinfo)",,
+            self.logger.info(""goodbye %s"", addrinfo)",Y,
 133,youtube-dl,youtube-dl/youtube_dl/extractor/pornhub.py,_real_extract,raise,"raise ExtractorError(
                 'PornHub said: %s' % error_msg,
                 expected=True, video_id=video_id)","def _real_extract(self, url):
@@ -4948,7 +4948,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
             'tags': extract_list('tags'),
             'categories': extract_list('categories'),
             'subtitles': subtitles,
-        }, info)",,
+        }, info)",Y,
 134,unilm,unilm/deltalm/fairseq/tests/test_file_io.py,test_file_io_async,try-finally,"try:
             from fairseq.file_io import IOPathManager, PathManager
             _asyncfile = os.path.join(self._tmpdir, ""async.txt"")
@@ -4965,7 +4965,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
             f.close()
 
         finally:
-            self.assertTrue(PathManager.async_close())",,
+            self.assertTrue(PathManager.async_close())",Y,
 135,scipy,scipy/scipy/special/_precompute/gammainc_data.py,gammaincc,try-except,"try:
                 # mpmath has a fast integer path
                 return mpf2float(mp.gammainc(z, a=a, regularized=True))
@@ -5001,7 +5001,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
                 T1 = [], [1, z-1], [z], G, [], [], 0
                 T2 = [-mp.exp(nega), a, z], [1, z, -1], [], G, [1], [1+z], a
                 return T1, T2
-            return mpf2float(mp.hypercomb(h, [z], maxterms=maxterms))",,
+            return mpf2float(mp.hypercomb(h, [z], maxterms=maxterms))",Y,
 136,falcon,falcon/tests/asgi/test_scheduled_callbacks.py,test_multiple,try-finally,"try:
                 resp.schedule(c)
             finally:
@@ -5072,7 +5072,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
     with pytest.raises(TypeError) as exinfo:
         client.simulate_put()
 
-    assert 'coroutine' in str(exinfo.value)",,
+    assert 'coroutine' in str(exinfo.value)",Y,
 137,boto3,boto3/boto3/resources/factory.py,_create_autoload_property,raise,"raise ResourceLoadException(
                         f'{self.__class__.__name__} has no load method'
                     )","def _create_autoload_property(
@@ -5112,7 +5112,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
             include_signature=False,
         )
 
-        return property(property_loader)",,
+        return property(property_loader)",Y,
 138,frida,frida/releng/meson/mesonbuild/build.py,get_sources_string_names,raise,raise AssertionError(f'Unknown source type: {s!r}'),"def get_sources_string_names(sources, backend):
     '''
     For the specified list of @sources which can be strings, Files, or targets,
@@ -5130,7 +5130,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
             names.append(s.fname)
         else:
             raise AssertionError(f'Unknown source type: {s!r}')
-    return names",,
+    return names",Y,
 139,zulip,zulip/zerver/actions/message_flags.py,do_update_message_flags,raise,"raise JsonableError(_(""Invalid message(s)""))","def do_update_message_flags(
     user_profile: UserProfile, operation: str, flag: str, messages: List[int]
 ) -> int:
@@ -5266,7 +5266,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
             increment=min(1, count),
         )
 
-    return count",,
+    return count",Y,
 140,plotly.py,plotly.py/packages/python/plotly/_plotly_utils/utils.py,default,try-except,"try:
                 return encoding_method(obj)
             except NotEncodable:
@@ -5318,7 +5318,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
                 return encoding_method(obj)
             except NotEncodable:
                 pass
-        return _json.JSONEncoder.default(self, obj)",,
+        return _json.JSONEncoder.default(self, obj)",Y,
 141,ray,ray/python/ray/util/client/worker.py,_get,try-except,"try:
             resp = self._get_object_iterator(req, metadata=self.metadata)
             for chunk in resp:
@@ -5371,7 +5371,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
                 data.extend(chunk.data)
         except grpc.RpcError as e:
             raise decode_exception(e)
-        return loads_from_server(data)",,
+        return loads_from_server(data)",Y,
 142,numba,numba/numba/np/linalg.py,check_c_int,raise,"raise OverflowError(""array size too large to fit in C int"")","def check_c_int(context, builder, n):
     """"""
     Check whether *n* fits in a C `int`.
@@ -5383,7 +5383,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
             raise OverflowError(""array size too large to fit in C int"")
 
     context.compile_internal(builder, impl,
-                             signature(types.none, types.intp), (n,))",,
+                             signature(types.none, types.intp), (n,))",Y,
 143,scrapy,scrapy/scrapy/core/downloader/tls.py,_identityVerifyingInfoCallback,try-except,"try:
                 verifyHostname(connection, self._hostnameASCII)
             except (CertificateError, VerificationError) as e:
@@ -5435,7 +5435,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
                     'from host ""%s"" (exception: %r)',
                     self._hostnameASCII,
                     e,
-                )",,
+                )",Y,
 144,redash,redash/redash/query_runner/__init__.py,with_ssh_tunnel,raise,"raise type(error)(""SSH tunnel: {}"".format(str(error)))","def with_ssh_tunnel(query_runner, details):
     def tunnel(f):
         @wraps(f)
@@ -5476,7 +5476,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
 
     query_runner.run_query = tunnel(query_runner.run_query)
 
-    return query_runner",,
+    return query_runner",Y,
 145,cython,cython/tests/run/test_subclassinit.py,test_init_subclass_error,raise,raise RuntimeError,"def test_init_subclass_error(self):
         class A:
             def __init_subclass__(cls):
@@ -5484,7 +5484,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
 
         with self.assertRaises(RuntimeError):
             class B(A):
-                pass",,
+                pass",Y,
 146,python-prompt-toolkit,python-prompt-toolkit/src/prompt_toolkit/output/vt100.py,responds_to_cpr,try-except,"try:
             return self.stdout.isatty()
         except ValueError:
@@ -5502,7 +5502,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
         try:
             return self.stdout.isatty()
         except ValueError:
-            return False",,
+            return False",Y,
 147,jax,jax/jax/_src/pjit.py,_resolve_in_shardings,raise,"raise ValueError(f'One of the argument to pjit got sharding {arg_s} '
                          'which is not a subclass of XLACompatibleSharding.')","def _resolve_in_shardings(
     args, pjit_in_shardings: Sequence[PjitSharding],
@@ -5591,7 +5591,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
                            f'arg value: {arg}')
       resolved_in_shardings.append(pjit_in_s)
 
-  return tuple(resolved_in_shardings)",,
+  return tuple(resolved_in_shardings)",Y,
 148,kornia,kornia/kornia/augmentation/container/image.py,get_transformation_matrix,try-except,"try:
                     input = module.transform_tensor(input)
                 except ValueError:
@@ -5648,7 +5648,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
                     )
                     mat = module.identity_matrix(input) if _mat is None else _mat
                 res_mat = mat if res_mat is None else mat @ res_mat
-        return res_mat",,
+        return res_mat",Y,
 149,pytorch_geometric,pytorch_geometric/torch_geometric/loader/mixin.py,init_fn,try-except,"try:
                 psutil.Process().cpu_affinity([loader_cores[worker_id]])
             except IndexError:
@@ -5660,7 +5660,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
                 raise ValueError(f""Cannot use CPU affinity for worker ID ""
                                  f""{worker_id} on CPU {loader_cores}"")
 
-            worker_init_fn_old(worker_id)",,
+            worker_init_fn_old(worker_id)",Y,
 150,telethon,telethon/telethon/client/uploads.py,upload_file,raise,raise ValueError('The part size must be less or equal to 512KB'),"async def upload_file(
             self: 'TelegramClient',
             file: 'hints.FileLike',
@@ -5845,7 +5845,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
         else:
             return custom.InputSizedFile(
                 file_id, part_count, file_name, md5=hash_md5, size=file_size
-            )",,
+            )",Y,
 151,pyinstaller,pyinstaller/bootloader/waflib/Build.py,add_manual_dependency,raise,raise ValueError('Could not find the path %r' % path),"def add_manual_dependency(self, path, value):
         if not path:
             raise ValueError('Invalid input path %r' % path)
@@ -5860,7 +5860,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
         if isinstance(value, list):
             self.deps_man[node].extend(value)
         else:
-            self.deps_man[node].append(value)",,
+            self.deps_man[node].append(value)",Y,
 152,tvm,tvm/python/tvm/topi/argwhere.py,argwhere,raise,"raise ValueError(""Does not support rank higher than 5 in argwhere"")","def argwhere(output_shape, condition):
     """"""Find the indices of elements of a tensor that are non-zero.
 
@@ -5884,7 +5884,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
         return hybrid_argwhere_4d(output_shape.shape, condition)
     if len(condition.shape) == 5:
         return hybrid_argwhere_5d(output_shape.shape, condition)
-    raise ValueError(""Does not support rank higher than 5 in argwhere"")",,
+    raise ValueError(""Does not support rank higher than 5 in argwhere"")",Y,
 153,youcompleteme,youcompleteme/third_party/ycmd/third_party/watchdog_deps/watchdog/tests/test_emitter.py,expect_event,raise,raise,"def expect_event(expected_event, timeout=2):
     """""" Utility function to wait up to `timeout` seconds for an `event_type` for `path` to show up in the queue.
 
@@ -5894,7 +5894,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
         event = event_queue.get(timeout=timeout)[0]
         assert event == expected_event
     except Empty:
-        raise",,
+        raise",Y,
 154,theano,theano/theano/gof/opt.py,check_stack_trace,raise,raise ValueError('The string bug_print is not recognised'),"def check_stack_trace(f_or_fgraph, ops_to_check='last', bug_print='raise'):
     """"""
     This function checks if the outputs of specific ops of a compiled graph
@@ -5997,9 +5997,9 @@ Unexpected subplot type with layout_keys of {}"""""".format(
             if (not hasattr(output.tag, 'trace') or not output.tag.trace):
                 return False
 
-    return True",,
+    return True",Y,
 155,loguru,loguru/tests/test_pickling.py,reduce_protocol,raise,"raise TypeError(""Not picklable"")","def reduce_protocol():
-        raise TypeError(""Not picklable"")",,
+        raise TypeError(""Not picklable"")",Y,
 156,tvm,tvm/python/tvm/autotvm/task/task.py,compute_flop,try-except,"try:
             num_iter = int(np.prod([get_const_int(axis.dom.extent) for axis in axes]))
         except ValueError:
@@ -6125,9 +6125,9 @@ Unexpected subplot type with layout_keys of {}"""""".format(
             ""Please use `cfg.add_flop` to manually set ""
             ""FLOP for this operator""
         )
-    return ret",,
+    return ret",Y,
 157,wagtail,wagtail/wagtail/contrib/redirects/tmp_storages.py,save,raise,raise NotImplementedError,"def save(self, data, mode=""w""):
-        raise NotImplementedError",,
+        raise NotImplementedError",Y,
 158,meshroom,meshroom/meshroom/ui/reconstruction.py,start,raise,"raise RuntimeError(""Invalid folder provided: {}"".format(folder))","def start(self, folder, minImagesPerStep):
         """"""
         Start live SfM augmentation.
@@ -6145,7 +6145,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
         self.allImages = self.reconstruction.allImagePaths()
         self.minImagesPerStep = minImagesPerStep
         self.setRunning(True)
-        self.update()",,
+        self.update()",Y,
 159,great_expectations,great_expectations/great_expectations/rule_based_profiler/expectation_configuration_builder/default_expectation_configuration_builder.py,_parse_condition,raise,"raise ExpectationConfigurationConditionParserError(
                 f'Unable to parse Expectation Configuration Condition: ""{self._condition}"".'
             )","def _parse_condition(self) -> ParseResults:
@@ -6161,7 +6161,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
         except ParseException:
             raise ExpectationConfigurationConditionParserError(
                 f'Unable to parse Expectation Configuration Condition: ""{self._condition}"".'
-            )",,
+            )",Y,
 160,reddit,reddit/r2/r2/lib/trending.py,update_trending_subreddits,try-except,"try:
         trending_sr = Subreddit._by_name(g.config['trending_sr'])
     except NotFound:
@@ -6188,7 +6188,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
         'link_id': link._id,
     }
     NamedGlobals.set(TRENDING_SUBREDDITS_KEY, trending_data)
-    g.log.debug(""Trending subreddit data set to %r"", trending_data)",,
+    g.log.debug(""Trending subreddit data set to %r"", trending_data)",Y,
 161,theano,theano/theano/compile/debugmode.py,make_all,try-except,"try:
                 if not self.maker.mode.check_c_code or debug:
                     raise utils.MethodNotDefined()
@@ -6744,7 +6744,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
                  for input, storage in zip(fgraph.inputs, input_storage)],
                 [link.Container(output, storage, readonly=True)
                  for output, storage in zip(fgraph.outputs, output_storage)],
-                thunks_py, order)",,
+                thunks_py, order)",Y,
 162,binwalk,binwalk/setup.py,run,try-except,"try:
             remove_tree(os.path.join(MODULE_DIRECTORY, ""dist""))
         except KeyboardInterrupt as e:
@@ -6763,7 +6763,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
         except KeyboardInterrupt as e:
             raise e
         except Exception:
-            pass",,
+            pass",Y,
 163,cython,cython/Cython/Compiler/Scanning.py,__gt__,try-except,"try:
             return self._cmp_name > other._cmp_name
         except AttributeError:
@@ -6772,7 +6772,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
         try:
             return self._cmp_name > other._cmp_name
         except AttributeError:
-            return False",,
+            return False",Y,
 164,doccano,doccano/backend/auto_labeling/views.py,send_request,raise,raise AWSTokenError(),"def send_request(self, model, example):
         try:
             return model.send(example)
@@ -6783,7 +6783,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
         except json.decoder.JSONDecodeError:
             raise ResponseJSONDecodeError()
         except Exception as e:
-            raise e",,
+            raise e",Y,
 165,localstack,localstack/localstack/aws/api/s3/__init__.py,put_bucket_inventory_configuration,raise,raise NotImplementedError,"def put_bucket_inventory_configuration(
         self,
         context: RequestContext,
@@ -6792,7 +6792,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
         inventory_configuration: InventoryConfiguration,
         expected_bucket_owner: AccountId = None,
     ) -> None:
-        raise NotImplementedError",,
+        raise NotImplementedError",Y,
 166,pandas,pandas/pandas/core/dtypes/base.py,__eq__,try-except,"try:
                 other = self.construct_from_string(other)
             except TypeError:
@@ -6823,7 +6823,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
             return all(
                 getattr(self, attr) == getattr(other, attr) for attr in self._metadata
             )
-        return False",,
+        return False",Y,
 167,pydantic,pydantic/pydantic/_migration.py,getattr_migration,raise,"raise PydanticImportError(
                 '`BaseSettings` has been moved to the `pydantic-settings` package. '
                 f'See https://docs.pydantic.dev/{version_short()}/migration/#basesettings-has-moved-to-pydantic-settings '
@@ -6883,7 +6883,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
             return globals[name]
         raise AttributeError(f'module {__name__!r} has no attribute {name!r}')
 
-    return wrapper",,
+    return wrapper",Y,
 168,vaex,vaex/packages/vaex-core/vaex/dataframe.py,validate_expression,try-except,"try:
             return vaex.expresso.validate_expression(expression, vars, funcs)
         except NameError as e:
@@ -6899,7 +6899,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
         try:
             return vaex.expresso.validate_expression(expression, vars, funcs)
         except NameError as e:
-            raise NameError(str(e)) from None",,
+            raise NameError(str(e)) from None",Y,
 169,loguru,loguru/tests/exceptions/source/ownership/assertion_from_local.py,test,try-except,"try:
         a, b = 1, 2
         assert a == b
@@ -6912,7 +6912,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
         a, b = 1, 2
         assert a == b
     except AssertionError:
-        logger.exception("""")",,
+        logger.exception("""")",Y,
 170,impacket,impacket/tests/dcerpc/test_scmr.py,test_REnumServiceGroupW,try-except,"try:
             resp = scmr.hREnumServiceGroupW(dce, scHandle, dwServiceType, dwServiceState, cbBufSize, lpResumeIndex, pszGroupName )
             resp.dump()
@@ -6935,7 +6935,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
            if str(e).find('ERROR_SERVICE_DOES_NOT_EXISTS') <= 0:
                raise
 
-        scmr.hRCloseServiceHandle(dce, scHandle)",,
+        scmr.hRCloseServiceHandle(dce, scHandle)",Y,
 171,pandas,pandas/pandas/core/frame.py,isin,raise,"raise ValueError(""cannot compute isin with a duplicate axis."")","def isin(self, values: Series | DataFrame | Sequence | Mapping) -> DataFrame:
         """"""
         Whether each element in the DataFrame is contained in values.
@@ -7044,7 +7044,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
                 self.columns,
                 copy=False,
             )
-        return result.__finalize__(self, method=""isin"")",,
+        return result.__finalize__(self, method=""isin"")",Y,
 172,imgaug,imgaug/test/augmenters/test_arithmetic.py,test___init___bad_datatypes,try-except,"try:
             _aug = iaa.AddElementwise(value=1, per_channel=""test"")
         except Exception:
@@ -7062,7 +7062,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
             _aug = iaa.AddElementwise(value=1, per_channel=""test"")
         except Exception:
             got_exception = True
-        assert got_exception",,
+        assert got_exception",Y,
 173,numpy,numpy/vendored-meson/meson/run_project_tests.py,have_objc_compiler,try-except,"try:
             objc_comp = detect_objc_compiler(env, MachineChoice.HOST)
         except mesonlib.MesonException:
@@ -7080,7 +7080,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
             objc_comp.sanity_check(env.get_scratch_dir(), env)
         except mesonlib.MesonException:
             return False
-    return True",,
+    return True",Y,
 174,mitmproxy,mitmproxy/examples/contrib/webscanner_helper/test_mapping.py,mock_dump,try-else,"try:
             value_dumper(""Test"")
         except RuntimeError:
@@ -7093,7 +7093,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
         except RuntimeError:
             assert True
         else:
-            assert False",,
+            assert False",Y,
 175,detectron,detectron/detectron/utils/c2.py,BlobReferenceList,raise,"raise TypeError(
             'blob_ref_or_list must be a BlobReference or a list/tuple of '
             'BlobReferences'
@@ -7109,7 +7109,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
         raise TypeError(
             'blob_ref_or_list must be a BlobReference or a list/tuple of '
             'BlobReferences'
-        )",,
+        )",Y,
 176,kivy,kivy/kivy/lang/builder.py,template,raise,raise Exception('Unknown <%s> template name' % name),"def template(self, *args, **ctx):
         '''Create a specialized template using a specific context.
 
@@ -7139,11 +7139,11 @@ Unexpected subplot type with layout_keys of {}"""""".format(
         # especially relevant to AccordionItem's title_template.
         proxy_ctx = {k: get_proxy(v) for k, v in ctx.items()}
         self._apply_rule(widget, rule, rule, template_ctx=proxy_ctx)
-        return widget",,
+        return widget",Y,
 177,searx,searx/searx/preferences.py,_post_init,raise,raise MissingArgumentException('Missing argument: choices'),"def _post_init(self):
         if not hasattr(self, 'choices'):
             raise MissingArgumentException('Missing argument: choices')
-        self._validate_selections(self.value)",,
+        self._validate_selections(self.value)",Y,
 178,airtest,airtest/airtest/aircv/sift.py,_find_homography,try-else,"try:
         M, mask = cv2.findHomography(sch_pts, src_pts, cv2.RANSAC, 5.0)
     except Exception:
@@ -7166,7 +7166,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
         if mask is None:
             raise HomographyError(""In _find_homography(), find no mask..."")
         else:
-            return M, mask",,
+            return M, mask",Y,
 179,byob,byob/byob/core/loader.py,find_module,try-except,"try:
             file, filename, description = imp.find_module(fullname.split('.')[-1], path)
             if filename:
@@ -7201,7 +7201,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
         self.mod_msg.setdefault(fullname,MsgClass(is_package,final_url,source_code))
         '''
         log(level='info', info= ""[+] Module/Package '%s' can be loaded!"" % fullname)
-        return self",,
+        return self",Y,
 180,jax,jax/jax/_src/api.py,_check_output_dtype_revderiv,raise,"raise TypeError(f""{name} requires real-valued outputs (output dtype that is ""
                     f""a sub-dtype of np.floating), but got {aval.dtype.name}. ""
                     ""For differentiation of functions with integer outputs, use ""
@@ -7224,7 +7224,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
     raise TypeError(f""{name} requires real-valued outputs (output dtype that is ""
                     f""a sub-dtype of np.floating), but got {aval.dtype.name}. ""
                     ""For differentiation of functions with integer outputs, use ""
-                    ""jax.vjp directly."")",,
+                    ""jax.vjp directly."")",Y,
 181,great_expectations,great_expectations/great_expectations/datasource/data_connector/data_connector.py,_validate_batch_request,raise,"raise ValueError(
                 f""""""datasource_name in BatchRequest: ""{batch_request.datasource_name}"" does not match DataConnector datasource_name: ""{self.datasource_name}"".""""""
             )","def _validate_batch_request(self, batch_request: BatchRequestBase) -> None:
@@ -7243,7 +7243,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
         if batch_request.data_connector_name != self.name:
             raise ValueError(
                 f""""""data_connector_name in BatchRequest: ""{batch_request.data_connector_name}"" does not match DataConnector name: ""{self.name}"".""""""
-            )",,
+            )",Y,
 182,xx-net,xx-net/code/default/gae_proxy/local/proxy_handler.py,read_payload,try-except,"try:
                 payload_len = int(self.headers.get(b'Content-Length', 0))
                 #xlog.debug(""payload_len:%d %s %s"", payload_len, self.command, self.path)
@@ -7289,7 +7289,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
                 get_crlf(self.rfile)
 
         self.req_payload = payload
-        return payload",,
+        return payload",Y,
 183,great_expectations,great_expectations/great_expectations/data_context/store/html_site_store.py,_validate_key,raise,"raise TypeError(
                 f""key: {key!r} must be a SiteSectionIdentifier, not {type(key)!r}""
             )","def _validate_key(self, key):
@@ -7314,7 +7314,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
                 set(self.store_backends.keys()),
                 type(key),
             )
-        )",,
+        )",Y,
 184,netbox,netbox/netbox/netbox/models/__init__.py,clean,raise,"raise ValidationError({
                 ""parent"": ""Cannot assign self or child {type} as parent."".format(type=self._meta.verbose_name)
             })","def clean(self):
@@ -7324,7 +7324,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
         if self.pk and self.parent and self.parent in self.get_descendants(include_self=True):
             raise ValidationError({
                 ""parent"": ""Cannot assign self or child {type} as parent."".format(type=self._meta.verbose_name)
-            })",,
+            })",Y,
 185,lightning,lightning/src/lightning/app/storage/drive.py,_find_match,raise,"raise Exception(f""We found several matching files created by multiples components: {matches}."")","def _find_match(self, path: str) -> Optional[pathlib.Path]:
         matches = []
         for component_name in self._collect_component_names():
@@ -7341,7 +7341,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
             matches = [str(pathlib.Path(*pathlib.Path(p).parts[prefix_len:])) for p in matches]
             raise Exception(f""We found several matching files created by multiples components: {matches}."")
 
-        return matches[0]",,
+        return matches[0]",Y,
 186,great_expectations,great_expectations/great_expectations/expectations/metrics/query_metrics/query_multiple_columns.py,_spark,raise,"raise TypeError(""Query must be supplied as a string"")","def _spark(  # noqa: PLR0913
         cls,
         execution_engine: SparkDFExecutionEngine,
@@ -7376,7 +7376,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
         engine: pyspark.SparkSession = execution_engine.spark
         result: List[pyspark.Row] = engine.sql(query).collect()
 
-        return [element.asDict() for element in result]",,
+        return [element.asDict() for element in result]",Y,
 187,scikit-learn,scikit-learn/sklearn/manifold/_t_sne.py,trustworthiness,raise,"raise ValueError(
             f""n_neighbors ({n_neighbors}) should be less than n_samples / 2""
             f"" ({n_samples / 2})""
@@ -7471,7 +7471,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
     t = 1.0 - t * (
         2.0 / (n_samples * n_neighbors * (2.0 * n_samples - 3.0 * n_neighbors - 1.0))
     )
-    return t",,
+    return t",Y,
 188,django,django/django/views/csrf.py,csrf_failure,raise,raise,"def csrf_failure(request, reason="""", template_name=CSRF_FAILURE_TEMPLATE_NAME):
     """"""
     Default view used when request fails CSRF protection
@@ -7529,7 +7529,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
         else:
             # Raise if a developer-specified template doesn't exist.
             raise
-    return HttpResponseForbidden(t.render(c))",,
+    return HttpResponseForbidden(t.render(c))",Y,
 189,ray,ray/python/ray/air/_internal/torch_utils.py,get_tensor_for_columns,raise,"raise ValueError(
                     f""Failed to convert column {col} to a Torch Tensor of dtype ""
                     f""{dtype}. See above exception chain for the exact failure.""
@@ -7558,12 +7558,12 @@ Unexpected subplot type with layout_keys of {}"""""".format(
             feature_tensor = torch.cat(feature_tensors, dim=1)
         else:
             feature_tensor = feature_tensors[0]
-        return feature_tensor",,
+        return feature_tensor",Y,
 190,numba,numba/numba/cuda/codegen.py,get_function,raise,raise KeyError(f'Function {name} not found'),"def get_function(self, name):
         for fn in self._module.functions:
             if fn.name == name:
                 return fn
-        raise KeyError(f'Function {name} not found')",,
+        raise KeyError(f'Function {name} not found')",Y,
 191,ansible,ansible/lib/ansible/plugins/connection/ssh.py,_ssh_retry,raise,raise,"def _ssh_retry(func):
     """"""
     Decorator to retry ssh/scp/sftp in the case of a connection failure
@@ -7640,7 +7640,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
                     continue
 
         return return_tuple
-    return wrapped",,
+    return wrapped",Y,
 192,magenta,magenta/magenta/models/onsets_frames_transcription/infer.py,model_inference,raise,"raise ValueError(
             'All predictions must have batch size 1, but shape of '
             '{} was: {}'.format(k, + predictions[k].shape[0]))","def model_inference(model_fn,
@@ -7765,7 +7765,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
       final_scalar_name = 'final/' + k
       metric_summary = tf.summary.scalar(final_scalar_name, np.mean(v))
       summary_writer.add_summary(metric_summary.eval())
-    summary_writer.flush()",,
+    summary_writer.flush()",Y,
 193,deepfacelab,deepfacelab/core/leras/ops/__init__.py,sd,raise,"raise Exception(""style_loss() content_nc != style_nc"")","def sd(content, style, loss_weight):
         content_nc = content.shape[ nn.conv2d_ch_axis ]
         style_nc = style.shape[nn.conv2d_ch_axis]
@@ -7776,10 +7776,10 @@ Unexpected subplot type with layout_keys of {}"""""".format(
         c_std, s_std = tf.sqrt(c_var + 1e-5), tf.sqrt(s_var + 1e-5)
         mean_loss = tf.reduce_sum(tf.square(c_mean-s_mean), axis=[1,2,3])
         std_loss  = tf.reduce_sum(tf.square(c_std-s_std), axis=[1,2,3])
-        return (mean_loss + std_loss) * ( loss_weight / content_nc.value )",,
+        return (mean_loss + std_loss) * ( loss_weight / content_nc.value )",Y,
 194,datasets,datasets/src/datasets/iterable_dataset.py,shard_data_sources,raise,"raise NotImplementedError(f""{type(self)} doesn't implement shard_data_sources yet"")","def shard_data_sources(self, worker_id: int, num_workers: int) -> ""_BaseExamplesIterable"":
         """"""Either keep only the requested shard, or propagate the request to the underlying iterable.""""""
-        raise NotImplementedError(f""{type(self)} doesn't implement shard_data_sources yet"")",,
+        raise NotImplementedError(f""{type(self)} doesn't implement shard_data_sources yet"")",Y,
 195,ray,ray/python/ray/tests/mock_s3_server.py,stop_process,try-except,"try:
         process.send_signal(signal.SIGTERM)
         process.communicate(timeout=20)
@@ -7801,7 +7801,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
         msg = ""Child process finished {} not in clean way: {} {}"".format(
             exit_code, outs, errors
         )
-        raise RuntimeError(msg)",,
+        raise RuntimeError(msg)",Y,
 196,transformers,transformers/src/transformers/models/canine/modeling_canine.py,load_tf_weights_in_canine,try-except,"try:
         import re
 
@@ -7906,7 +7906,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
 
         logger.info(f""Initialize PyTorch weight {name}"")
         pointer.data = torch.from_numpy(array)
-    return model",,
+    return model",Y,
 197,insightface,insightface/detection/scrfd/mmdet/models/backbones/resnet.py,__init__,raise,raise KeyError(f'invalid depth {depth} for resnet'),"def __init__(self,
                  depth,
                  in_channels=3,
@@ -8010,7 +8010,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
         self._freeze_stages()
 
         self.feat_dim = self.block.expansion * base_channels * 2**(
-            len(self.stage_blocks) - 1)",,
+            len(self.stage_blocks) - 1)",Y,
 198,tvm,tvm/3rdparty/cutlass_fpA_intB_gemm/cutlass/tools/library/scripts/pycutlass/src/pycutlass/reduction_operation.py,run,raise,raise RuntimeError('CUDA Error %s' % str(err)),"def run(self, arguments: ReductionArguments) -> cuda.CUresult:
         """"""
         Configure and launch the cuda kernel with input arguments
@@ -8029,7 +8029,7 @@ Unexpected subplot type with layout_keys of {}"""""".format(
         if err != cuda.CUresult.CUDA_SUCCESS:
             raise RuntimeError('CUDA Error %s' % str(err))
 
-        return err",,
+        return err",Y,
 199,theano,theano/theano/gof/optdb.py,register,raise,"raise ValueError('''You can\'t register the same optimization
 multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
  Use theano.gof.ProxyDB to work around that''' % (obj.name, name))","def register(self, name, obj, *tags, **kwargs):
@@ -8078,7 +8078,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         self.__db__[name] = OrderedSet([obj])
         self._names.add(name)
         self.__db__[obj.__class__.__name__].add(obj)
-        self.add_tags(name, *tags)",,
+        self.add_tags(name, *tags)",Y,
 200,jumpserver,jumpserver/apps/settings/tools/traceroute.py,verbose_traceroute,try-except,"try:
             await once_traceroute(dest_ip, display)
         except Exception as e:
@@ -8095,7 +8095,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             await once_traceroute(dest_ip, display)
         except Exception as e:
             msg = f'Error: {e}'
-        await display(msg)",,
+        await display(msg)",Y,
 201,jax,jax/jax/_src/numpy/lax_numpy.py,packbits,raise,raise TypeError('Expected an input array of integer or boolean data type'),"def packbits(a, axis: Optional[int] = None, bitorder='big'):
   util.check_arraylike(""packbits"", a)
   if not (issubdtype(_dtype(a), integer) or issubdtype(_dtype(a), bool_)):
@@ -8119,7 +8119,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
   a = a.reshape(a.shape[:-1] + (a.shape[-1] // 8, 8))
   bits = expand_dims(bits, tuple(range(a.ndim - 1)))
   packed = (a << bits).sum(-1).astype('uint8')
-  return swapaxes(packed, axis, -1)",,
+  return swapaxes(packed, axis, -1)",Y,
 202,pymysql,pymysql/pymysql/tests/test_issues.py,test_issue_38,try-finally,"try:
             with warnings.catch_warnings():
                 warnings.filterwarnings(""ignore"")
@@ -8139,7 +8139,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             c.execute(""create table issue38 (id integer, data mediumblob)"")
             c.execute(""insert into issue38 values (1, %s)"", (datum,))
         finally:
-            c.execute(""drop table issue38"")",,
+            c.execute(""drop table issue38"")",Y,
 203,unilm,unilm/deltalm/fairseq/fairseq_cli/hydra_train.py,_hydra_main,raise,raise,"def _hydra_main(cfg: FairseqConfig, **kwargs) -> float:
     add_defaults(cfg)
 
@@ -8180,7 +8180,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
     if best_val is None:
         best_val = float(""inf"")
 
-    return best_val",,
+    return best_val",Y,
 204,synapse,synapse/synapse/handlers/federation_event.py,on_receive_pdu,try-except,"try:
             self._sanity_check_event(pdu)
         except SynapseError as err:
@@ -8333,7 +8333,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
                 room_id,
             )
             context = await self._state_handler.compute_event_context(pdu)
-            await self._process_received_pdu(origin, pdu, context)",,
+            await self._process_received_pdu(origin, pdu, context)",Y,
 205,spiderfoot,spiderfoot/test/unit/modules/test_sfp_errors.py,test_handleEvent_should_only_handle_events_within_target_scope,raise,"raise Exception(f""Raised event {event.eventType}: {event.data}"")","def test_handleEvent_should_only_handle_events_within_target_scope(self):
         sf = SpiderFoot(self.default_options)
 
@@ -8365,7 +8365,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         evt.actualSource = 'https://something.else.entirely/'
         result = module.handleEvent(evt)
 
-        self.assertIsNone(result)",,
+        self.assertIsNone(result)",Y,
 206,h4cker,h4cker/programming_and_scripting_for_cybersecurity/recon_scripts/certificate_information/get_cert_info.py,get_certificate_info,try-finally,"try:
         conn.connect((hostname, port))
         cert = conn.getpeercert()
@@ -8391,7 +8391,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
     except Exception as e:
         print(f""Could not retrieve certificate information: {e}"")
     finally:
-        conn.close()",,
+        conn.close()",Y,
 207,pandas,pandas/pandas/core/apply.py,agg_dict_like,raise,"raise ValueError(
                 ""cannot perform both aggregation ""
                 ""and transformation operations ""
@@ -8516,7 +8516,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
 
             result = Series(result_data, index=result_index, name=name)
 
-        return result",,
+        return result",Y,
 208,localstack,localstack/localstack/aws/api/ec2/__init__.py,create_subnet,raise,raise NotImplementedError,"def create_subnet(
         self,
         context: RequestContext,
@@ -8530,7 +8530,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         dry_run: Boolean = None,
         ipv6_native: Boolean = None,
     ) -> CreateSubnetResult:
-        raise NotImplementedError",,
+        raise NotImplementedError",Y,
 209,zulip,zulip/analytics/views/support.py,support,raise,"raise JsonableError(_(""Invalid parameters""))","def support(
     request: HttpRequest,
     realm_id: Optional[int] = REQ(default=None, converter=to_non_negative_int),
@@ -8783,7 +8783,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         Realm.ORG_TYPES.values(), key=lambda d: d[""display_order""]
     )
 
-    return render(request, ""analytics/support.html"", context=context)",,
+    return render(request, ""analytics/support.html"", context=context)",Y,
 210,redis-py,redis-py/redis/connection.py,_connect,raise,"raise OSError(""socket.getaddrinfo returned an empty list"")","def _connect(self):
         ""Create a TCP socket connection""
         # we want to mimic what socket.create_connection does to support
@@ -8823,7 +8823,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
 
         if err is not None:
             raise err
-        raise OSError(""socket.getaddrinfo returned an empty list"")",,
+        raise OSError(""socket.getaddrinfo returned an empty list"")",Y,
 211,black,black/src/black/__init__.py,assert_equivalent,raise,"raise AssertionError(
             ""cannot use --safe with this file; failed to parse source file AST: ""
             f""{exc}\n""
@@ -8859,7 +8859,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             ""INTERNAL ERROR: Black produced code that is not equivalent to the""
             "" source.  Please report a bug on ""
             f""https://github.com/psf/black/issues.  This diff might be helpful: {log}""
-        ) from None",,
+        ) from None",Y,
 212,jumpserver,jumpserver/apps/assets/serializers/asset/common.py,accounts_create,raise,"raise serializers.ValidationError({'accounts': _(""Invalid data"")})","def accounts_create(self, accounts_data, asset):
         from accounts.models import AccountTemplate
         if not accounts_data:
@@ -8888,7 +8888,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         s = AssetAccountSerializer(data=accounts_data, many=True)
         s.is_valid(raise_exception=True)
         accounts = s.save()
-        self.update_account_su_from(accounts, su_from_name_username_secret_type_map)",,
+        self.update_account_su_from(accounts, su_from_name_username_secret_type_map)",Y,
 213,aiohttp,aiohttp/aiohttp/worker.py,_get_valid_log_format,raise,"raise ValueError(
                 ""Gunicorn's style options in form of `%(name)s` are not ""
                 ""supported for the log formatting. Please use aiohttp's ""
@@ -8907,7 +8907,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
                 ""#format-specification""
             )
         else:
-            return source_format",,
+            return source_format",Y,
 214,chia-blockchain,chia-blockchain/tests/wallet/sync/test_wallet_sync.py,flaky_info_for_puzhash,raise,raise AIOSqliteError(),"def flaky_info_for_puzhash(node, func):
             async def new_func(*args, **kwargs):
                 if node.db_flaky:
@@ -8916,7 +8916,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
                 else:
                     return await func(*args, **kwargs)
 
-            return new_func",,
+            return new_func",Y,
 215,scapy,scapy/scapy/libs/test_pyx.py,_test_pyx,try-else,"try:
         with open(os.devnull, 'wb') as devnull:
             r = subprocess.check_call([""pdflatex"", ""--version""],
@@ -8934,7 +8934,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
     except (subprocess.CalledProcessError, OSError):
         return False
     else:
-        return r == 0",,
+        return r == 0",Y,
 216,certbot,certbot/certbot-apache/certbot_apache/_internal/apache_util.py,parse_defines,try-except,"try:
         matches.remove(""DUMP_RUN_CFG"")
     except ValueError:
@@ -8962,7 +8962,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         value = parts[1] if len(parts) == 2 else ''
         variables[parts[0]] = value
 
-    return variables",,
+    return variables",Y,
 217,tornado,tornado/tornado/test/process_test.py,test_subprocess,raise,"raise unittest.SkipTest(
                 ""Subprocess tests not compatible with "" ""LayeredTwistedIOLoop""
             )","def test_subprocess(self):
@@ -8992,7 +8992,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         yield subproc.stdout.read_until(b"">>> "")
         subproc.stdin.write(b""raise SystemExit\n"")
         data = yield subproc.stdout.read_until_close()
-        self.assertEqual(data, b"""")",,
+        self.assertEqual(data, b"""")",Y,
 218,glances,glances/glances/plugins/glances_ports.py,_port_scan_icmp,try-except,"try:
             counter = Counter()
             ret = subprocess.check_call(cmd, stdout=fnull, stderr=fnull, close_fds=True)
@@ -9048,7 +9048,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
 
         fnull.close()
 
-        return ret",,
+        return ret",Y,
 219,models,models/official/nlp/modeling/layers/kernel_attention.py,__init__,raise,"raise ValueError(
           ""There is nothing to redraw when num_random_features <= 0."")","def __init__(self,
                feature_transform=""exp"",
@@ -9138,7 +9138,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
     self.causal_padding = causal_padding
     if self.use_causal_windowed and self._is_short_seq:
       raise ValueError(
-          ""use_causal_windowed and short_seq methods are mutually exclusive"")",,
+          ""use_causal_windowed and short_seq methods are mutually exclusive"")",Y,
 220,ray,ray/dashboard/optional_utils.py,method_route_table_factory,raise,"raise Exception(
                         f""Duplicated route path: {path}, ""
                         f""previous one registered at ""
@@ -9260,7 +9260,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
                     h.__func__.__route_path__
                 ].instance = instance
 
-    return MethodRouteTable",,
+    return MethodRouteTable",Y,
 221,ansible,ansible/lib/ansible/cli/doc.py,run,try-except,"try:
                             textret = DocCLI.format_snippet(plugin, plugin_type, doc_data['doc'])
                         except ValueError as e:
@@ -9373,7 +9373,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             if text:
                 DocCLI.pager(''.join(text))
 
-        return 0",,
+        return 0",Y,
 222,synapse,synapse/tests/handlers/test_register.py,get_or_create_user,try-except,"try:
             await self.handler.check_username(localpart)
         except SynapseError as e:
@@ -9435,11 +9435,11 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
                 user, requester, displayname, by_admin=True
             )
 
-        return user_id, token",,
+        return user_id, token",Y,
 223,pyinstaller,pyinstaller/bootloader/waflib/Task.py,acquire,raise,raise IndexError('Cannot lock more %r' % self.locking),"def acquire(self, tsk):
         if self.is_locked():
             raise IndexError('Cannot lock more %r' % self.locking)
-        self.locking.add(tsk)",,
+        self.locking.add(tsk)",Y,
 224,statsmodels,statsmodels/statsmodels/tsa/arima/estimators/hannan_rissanen.py,_validate_fixed_params,raise,"raise ValueError(
             f""Invalid fixed parameter(s): {sorted(list(invalid_param_names))}.""
             f"" Please select among {sorted(list(valid_param_names))}.""
@@ -9470,7 +9470,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             f"" Please select among {sorted(list(valid_param_names))}.""
         )
 
-    return fixed_params",,
+    return fixed_params",Y,
 225,paddlehub,paddlehub/modules/image/text_to_image/disco_diffusion_clip_rn50/reverse_diffusion/model/gaussian_diffusion.py,get_named_beta_schedule,raise,"raise NotImplementedError(f""unknown beta schedule: {schedule_name}"")","def get_named_beta_schedule(schedule_name, num_diffusion_timesteps):
     """"""
     Get a pre-defined beta schedule for the given name.
@@ -9493,7 +9493,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             lambda t: math.cos((t + 0.008) / 1.008 * math.pi / 2)**2,
         )
     else:
-        raise NotImplementedError(f""unknown beta schedule: {schedule_name}"")",,
+        raise NotImplementedError(f""unknown beta schedule: {schedule_name}"")",Y,
 226,pupy,pupy/pupy/modules/ad.py,bind,try-finally,"try:
                 if success:
                     self.success('Bound to server: {}'.format(payload))
@@ -9527,7 +9527,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             args.root
         )
 
-        completion.wait()",,
+        completion.wait()",Y,
 227,jupyterhub,jupyterhub/jupyterhub/app.py,init_role_creation,raise,"raise ValueError(
                     f""Role {role_name} multiply defined. Please check the `load_roles` configuration""
                 )","async def init_role_creation(self):
@@ -9590,7 +9590,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             self.db.delete(role)
         self.db.commit()
         for role in init_roles:
-            roles.create_role(self.db, role)",,
+            roles.create_role(self.db, role)",Y,
 228,calibre,calibre/src/calibre/gui2/ui.py,start_content_server,try-except,"try:
                     os.remove(os.path.join(config_dir, 'server.py'))
                 except OSError:
@@ -9614,7 +9614,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         if check_started:
             self.content_server.start_failure_callback = \
                 Dispatcher(self.content_server_start_failed)
-        self.content_server.start()",,
+        self.content_server.start()",Y,
 229,fail2ban,fail2ban/fail2ban/client/fail2banserver.py,startServerDirect,raise,raise,"def startServerDirect(conf, daemon=True, setServer=None):
 		logSys.debug(""  direct starting of server in %s, deamon: %s"", os.getpid(), daemon)
 		from ..server.server import Server
@@ -9643,7 +9643,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
 			if conf.get('onstart'):
 				conf['onstart']()
 
-		return server",,
+		return server",Y,
 230,dgl,dgl/tests/python/common/test_heterograph.py,test_empty_query,try-except,"try:
         g.out_degrees([0])
         fail = False
@@ -9695,7 +9695,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         fail = False
     except:
         pass
-    assert error_thrown",,
+    assert error_thrown",Y,
 231,calibre,calibre/src/calibre/srv/ajax.py,category,try-except,"try:
             dname = decode_name(encoded_name)
         except:
@@ -9862,7 +9862,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
                 'sort_order':sort_order,
                 'subcategories':subcategories,
                 'items':items,
-        }",,
+        }",Y,
 232,boto3,boto3/boto3/resources/response.py,build_identifiers,raise,raise NotImplementedError(f'Unsupported source type: {source}'),"def build_identifiers(identifiers, parent, params=None, raw_response=None):
     """"""
     Builds a mapping of identifier names to values based on the
@@ -9906,7 +9906,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
 
         results.append((xform_name(target), value))
 
-    return results",,
+    return results",Y,
 233,zulip,zulip/zerver/lib/sessions.py,get_expirable_session_var,try-except,"try:
         value, expire_at = (session[var_name][""value""], session[var_name][""expire_at""])
     except (KeyError, TypeError):
@@ -9929,7 +9929,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
 
     if delete:
         del session[var_name]
-    return value",,
+    return value",Y,
 234,unilm,unilm/xtune/src/transformers/modeling_tf_auto.py,__init__,raise,"raise EnvironmentError(
             ""TFAutoModel is designed to be instantiated ""
             ""using the `TFAutoModel.from_pretrained(pretrained_model_name_or_path)` or ""
@@ -9939,7 +9939,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             ""TFAutoModel is designed to be instantiated ""
             ""using the `TFAutoModel.from_pretrained(pretrained_model_name_or_path)` or ""
             ""`TFAutoModel.from_config(config)` methods.""
-        )",,
+        )",Y,
 235,pyodide,pyodide/packages/hashlib/test_hashlib.py,test_hashlib,raise,"raise RuntimeError(f""Failed with code: {e.code}"") from None","def test_hashlib(selenium):
     from test import libregrtest  # type:ignore[attr-defined]
 
@@ -9952,7 +9952,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         libregrtest.main([name], ignore_tests=ignore_tests, verbose=True, verbose3=True)
     except SystemExit as e:
         if e.code != 0:
-            raise RuntimeError(f""Failed with code: {e.code}"") from None",,
+            raise RuntimeError(f""Failed with code: {e.code}"") from None",Y,
 236,numpy-ml,numpy-ml/numpy_ml/neural_nets/wrappers/wrappers.py,init_wrappers,raise,"raise NotImplementedError(""{}"".format(wr[""wrapper""]))","def init_wrappers(layer, wrappers_list):
     """"""
     Initialize the layer wrappers in `wrapper_list` and return a wrapped
@@ -9976,7 +9976,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             layer = Dropout(layer, 1)._set_wrapper_params(wr)
         else:
             raise NotImplementedError(""{}"".format(wr[""wrapper""]))
-    return layer",,
+    return layer",Y,
 237,psutil,psutil/psutil/__init__.py,wait,raise,"raise ValueError(""timeout must be a positive integer"")","def wait(self, timeout=None):
         """"""Wait for process to terminate and, if process is a children
         of os.getpid(), also return its exit code, else None.
@@ -9996,10 +9996,10 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         if self._exitcode is not _SENTINEL:
             return self._exitcode
         self._exitcode = self._proc.wait(timeout)
-        return self._exitcode",,
+        return self._exitcode",Y,
 238,models,models/official/legacy/detection/dataloader/maskrcnn_parser.py,_parse_eval_data,raise,raise NotImplementedError('Not implemented!'),"def _parse_eval_data(self, data):
     """"""Parses data for evaluation.""""""
-    raise NotImplementedError('Not implemented!')",,
+    raise NotImplementedError('Not implemented!')",Y,
 239,portia,portia/slyd/slyd/splash/proxy.py,_load_resource,try-except,"try:
             entry = next((entry for entry in user.tab.har()['log']['entries']
                           if entry['request']['url'] == url), None)
@@ -10070,7 +10070,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             # can do something to avoid it, but if it happens we proxy the
             # resource instead of recovering it from splash.
             log.err()
-            return self._load_resource_proxy(request, url, referer, cb)",,
+            return self._load_resource_proxy(request, url, referer, cb)",Y,
 240,chisel,chisel/fbchisellldbviewcontrollerhelpers.py,presentViewController,raise,"raise Exception(""Argument is already presented"")","def presentViewController(viewController):
     vc = ""(%s)"" % (viewController)
 
@@ -10090,7 +10090,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         else:
             raise Exception(""Argument is already presented"")
     else:
-        raise Exception(""Argument must be a UIViewController"")",,
+        raise Exception(""Argument must be a UIViewController"")",Y,
 241,frida,frida/releng/meson/mesonbuild/msubprojects.py,run,try-except,"try:
             result = self.run_method()
         except MesonException as e:
@@ -10103,7 +10103,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             self.log(mlog.red('Error:'), str(e))
             result = False
         self.logger.done(self.wrap.name, self.log_queue)
-        return result",,
+        return result",Y,
 242,gradio,gradio/gradio/deploy_space.py,add_configuration_to_readme,raise,"raise FileNotFoundError(""Failed to find Gradio app file."")","def add_configuration_to_readme(
     title: str | None,
     app_file: str | None,
@@ -10192,7 +10192,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             ""Github Action created. Add your Hugging Face write token (from https://huggingface.co/settings/tokens) as an Actions Secret named 'hf_token' to your GitHub repository. This can be set in your repository's settings page.""
         )
 
-    return configuration",,
+    return configuration",Y,
 243,unilm,unilm/speechlm/fairseq/examples/speech_to_text/prep_mustc_data.py,__init__,try-except,"try:
             import yaml
         except ImportError:
@@ -10236,7 +10236,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
                         segment[""speaker_id""],
                         _id,
                     )
-                )",,
+                )",Y,
 244,tvm,tvm/python/tvm/meta_schedule/search_strategy/search_strategy.py,create,raise,"raise ValueError(f""Unknown SearchStrategy: {kind}"")","def create(  # pylint: disable=keyword-arg-before-vararg
         kind: Literal[
             ""evolutionary"",
@@ -10259,9 +10259,9 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             return ReplayTrace(*args, **kwargs)
         if kind == ""replay-func"":
             return ReplayFunc(*args, **kwargs)  # type: ignore
-        raise ValueError(f""Unknown SearchStrategy: {kind}"")",,
+        raise ValueError(f""Unknown SearchStrategy: {kind}"")",Y,
 245,supervisor,supervisor/supervisor/tests/test_supervisorctl.py,f,raise,"raise Exception(""should not have called getAllProcessInfo"")","def f(*arg, **kw):
-            raise Exception(""should not have called getAllProcessInfo"")",,
+            raise Exception(""should not have called getAllProcessInfo"")",Y,
 246,great_expectations,great_expectations/great_expectations/dataset/pandas_dataset.py,cross_type_comparator,try-except,"try:
                 return min_comparator(val) & max_comparator(val)
             except TypeError:
@@ -10269,9 +10269,9 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             try:
                 return min_comparator(val) & max_comparator(val)
             except TypeError:
-                return False",,
+                return False",Y,
 247,unilm,unilm/speechlm/fairseq/examples/MMPT/mmpt/losses/loss.py,__call__,raise,raise NotImplementedError,"def __call__(self, *args, **kwargs):
-        raise NotImplementedError",,
+        raise NotImplementedError",Y,
 248,sentry,sentry/src/sentry/rules/processor.py,apply_rule,try-except,"try:
             environment = self.event.get_environment()
         except Environment.DoesNotExist:
@@ -10353,7 +10353,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             )
 
         history.record(rule, self.group, self.event.event_id)
-        self.activate_downstream_actions(rule)",,
+        self.activate_downstream_actions(rule)",Y,
 249,ludwig,ludwig/ludwig/schema/profiler.py,ProfilerDataclassField,try-except,"try:
                     return ProfilerConfig.Schema().load(value)
                 except (TypeError, ValidationError):
@@ -10410,7 +10410,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             )
         },
         default_factory=load_default,
-    )",,
+    )",Y,
 250,httpie,httpie/httpie/internal/daemons.py,_spawn_posix,try-except,"try:
         pid = os.fork()
         if pid > 0:
@@ -10460,7 +10460,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         with suppress(BaseException):
             main(['http'] + args)
 
-    os._exit(0)",,
+    os._exit(0)",Y,
 251,synapse,synapse/synapse/server.py,cache_in_self,raise,"raise Exception(
             ""@cache_in_self can only be used on functions starting with `get_`""
         )","def cache_in_self(builder: F) -> F:
@@ -10501,7 +10501,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
 
         return dep
 
-    return cast(F, _get)",,
+    return cast(F, _get)",Y,
 252,frida,frida/releng/meson/mesonbuild/modules/pkgconfig.py,_generate_pkgconfig_file,raise,"raise mesonlib.MesonException('Pkgconfig prefix cannot be outside of the prefix '
                                                   'when pkgconfig.relocatable=true. '
                                                   f'Pkgconfig prefix is {pkgroot_.as_posix()}.')","def _generate_pkgconfig_file(self, state: ModuleState, deps: DependenciesHelper,
@@ -10656,7 +10656,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
                         cflags.append(self._escape(PurePath('-I${includedir}') / d))
             cflags += [self._escape(f) for f in deps.cflags]
             if cflags and not dataonly:
-                ofile.write('Cflags: {}\n'.format(' '.join(cflags)))",,
+                ofile.write('Cflags: {}\n'.format(' '.join(cflags)))",Y,
 253,flask,flask/tests/test_user_error_handler.py,test_error_handler_blueprint,raise,raise InternalServerError(),"def test_error_handler_blueprint(app):
     bp = flask.Blueprint(""bp"", __name__)
 
@@ -10681,7 +10681,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
     c = app.test_client()
 
     assert c.get(""/error"").data == b""app-error""
-    assert c.get(""/bp/error"").data == b""bp-error""",,
+    assert c.get(""/bp/error"").data == b""bp-error""",Y,
 254,pyro,pyro/pyro/poutine/messenger.py,__exit__,raise,"raise ValueError(""This Messenger is not on the bottom of the stack"")","def __exit__(self, exc_type, exc_value, traceback):
         """"""
         :param exc_type: exception type, e.g. ValueError
@@ -10723,7 +10723,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             if self in _PYRO_STACK:
                 loc = _PYRO_STACK.index(self)
                 for i in range(loc, len(_PYRO_STACK)):
-                    _PYRO_STACK.pop()",,
+                    _PYRO_STACK.pop()",Y,
 255,localstack,localstack/localstack/aws/handlers/service_plugin.py,require_service,raise,raise NotImplementedError,"def require_service(self, _: HandlerChain, context: RequestContext, response: Response):
         if not context.service:
             return
@@ -10755,11 +10755,11 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
                 LOG.warning(
                     f""found plugin for '{service_name}', ""
                     f""but cannot attach service plugin of type '{type(service_plugin)}'"",
-                )",,
+                )",Y,
 256,pupy,pupy/pupy/network/lib/rpc/core/protocol.py,_handle_pickle,raise,"raise ValueError(""pickling is disabled"")","def _handle_pickle(self, oid, proto):
         if not self._config[""allow_pickle""]:
             raise ValueError(""pickling is disabled"")
-        return pickle.dumps(self._local_objects[oid], proto)",,
+        return pickle.dumps(self._local_objects[oid], proto)",Y,
 257,pupy,pupy/pupy/packages/windows/all/pupwinutils/security.py,create_proc_as_sid,raise,raise ValueError('Unknown username {}'.format(sid.encode('utf-8'))),"def create_proc_as_sid(sid, prog='cmd.exe', attributes=None, lpInfo=False):
     if not sid.startswith('S-1-'):
         sid = sidbyname(sid)
@@ -10777,7 +10777,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
     finally:
         CloseHandle(hTokendupe)
 
-    return vResult",,
+    return vResult",Y,
 258,byob,byob/web-gui/buildyourownbotnet/modules/screenshot.py,run,try-except,"try:
 	    with mss.mss() as screen:
 	        img = screen.grab(screen.monitors[0])
@@ -10795,7 +10795,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
 	    data = util.png(img)
 	    return base64.b64encode(data)
     except Exception as e:
-        return ""{} error: {}"".format(run.__name__, str(e))",,
+        return ""{} error: {}"".format(run.__name__, str(e))",Y,
 259,gitsome,gitsome/xonsh/ply/example/calc/calc.py,p_expression_name,try-except,"try:
         p[0] = names[p[1]]
     except LookupError:
@@ -10806,7 +10806,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         p[0] = names[p[1]]
     except LookupError:
         print(""Undefined name '%s'"" % p[1])
-        p[0] = 0",,
+        p[0] = 0",Y,
 260,archivebox,archivebox/deb_dist/archivebox-0.5.3/debian/archivebox/usr/lib/python3/dist-packages/archivebox/util.py,parse_date,raise,raise ValueError('Tried to parse invalid date! {}'.format(date)),"def parse_date(date: Any) -> Optional[datetime]:
     """"""Parse unix timestamps, iso format, and human-readable strings""""""
     
@@ -10822,10 +10822,10 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
     if isinstance(date, str):
         return dateparser(date)
 
-    raise ValueError('Tried to parse invalid date! {}'.format(date))",,
+    raise ValueError('Tried to parse invalid date! {}'.format(date))",Y,
 261,mypy,mypy/mypy/erasetype.py,visit_partial_type,raise,raise RuntimeError(),"def visit_partial_type(self, t: PartialType) -> ProperType:
         # Should not get here.
-        raise RuntimeError()",,
+        raise RuntimeError()",Y,
 262,pydantic,pydantic/pydantic/v1/dataclasses.py,_dataclass_validate_values,raise,raise validation_error,"def _dataclass_validate_values(self: 'Dataclass') -> None:
     # validation errors can occur if this function is called twice on an already initialised dataclass.
     # for example if Extra.forbid is enabled, it would consider __pydantic_initialised__ an invalid extra property
@@ -10841,10 +10841,10 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
     if validation_error:
         raise validation_error
     self.__dict__.update(d)
-    object.__setattr__(self, '__pydantic_initialised__', True)",,
+    object.__setattr__(self, '__pydantic_initialised__', True)",Y,
 263,insightface,insightface/detection/scrfd/mmdet/core/bbox/samplers/combined_sampler.py,_sample_pos,raise,raise NotImplementedError,"def _sample_pos(self, **kwargs):
         """"""Sample positive samples.""""""
-        raise NotImplementedError",,
+        raise NotImplementedError",Y,
 264,pillow,pillow/src/PIL/Image.py,_open_core,try-except,"try:
                 factory, accept = OPEN[i]
                 result = not accept or accept(prefix)
@@ -10887,12 +10887,12 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
                 if exclusive_fp:
                     fp.close()
                 raise
-        return None",,
+        return None",Y,
 265,luigi,luigi/test/scheduler_test.py,run,raise,raise FileAlreadyExists(self.file_name),"def run(self):
         time.sleep(self.time_to_run_secs)
         if os.path.exists(self.file_name):
             raise FileAlreadyExists(self.file_name)
-        open(self.file_name, 'w').close()",,
+        open(self.file_name, 'w').close()",Y,
 266,sentry,sentry/src/sentry/testutils/silo.py,validate_no_cross_silo_deletions,raise,"raise ValueError(
                         f""Deletions for {model_class!r} cascade to {to_model!r}, but does not belong to the same silo mode.  Please remove this relation from get_child_relations in deletions configuration""
                     )","def validate_no_cross_silo_deletions(
@@ -10910,7 +10910,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
                 if mode not in _model_silo_limit(to_model).modes:
                     raise ValueError(
                         f""Deletions for {model_class!r} cascade to {to_model!r}, but does not belong to the same silo mode.  Please remove this relation from get_child_relations in deletions configuration""
-                    )",,
+                    )",Y,
 267,fairseq,fairseq/examples/MMPT/mmpt/modules/retri.py,search,raise,"raise ValueError(
                 len(self.videoid_to_vectoridx),
                 len(self)
@@ -10960,10 +10960,10 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
                         self.vectoridx_to_videoid[vector_idx]
                     )
             outputs.append(cands)
-        return outputs",,
+        return outputs",Y,
 268,unilm,unilm/kosmos-g/fairseq/fairseq/models/fairseq_model.py,train,raise,"raise RuntimeError(""cannot train after make_generation_fast"")","def train(mode=True):
             if mode:
-                raise RuntimeError(""cannot train after make_generation_fast"")",,
+                raise RuntimeError(""cannot train after make_generation_fast"")",Y,
 269,dgl,dgl/third_party/libxsmm/scripts/tool_report.py,sortdb,try-except,"try:  # treat top-level key as integer (build number)
         result = dict(sorted(database.items(), key=lambda v: int(v[0])))
     except ValueError:
@@ -10977,11 +10977,11 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             result[key] = sortdb(value)
         else:
             result[key] = value
-    return result",,
+    return result",Y,
 270,certbot,certbot/acme/acme/fields.py,decode,raise,raise jose.DeserializationError('Expected {0!r}'.format(self.value)),"def decode(self, value: Any) -> Any:
         if value != self.value:
             raise jose.DeserializationError('Expected {0!r}'.format(self.value))
-        return self.value",,
+        return self.value",Y,
 271,ansible,ansible/lib/ansible/cli/scripts/ansible_connection_cli_stub.py,shutdown,try-finally,"try:
                 if self.sock:
                     self.sock.close()
@@ -11020,7 +11020,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         if os.path.exists(lock_path):
             os.remove(lock_path)
 
-        display.display('shutdown complete', log_only=True)",,
+        display.display('shutdown complete', log_only=True)",Y,
 272,dask,dask/dask/array/core.py,_vindex_array,try-except,"try:
         broadcast_indexes = np.broadcast_arrays(*dict_indexes.values())
     except ValueError as e:
@@ -11123,7 +11123,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
     result_1d = empty(
         tuple(map(sum, chunks)), chunks=chunks, dtype=x.dtype, name=out_name
     )
-    return result_1d.reshape(broadcast_shape + result_1d.shape[1:])",,
+    return result_1d.reshape(broadcast_shape + result_1d.shape[1:])",Y,
 273,auto-sklearn,auto-sklearn/autosklearn/pipeline/base.py,_get_hyperparameter_search_space,raise,raise NotImplementedError(),"def _get_hyperparameter_search_space(
         self,
         feat_type: Optional[FEAT_TYPE_TYPE] = None,
@@ -11171,7 +11171,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         cs : ConfigSpace.configuration_space.Configuration
             The configuration space describing the AutoSklearnClassifier.
         """"""
-        raise NotImplementedError()",,
+        raise NotImplementedError()",Y,
 274,ray,ray/rllib/algorithms/registry.py,_get_algorithm_class,raise,"raise Exception(""Unknown algorithm {}."".format(alg))","def _get_algorithm_class(alg: str) -> type:
     # This helps us get around a circular import (tune calls rllib._register_all when
     # checking if a rllib Trainable is registered)
@@ -11194,7 +11194,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
 
         return _ParameterTuningTrainer
     else:
-        raise Exception(""Unknown algorithm {}."".format(alg))",,
+        raise Exception(""Unknown algorithm {}."".format(alg))",Y,
 275,modin,modin/modin/experimental/sql/__init__.py,query,raise,raise NotImplementedError,"def query(sql: str, *args, **kwargs) -> pd.DataFrame:
     """"""
     Execute SQL query using HDK engine.
@@ -11221,9 +11221,9 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         else:
             raise NotImplementedError
 
-    return _query_impl(sql, *args, **kwargs)",,
+    return _query_impl(sql, *args, **kwargs)",Y,
 276,starlette,starlette/tests/test_applications.py,runtime_error,raise,raise RuntimeError(),"def runtime_error(request):
-    raise RuntimeError()",,
+    raise RuntimeError()",Y,
 277,tvm,tvm/python/tvm/testing/utils.py,wrapper,try-except,"try:
                 cached_value = cache[cache_key]
             except KeyError:
@@ -11259,7 +11259,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             nonlocal num_times_fixture_used
             num_times_fixture_used += 1
             if num_times_fixture_used >= num_tests_use_this_fixture[0]:
-                cache.clear()",,
+                cache.clear()",Y,
 278,transformers,transformers/src/transformers/models/efficientformer/image_processing_efficientformer.py,preprocess,raise,"raise ValueError(""Size must be specified if do_resize is True."")","def preprocess(
         self,
         images: ImageInput,
@@ -11368,7 +11368,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         images = [to_channel_dimension_format(image, data_format) for image in images]
 
         data = {""pixel_values"": images}
-        return BatchFeature(data=data, tensor_type=return_tensors)",,
+        return BatchFeature(data=data, tensor_type=return_tensors)",Y,
 279,scikit-learn,scikit-learn/sklearn/utils/estimator_checks.py,check_fit_check_is_fitted,try-except,"try:
         check_is_fitted(estimator)
     except NotFittedError as e:
@@ -11410,7 +11410,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
     except NotFittedError as e:
         raise NotFittedError(
             ""Estimator fails to pass `check_is_fitted` even though it has been fit.""
-        ) from e",,
+        ) from e",Y,
 280,gym,gym/gym/error.py,__init__,try-except,"try:
                 http_body = http_body.decode(""utf-8"")
             except Exception:
@@ -11438,7 +11438,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         self.http_status = http_status
         self.json_body = json_body
         self.headers = headers or {}
-        self.request_id = self.headers.get(""request-id"", None)",,
+        self.request_id = self.headers.get(""request-id"", None)",Y,
 281,awx,awx/awx/conf/serializers.py,validate,try-except,"try:
             category_slug = self.context['view'].kwargs.get('category_slug', 'all')
         except (KeyError, AttributeError):
@@ -11452,9 +11452,9 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
                 attrs = validate_func(self, attrs)
             return attrs
         custom_validate = settings_registry.get_registered_validate_func(category_slug)
-        return custom_validate(self, attrs) if custom_validate else attrs",,
+        return custom_validate(self, attrs) if custom_validate else attrs",Y,
 282,numba,numba/numba/tests/test_exceptions.py,raise_range,raise,raise ValueError(range(3)),"def raise_range():
-            raise ValueError(range(3))",,
+            raise ValueError(range(3))",Y,
 283,pytorch3d,pytorch3d/pytorch3d/io/pluggable.py,save_pointcloud,raise,"raise ValueError(""Pointclouds object expected."")","def save_pointcloud(
         self,
         data: Pointclouds,
@@ -11483,7 +11483,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             if success:
                 return
 
-        raise ValueError(f""No point cloud interpreter found to write to {path}."")",,
+        raise ValueError(f""No point cloud interpreter found to write to {path}."")",Y,
 284,tvm,tvm/python/tvm/driver/tvmc/project.py,get_options,raise,"raise TVMCException(f""Invalid option format: {option}. Please use OPTION=VALUE."")","def get_options(options):
     """"""Get option and option value from the list options returned by the parser.
 
@@ -11506,7 +11506,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         except ValueError:
             raise TVMCException(f""Invalid option format: {option}. Please use OPTION=VALUE."")
 
-    return opts",,
+    return opts",Y,
 285,redis-py,redis-py/redis/asyncio/connection.py,parse_url,try-except,"try:
                 kwargs[""db""] = int(unquote(parsed.path).replace(""/"", """"))
             except (AttributeError, ValueError):
@@ -11559,10 +11559,10 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             f""Redis URL must specify one of the following schemes ({valid_schemes})""
         )
 
-    return kwargs",,
+    return kwargs",Y,
 286,spyder,spyder/spyder/api/shellconnect/main_widget.py,close_widget,raise,raise NotImplementedError,"def close_widget(self, widget):
         """"""Close the widget.""""""
-        raise NotImplementedError",,
+        raise NotImplementedError",Y,
 287,theano,theano/theano/gof/tests/test_cc.py,test_c_fail_error,raise,"raise SkipTest(""G++ not available, so we need to skip this test."")","def test_c_fail_error():
     if not theano.config.cxx:
         raise SkipTest(""G++ not available, so we need to skip this test."")
@@ -11576,15 +11576,15 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
     except RuntimeError:
         print('Yay, TEST PASSED')
         return  # test passed
-    assert 0",,
+    assert 0",Y,
 288,pyspider,pyspider/pyspider/message_queue/kombu_queue.py,get,raise,raise BaseQueue.Empty,"def get(self, block=True, timeout=None):
         try:
             ret = self.queue.get(block, timeout)
             return ret.payload
         except self.queue.Empty:
-            raise BaseQueue.Empty",,
+            raise BaseQueue.Empty",Y,
 289,jumpserver,jumpserver/apps/terminal/applets/dbeaver/common.py,wait,raise,raise NotImplementedError('wait'),"def wait(self):
-        raise NotImplementedError('wait')",,
+        raise NotImplementedError('wait')",Y,
 290,falcon,falcon/tests/asgi/test_hello_asgi.py,__anext__,raise,raise StopAsyncIteration,"async def __anext__(self):
             if self._value == 0:
                 raise StopAsyncIteration
@@ -11594,7 +11594,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
                 return f'{self._divisor}\n'.encode()
 
             self._value = 0
-            return f'{self._remainder}\n'.encode()",,
+            return f'{self._remainder}\n'.encode()",Y,
 291,fairseq,fairseq/fairseq/models/speech_to_speech/s2s_conformer_translatotron2.py,build_multitask_decoder,raise,"raise NotImplementedError(
                 ""currently only support multitask decoder_type 'transformer', 'ctc'""
             )","def build_multitask_decoder(
@@ -11638,13 +11638,13 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
                 ""currently only support multitask decoder_type 'transformer', 'ctc'""
             )
 
-        return task_decoder",,
+        return task_decoder",Y,
 292,seaborn,seaborn/seaborn/_base.py,scale_datetime,raise,raise NotImplementedError,"def scale_datetime(self, axis, *args, **kwargs):
 
         # Use pd.to_datetime to convert strings or numbers to datetime objects
         # Note, use day-resolution for numeric->datetime to match matplotlib
 
-        raise NotImplementedError",,
+        raise NotImplementedError",Y,
 293,youtube-dl,youtube-dl/youtube_dl/YoutubeDL.py,in_download_archive,try-except,"try:
             with locked_file(fn, 'r', encoding='utf-8') as archive_file:
                 for line in archive_file:
@@ -11669,7 +11669,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         except IOError as ioe:
             if ioe.errno != errno.ENOENT:
                 raise
-        return False",,
+        return False",Y,
 294,impacket,impacket/impacket/examples/ldap_shell.py,do_grant_control,raise,"raise Exception(""Error expected only one search result got %d results"", len(self.client.entries))","def do_grant_control(self, line):
         args = shlex.split(line)
 
@@ -11716,7 +11716,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             elif self.client.result['result'] == 19:
                 raise Exception('Could not modify object, the server reports a constrained violation: %s', self.client.result['message'])
             else:
-                raise Exception('The server returned an error: %s', self.client.result['message'])",,
+                raise Exception('The server returned an error: %s', self.client.result['message'])",Y,
 295,lightning,lightning/tests/tests_pytorch/accelerators/test_ipu.py,test_half_precision,raise,raise SystemExit,"def test_half_precision(tmpdir):
     class TestCallback(Callback):
         def setup(self, trainer: Trainer, pl_module: LightningModule, stage: str) -> None:
@@ -11735,7 +11735,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
     assert isinstance(trainer.strategy.precision_plugin, IPUPrecisionPlugin)
     assert trainer.strategy.precision_plugin.precision == ""16-mixed""
     with pytest.raises(SystemExit):
-        trainer.fit(model)",,
+        trainer.fit(model)",Y,
 296,nni,nni/nni/algorithms/hpo/dngo_tuner.py,_update_model,try-except,"try:
             self.model.train(np.array(x_arr), np.array(self.y), do_optimize=True)
         except np.linalg.LinAlgError as e:
@@ -11748,7 +11748,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             self.model.train(np.array(x_arr), np.array(self.y), do_optimize=True)
         except np.linalg.LinAlgError as e:
             warnings.warn(f'numpy linalg error encountered in DNGO model training: {e}')
-        self._model_initialized = True",,
+        self._model_initialized = True",Y,
 297,youcompleteme,youcompleteme/third_party/ycmd/third_party/mrab-regex/regex_3/_regex_core.py,parse_fuzzy_item,try-except,"try:
         parse_cost_constraint(source, constraints)
     except ParseError:
@@ -11762,7 +11762,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
     except ParseError:
         source.pos = saved_pos
 
-        parse_cost_equation(source, constraints)",,
+        parse_cost_equation(source, constraints)",Y,
 298,mlflow,mlflow/mlflow/utils/databricks_utils.py,get_command_run_id,try-except,"try:
         return _get_command_context().commandRunId().get()
     except Exception:
@@ -11772,7 +11772,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         return _get_command_context().commandRunId().get()
     except Exception:
         # Older runtimes may not have the commandRunId available
-        return None",,
+        return None",Y,
 299,ansible,ansible/lib/ansible/galaxy/collection/__init__.py,_extract_tar_dir,raise,"raise AnsibleError(""Cannot extract symlink '%s' in collection: path points to location outside of ""
                                ""collection '%s'"" % (to_native(dirname), b_link_path))","def _extract_tar_dir(tar, dirname, b_dest):
     """""" Extracts a directory from a collection tar. """"""
@@ -11812,7 +11812,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
 
     else:
         if not os.path.isdir(b_dir_path):
-            os.mkdir(b_dir_path, 0o0755)",,
+            os.mkdir(b_dir_path, 0o0755)",Y,
 300,crackmapexec,crackmapexec/cme/protocols/smb.py,execute,try-except,"try:
                     exec_method = WMIEXEC(
                         self.host if not self.kerberos else self.hostname + ""."" + self.domain,
@@ -11964,7 +11964,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             return output
         else:
             self.logger.fail(f""Execute command failed with {current_method}"")
-            return False",,
+            return False",Y,
 301,qlib,qlib/qlib/contrib/model/pytorch_gats_ts.py,fit,raise,"raise ValueError(""Empty data from dataset, please check your dataset config."")","def fit(
         self,
         dataset,
@@ -12045,7 +12045,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         torch.save(best_param, save_path)
 
         if self.use_gpu:
-            torch.cuda.empty_cache()",,
+            torch.cuda.empty_cache()",Y,
 302,ludwig,ludwig/ludwig/models/llm.py,merge_and_unload,raise,"raise ValueError(""This operation requires an LLM model trained with a LoRA adapter."")","def merge_and_unload(self, progressbar: bool = False) -> None:
         """"""This method merges the LoRa layers into the base model.  This is needed if someone wants to use the base
         model as a standalone model.  The implementation calls merge_and_unload() of the underlying LoraModel class
@@ -12059,7 +12059,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         if isinstance(self.model.base_model, LoraModel):
             self.model.base_model.merge_and_unload(progressbar=progressbar)
         else:
-            raise ValueError(""This operation requires an LLM model trained with a LoRA adapter."")",,
+            raise ValueError(""This operation requires an LLM model trained with a LoRA adapter."")",Y,
 303,scikit-learn,scikit-learn/sklearn/datasets/_openml.py,_open_openml_url,raise,raise,"def _open_openml_url(
     openml_path: str, data_home: Optional[str], n_retries: int = 3, delay: float = 1.0
 ):
@@ -12131,7 +12131,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
 
     # XXX: First time, decompression will not be necessary (by using fsrc), but
     # it will happen nonetheless
-    return gzip.GzipFile(local_path, ""rb"")",,
+    return gzip.GzipFile(local_path, ""rb"")",Y,
 304,unilm,unilm/decoding/GAD/fairseq/data/data_utils.py,compute_mask_indices,raise,"raise Exception(""unknown mask selection "" + mask_type)","def compute_mask_indices(
     shape: Tuple[int, int],
     padding_mask: Optional[torch.Tensor],
@@ -12256,7 +12256,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             mask_idc = np.random.choice(mask_idc, min_len, replace=False)
         mask[i, mask_idc] = True
 
-    return mask",,
+    return mask",Y,
 305,transformers,transformers/src/transformers/models/tapas/modeling_tf_tapas.py,__init__,raise,"raise ValueError(f""{self} should be used as a decoder model if cross attention is added"")","def __init__(self, config: TapasConfig, **kwargs):
         super().__init__(**kwargs)
 
@@ -12268,7 +12268,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
                 raise ValueError(f""{self} should be used as a decoder model if cross attention is added"")
             self.crossattention = TFTapasAttention(config, name=""crossattention"")
         self.intermediate = TFTapasIntermediate(config, name=""intermediate"")
-        self.bert_output = TFTapasOutput(config, name=""output"")",,
+        self.bert_output = TFTapasOutput(config, name=""output"")",Y,
 306,sentry,sentry/src/sentry/sentry_apps/apps.py,_generate_and_validate_slug,raise,"raise ValidationError(
                 {""name"": [f""Name {self.name} is already taken, please use another.""]}
             )","def _generate_and_validate_slug(self) -> str:
@@ -12283,7 +12283,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
                 {""name"": [f""Name {self.name} is already taken, please use another.""]}
             )
 
-        return slug",,
+        return slug",Y,
 307,pytorch3d,pytorch3d/pytorch3d/ops/points_to_volumes.py,forward,raise,"raise ValueError(""volume_features must be float32"")","def forward(
         ctx,
         points_3d: torch.Tensor,
@@ -12349,7 +12349,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         ctx.point_weight = point_weight
         ctx.splat = splat
         ctx.align_corners = align_corners
-        return volume_densities, volume_features",,
+        return volume_densities, volume_features",Y,
 308,openage,openage/openage/convert/value_object/read/value_members.py,diff,raise,"raise TypeError(
                 f""type {type(self)} member cannot be diffed with type {type(other)}"")","def diff(
         self,
@@ -12364,7 +12364,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
 
         else:
             raise TypeError(
-                f""type {type(self)} member cannot be diffed with type {type(other)}"")",,
+                f""type {type(self)} member cannot be diffed with type {type(other)}"")",Y,
 309,unilm,unilm/infoxlm/fairseq/examples/speech_recognition/models/w2l_conv_glu_enc.py,__init__,raise,"raise ValueError(""only 1 input channel is currently supported"")","def __init__(
         self, vocab_size, input_feat_per_channel, in_channels, conv_enc_config
     ):
@@ -12392,7 +12392,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             layer = nn.Linear(cur_channels, out_channels)
             layer.weight.data.mul_(math.sqrt(3))
             self.linear_layers.append(nn.utils.weight_norm(layer))
-            cur_channels = out_channels // 2",,
+            cur_channels = out_channels // 2",Y,
 310,unilm,unilm/kosmos-2/fairseq/fairseq/data/encoders/hf_bert_bpe.py,__init__,raise,"raise ImportError(
                 ""Please install transformers with: pip install transformers""
             )","def __init__(self, cfg):
@@ -12411,7 +12411,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             vocab_file_name = (
                 ""bert-base-cased"" if cfg.bpe_cased else ""bert-base-uncased""
             )
-            self.bert_tokenizer = BertTokenizer.from_pretrained(vocab_file_name)",,
+            self.bert_tokenizer = BertTokenizer.from_pretrained(vocab_file_name)",Y,
 311,ray,ray/python/ray/air/execution/resources/resource_manager.py,clear,raise,raise NotImplementedError,"def clear(self):
         """"""Reset internal state and clear all resources.
 
@@ -12423,7 +12423,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         should make sure that any references to tasks or actors scheduled on the
         resources have been removed before calling ``clear()``.
         """"""
-        raise NotImplementedError",,
+        raise NotImplementedError",Y,
 312,luigi,luigi/test/helpers.py,run_locally,try-finally,"try:
             CmdlineParser._instance = None
             run_exit_status = luigi.run(['--local-scheduler', '--no-lock'] + args)
@@ -12437,7 +12437,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             run_exit_status = luigi.run(['--local-scheduler', '--no-lock'] + args)
         finally:
             CmdlineParser._instance = temp
-        return run_exit_status",,
+        return run_exit_status",Y,
 313,httpbin,httpbin/httpbin/helpers.py,HA2,raise,raise ValueError,"def HA2(credentials, request, algorithm):
     """"""Create HA2 md5 hash
 
@@ -12456,13 +12456,13 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
                         request['uri'].encode('utf-8'),
                         H(request['body'], algorithm).encode('utf-8')])
         return H(A2, algorithm)
-    raise ValueError",,
+    raise ValueError",Y,
 314,numba,numba/numba/parfors/parfor.py,generic,raise,"raise errors.NumbaAssertionError(""len(args) != 3"")","def generic(self, args, kws):
         assert not kws
         if len(args) != 3:
             raise errors.NumbaAssertionError(""len(args) != 3"")
         assert isinstance(args[1], types.Array)
-        return signature(args[1].dtype, *args)",,
+        return signature(args[1].dtype, *args)",Y,
 315,synapse,synapse/synapse/util/retryutils.py,get_retry_limiter,raise,"raise NotRetryingDestination(
                 retry_last_ts=retry_last_ts,
                 retry_interval=retry_interval,
@@ -12530,7 +12530,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         retry_interval,
         backoff_on_failure=backoff_on_failure,
         **kwargs,
-    )",,
+    )",Y,
 316,ray,ray/python/ray/_private/test_utils.py,async_wait_for_condition,raise,raise RuntimeError(message),"async def async_wait_for_condition(
     condition_predictor, timeout=10, retry_interval_ms=100, **kwargs: Any
 ):
@@ -12560,7 +12560,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
     message = ""The condition wasn't met before the timeout expired.""
     if last_ex is not None:
         message += f"" Last exception: {last_ex}""
-    raise RuntimeError(message)",,
+    raise RuntimeError(message)",Y,
 317,scipy,scipy/scipy/signal/_signaltools.py,residue,raise,"raise ValueError(""Denominator `a` is zero."")","def residue(b, a, tol=1e-3, rtype='avg'):
     """"""Compute partial-fraction expansion of b(s) / a(s).
 
@@ -12673,7 +12673,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         poles[index:index + mult] = pole
         index += mult
 
-    return residues / a[0], poles, k",,
+    return residues / a[0], poles, k",Y,
 318,lbry-sdk,lbry-sdk/lbry/wallet/rpc/session.py,send_notification,try-except,"try:
             await self._send_message(message)
             return True
@@ -12690,7 +12690,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         except asyncio.TimeoutError:
             self.logger.info(""timeout sending address notification to %s"", self.peer_address_str(for_log=True))
             self.abort()
-            return False",,
+            return False",Y,
 319,tensor2tensor,tensor2tensor/tensor2tensor/layers/discretization.py,parametrized_bottleneck,raise,"raise ValueError(
       ""Unsupported hparams.bottleneck_kind %s"" % hparams.bottleneck_kind)","def parametrized_bottleneck(x, hparams):
   """"""Meta-function calling all the above bottlenecks with hparams.""""""
@@ -12728,7 +12728,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         summary=True)
 
   raise ValueError(
-      ""Unsupported hparams.bottleneck_kind %s"" % hparams.bottleneck_kind)",,
+      ""Unsupported hparams.bottleneck_kind %s"" % hparams.bottleneck_kind)",Y,
 320,dirsearch,dirsearch/lib/core/fuzzer.py,is_finished,raise,raise self.exc,"def is_finished(self):
         if self.exc:
             raise self.exc
@@ -12737,7 +12737,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             if thread.is_alive():
                 return False
 
-        return True",,
+        return True",Y,
 321,transformers,transformers/src/transformers/models/plbart/modeling_plbart.py,__init__,raise,"raise ValueError(
                 f""embed_dim must be divisible by num_heads (got `embed_dim`: {self.embed_dim}""
                 f"" and `num_heads`: {num_heads}).""
@@ -12766,7 +12766,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         self.k_proj = nn.Linear(embed_dim, embed_dim, bias=bias)
         self.v_proj = nn.Linear(embed_dim, embed_dim, bias=bias)
         self.q_proj = nn.Linear(embed_dim, embed_dim, bias=bias)
-        self.out_proj = nn.Linear(embed_dim, embed_dim, bias=bias)",,
+        self.out_proj = nn.Linear(embed_dim, embed_dim, bias=bias)",Y,
 322,ansible,ansible/test/support/network-integration/collections/ansible_collections/ansible/netcommon/plugins/module_utils/network/common/parsing.py,__init__,raise,"raise ValueError(""failed to parse conditional"")","def __init__(self, conditional, encoding=None):
         self.raw = conditional
         self.negate = False
@@ -12784,7 +12784,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
 
         self.key = key
         self.func = self._func(op)
-        self.value = self._cast_value(val)",,
+        self.value = self._cast_value(val)",Y,
 323,tornado,tornado/tornado/http1connection.py,close,try-except,"try:
             await self._serving_future
         except Exception:
@@ -12800,7 +12800,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         try:
             await self._serving_future
         except Exception:
-            pass",,
+            pass",Y,
 324,networkx,networkx/networkx/classes/graph.py,remove_node,try-except,"try:
             nbrs = list(adj[n])  # list handles self-loops (allows mutation)
             del self._node[n]
@@ -12843,7 +12843,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             raise NetworkXError(f""The node {n} is not in the graph."") from err
         for u in nbrs:
             del adj[u][n]  # remove all edges n-u in graph
-        del adj[n]",,
+        del adj[n]",Y,
 325,playwright-python,playwright-python/tests/server.py,process,try-except,"try:
                     file_content = (static_path / path[1:]).read_bytes()
                     content_type = mimetypes.guess_type(path)[0]
@@ -12915,7 +12915,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
                     self.setResponseCode(HTTPStatus.OK)
                 except (FileNotFoundError, IsADirectoryError, PermissionError):
                     request.setResponseCode(HTTPStatus.NOT_FOUND)
-                self.finish()",,
+                self.finish()",Y,
 326,sshuttle,sshuttle/sshuttle/ssnet.py,try_connect,try-except,"try:
             self.rsock.connect(self.connect_to)
             # connected successfully (Linux)
@@ -13000,7 +13000,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
                 self.connect_to = None
                 self.seterr(e)
             else:
-                raise",,
+                raise",Y,
 327,fail2ban,fail2ban/fail2ban/server/failregex.py,_resolveHostTag,try-except,"try:
 				return RH4TAG[tn]
 			except KeyError:
@@ -13050,7 +13050,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
 			return tag
 		
 		# substitute tags:
-		return FTAG_CRE.sub(substTag, regex)",,
+		return FTAG_CRE.sub(substTag, regex)",Y,
 328,xx-net,xx-net/code/default/lib/noarch/tlslite/keyexchange.py,makeServerKeyExchange,raise,"raise TLSInternalError(""DHE key exchange attempted despite no ""
                                        ""overlap between supported groups"")","def makeServerKeyExchange(self):
         """"""
@@ -13077,7 +13077,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         serverKeyExchange = ServerKeyExchange(self.cipherSuite, version)
         serverKeyExchange.createDH(self.dh_p, self.dh_g, dh_Ys)
         # No sign for anonymous ServerKeyExchange.
-        return serverKeyExchange",,
+        return serverKeyExchange",Y,
 329,ray,ray/python/ray/air/tests/_test_experiment_restore_run.py,train_fn,try-except,"try:
             training_started_marker.unlink()
         except FileNotFoundError:
@@ -13099,7 +13099,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         time.sleep(TIME_PER_ITER_S)
 
         with create_dict_checkpoint({""iteration"": iteration}) as checkpoint:
-            train.report({""score"": random.random()}, checkpoint=checkpoint)",,
+            train.report({""score"": random.random()}, checkpoint=checkpoint)",Y,
 330,archivebox,archivebox/deb_dist/archivebox-0.6.2/archivebox/extractors/dom.py,save_dom,raise,"raise ArchiveError('Failed to save DOM', hints)","def save_dom(link: Link, out_dir: Optional[Path]=None, timeout: int=TIMEOUT) -> ArchiveResult:
     """"""print HTML of site to file using chrome --dump-html""""""
 
@@ -13135,7 +13135,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         output=output,
         status=status,
         **timer.stats,
-    )",,
+    )",Y,
 331,uvloop,uvloop/tests/test_process_spawning.py,test_spawning_external_process,try-except,"try:
                     await asyncio.wait_for(done_event.wait(), timeout=0.1)
                 except asyncio.TimeoutError:
@@ -13236,7 +13236,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
 
         loop = uvloop.new_event_loop()
         proc = loop.run_until_complete(run(loop))
-        self.assertTrue(proc)",,
+        self.assertTrue(proc)",Y,
 332,pymc,pymc/pymc/model/transform/conditioning.py,do,try-except,"try:
             do_mapping[var] = var.type.filter_variable(obs)
         except TypeError as err:
@@ -13340,7 +13340,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
     model = model_from_fgraph(fgraph)
     if prune_vars:
         return prune_vars_detached_from_observed(model)
-    return model",,
+    return model",Y,
 333,impacket,impacket/impacket/dcerpc/v5/transport.py,connect,raise,"raise DCERPCException(""%s:%s service is not ncacn_http"" % (self.__remoteName, self.__dstport))","def connect(self):
         if self._useRpcProxy == False:
             # Connecting directly to the ncacn_http port
@@ -13357,9 +13357,9 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             if data != b'ncacn_http/1.0':
                 raise DCERPCException(""%s:%s service is not ncacn_http"" % (self.__remoteName, self.__dstport))
         else:
-            RPCProxyClient.connect(self)",,
+            RPCProxyClient.connect(self)",Y,
 334,ipython,ipython/IPython/core/tests/test_oinspect.py,__bool__,raise,"raise ValueError(""pinfo should not access this method"")","def __bool__(self):
-            raise ValueError(""pinfo should not access this method"")",,
+            raise ValueError(""pinfo should not access this method"")",Y,
 335,archivebox,archivebox/deb_dist/archivebox-0.5.6/.pybuild/cpython3_3.8_archivebox/build/archivebox/logging_util.py,end,try-except,"try:
                 # kill the progress bar subprocess
                 try:
@@ -13402,7 +13402,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
                     # ignore when the parent proc has stopped listening to our stdout
                     pass
             except ValueError:
-                pass",,
+                pass",Y,
 336,youtube-dl,youtube-dl/youtube_dl/extractor/googledrive.py,_real_extract,raise,"raise ExtractorError(reason, expected=True)","def _real_extract(self, url):
         video_id = self._match_id(url)
         video_info = compat_parse_qs(self._download_webpage(
@@ -13517,7 +13517,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             'subtitles': self.extract_subtitles(video_id, subtitles_id, hl),
             'automatic_captions': self.extract_automatic_captions(
                 video_id, subtitles_id, hl),
-        }",,
+        }",Y,
 337,ludwig,ludwig/ludwig/schema/hyperopt/search_algorithm.py,SearchAlgorithmDataclassField,try-except,"try:
                     return BaseSearchAlgorithmConfig.Schema().load(value)
                 except (TypeError, ValidationError):
@@ -13564,14 +13564,14 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             )
         },
         default_factory=load_default,
-    )",,
+    )",Y,
 338,tushare,tushare/tushare/fund/cons.py,_check_input,raise,raise TypeError(DATE_CHK_Q_MSG),"def _check_input(year, quarter):
     if isinstance(year, str) or year < 1989:
         raise TypeError(DATE_CHK_MSG)
     elif quarter is None or isinstance(quarter, str) or quarter not in [1, 2, 3, 4]:
         raise TypeError(DATE_CHK_Q_MSG)
     else:
-        return True",,
+        return True",Y,
 339,archivebox,archivebox/deb_dist/archivebox-0.5.4/archivebox/vendor/taggit_utils.py,require_instance_manager,raise,"raise TypeError(""Can't call %s with a non-instance manager"" % func.__name__)","def require_instance_manager(func):
     @wraps(func)
     def inner(self, *args, **kwargs):
@@ -13579,7 +13579,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             raise TypeError(""Can't call %s with a non-instance manager"" % func.__name__)
         return func(self, *args, **kwargs)
 
-    return inner",,
+    return inner",Y,
 340,gitsome,gitsome/xonsh/built_ins.py,pathsearch,raise,raise XonshError(error % func),"def pathsearch(func, s, pymode=False, pathobj=False):
     """"""
     Takes a string and returns a list of file paths that match (regex, glob,
@@ -13593,7 +13593,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
     if pathobj and pymode:
         o = list(map(pathlib.Path, o))
     no_match = [] if pymode else [s]
-    return o if len(o) != 0 else no_match",,
+    return o if len(o) != 0 else no_match",Y,
 341,spyder,spyder/spyder/widgets/collectionseditor.py,get_test_data,try-else,"try:
         import pandas as pd
     except (ModuleNotFoundError, ImportError):
@@ -13685,7 +13685,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             # Test for spyder-ide/spyder#3518.
             'big_struct_array': np.zeros(1000, dtype=[('ID', 'f8'),
                                                       ('param1', 'f8', 5000)]),
-            }",,
+            }",Y,
 342,theano,theano/theano/tensor/opt.py,merge_two_slices,raise,"raise ValueError(('First provided slice should actually be of type'
                          'slice and not an index !'), slice1)","def merge_two_slices(slice1, len1, slice2, len2):
     """"""
@@ -13820,7 +13820,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         # Pre merge constant for the same reason.
         start, stop, step = pre_constant_merge([start, stop, step])
 
-        return slice(start, stop, step)",,
+        return slice(start, stop, step)",Y,
 343,ray,ray/python/ray/serve/deployment.py,delete,raise,"raise ValueError(
             ""This API has been fully deprecated. Please use serve.run() and ""
             ""serve.delete() instead.""
@@ -13828,7 +13828,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         raise ValueError(
             ""This API has been fully deprecated. Please use serve.run() and ""
             ""serve.delete() instead.""
-        )",,
+        )",Y,
 344,pymc,pymc/pymc/step_methods/hmc/nuts.py,_single_step,try-finally,"try:
             right = self.integrator.step(epsilon, left)
         except IntegrationError as err:
@@ -13907,7 +13907,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             self.n_proposals += 1
         tree = Subtree(None, None, None, None, -np.inf)
         divergence_info = DivergenceInfo(error_msg, error, left, right)
-        return tree, divergence_info, False",,
+        return tree, divergence_info, False",Y,
 345,textual,textual/src/textual/widgets/_data_table.py,get_row_index,raise,"raise RowDoesNotExist(f""No row exists for row_key={row_key!r}"")","def get_row_index(self, row_key: RowKey | str) -> int:
         """"""Return the current index for the row identified by row_key.
 
@@ -13922,7 +13922,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         """"""
         if row_key not in self._row_locations:
             raise RowDoesNotExist(f""No row exists for row_key={row_key!r}"")
-        return self._row_locations.get(row_key)",,
+        return self._row_locations.get(row_key)",Y,
 346,prophet,prophet/python/setup.py,install_cmdstan_deps,raise,"raise RuntimeError(""CmdStan failed to install in repackaged directory"")","def install_cmdstan_deps(cmdstan_dir: Path):
     import cmdstanpy
     from multiprocessing import cpu_count
@@ -13942,7 +13942,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             cores=cpu_count(),
             progress=True,
         ):
-            raise RuntimeError(""CmdStan failed to install in repackaged directory"")",,
+            raise RuntimeError(""CmdStan failed to install in repackaged directory"")",Y,
 347,sentry,sentry/src/sentry/event_manager.py,_associate_commits_with_release,try-except,"try:
                 repo_client.get_commit(
                     repo=repo_proj_path_model.repository.name, sha=release.version
@@ -13991,7 +13991,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
                     if previous_release is not None
                     else None,
                 }
-            )",,
+            )",Y,
 348,pandas,pandas/pandas/core/internals/blocks.py,interpolate,try-except,"try:
             m = missing.clean_fill_method(method)
         except ValueError:
@@ -14070,10 +14070,10 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         )
 
         nb = self.make_block_same_class(data, refs=refs)
-        return nb._maybe_downcast([nb], downcast, using_cow)",,
+        return nb._maybe_downcast([nb], downcast, using_cow)",Y,
 349,aws-cli,aws-cli/awscli/bcdoc/textwriter.py,visit_footnote_reference,raise,raise nodes.SkipNode,"def visit_footnote_reference(self, node):
         self.add_text('[%s]' % node.astext())
-        raise nodes.SkipNode",,
+        raise nodes.SkipNode",Y,
 350,sentry,sentry/src/sentry/data_export/processors/discover.py,get_environments,raise,"raise ExportError(""Requested environment does not exist"")","def get_environments(organization_id, query):
         requested_environments = query.get(""environment"", [])
         if not isinstance(requested_environments, list):
@@ -14092,7 +14092,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         if set(requested_environments) != set(environment_names):
             raise ExportError(""Requested environment does not exist"")
 
-        return environment_names",,
+        return environment_names",Y,
 351,celery,celery/celery/worker/consumer/gossip.py,on_message,try-else,"try:
             handler = self.event_handlers[_type]
         except KeyError:
@@ -14121,7 +14121,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             except (DecodeError, ContentDisallowed, TypeError) as exc:
                 logger.error(exc)
         else:
-            self.clock.forward()",,
+            self.clock.forward()",Y,
 352,mopidy,mopidy/mopidy/backend.py,as_list,raise,raise NotImplementedError,"def as_list(self) -> list[Ref]:
         """"""Get a list of the currently available playlists.
 
@@ -14131,9 +14131,9 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
 
         .. versionadded:: 1.0
         """"""
-        raise NotImplementedError",,
+        raise NotImplementedError",Y,
 353,unilm,unilm/kosmos-2/fairseq/fairseq/models/nat/nonautoregressive_ensembles.py,forward_decoder,raise,raise NotImplementedError,"def forward_decoder(self, *inputs):
-        raise NotImplementedError",,
+        raise NotImplementedError",Y,
 354,archivebox,archivebox/deb_dist/archivebox-0.5.3/archivebox/parsers/wallabag_atom.py,parse_wallabag_atom_export,try-except,"try:
             tags = str_between(get_row('category'), 'label=""', '"" />')
         except:
@@ -14178,7 +14178,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             title=htmldecode(title) or None,
             tags=tags or '',
             sources=[rss_file.name],
-        )",,
+        )",Y,
 355,sentry,sentry/src/sentry/models/group.py,get_share_id,try-except,"try:
             return GroupShare.objects.filter(group_id=self.id).values_list(""uuid"", flat=True)[0]
         except IndexError:
@@ -14190,7 +14190,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             return GroupShare.objects.filter(group_id=self.id).values_list(""uuid"", flat=True)[0]
         except IndexError:
             # Otherwise it has not been shared yet.
-            return None",,
+            return None",Y,
 356,ray,ray/python/ray/serve/config.py,_to_deployment_mode,raise,"raise ValueError(f""Unrecognized `ProxyLocation`: {v}."")","def _to_deployment_mode(cls, v: Union[""ProxyLocation"", str]) -> DeploymentMode:
         if not isinstance(v, (cls, str)):
             raise TypeError(f""Must be a `ProxyLocation` or str, got: {type(v)}."")
@@ -14201,7 +14201,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         elif v == ProxyLocation.EveryNode:
             return DeploymentMode.EveryNode
         else:
-            raise ValueError(f""Unrecognized `ProxyLocation`: {v}."")",,
+            raise ValueError(f""Unrecognized `ProxyLocation`: {v}."")",Y,
 357,pillow,pillow/src/PIL/MspImagePlugin.py,decode,raise,raise OSError(msg) from e,"def decode(self, buffer):
         img = io.BytesIO()
         blank_line = bytearray((0xFF,) * ((self.state.xsize + 7) // 8))
@@ -14242,11 +14242,11 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
 
         self.set_as_raw(img.getvalue(), (""1"", 0, 1))
 
-        return -1, 0",,
+        return -1, 0",Y,
 358,unilm,unilm/decoding/IAD/fairseq/tests/speech_recognition/asr_test_base.py,setUpClass,raise,"raise unittest.SkipTest(""Skipping test case in base"")","def setUpClass(cls):
         if cls is TestFairseqEncoderModelBase:
             raise unittest.SkipTest(""Skipping test case in base"")
-        super().setUpClass()",,
+        super().setUpClass()",Y,
 359,mlflow,mlflow/mlflow/recipes/steps/evaluate.py,_build_profiles_and_card,try-except,"try:
             import shap  # noqa: F401
             from matplotlib import pyplot  # noqa: F401
@@ -14462,7 +14462,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         else:
             run_summary_card_tab.add_markdown(""MODEL_URI"", f""**MLflow Model URI:** `{model_uri}`"")
 
-        return card",,
+        return card",Y,
 360,transformers,transformers/src/transformers/models/markuplm/modeling_markuplm.py,forward,raise,"raise ValueError(""You have to specify either input_ids or inputs_embeds"")","def forward(
         self,
         input_ids: Optional[torch.LongTensor] = None,
@@ -14563,13 +14563,13 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             hidden_states=encoder_outputs.hidden_states,
             attentions=encoder_outputs.attentions,
             cross_attentions=encoder_outputs.cross_attentions,
-        )",,
+        )",Y,
 361,bokeh,bokeh/src/bokeh/models/ranges.py,__init__,raise,"raise ValueError(""'factors' keyword cannot be used with positional arguments"")","def __init__(self, *args, **kwargs) -> None:
         if args and ""factors"" in kwargs:
             raise ValueError(""'factors' keyword cannot be used with positional arguments"")
         elif args:
             kwargs['factors'] = list(args)
-        super().__init__(**kwargs)",,
+        super().__init__(**kwargs)",Y,
 362,sentry,sentry/src/sentry/db/models/base.py,__model_class_prepared,raise,"raise ValueError(
             f""{sender!r} model has not defined __include_in_export__. This is used to determine ""
             f""which models we export from sentry as part of our migration workflow: \n""
@@ -14589,7 +14589,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             f""This should be True for core, low volume models used to configure Sentry. Things like ""
             f""Organization, Project  and related settings. It should be False for high volume models ""
             f""like Group.""
-        )",,
+        )",Y,
 363,dask,dask/dask/dataframe/multi.py,align_partitions,raise,"raise ValueError(""dfs contains no DataFrame and Series"")","def align_partitions(*dfs):
     """"""Mutually partition and align DataFrame blocks
 
@@ -14646,9 +14646,9 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             else:  # Scalar has no divisions
                 L.append(None)
         result.append(L)
-    return dfs2, tuple(divisions), result",,
+    return dfs2, tuple(divisions), result",Y,
 364,kornia,kornia/test/augmentation/test_random_generator_3d.py,test_same_on_batch,raise,raise NotImplementedError,"def test_same_on_batch(self, device, dtype):
-        raise NotImplementedError",,
+        raise NotImplementedError",Y,
 365,chia-blockchain,chia-blockchain/tests/clvm/coin_store.py,update_coin_store_for_spend_bundle,raise,"raise BadSpendBundleError(f""validation failure {err}"")","def update_coin_store_for_spend_bundle(
         self,
         spend_bundle: SpendBundle,
@@ -14666,7 +14666,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             coin_name = spent_coin.name()
             coin_record = self._db[coin_name]
             self._db[coin_name] = replace(coin_record, spent_block_index=now.height)
-        return additions, spend_bundle.coin_spends",,
+        return additions, spend_bundle.coin_spends",Y,
 366,transformers,transformers/src/transformers/models/mega/modeling_mega.py,__init__,raise,"raise ValueError(""unknown relative position bias: {}"".format(self.config.relative_positional_bias))","def __init__(self, config: MegaConfig):
         super().__init__()
 
@@ -14703,7 +14703,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         else:
             raise ValueError(""unknown relative position bias: {}"".format(self.config.relative_positional_bias))
 
-        self.softmax = nn.Softmax(dim=-1)",,
+        self.softmax = nn.Softmax(dim=-1)",Y,
 367,ray,ray/rllib/connectors/action/pipeline.py,from_state,raise,raise e,"def from_state(ctx: ConnectorContext, params: Any):
         assert (
             type(params) == list
@@ -14716,7 +14716,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             except Exception as e:
                 logger.error(f""Failed to de-serialize connector state: {state}"")
                 raise e
-        return ActionConnectorPipeline(ctx, connectors)",,
+        return ActionConnectorPipeline(ctx, connectors)",Y,
 368,models,models/official/core/train_utils.py,__init__,raise,"raise ValueError('best checkpoint metric comp must be one of '
                        'higher, lower. Got: {}'.format(self._metric_comp))","def __init__(self, export_dir: str, metric_name: str, metric_comp: str):
     """"""Initialization.
@@ -14736,7 +14736,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
                        'higher, lower. Got: {}'.format(self._metric_comp))
     tf.io.gfile.makedirs(os.path.dirname(self.best_ckpt_logs_path))
     self._best_ckpt_logs = self._maybe_load_best_eval_metric()
-    self._checkpoint_manager = None",,
+    self._checkpoint_manager = None",Y,
 369,openage,openage/openage/nyan/nyan_structs.py,update_inheritance,raise,"raise ValueError(f""{repr(self)}: cannot add inherited member ""
                              f""{new_inherited_member} because ""
                              f""{new_inherited_member.get_origin()} is not ""
@@ -14771,14 +14771,14 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
                 None,
                 0
             )
-            child.update_inheritance(inherited_member)",,
+            child.update_inheritance(inherited_member)",Y,
 370,localstack,localstack/localstack/aws/api/ec2/__init__.py,describe_account_attributes,raise,raise NotImplementedError,"def describe_account_attributes(
         self,
         context: RequestContext,
         attribute_names: AccountAttributeNameStringList = None,
         dry_run: Boolean = None,
     ) -> DescribeAccountAttributesResult:
-        raise NotImplementedError",,
+        raise NotImplementedError",Y,
 371,django,django/django/db/models/expressions.py,as_sql,raise,"raise ValueError(
             ""This queryset contains a reference to an outer query and may ""
             ""only be used in a subquery.""
@@ -14786,7 +14786,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         raise ValueError(
             ""This queryset contains a reference to an outer query and may ""
             ""only be used in a subquery.""
-        )",,
+        )",Y,
 372,mindsdb,mindsdb/mindsdb/integrations/handlers/airtable_handler/airtable_handler.py,check_connection,try-except,"try:
             self.connect()
             response.success = True
@@ -14819,7 +14819,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             if response.success is False and self.is_connected is True:
                 self.is_connected = False
 
-        return response",,
+        return response",Y,
 373,mindsdb,mindsdb/mindsdb/interfaces/database/integrations.py,delete,try-except,"try:
                     self.handlers[key].disconnect()
                 except Exception:
@@ -14838,14 +14838,14 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
                     pass
                 del self.handlers[key]
             if len(self.handlers) == 0:
-                self._stop_clean()",,
+                self._stop_clean()",Y,
 374,dash,dash/components/dash-core-components/tests/integration/graph/test_graph_varia.py,trace_will_prepend_selectively,raise,raise PreventUpdate,"def trace_will_prepend_selectively(n_intervals):
         if n_intervals is None or n_intervals < 1:
             raise PreventUpdate
 
         x_new = [5, 6, 7, 8, 9]
         y_new = [0.1, 0.2, 0.3, 0.4, 0.5]
-        return dict(x=[x_new], y=[y_new]), [1]",,
+        return dict(x=[x_new], y=[y_new]), [1]",Y,
 375,tensorlayer,tensorlayer/tensorlayer/files/utils.py,_save_weights_to_hdf5_group,raise,"raise Exception(""Only layer or model can be saved into hdf5."")","def _save_weights_to_hdf5_group(f, layers):
     """"""
     Save layer/model weights into hdf5 group recursively.
@@ -14884,7 +14884,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
                 else:
                     val_dataset[:] = val
         else:
-            raise Exception(""Only layer or model can be saved into hdf5."")",,
+            raise Exception(""Only layer or model can be saved into hdf5."")",Y,
 376,uvloop,uvloop/tests/test_base.py,test_big_call_later_timeout,try-except,"try:
                 await asyncio.sleep(delay)
             except asyncio.CancelledError:
@@ -14919,7 +14919,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         self.loop.run_until_complete(main())
 
         self.assertEqual(OK, 5)
-        self.assertEqual(NOT_OK, 0)",,
+        self.assertEqual(NOT_OK, 0)",Y,
 377,airtest,airtest/airtest/core/android/rotation.py,install,try-else,"try:
             exists_file = self.adb.file_size(self.path_in_android)
         except:
@@ -14950,7 +14950,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
 
         self.adb.push(ROTATIONWATCHER_JAR, self.path_in_android)
         self.adb.shell(""chmod 755 %s"" % self.path_in_android)
-        LOGGING.info(""install rotationwacher finished"")",,
+        LOGGING.info(""install rotationwacher finished"")",Y,
 378,spyder,spyder/spyder/config/utils.py,get_edit_filetypes,try-except,"try:
             supported_exts = _get_pygments_extensions()
         except Exception:
@@ -14975,7 +14975,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
     other_exts = [ext for ext in supported_exts if ext not in favorite_exts]
     all_exts = tuple(favorite_exts + other_exts)
     text_filetypes = (_(""Supported text files""), all_exts)
-    return [text_filetypes] + EDIT_FILETYPES",,
+    return [text_filetypes] + EDIT_FILETYPES",Y,
 379,tensorlayer,tensorlayer/tensorlayer/layers/core.py,build,raise,"raise Exception(""The build(self, inputs_shape) method must be implemented by inherited class"")","def build(self, inputs_shape):
         """"""
         An abstract method which should be overwritten in derived classes
@@ -14985,7 +14985,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
 
         :param inputs_shape: tuple
         """"""
-        raise Exception(""The build(self, inputs_shape) method must be implemented by inherited class"")",,
+        raise Exception(""The build(self, inputs_shape) method must be implemented by inherited class"")",Y,
 380,certbot,certbot/certbot-apache/certbot_apache/_internal/override_centos.py,_try_restart_fedora,try-except,"try:
             util.run_script(['systemctl', 'restart', 'httpd'])
         except errors.SubprocessError as err:
@@ -15000,7 +15000,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
             raise errors.MisconfigurationError(str(err))
 
         # Finish with actual config check to see if systemctl restart helped
-        super().config_test()",,
+        super().config_test()",Y,
 381,searx,searx/searx/engines/piratebay.py,response,try-except,"try:
             filesize = get_torrent_size(result[""size""], ""B"")
             params['filesize'] = filesize
@@ -15047,9 +15047,9 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         results.append(params)
 
     # return results sorted by seeder
-    return sorted(results, key=itemgetter(""seed""), reverse=True)",,
+    return sorted(results, key=itemgetter(""seed""), reverse=True)",Y,
 382,tensorlayer,tensorlayer/tensorlayer/models/core.py,all_params,raise,"raise Exception(""please change all_params --> weights"")","def all_params(self):
-        raise Exception(""please change all_params --> weights"")",,
+        raise Exception(""please change all_params --> weights"")",Y,
 383,impacket,impacket/tests/dcerpc/test_nrpc.py,test_NetrServerPasswordGet,raise,raise,"def test_NetrServerPasswordGet(self):
         dce, rpctransport = self.connect()
         self.authenticate(dce)
@@ -15065,7 +15065,7 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         except DCERPCException as e:
             # The caller is not a BDC
             if str(e).find('STATUS_ACCESS_DENIED') < 0:
-                raise",,
+                raise",Y,
 384,scipy,scipy/scipy/stats/tests/test_continuous_basic.py,test_moments,try-except,"try:
         distfn = getattr(stats, distname)
     except TypeError:
@@ -15105,4 +15105,4 @@ multiple time in a DB. Tryed to register ""%s"" again under the new name ""%s"".
         check_loc_scale(distfn, arg, m, v, distname)
 
         if moment_ok:
-            check_moment(distfn, arg, m, v, distname)",,
+            check_moment(distfn, arg, m, v, distname)",Y,

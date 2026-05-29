@@ -33,19 +33,19 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
     padding_image = np.array(padding_image).astype('float32')
     padding_info = np.array(padding_info).astype('float32')
     padding_shape = np.array(padding_shape).astype('float32')
-    return padding_image, padding_info, padding_shape",,,
+    return padding_image, padding_info, padding_shape",N,,
 2,tensorlayer,tensorlayer/tests/layers/test_layers_convolution.py,test_layer_n7,"def test_layer_n7(self):
 
         # self.assertEqual(len(self.n7.all_layers), 8)
         # self.assertEqual(len(self.n7.all_params), 13)
         # self.assertEqual(self.n7.count_params(), 74880)
         self.assertEqual(len(self.n7._info[0].layer.all_weights), 2)
-        self.assertEqual(self.n7.get_shape().as_list()[1:], [100, 100, 32])",,,
+        self.assertEqual(self.n7.get_shape().as_list()[1:], [100, 100, 32])",N,,
 3,pre-commit,pre-commit/tests/languages/golang_test.py,exe_exists_mck,"def exe_exists_mck():
     with mock.patch.object(lang_base, 'exe_exists') as mck:
-        yield mck",,,
+        yield mck",N,,
 4,pillow,pillow/src/PIL/_binary.py,i8,"def i8(c):
-    return c if c.__class__ is int else c[0]",,,
+    return c if c.__class__ is int else c[0]",N,,
 5,qutebrowser,qutebrowser/qutebrowser/browser/greasemonkey.py,add_script,"def add_script(self, script, force=False):
         """"""Add a GreasemonkeyScript to this manager.
 
@@ -59,14 +59,14 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
                 f""Deferring script until requirements are fulfilled: {script}"")
             self._get_required_scripts(script, force)
         else:
-            self._add_script(script)",,,
+            self._add_script(script)",N,,
 6,tvm,tvm/tests/python/unittest/test_tir_transform_simplify.py,expected,"def expected(A: T.Buffer((16,), ""float32"")):
         for i in T.serial(16):
             if i == 5:
-                A[i] = 0.0",,,
+                A[i] = 0.0",N,,
 7,networkx,networkx/networkx/algorithms/bipartite/tests/test_extendability.py,test_cubical_graph_is_2,"def test_cubical_graph_is_2():
     G = nx.cubical_graph()
-    assert nx.bipartite.maximal_extendability(G) == 2",,,
+    assert nx.bipartite.maximal_extendability(G) == 2",N,,
 8,edgedb,edgedb/tests/test_edgeql_scope.py,test_edgeql_shape_intersection_semijoin_01,"async def test_edgeql_shape_intersection_semijoin_01(self):
         await self.assert_query_result(
             r'''
@@ -75,15 +75,15 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
             [
                 {""name"": ""Dave""}
             ]
-        )",,,
+        )",N,,
 9,fairseq,fairseq/examples/adaptive_span/adaptive_span_attention.py,get_cache_size,"def get_cache_size(self):
         """"""determine how long the cache should be""""""
         trim_len = self.get_trim_len()
         # give a buffer of 64 steps since a span might increase
         # in future updates
-        return min(self._max_span, self._max_span - trim_len + 64)",,,
+        return min(self._max_span, self._max_span - trim_len + 64)",N,,
 10,deepspeed,deepspeed/deepspeed/runtime/data_pipeline/data_sampling/indexed_dataset.py,doc_idx,"def doc_idx(self):
-        return self._index.doc_idx",,,
+        return self._index.doc_idx",N,,
 11,statsmodels,statsmodels/statsmodels/tsa/arima/tests/test_params.py,check,"def check(is_stationary='raise', is_invertible='raise'):
         assert_(not p.is_complete)
         assert_(not p.is_valid)
@@ -94,7 +94,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         if is_invertible == 'raise':
             assert_raises(ValueError, p.__getattribute__, 'is_invertible')
         else:
-            assert_equal(p.is_invertible, is_invertible)",,,
+            assert_equal(p.is_invertible, is_invertible)",N,,
 12,archivebox,archivebox/deb_dist/archivebox-0.5.3/build/lib/archivebox/index/sql.py,list_migrations,"def list_migrations(out_dir: Path=OUTPUT_DIR) -> List[Tuple[bool, str]]:
     from django.core.management import call_command
     out = StringIO()
@@ -108,13 +108,13 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
             migration_name = name_str.strip()
             migrations.append((is_applied, migration_name))
 
-    return migrations",,,
+    return migrations",N,,
 13,django,django/tests/auth_tests/models/with_many_to_many.py,create_superuser,"def create_superuser(self, username, orgs, password):
         user = self.model(username=username)
         user.set_password(password)
         user.save(using=self._db)
         user.orgs.add(*orgs)
-        return user",,,
+        return user",N,,
 14,jax,jax/tests/lax_control_flow_test.py,testWhileJVPWithGrowingNonzeroTangents,"def testWhileJVPWithGrowingNonzeroTangents(self):
     rng = self.rng()
 
@@ -140,7 +140,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
     expected = jax.jvp(loop_ref, (x,), (x,))
     self.assertAllClose(ans, expected, check_dtypes=False)
 
-    jtu.check_grads(loop_lax, (x,), order=2, modes=[""fwd""])",,,
+    jtu.check_grads(loop_lax, (x,), order=2, modes=[""fwd""])",N,,
 15,dvc,dvc/tests/func/experiments/test_save.py,test_untracked_dvclock_is_included_in_exp,"def test_untracked_dvclock_is_included_in_exp(tmp_dir, scm, dvc):
     stage = dvc.stage.add(
         cmd=""echo foo"",
@@ -155,7 +155,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
 
     exp = dvc.experiments.save()
     fs = scm.get_fs(exp)
-    assert fs.exists(""dvc.lock"")",,,
+    assert fs.exists(""dvc.lock"")",N,,
 16,scipy,scipy/scipy/stats/tests/test_distributions.py,test_edge_cases,"def test_edge_cases(self):
         with np.errstate(all='raise'):
             assert_equal(stats.triang.pdf(0, 0), 2.)
@@ -172,18 +172,18 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
 
             assert_equal(stats.triang.cdf(0., 1.), 0.)
             assert_equal(stats.triang.cdf(0.5, 1.), 0.25)
-            assert_equal(stats.triang.cdf(1., 1.), 1)",,,
+            assert_equal(stats.triang.cdf(1., 1.), 1)",N,,
 17,peewee,peewee/peewee.py,truncate,"def truncate(self, part):
-        return self.model._meta.database.truncate_date(part, self)",,,
+        return self.model._meta.database.truncate_date(part, self)",N,,
 18,youcompleteme,youcompleteme/third_party/ycmd/third_party/jedi_deps/jedi/jedi/inference/names.py,__init__,"def __init__(self, value, name):
         self._value = value
-        self._name = name",,,
+        self._name = name",N,,
 19,discord.py,discord.py/discord/flags.py,silent,"def silent(self):
         """""":class:`bool`: Alias for :attr:`suppress_notifications`.
 
         .. versionadded:: 2.2
         """"""
-        return 4096",,,
+        return 4096",N,,
 20,scikit-learn,scikit-learn/examples/neural_networks/plot_mlp_training_curves.py,plot_on_dataset,"def plot_on_dataset(X, y, ax, name):
     # for each dataset, plot learning for each learning strategy
     print(""\nlearning on dataset %s"" % name)
@@ -213,7 +213,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         print(""Training set score: %f"" % mlp.score(X, y))
         print(""Training set loss: %f"" % mlp.loss_)
     for mlp, label, args in zip(mlps, labels, plot_args):
-        ax.plot(mlp.loss_curve_, label=label, **args)",,,
+        ax.plot(mlp.loss_curve_, label=label, **args)",N,,
 21,deepspeed,deepspeed/deepspeed/autotuning/autotuner.py,tune_space,"def tune_space(self, tuning_space, prev_max_mbs=0, prev_best_mbs=0, prev_best_metric_val=0):
         config_zero = tuning_space.get(ZERO_OPTIMIZATION, {})
         stage = config_zero.get(ZERO_OPTIMIZATION_STAGE, None)
@@ -329,7 +329,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
             best_mbs = fast_best_mbs
 
         logger.info(f""End tuning for space: {tuning_space_name}"")
-        return max_micro_batch_size, best_mbs, best_metric_val",,,
+        return max_micro_batch_size, best_mbs, best_metric_val",N,,
 22,routersploit,routersploit/routersploit/modules/exploits/routers/linksys/1500_2500_rce.py,check,"def check(self):
         mark = utils.random_text(32)
         cmd = ""echo {}"".format(mark)
@@ -358,7 +358,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         if mark in response.text:
             return True  # target is vulnerable
 
-        return False",,,
+        return False",N,,
 23,models,models/official/projects/basnet/evaluation/metrics_test.py,test_max_f,"def test_max_f(self):
     input_size = 224
     beta = 0.3
@@ -381,11 +381,11 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
     rec_out_tf = rec_tf.result().numpy()
     compare = (1+beta)*pre_out_tf*rec_out_tf/(beta*pre_out_tf+rec_out_tf+1e-8)
 
-    self.assertAlmostEqual(output, compare, places=1)",,,
+    self.assertAlmostEqual(output, compare, places=1)",N,,
 24,frida,frida/releng/meson/mesonbuild/cmake/traceparser.py,_meson_ps_reload_vars,"def _meson_ps_reload_vars(self, tline: CMakeTraceLine) -> None:
-        self.delayed_commands = self.get_cmake_var('MESON_PS_DELAYED_CALLS')",,,
+        self.delayed_commands = self.get_cmake_var('MESON_PS_DELAYED_CALLS')",N,,
 25,scipy,scipy/scipy/special/_ellip_harm.py,_ellip_normal_vec,"def _ellip_normal_vec(h2, k2, n, p):
-    return _ellipsoid_norm(h2, k2, n, p)",,,
+    return _ellipsoid_norm(h2, k2, n, p)",N,,
 26,keras,keras/keras/layers/preprocessing/index_lookup_test.py,test_too_long_vocab_fails_in_single_setting,"def test_too_long_vocab_fails_in_single_setting(self):
         vocab_data = [""earth"", ""wind"", ""and"", ""fire""]
 
@@ -399,7 +399,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         with self.assertRaisesRegex(
             ValueError, ""vocabulary larger than the maximum vocab""
         ):
-            layer.set_vocabulary(vocab_data)",,,
+            layer.set_vocabulary(vocab_data)",N,,
 27,mlflow,mlflow/tests/spark/autologging/ml/test_pyspark_ml_autologging.py,test_signature_with_non_feature_input_columns,"def test_signature_with_non_feature_input_columns(
     input_df_with_non_features, pipeline_for_feature_cols
 ):
@@ -410,9 +410,9 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
             run,
             input_sig_spec=[{""name"": ""id"", ""type"": ""long""}],
             output_sig_spec=None,
-        )",,,
+        )",N,,
 28,prefect,prefect/tests/test_tasks.py,upstream,"def upstream(x):
-            return x",,,
+            return x",N,,
 29,youcompleteme,youcompleteme/third_party/ycmd/third_party/jedi_deps/jedi/test/test_inference/test_gradual/test_typeshed.py,test_goto_stubs,"def test_goto_stubs(Script):
     s = Script('import os; os')
     os_module, = s.infer()
@@ -421,13 +421,13 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
     stub, = os_module.goto(only_stubs=True)
     assert stub.is_stub() is True
 
-    os_module, = s.goto()",,,
+    os_module, = s.goto()",N,,
 30,synapse,synapse/tests/handlers/test_send_email.py,eomReceived,"def eomReceived(self) -> ""defer.Deferred[bytes]"":
         message = b""\n"".join(self._buffer) + b""\n""
         self._delivery.record_message(self._user.dest, message)
-        return defer.succeed(b""saved"")",,,
+        return defer.succeed(b""saved"")",N,,
 31,transformers,transformers/src/transformers/utils/dummy_pt_objects.py,__init__,"def __init__(self, *args, **kwargs):
-        requires_backends(self, [""torch""])",,,
+        requires_backends(self, [""torch""])",N,,
 32,models,models/research/object_detection/core/box_list_ops_test.py,test_scale,"def test_scale(self):
     def graph_fn():
       corners = tf.constant([[0, 0, 100, 200], [50, 120, 100, 140]],
@@ -442,19 +442,19 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
     scaled_corners_out, extra_data_out = self.execute(graph_fn, [])
     exp_output = [[0, 0, 1, 1], [0.5, 0.6, 1.0, 0.7]]
     self.assertAllClose(scaled_corners_out, exp_output)
-    self.assertAllEqual(extra_data_out, [[1], [2]])",,,
+    self.assertAllEqual(extra_data_out, [[1], [2]])",N,,
 33,scikit-learn,scikit-learn/doc/tutorial/machine_learning_map/pyparsing.py,__ilshift__,"def __ilshift__(self, other):
-        return self << other",,,
+        return self << other",N,,
 34,practical-python,practical-python/Solutions/7_11/typedproperty.py,__init__,"def __init__(self, name, shares, price):
             self.name = name
             self.shares = shares
-            self.price = price",,,
+            self.price = price",N,,
 35,plotly.py,plotly.py/packages/python/chart-studio/chart_studio/tests/test_optional/test_matplotlylib/test_plot_mpl.py,test_update_validation_error,"def test_update_validation_error(self):
         fig, ax = plt.subplots()
         ax.plot([1, 2, 3])
         update = {""invalid"": ""anything""}
         with pytest.raises(KeyError):
-            py.plot_mpl(fig, update=update, filename=""nosetests"", auto_open=False)",,,
+            py.plot_mpl(fig, update=update, filename=""nosetests"", auto_open=False)",N,,
 36,pytorch_geometric,pytorch_geometric/torch_geometric/transforms/pad.py,__call__,"def __call__(
         self,
         data: Union[Data, HeteroData],
@@ -495,7 +495,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
                 data[node_type].num_nodes = self.max_num_nodes.get_value(
                     node_type)
 
-        return data",,,
+        return data",N,,
 37,scikit-learn,scikit-learn/sklearn/linear_model/tests/test_quantile.py,test_asymmetric_error,"def test_asymmetric_error(quantile, default_solver):
     """"""Test quantile regression for asymmetric distributed targets.""""""
     n_samples = 1000
@@ -552,7 +552,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
     assert func(model_coef) == approx(func(res.x))
     assert_allclose(model.intercept_, res.x[0])
     assert_allclose(model.coef_, res.x[1:])
-    assert_allclose(np.mean(model.predict(X) > y), quantile, atol=1e-2)",,,
+    assert_allclose(np.mean(model.predict(X) > y), quantile, atol=1e-2)",N,,
 38,awx,awx/awx_collection/test/awx/test_credential_type.py,test_create_custom_credential_type,"def test_create_custom_credential_type(run_module, admin_user, silence_deprecation):
     # Example from docs
     result = run_module(
@@ -576,7 +576,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
     assert result['id'] == ct.pk
 
     assert ct.inputs == {""fields"": [{""id"": ""server"", ""type"": ""string"", ""default"": """", ""label"": """"}], ""required"": []}
-    assert ct.injectors == {'extra_vars': {'nexus_credential': 'test'}}",,,
+    assert ct.injectors == {'extra_vars': {'nexus_credential': 'test'}}",N,,
 39,sentry,sentry/tests/sentry/mediators/external_issues/test_issue_link_creator.py,test_invalid_action,"def test_invalid_action(self):
         with pytest.raises(APIUnauthorized):
             IssueLinkCreator.run(
@@ -586,11 +586,11 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
                 uri=""/link-issue"",
                 fields={},
                 user=self.user,
-            )",,,
+            )",N,,
 40,calibre,calibre/src/calibre/gui2/viewer/search.py,__eq__,"def __eq__(self, other):
         if not isinstance(other, Search):
             return False
-        return self.text == other.text and self.mode == other.mode and self.case_sensitive == other.case_sensitive",,,
+        return self.text == other.text and self.mode == other.mode and self.case_sensitive == other.case_sensitive",N,,
 41,d2l-zh,d2l-zh/d2l/paddle.py,box_center_to_corner,"def box_center_to_corner(boxes):
     """"""从（中间，宽度，高度）转换到（左上，右下）
 
@@ -601,20 +601,20 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
     x2 = cx + 0.5 * w
     y2 = cy + 0.5 * h
     boxes = d2l.stack((x1, y1, x2, y2), axis=-1)
-    return boxes",,,
+    return boxes",N,,
 42,zulip,zulip/zerver/tests/test_markdown.py,render,"def render(msg: Message, content: str) -> MessageRenderingResult:
             return render_markdown(
                 msg, content, realm_alert_words_automaton=realm_alert_words_automaton
-            )",,,
+            )",N,,
 43,models,models/research/object_detection/models/ssd_resnet_v1_ppn_feature_extractor_tf1_test.py,_scope_name,"def _scope_name(self):
-    return 'resnet_v1_50'",,,
+    return 'resnet_v1_50'",N,,
 44,wttr.in,wttr.in/bin/proxy.py,is_testmode,"def is_testmode():
     """"""Server is running in the wttr.in test mode""""""
 
-    return ""WTTRIN_TEST"" in os.environ",,,
+    return ""WTTRIN_TEST"" in os.environ",N,,
 45,rasa,rasa/tests/test_telemetry.py,test_initialize_telemetry_with_env_false,"def test_initialize_telemetry_with_env_false(monkeypatch: MonkeyPatch):
     monkeypatch.setenv(""RASA_TELEMETRY_ENABLED"", ""false"")
-    assert telemetry.initialize_telemetry() is False",,,
+    assert telemetry.initialize_telemetry() is False",N,,
 46,django,django/tests/urlpatterns_reverse/tests.py,test_redirect_to_view_name,"def test_redirect_to_view_name(self):
         res = redirect(""hardcoded2"")
         self.assertEqual(res.url, ""/hardcoded/doc.pdf"")
@@ -623,7 +623,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         res = redirect(""headlines"", year=""2008"", month=""02"", day=""17"")
         self.assertEqual(res.url, ""/headlines/2008.02.17/"")
         with self.assertRaises(NoReverseMatch):
-            redirect(""not-a-view"")",,,
+            redirect(""not-a-view"")",N,,
 47,models,models/official/projects/nhnet/models_test.py,process_decoded_ids,"def process_decoded_ids(predictions, end_token_id):
   """"""Transforms decoded tensors to lists ending with END_TOKEN_ID.""""""
   if isinstance(predictions, tf.Tensor):
@@ -635,7 +635,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
     if end_token_id in ids:
       ids = ids[:ids.index(end_token_id)]
       results.append(ids)
-  return results",,,
+  return results",N,,
 48,zulip,zulip/zerver/tests/test_upload.py,test_check_attachment_reference_update,"def test_check_attachment_reference_update(self) -> None:
         f1 = StringIO(""file1"")
         f1.name = ""file1.txt""
@@ -703,7 +703,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         f3_attachment = Attachment.objects.get(path_id=f3_path_id)
         self.assertTrue(message not in f1_attachment.messages.all())
         self.assertTrue(message not in f2_attachment.messages.all())
-        self.assertTrue(message not in f3_attachment.messages.all())",,,
+        self.assertTrue(message not in f3_attachment.messages.all())",N,,
 49,external-attention-pytorch,external-attention-pytorch/model/attention/Crossformer.py,forward,"def forward(self, x):
         """"""
         x: B, H*W, C
@@ -721,7 +721,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
             tmp_x = self.reductions[i](x).flatten(2).transpose(1, 2)
             xs.append(tmp_x)
         x = torch.cat(xs, dim=2)
-        return x",,,
+        return x",N,,
 50,saleor,saleor/saleor/discount/tests/test_utils/test_create_or_update_discount_objects_from_sale_for_checkout.py,test_create_fixed_sale,"def test_create_fixed_sale(checkout_lines_info, checkout_info, new_sale):
     # given
     line_info1 = checkout_lines_info[0]
@@ -774,7 +774,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
     assert discount_from_info.voucher == discount_from_db.voucher is None
 
     for checkout_line_info in checkout_lines_info[1:]:
-        assert not checkout_line_info.discounts",,,
+        assert not checkout_line_info.discounts",N,,
 51,localstack,localstack/tests/integration/cloudformation/test_template_engine.py,test_error_pass_macro_as_reference,"def test_error_pass_macro_as_reference(self, snapshot, aws_client):
         """"""
         This test shows that the CFn will reject any transformation name that has been specified as reference, for
@@ -793,11 +793,11 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
                 Capabilities=[""CAPABILITY_AUTO_EXPAND""],
                 Parameters=[{""ParameterKey"": ""MacroName"", ""ParameterValue"": ""NonExistent""}],
             )
-        snapshot.match(""error"", ex.value.response)",,,
+        snapshot.match(""error"", ex.value.response)",N,,
 52,faceswap,faceswap/tools/manual/frameviewer/editor/_base.py,_zoomed_dims,"def _zoomed_dims(self):
         """""" tuple: The (`width`, `height`) of the zoomed ROI. """"""
         roi = self._zoomed_roi
-        return (roi[2] - roi[0], roi[3] - roi[1])",,,
+        return (roi[2] - roi[0], roi[3] - roi[1])",N,,
 53,youcompleteme,youcompleteme/third_party/ycmd/third_party/jedi_deps/numpydoc/numpydoc/tests/test_validate.py,func,"def func(self):
 
         """"""Some function.
@@ -816,20 +816,20 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
 
         foo = 1
         bar = 2
-        return foo + bar",,,
+        return foo + bar",N,,
 54,streamlink,streamlink/src/streamlink/stream/wrappers.py,__init__,"def __init__(self, session, fd, timeout=30):
         self.buffer = RingBuffer(session.get_option(""ringbuffer-size""))
         self.fd = fd
         self.timeout = timeout
 
         self.filler = StreamIOThreadWrapper.Filler(self.fd, self.buffer)
-        self.filler.start()",,,
+        self.filler.start()",N,,
 55,chalice,chalice/chalice/deploy/deployer.py,handle_deploymentpackage,"def handle_deploymentpackage(self, config, resource):
         # type: (Config, models.DeploymentPackage) -> None
         if isinstance(resource.filename, models.Placeholder):
             zip_filename = self._packager.create_deployment_package(
                 config.project_dir, config.lambda_python_version)
-            resource.filename = zip_filename",,,
+            resource.filename = zip_filename",N,,
 56,archivebox,archivebox/deb_dist/archivebox-0.5.4/debian/archivebox/usr/lib/python3/dist-packages/archivebox/parsers/generic_html.py,parse_generic_html_export,"def parse_generic_html_export(html_file: IO[str], root_url: Optional[str]=None, **_kwargs) -> Iterable[Link]:
     """"""Parse Generic HTML for href tags and use only the url (support for title coming later)""""""
 
@@ -851,7 +851,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
                     title=None,
                     tags=None,
                     sources=[html_file.name],
-                )",,,
+                )",N,,
 57,pandas,pandas/pandas/tests/io/formats/test_format.py,test_to_string_complex_float_formatting,"def test_to_string_complex_float_formatting(self):
         # GH #25514, 25745
         with option_context(""display.precision"", 5):
@@ -872,7 +872,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
                 ""2  0.26975+0.32506j\n""
                 ""3 -0.00000-1.00000j""
             )
-            assert result == expected",,,
+            assert result == expected",N,,
 58,transformers,transformers/tests/models/clipseg/test_modeling_clipseg.py,test_equivalence_flax_to_pt,"def test_equivalence_flax_to_pt(self):
         config, inputs_dict = self.model_tester.prepare_config_and_inputs_for_common()
 
@@ -930,15 +930,15 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
                     len(fx_outputs), len(pt_outputs_loaded), ""Output lengths differ between Flax and PyTorch""
                 )
                 for fx_output, pt_output in zip(fx_outputs[:4], pt_outputs_loaded[:4]):
-                    self.assert_almost_equals(fx_output, pt_output.numpy(), 4e-2)",,,
+                    self.assert_almost_equals(fx_output, pt_output.numpy(), 4e-2)",N,,
 59,imgaug,imgaug/test/augmentables/test_normalization.py,_norm_and_invert,"def _norm_and_invert(bbs, images):
             return normalization.invert_normalize_bounding_boxes(
                 normalization.normalize_bounding_boxes(
                     bbs, shapes=images),
                 bbs
-            )",,,
+            )",N,,
 60,mitmproxy,mitmproxy/mitmproxy/flowfilter.py,__call__,"def __call__(self, f):
-        return True",,,
+        return True",N,,
 61,awesome-python-login-model,awesome-python-login-model/bilibili/bilibili.py,__init__,"def __init__(self, username, password):
         """"""
         初始化
@@ -952,9 +952,9 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         self.browser.get(self.url)
         self.wait = WebDriverWait(self.browser, 5, 0.2)
         self.username = username
-        self.password = password",,,
+        self.password = password",N,,
 62,unilm,unilm/deltalm/fairseq/fairseq/hub_utils.py,binarize,"def binarize(self, sentence: str) -> torch.LongTensor:
-        return self.src_dict.encode_line(sentence, add_if_not_exist=False).long()",,,
+        return self.src_dict.encode_line(sentence, add_if_not_exist=False).long()",N,,
 63,thefuck,thefuck/thefuck/rules/vagrant_up.py,get_new_command,"def get_new_command(command):
     cmds = command.script_parts
     machine = None
@@ -966,7 +966,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         return start_all_instances
     else:
         return [shell.and_(u""vagrant up {}"".format(machine), command.script),
-                start_all_instances]",,,
+                start_all_instances]",N,,
 64,ray,ray/release/benchmark-worker-startup/benchmark_worker_startup.py,__repr__,"def __repr__(self):
         with_gpu_str = ""with_gpu"" if self.with_gpu else ""without_gpu""
         executable_unit = ""tasks"" if self.with_tasks else ""actors""
@@ -992,7 +992,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
                 f""{self.num_cpus_in_cluster}_CPU_{self.num_gpus_in_cluster}""
                 ""_GPU_cluster"",
             ]
-        )",,,
+        )",N,,
 65,unilm,unilm/textdiffuser/assets/files/modeling_utils.py,num_parameters,"def num_parameters(self, only_trainable: bool = False, exclude_embeddings: bool = False) -> int:
         """"""
         Get number of (optionally, trainable or non-embeddings) parameters in the module.
@@ -1019,7 +1019,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
             ]
             return sum(p.numel() for p in non_embedding_parameters if p.requires_grad or not only_trainable)
         else:
-            return sum(p.numel() for p in self.parameters() if p.requires_grad or not only_trainable)",,,
+            return sum(p.numel() for p in self.parameters() if p.requires_grad or not only_trainable)",N,,
 66,ray,ray/rllib/env/tests/test_multi_agent_env.py,test_multi_agent_sample_async_remote,"def test_multi_agent_sample_async_remote(self):
         ev = RolloutWorker(
             env_creator=lambda _: BasicMultiAgent(5),
@@ -1039,22 +1039,22 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
             ),
         )
         batch = ev.sample()
-        self.assertEqual(batch.count, 200)",,,
+        self.assertEqual(batch.count, 200)",N,,
 67,pytest,pytest/src/_pytest/cacheprovider.py,sort_key,"def sort_key(node: Union[nodes.Item, nodes.Collector]) -> bool:
-                return node.path in lf_paths",,,
+                return node.path in lf_paths",N,,
 68,click,click/tests/test_testing.py,cli_stderr,"def cli_stderr():
         click.echo(""stdout"")
-        click.echo(""stderr"", err=True)",,,
+        click.echo(""stderr"", err=True)",N,,
 69,mypy,mypy/mypyc/ir/ops.py,__repr__,"def __repr__(self) -> str:
-        return ""<{}DecRef {!r}>"".format(""X"" if self.is_xdec else """", self.src)",,,
+        return ""<{}DecRef {!r}>"".format(""X"" if self.is_xdec else """", self.src)",N,,
 70,pandas,pandas/doc/make.py,clean,"def clean():
         """"""
         Clean documentation generated files.
         """"""
         shutil.rmtree(BUILD_PATH, ignore_errors=True)
-        shutil.rmtree(os.path.join(SOURCE_PATH, ""reference"", ""api""), ignore_errors=True)",,,
+        shutil.rmtree(os.path.join(SOURCE_PATH, ""reference"", ""api""), ignore_errors=True)",N,,
 71,calibre,calibre/src/calibre/gui2/dialogs/edit_authors_dialog.py,use_vl_changed,"def use_vl_changed(self, x):
-        self.show_table(None, None, None, False)",,,
+        self.show_table(None, None, None, False)",N,,
 72,powerline,powerline/tests/test_python/test_lib.py,test_mergedicts,"def test_mergedicts(self):
 		d = {}
 		mergedicts(d, {'abc': {'def': 'ghi'}})
@@ -1066,7 +1066,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
 		mergedicts(d, {'abc': {'mno': 'pqr'}})
 		self.assertEqual(d, {'abc': {'def': {'ghi': 'jkl'}, 'mno': 'pqr'}})
 		mergedicts(d, {'abc': {'def': REMOVE_THIS_KEY}})
-		self.assertEqual(d, {'abc': {'mno': 'pqr'}})",,,
+		self.assertEqual(d, {'abc': {'mno': 'pqr'}})",N,,
 73,zipline,zipline/zipline/pipeline/filters/filter.py,_compute,"def _compute(self, arrays, dates, assets, mask):
         # XXX: We're doing a lot of unncessary work here if `groupby` isn't
         # specified.
@@ -1086,13 +1086,13 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
             # PERF: Consider supporting different sizes of group labels.
             group_labels.astype(int64_dtype),
             effective_mask,
-        )",,,
+        )",N,,
 74,tvm,tvm/tests/python/unittest/test_tvmscript_error_report.py,test_duplicate_buffer,"def test_duplicate_buffer():
     def duplicate_buffer() -> None:
         A = T.alloc_buffer((128, 128), ""float32"")
         A = T.alloc_buffer((128, 128), ""float32"")  # error
 
-    check_error(duplicate_buffer, 3)",,,
+    check_error(duplicate_buffer, 3)",N,,
 75,transformers,transformers/src/transformers/models/convnext/image_processing_convnext.py,normalize,"def normalize(
         self,
         image: np.ndarray,
@@ -1114,7 +1114,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
             data_format (`str` or `ChannelDimension`, *optional*):
                 The channel dimension format of the image. If not provided, it will be the same as the input image.
         """"""
-        return normalize(image, mean=mean, std=std, data_format=data_format, **kwargs)",,,
+        return normalize(image, mean=mean, std=std, data_format=data_format, **kwargs)",N,,
 76,numba,numba/numba/tests/test_record_dtype.py,test_issue_1469_2,"def test_issue_1469_2(self):
         # Nesting nested arrays results in concatentated dimensions -
         # In this example a 3D array of a 2D nested array of 2D nested arrays
@@ -1122,10 +1122,10 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         nptype = np.dtype((np.dtype((np.float64, (5, 2))), (3, 6)))
         nbtype = types.Array(numpy_support.from_dtype(nptype), 3, 'C')
         expected = types.Array(types.float64, 7, 'C')
-        self.assertEqual(nbtype, expected)",,,
+        self.assertEqual(nbtype, expected)",N,,
 77,calibre,calibre/src/calibre/ebooks/conversion/plugins/mobi_output.py,specialize_css_for_output,"def specialize_css_for_output(self, log, opts, item, stylizer):
         from calibre.ebooks.mobi.writer8.cleanup import CSSCleanup
-        CSSCleanup(log, opts)(item, stylizer)",,,
+        CSSCleanup(log, opts)(item, stylizer)",N,,
 78,awx,awx/awx/main/tests/functional/api/test_credential_input_sources.py,test_input_source_rbac_associate,"def test_input_source_rbac_associate(get, post, delete, alice, vault_credential, external_credential):
     list_url = reverse(
         'api:credential_input_source_list',
@@ -1168,7 +1168,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
     # alice is allowed to disassociate now
     vault_credential.admin_role.members.add(alice)
     response = delete(delete_url, alice)
-    assert response.status_code == 204",,,
+    assert response.status_code == 204",N,,
 79,magenta,magenta/magenta/models/svg_vae/svg_decoder_loss.py,real_svg_top,"def real_svg_top(body_output, unused_targets, model_hparams, unused_vocab_size,
                  hard=False):
   """"""Applies the Mixture Density Network on top of the LSTM outputs.
@@ -1244,22 +1244,22 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
       # concat with the command we picked!
       ret = tf.concat([command, arguments], axis=-1)
 
-  return ret",,,
+  return ret",N,,
 80,ocrmypdf,ocrmypdf/tests/test_acroform.py,digitally_signed,"def digitally_signed(acroform, outdir):
     out = outdir / 'acroform_signed.pdf'
     with pikepdf.open(acroform) as pdf:
         pdf.Root.AcroForm.SigFlags = 3
         pdf.save(out)
-    yield out",,,
+    yield out",N,,
 81,plotly.py,plotly.py/packages/python/plotly/plotly/graph_objs/sunburst/hoverlabel/_font.py,colorsrc,"def colorsrc(self, val):
-        self[""colorsrc""] = val",,,
+        self[""colorsrc""] = val",N,,
 82,jax,jax/jax/experimental/sparse/csr.py,_csr_matmat_impl,"def _csr_matmat_impl(data, indices, indptr, B, *, shape, transpose):
-  return _coo_matmat(data, *_csr_to_coo(indices, indptr), B, spinfo=COOInfo(shape=shape), transpose=transpose)",,,
+  return _coo_matmat(data, *_csr_to_coo(indices, indptr), B, spinfo=COOInfo(shape=shape), transpose=transpose)",N,,
 83,gixy,gixy/gixy/core/regexp.py,can_contain,"def can_contain(self, char, skip_literal=True):
-        return char in self.char_list",,,
+        return char in self.char_list",N,,
 84,unilm,unilm/beit2/semantic_segmentation/backbone/beit.py,forward,"def forward(self, x):
         x = self.forward_features(x)
-        return x",,,
+        return x",N,,
 85,apprise,apprise/apprise/plugins/NotifyMSTeams.py,url,"def url(self, privacy=False, *args, **kwargs):
         """"""
         Returns the URL built dynamically based on specified arguments.
@@ -1301,16 +1301,16 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
                     token_b=self.pprint(self.token_b, privacy, safe=''),
                     token_c=self.pprint(self.token_c, privacy, safe=''),
                     params=NotifyMSTeams.urlencode(params),
-                )",,,
+                )",N,,
 86,pyinstaller,pyinstaller/bootloader/waflib/ConfigSet.py,__str__,"def __str__(self):
-        return ""\n"".join([""%r %r"" % (x, self.__getitem__(x)) for x in self.keys()])",,,
+        return ""\n"".join([""%r %r"" % (x, self.__getitem__(x)) for x in self.keys()])",N,,
 87,fail2ban,fail2ban/fail2ban/server/server.py,setMaxMatches,"def setMaxMatches(self, name, value):
-		self.__jails[name].filter.failManager.maxMatches = value",,,
+		self.__jails[name].filter.failManager.maxMatches = value",N,,
 88,archivebox,archivebox/deb_dist/archivebox-0.5.4/.pybuild/cpython3_3.8_archivebox/build/archivebox/vendor/django-taggit/tests/tests.py,test_with_case_insensitive_option,"def test_with_case_insensitive_option(self):
         spain = self.tag_model.objects.create(name=""Spain"", slug=""spain"")
         orange = self.food_model.objects.create(name=""orange"")
         orange.tags.add(""spain"")
-        self.assertEqual(list(orange.tags.all()), [spain])",,,
+        self.assertEqual(list(orange.tags.all()), [spain])",N,,
 89,modin,modin/modin/pandas/resample.py,sem,"def sem(self, *args, **kwargs):
         return self._dataframe.__constructor__(
             query_compiler=self._query_compiler.resample_sem(
@@ -1318,7 +1318,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
                 *args,
                 **kwargs,
             )
-        )",,,
+        )",N,,
 90,ray,ray/python/ray/tests/test_actor_failures.py,test_failure_during_dependency_resolution,"def test_failure_during_dependency_resolution(ray_start_regular):
     @ray.remote
     class Actor:
@@ -1342,7 +1342,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
     dep = a.dep.remote()
     ref = a.foo.remote(dep)
     with pytest.raises(ray.exceptions.RayActorError):
-        ray.get(ref)",,,
+        ray.get(ref)",N,,
 91,nni,nni/test/algo/nas/oneshot/test_proxyless.py,test_proxyless_bp,"def test_proxyless_bp():
     op = ProxylessMixedLayer(
         {name: value(3, 3, 1) for name, value in OPS_WITH_STRIDE.items()},
@@ -1360,11 +1360,11 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         y.backward()
         assert op._arch_alpha.grad.abs().sum().item() != 0
 
-    assert op.export({})['proxyless'] in OPS_WITH_STRIDE",,,
+    assert op.export({})['proxyless'] in OPS_WITH_STRIDE",N,,
 92,transformers,transformers/src/transformers/models/big_bird/tokenization_big_bird.py,__getstate__,"def __getstate__(self):
         state = self.__dict__.copy()
         state[""sp_model""] = None
-        return state",,,
+        return state",N,,
 93,readthedocs.org,readthedocs.org/readthedocs/vcs_support/backends/hg.py,parse_branches,"def parse_branches(self, data):
         """"""
         Parses output of `hg branches --quiet`.
@@ -1379,13 +1379,13 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         identifier.
         """"""
         names = [name.lstrip() for name in data.splitlines()]
-        return [VCSVersion(self, name, name) for name in names if name]",,,
+        return [VCSVersion(self, name, name) for name in names if name]",N,,
 94,calibre,calibre/src/calibre/gui2/preferences/template_functions.py,st_clear_button_clicked,"def st_clear_button_clicked(self):
         self.st_build_function_names_box()
         self.te_textbox.clear()
         self.template_editor.new_doc.clear()
         self.st_create_button.setEnabled(False)
-        self.st_delete_button.setEnabled(False)",,,
+        self.st_delete_button.setEnabled(False)",N,,
 95,calibre,calibre/src/calibre/ebooks/docx/block_styles.py,__init__,"def __init__(self, namespace, pPr=None):
         self.namespace = namespace
         self.linked_style = None
@@ -1411,12 +1411,12 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
             self.font_family = self.font_size = self.color = self.cs_font_size = self.cs_font_family = inherit
 
         self._css = None
-        self._border_key = None",,,
+        self._border_key = None",N,,
 96,great_expectations,great_expectations/great_expectations/render/components.py,__init__,"def __init__(
         self, content_blocks, styling=None, content_block_type=""content_block_container""
     ) -> None:
         super().__init__(content_block_type=content_block_type, styling=styling)
-        self.content_blocks = content_blocks",,,
+        self.content_blocks = content_blocks",N,,
 97,openpilot,openpilot/selfdrive/car/honda/hondacan.py,create_acc_commands,"def create_acc_commands(packer, enabled, active, accel, gas, stopping_counter, car_fingerprint):
   commands = []
   bus = get_pt_bus(car_fingerprint)
@@ -1459,17 +1459,17 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
     commands.append(packer.make_can_msg(""ACC_CONTROL_ON"", bus, acc_control_on_values))
 
   commands.append(packer.make_can_msg(""ACC_CONTROL"", bus, acc_control_values))
-  return commands",,,
+  return commands",N,,
 98,openbbterminal,openbbterminal/tests/openbb_terminal/test_keys_controller.py,test_call_bitquery,"def test_call_bitquery(other):
-    controller.call_bitquery(other)",,,
+    controller.call_bitquery(other)",N,,
 99,wagtail,wagtail/wagtail/admin/compare.py,get_item_display,"def get_item_display(self, item):
-        return str(item)",,,
+        return str(item)",N,,
 100,lbry-sdk,lbry-sdk/lbry/dht/protocol/iterative_find.py,search_exhausted,"def search_exhausted(self):
         """"""
         This method ends the iterator due no more peers to contact.
         Override to provide last time results.
         """"""
-        self.iteration_queue.put_nowait(None)",,,
+        self.iteration_queue.put_nowait(None)",N,,
 101,django-rest-framework,django-rest-framework/tests/test_generics.py,test_retrieve_destroy_api_view_delete,"def test_retrieve_destroy_api_view_delete(self):
         class MockRetrieveDestroyUApiView(generics.RetrieveDestroyAPIView):
             def destroy(self, request, *args, **kwargs):
@@ -1479,7 +1479,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         data = ('test request', ('test arg',), {'test_kwarg': 'test'})
         view.delete('test request', 'test arg', test_kwarg='test')
         assert view.called is True
-        assert view.call_args == data",,,
+        assert view.call_args == data",N,,
 102,trax,trax/trax/models/rl.py,Value,"def Value(
     body=None,
     normalizer=None,
@@ -1541,7 +1541,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
       _Batch(body(mode=mode), batch_axes),
       ActionInjector(mode=mode),
       tl.Dense(1, **head_kwargs),
-  )",,,
+  )",N,,
 103,tvm,tvm/python/tvm/testing/utils.py,_run_expr,"def _run_expr(expr, vranges):
         """"""Evaluate expr for every value of free variables
         given by vranges and return the tensor of results.
@@ -1556,13 +1556,13 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         sch = tvm.te.create_schedule(A.op)
         mod = tvm.build(sch, [A])
         mod(*args)
-        return args[0].numpy()",,,
+        return args[0].numpy()",N,,
 104,altair,altair/altair/vegalite/v5/schema/channels.py,stack,"def stack(self, _: None, **kwds) -> 'RadiusDatum':
-        ...",,,
+        ...",N,,
 105,pillow,pillow/Tests/test_image_reduce.py,test_mode_RGB,"def test_mode_RGB(factor):
     im = get_image(""RGB"")
     compare_reduce_with_reference(im, factor)
-    compare_reduce_with_box(im, factor)",,,
+    compare_reduce_with_box(im, factor)",N,,
 106,tvm,tvm/tests/python/frontend/tensorflow/test_forward.py,_verify_infiniteness_ops,"def _verify_infiniteness_ops(tf_op, name):
     """"""test operator infinity ops""""""
 
@@ -1578,7 +1578,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         tf.reset_default_graph()
         in_data = tf.placeholder(tf_dtype, shape, name=""in_data"")
         tf_op(in_data, name=name)
-        compare_tf_with_tvm([data], [""in_data:0""], f""{name}:0"")",,,
+        compare_tf_with_tvm([data], [""in_data:0""], f""{name}:0"")",N,,
 107,scikit-learn,scikit-learn/build_tools/update_environments_and_lock_files.py,get_pip_requirements_content,"def get_pip_requirements_content(build_metadata):
     template = environment.from_string(""""""
 # DO NOT EDIT: this file is generated from the specification found in the
@@ -1587,7 +1587,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
 {% for pip_dep in build_metadata['pip_dependencies'] %}
 {{ pip_dep | get_package_with_constraint(build_metadata, uses_pip=True) }}
 {% endfor %}"""""".strip())
-    return template.render(build_metadata=build_metadata)",,,
+    return template.render(build_metadata=build_metadata)",N,,
 108,everydaywechat,everydaywechat/tests/test_alarm/test_info.py,test_all_info,"def test_all_info(self):
         """"""
         测试获取提醒的所有信息。
@@ -1607,9 +1607,9 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
             send_msg = '\n'.join(
                 x for x in [calendar_info, weather, air_quality, horoscope, dictum, diff_time, sweet_words] if x)
             print(send_msg)
-            print('\n' + '-' * 50 + '\n')",,,
+            print('\n' + '-' * 50 + '\n')",N,,
 109,keras,keras/keras/mixed_precision/autocast_variable.py,_shared_name,"def _shared_name(self):
-        return self._variable._shared_name",,,
+        return self._variable._shared_name",N,,
 110,numba,numba/numba/parfors/array_analysis.py,_determine_transform,"def _determine_transform(self, cfg, block, label, scope, init_equiv_set):
         """"""Determine the transformation for each instruction in the block
         """"""
@@ -1676,7 +1676,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
                 self.remove_redefineds(redefined)
 
             pending_transforms.append((inst, pre, post))
-        return pending_transforms",,,
+        return pending_transforms",N,,
 111,chalice,chalice/tests/functional/test_package.py,test_can_get_py27_whls,"def test_can_get_py27_whls(self, tmpdir, osutils, pip_runner):
         reqs = ['foo', 'bar', 'baz']
         pip, runner = pip_runner
@@ -1698,24 +1698,24 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
 
         pip.validate()
         for req in reqs:
-            assert req in installed_packages",,,
+            assert req in installed_packages",N,,
 112,unilm,unilm/kosmos-2/fairseq/fairseq/data/subsample_dataset.py,sizes,"def sizes(self):
-        return self.dataset.sizes[self.indices]",,,
+        return self.dataset.sizes[self.indices]",N,,
 113,avatarify,avatarify/afy/predictor_local.py,to_tensor,"def to_tensor(a):
-    return torch.tensor(a[np.newaxis].astype(np.float32)).permute(0, 3, 1, 2) / 255",,,
+    return torch.tensor(a[np.newaxis].astype(np.float32)).permute(0, 3, 1, 2) / 255",N,,
 114,pysyft,pysyft/packages/syft/src/syft/store/blob_storage/on_disk.py,read,"def read(self, fp: SecureFilePathLocation, type_: Optional[Type]) -> BlobRetrieval:
         file_path = self._base_directory / fp.path
         return SyftObjectRetrieval(
             syft_object=file_path.read_bytes(),
             file_name=file_path.name,
             type_=type_,
-        )",,,
+        )",N,,
 115,wagtail,wagtail/wagtail/admin/ui/tables/__init__.py,__init__,"def __init__(self, name, true_label=None, false_label=None, **kwargs):
         super().__init__(name, **kwargs)
         self.true_label = true_label
-        self.false_label = false_label",,,
+        self.false_label = false_label",N,,
 116,urh,urh/src/urh/controller/widgets/SignalFrame.py,on_slider_spectrogram_min_value_changed,"def on_slider_spectrogram_min_value_changed(self):
-        self.spectrogram_update_timer.start()",,,
+        self.spectrogram_update_timer.start()",N,,
 117,thumbor,thumbor/tests/fixtures/transformer_test_data.py,to_context,"def to_context(self, detectors=None, ignore_detector_error=False):
         if detectors is None:
             detectors = []
@@ -1770,12 +1770,12 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         ctx.request.engine = self.engine
         ctx.request.engine.extension = "".jpeg""
 
-        return ctx",,,
+        return ctx",N,,
 118,gradio,gradio/demo/diffusers_with_batching/run.py,generate,"def generate(prompts):
   images = generator(list(prompts)).images
-  return [images]",,,
+  return [images]",N,,
 119,readthedocs.org,readthedocs.org/readthedocs/rtd_tests/tests/test_privacy_urls.py,login,"def login(self):
-        return self.client.login(username=""owner"", password=""test"")",,,
+        return self.client.login(username=""owner"", password=""test"")",N,,
 120,pupy,pupy/pupy/modules/shell_exec.py,init_argparse,"def init_argparse(cls):
         cls.arg_parser = PupyArgumentParser(prog='shell_exec', description=cls.__doc__)
         cls.arg_parser.add_argument('-X', '--no-shell', action='store_true', help='Do not execute command in shell')
@@ -1786,7 +1786,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         cls.arg_parser.add_argument(
             'argument',
             nargs=REMAINDER,
-            help='shell command')",,,
+            help='shell command')",N,,
 121,wagtail,wagtail/wagtail/contrib/forms/tests/test_views.py,setUp,"def setUp(self):
         self.request = RequestFactory().get(""/"")
         user = AnonymousUser()  # technically, Anonymous users cannot access the admin
@@ -1806,12 +1806,12 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         panel = FormSubmissionsPanel().bind_to_model(FormPageWithCustomSubmission)
         self.panel = panel.get_bound_panel(
             instance=self.form_page, form=self.FormPageForm(), request=self.request
-        )",,,
+        )",N,,
 122,django,django/django/db/backends/sqlite3/_functions.py,_sqlite_log,"def _sqlite_log(base, x):
     if base is None or x is None:
         return None
     # Arguments reversed to match SQL standard.
-    return log(x, base)",,,
+    return log(x, base)",N,,
 123,pysyft,pysyft/packages/syft/tests/syft/uid_test.py,test_uid_proto_deserialization,"def test_uid_proto_deserialization() -> None:
     """"""Tests that proto UID deserialization works as expected""""""
 
@@ -1819,7 +1819,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
     blob = _serialize(obj=uid)
 
     obj = sy.deserialize(blob=blob, from_proto=True)
-    assert obj == UID(value=uuid.UUID(int=333779996850170035686993356951732753684))",,,
+    assert obj == UID(value=uuid.UUID(int=333779996850170035686993356951732753684))",N,,
 124,unilm,unilm/kosmos-g/torchscale/torchscale/architecture/encoder.py,forward,"def forward(self, x, encoder_padding_mask, attn_mask=None, rel_pos=None, scale=1.0):
         if attn_mask is not None:
             attn_mask = attn_mask.masked_fill(attn_mask.to(torch.bool), -1e8)
@@ -1862,10 +1862,10 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         x = self.residual_connection(x, residual)
         if not self.normalize_before:
             x = self.final_layer_norm(x)
-        return x, l_aux",,,
+        return x, l_aux",N,,
 125,ajenti,ajenti/plugins/terminal/views.py,__init__,"def __init__(self, context):
         self.context = context
-        self.mgr = TerminalManager.get(self.context)",,,
+        self.mgr = TerminalManager.get(self.context)",N,,
 126,ansible,ansible/hacking/build_library/build_ansible/command_plugins/collection_meta.py,main,"def main(args):
         output_dir = os.path.abspath(args.output_dir)
         template_file_full_path = os.path.abspath(os.path.join(args.template_dir, args.template_file))
@@ -1886,7 +1886,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         data = to_bytes(template.render(temp_vars))
         update_file_if_different(output_name, data)
 
-        return 0",,,
+        return 0",N,,
 127,pandas,pandas/asv_bench/benchmarks/frame_methods.py,setup,"def setup(self, downcast):
         N = 10000
         # this is the worst case, where every column has NaNs.
@@ -1906,7 +1906,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
             }
         )
         self.df2.loc[1::5, ""A""] = np.nan
-        self.df2.loc[1::5, ""C""] = np.nan",,,
+        self.df2.loc[1::5, ""C""] = np.nan",N,,
 128,beets,beets/beets/importer.py,already_imported,"def already_imported(self, toppath, paths):
         """"""Returns true if the files belonging to this task have already
         been imported in a previous session.
@@ -1918,7 +1918,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         if self.config[""incremental""] and tuple(paths) in self.history_dirs:
             return True
 
-        return False",,,
+        return False",N,,
 129,pandas,pandas/pandas/tests/frame/methods/test_clip.py,test_clip_against_list_like,"def test_clip_against_list_like(self, simple_frame, inplace, lower, axis, res):
         # GH#15390
         original = simple_frame.copy(deep=True)
@@ -1928,10 +1928,10 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         expected = DataFrame(res, columns=original.columns, index=original.index)
         if inplace:
             result = original
-        tm.assert_frame_equal(result, expected, check_exact=True)",,,
+        tm.assert_frame_equal(result, expected, check_exact=True)",N,,
 130,magenta,magenta/magenta/models/gansynth/lib/data_normalizer.py,__init__,"def __init__(self, config):
     super(SpecgramsFreqNormalizer, self).__init__(
-        config, 'specgrams_freq_normalizer.npz')",,,
+        config, 'specgrams_freq_normalizer.npz')",N,,
 131,edgedb,edgedb/edb/edgeql/tracer.py,get_ref_name,"def get_ref_name(self, ref: qlast.BaseObjectRef) -> sn.QualName:
         # We don't actually expect to handle anything other than
         # ObjectRef here.
@@ -1947,7 +1947,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
             objects=self.objects,
             modaliases=self.modaliases,
             local_modules=self.local_modules,
-        )",,,
+        )",N,,
 132,tvm,tvm/tests/python/relay/test_pass_convert_op_layout.py,test_conv_convert_kernel_layout,"def test_conv_convert_kernel_layout():
     """"""Check that convolution kernel layout is correctly transformed.""""""
 
@@ -1986,23 +1986,23 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
     a = run_opt_pass(a, transform.ConvertLayout({""nn.conv2d"": [""NHWC"", ""OHWI""]}))
     b = run_opt_pass(expected(), transform.InferType())
 
-    assert tvm.ir.structural_equal(a, b), ""Actual = \n"" + str(a)",,,
+    assert tvm.ir.structural_equal(a, b), ""Actual = \n"" + str(a)",N,,
 133,scipy,scipy/scipy/signal/_bsplines.py,_quadratic,"def _quadratic(x):
     x = abs(asarray(x, dtype=float))
     b = BSpline.basis_element([-1.5, -0.5, 0.5, 1.5], extrapolate=False)
     out = b(x)
     out[(x < -1.5) | (x > 1.5)] = 0
-    return out",,,
+    return out",N,,
 134,plotly.py,plotly.py/packages/python/plotly/plotly/validators/sankey/link/_target.py,__init__,"def __init__(self, plotly_name=""target"", parent_name=""sankey.link"", **kwargs):
         super(TargetValidator, self).__init__(
             plotly_name=plotly_name,
             parent_name=parent_name,
             edit_type=kwargs.pop(""edit_type"", ""calc""),
             **kwargs,
-        )",,,
+        )",N,,
 135,mindsdb,mindsdb/mindsdb/api/postgres/postgres_proxy/postgres_packets/postgres_packets.py,read_parameters,"def read_parameters(self, n):
         data = self.read_bytes(n)
-        return data.split(b'\x00')",,,
+        return data.split(b'\x00')",N,,
 136,unilm,unilm/edgelm/fairseq/modules/sparse_multihead_attention.py,compute_checkpoint,"def compute_checkpoint(self, word_index):
         if word_index % self.stride == 0 and word_index != 0:
             checkpoint_index = word_index - self.expressivity
@@ -2012,7 +2012,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
                 + self.stride
                 - self.expressivity
             )
-        return checkpoint_index",,,
+        return checkpoint_index",N,,
 137,edgedb,edgedb/tests/test_edgeql_rewrites.py,test_edgeql_rewrites_05,"async def test_edgeql_rewrites_05(self):
         # Rewrites should also be applied to children types.
 
@@ -2038,7 +2038,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         await self.assert_query_result(
             'select Movie { title, updated_at }',
             [{""title"": ""The Godfather II"", ""updated_at"": ""just now""}],
-        )",,,
+        )",N,,
 138,dash,dash/components/dash-table/tests/selenium/test_basic_operations.py,test_tbst010_active_with_dblclick,"def test_tbst010_active_with_dblclick(test, props):
     test.start_server(get_app(props))
 
@@ -2047,7 +2047,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
     target.cell(0, 0).double_click()
     assert target.cell(0, 0).is_active()
     assert target.cell(0, 0).get_text() == test.get_selected_text()
-    assert test.get_log_errors() == []",,,
+    assert test.get_log_errors() == []",N,,
 139,unilm,unilm/edgelm/tests/test_data_utils.py,_get_error_message,"def _get_error_message(
         cls, max_sentences, max_tokens, bsz_mult, num_tokens_vec, validation, results
     ):
@@ -2059,7 +2059,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
                 bsz_mult={bsz_mult},
                 num_tokens_vec={num_tokens_vec},
                 expected_batches={validation},
-                returned_batches={results}""""""",,,
+                returned_batches={results}""""""",N,,
 140,xx-net,xx-net/code/default/lib/noarch/asn1crypto/ocsp.py,extended_revoke_value,"def extended_revoke_value(self):
         """"""
         This extension is used to signal that the responder will return a
@@ -2071,19 +2071,19 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
 
         if self._processed_extensions is False:
             self._set_extensions()
-        return self._extended_revoke_value",,,
+        return self._extended_revoke_value",N,,
 141,unilm,unilm/kosmos-g/fairseq/examples/MMPT/mmpt/processors/models/s3dg.py,forward,"def forward(self, input_tensor):
         """"""Feature gating as used in S3D-G.
       """"""
         spatiotemporal_average = th.mean(input_tensor, dim=[2, 3, 4])
         weights = self.fc(spatiotemporal_average)
         weights = th.sigmoid(weights)
-        return weights[:, :, None, None, None] * input_tensor",,,
+        return weights[:, :, None, None, None] * input_tensor",N,,
 142,django,django/tests/utils_tests/test_termcolors.py,test_override_nocolor,"def test_override_nocolor(self):
         self.assertEqual(
             parse_color_setting(""nocolor;error=green""),
             dict(PALETTES[NOCOLOR_PALETTE], ERROR={""fg"": ""green""}),
-        )",,,
+        )",N,,
 143,ansible,ansible/lib/ansible/module_utils/common/validation.py,count_terms,"def count_terms(terms, parameters):
     """"""Count the number of occurrences of a key in a given dictionary
 
@@ -2097,14 +2097,14 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
     if not is_iterable(terms):
         terms = [terms]
 
-    return len(set(terms).intersection(parameters))",,,
+    return len(set(terms).intersection(parameters))",N,,
 144,jupyterhub,jupyterhub/jupyterhub/proxy.py,locked_method,"async def locked_method(*args, **kwargs):
         loop = asyncio.get_event_loop()
         lock = method._locks.get(loop, None)
         if lock is None:
             lock = method._locks[loop] = asyncio.Lock()
         async with lock:
-            return await method(*args, **kwargs)",,,
+            return await method(*args, **kwargs)",N,,
 145,synapse,synapse/synapse/federation/federation_client.py,_do_send_knock,"async def _do_send_knock(self, destination: str, pdu: EventBase) -> JsonDict:
         """"""Send a knock event to a remote homeserver.
 
@@ -2127,7 +2127,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
             room_id=pdu.room_id,
             event_id=pdu.event_id,
             content=pdu.get_pdu_json(time_now),
-        )",,,
+        )",N,,
 146,supervisor,supervisor/supervisor/process.py,_prepare_child_fds,"def _prepare_child_fds(self):
         """"""
         Overrides Subprocess._prepare_child_fds()
@@ -2143,9 +2143,9 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         else:
             options.dup2(self.pipes['child_stderr'], 2)
         for i in range(3, options.minfds):
-            options.close_fd(i)",,,
+            options.close_fd(i)",N,,
 147,lightning,lightning/tests/tests_pytorch/utilities/test_parsing.py,__init__,"def __init__(self, hparams, *my_args, anykw=42, **my_kwargs):
-            pass",,,
+            pass",N,,
 148,prefect,prefect/tests/utilities/test_pydantic.py,test_json_schema,"def test_json_schema(self):
         schema = TestJsonPatch.PatchModel().schema()
 
@@ -2157,9 +2157,9 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
                 ""type"": ""object"",
                 ""additionalProperties"": {""type"": ""string""},
             },
-        }",,,
+        }",N,,
 149,rasa,rasa/rasa/shared/core/training_data/story_reader/story_step_builder.py,add_event_as_condition,"def add_event_as_condition(self, event: Event) -> None:
-        self.add_event(event, True)",,,
+        self.add_event(event, True)",N,,
 150,imgaug,imgaug/test/augmenters/test_geometric.py,_test_image_cbaoi_alignment,"def _test_image_cbaoi_alignment(cls, cba_class, cbaoi_class, augf_name):
         # test alignment between between images and polygons
         height_step_size = 50
@@ -2209,7 +2209,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
                         pass  # close to expected location
                     else:
                         count_bad += 1
-        assert count_bad <= 3",,,
+        assert count_bad <= 3",N,,
 151,mlflow,mlflow/mlflow/catboost/__init__.py,predict,"def predict(
         self, dataframe, params: Optional[Dict[str, Any]] = None
     ):  # pylint: disable=unused-argument
@@ -2222,12 +2222,12 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
 
         :return: Model predictions.
         """"""
-        return self.cb_model.predict(dataframe)",,,
+        return self.cb_model.predict(dataframe)",N,,
 152,archivebox,archivebox/archivebox/core/middleware.py,middleware,"def middleware(request):
         detect_timezone(request, activate=True)
-        return get_response(request)",,,
+        return get_response(request)",N,,
 153,zipline,zipline/tests/pipeline/test_pipeline.py,assertRaisesRegex,"def assertRaisesRegex(self, *args, **kwargs):
-            return self.assertRaisesRegexp(*args, **kwargs)",,,
+            return self.assertRaisesRegexp(*args, **kwargs)",N,,
 154,dask,dask/dask/dataframe/io/tests/test_io.py,test_from_array_raises_more_than_2D,"def test_from_array_raises_more_than_2D():
     x = da.ones((3, 3, 3), chunks=2)
     y = np.ones((3, 3, 3))
@@ -2236,7 +2236,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         dd.from_dask_array(x)  # dask
 
     with pytest.raises(ValueError, match=""more than 2D array""):
-        dd.from_array(y)",,,
+        dd.from_array(y)",N,,
 155,fairseq,fairseq/fairseq/data/huffman/huffman_mmap_indexed_dataset.py,append,"def append(self, other_dataset_path_prefix: str) -> None:
         """"""
         append an existing dataset.
@@ -2253,7 +2253,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         with open(indexed_dataset.data_file_path(other_dataset_path_prefix), ""rb"") as f:
             shutil.copyfileobj(f, self._data_file)
 
-        self._data_len += other_index.data_len",,,
+        self._data_len += other_index.data_len",N,,
 156,qutebrowser,qutebrowser/qutebrowser/keyinput/keyutils.py,with_mappings,"def with_mappings(
             self,
             mappings: Mapping['KeySequence', 'KeySequence']
@@ -2266,7 +2266,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
                 infos += mappings[key_seq]
             else:
                 infos.append(info)
-        return self.__class__(*infos)",,,
+        return self.__class__(*infos)",N,,
 157,pyodide,pyodide/src/tests/test_pyproxy.py,test_pyproxy_class,"def test_pyproxy_class(selenium):
     selenium.run_js(
         """"""
@@ -2324,10 +2324,10 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         ""bar"",
         ""baz"",
         ""get_value"",
-    }.difference(selenium.run_js(""return f_props"")) == set()",,,
+    }.difference(selenium.run_js(""return f_props"")) == set()",N,,
 158,pandas,pandas/pandas/tests/apply/test_frame_apply.py,test_apply_yield_list,"def test_apply_yield_list(float_frame):
     result = float_frame.apply(list)
-    tm.assert_frame_equal(result, float_frame)",,,
+    tm.assert_frame_equal(result, float_frame)",N,,
 159,algorithms,algorithms/tests/test_maths.py,test_prime_test,"def test_prime_test(self):
         """"""
             checks all prime numbers between 2 up to 100.
@@ -2337,7 +2337,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         for i in range(2, 101):
             if prime_check(i):
                 counter += 1
-        self.assertEqual(25, counter)",,,
+        self.assertEqual(25, counter)",N,,
 160,youcompleteme,youcompleteme/third_party/ycmd/third_party/watchdog_deps/watchdog/tests/test_emitter.py,test_delete,"def test_delete():
     mkfile(p('a'))
 
@@ -2347,12 +2347,12 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
     expect_event(FileDeletedEvent(p('a')))
 
     if not platform.is_windows():
-        expect_event(DirModifiedEvent(p()))",,,
+        expect_event(DirModifiedEvent(p()))",N,,
 161,kivy,kivy/kivy/tests/test_properties.py,__init__,"def __init__(self, **kwargs):
             super(CustomAlias, self).__init__(**kwargs)
-            self.getter_called = 0",,,
+            self.getter_called = 0",N,,
 162,plotly.py,plotly.py/packages/python/plotly/plotly/graph_objs/_histogram.py,constraintext,"def constraintext(self, val):
-        self[""constraintext""] = val",,,
+        self[""constraintext""] = val",N,,
 163,tvm,tvm/python/tvm/topi/testing/conv3d_ndhwc_python.py,conv3d_ndhwc_python,"def conv3d_ndhwc_python(a_np, w_np, stride, padding, groups=1):
     """"""Convolution 3D operator in NDHWC layout.
 
@@ -2385,10 +2385,10 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         for a_slice, w_slice in zip(a_slices, w_slices)
     ]
     b_np = np.concatenate(b_slices, axis=4)
-    return b_np",,,
+    return b_np",N,,
 164,tensorlayer,tensorlayer/tests/pending/test_tf_layers.py,test_layer_net1,"def test_layer_net1(self):
         self.assertEqual(len(self.network_1[1].all_params), 2)
-        self.assertEqual(len(self.network_2[1].all_params), 2)",,,
+        self.assertEqual(len(self.network_2[1].all_params), 2)",N,,
 165,modin,modin/modin/pandas/test/test_series.py,test_between_time,"def test_between_time():
     i = pd.date_range(""2008-01-01"", periods=1000, freq=""12H"")
     modin_series = pd.Series(list(range(1000)), index=i)
@@ -2404,17 +2404,17 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
     df_equals(
         modin_series.between_time(""3:00"", ""8:00"", inclusive=""right""),
         pandas_series.between_time(""3:00"", ""8:00"", inclusive=""right""),
-    )",,,
+    )",N,,
 166,tensorboardx,tensorboardx/tensorboardX/beholder/video_writing.py,_write_image,"def _write_image(self, im, filename):
         from PIL import Image
-        Image.fromarray(im).save(filename)",,,
+        Image.fromarray(im).save(filename)",N,,
 167,wagtail,wagtail/wagtail/admin/auth.py,wrapped_view_func,"def wrapped_view_func(request, *args, **kwargs):
             if test(request.user):
                 # permission check succeeds; run the view function as normal
                 return view_func(request, *args, **kwargs)
             else:
                 # permission check failed
-                return permission_denied(request)",,,
+                return permission_denied(request)",N,,
 168,nni,nni/nni/tools/nnictl/launcher_utils.py,set_default_values,"def set_default_values(experiment_config):
     if experiment_config.get('maxExecDuration') is None:
         experiment_config['maxExecDuration'] = '999d'
@@ -2427,16 +2427,16 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
        'remote' in experiment_config['hybridConfig']['trainingServicePlatforms']:
         for index in range(len(experiment_config['machineList'])):
             if experiment_config['machineList'][index].get('port') is None:
-                experiment_config['machineList'][index]['port'] = 22",,,
+                experiment_config['machineList'][index]['port'] = 22",N,,
 169,tornado,tornado/demos/facebook/facebook.py,get_current_user,"def get_current_user(self):
         user_json = self.get_signed_cookie(""fbdemo_user"")
         if not user_json:
             return None
-        return tornado.escape.json_decode(user_json)",,,
+        return tornado.escape.json_decode(user_json)",N,,
 170,keras,keras/keras/saving/serialization_lib_test.py,custom_fn,"def custom_fn(x):
-    return x**2",,,
+    return x**2",N,,
 171,gym,gym/tests/wrappers/test_passive_env_checker.py,_step_failure,"def _step_failure(self, action):
-    return ""error""",,,
+    return ""error""",N,,
 172,unilm,unilm/deltalm/fairseq/examples/wav2vec/unsupervised/scripts/wav2vec_cluster_faiss.py,get_parser,"def get_parser():
     parser = argparse.ArgumentParser(
         description=""compute kmeans codebook from kaldi-computed feats""
@@ -2457,7 +2457,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
                         default='l2')
     # fmt: on
 
-    return parser",,,
+    return parser",N,,
 173,kornia,kornia/test/geometry/subpix/test_dsnt.py,test_dynamo,"def test_dynamo(self, device, dtype, torch_optimizer):
         mean = torch.tensor([0.0, 0.0], dtype=dtype, device=device)
         std = torch.tensor([0.25, 0.25], dtype=dtype, device=device)
@@ -2465,7 +2465,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         op = kornia.geometry.subpix.render_gaussian2d
         op_optimized = torch_optimizer(op)
 
-        assert_close(op(mean, std, (5, 5), True), op_optimized(mean, std, (5, 5), True))",,,
+        assert_close(op(mean, std, (5, 5), True), op_optimized(mean, std, (5, 5), True))",N,,
 174,backtrader,backtrader/backtrader/indicator.py,__init__,"def __init__(cls, name, bases, dct):
         '''
         Class has already been created ... register subclasses
@@ -2486,9 +2486,9 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
             # No -> need pointer movement to once simulation via next
             cls.once = cls.once_via_next
             cls.preonce = cls.preonce_via_prenext
-            cls.oncestart = cls.oncestart_via_nextstart",,,
+            cls.oncestart = cls.oncestart_via_nextstart",N,,
 175,pifuhd,pifuhd/lib/evaluator.py,__init__,"def __init__(self):
-        pass",,,
+        pass",N,,
 176,machine_learning_examples,machine_learning_examples/rl2/a3c/worker.py,run_n_steps,"def run_n_steps(self, n, sess):
     steps = []
     for _ in range(n):
@@ -2521,7 +2521,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         break
       else:
         self.state = next_state
-    return steps, global_step",,,
+    return steps, global_step",N,,
 177,localstack,localstack/localstack/services/generic_proxy.py,decorator,"def decorator(func):
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
@@ -2530,9 +2530,9 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
                 value = func(*args, **kwargs)
             return value
 
-        return wrapper",,,
+        return wrapper",N,,
 178,unilm,unilm/deltalm/fairseq/fairseq/modules/sinusoidal_positional_embedding.py,prepare_for_onnx_export_,"def prepare_for_onnx_export_(self):
-        self.onnx_trace = True",,,
+        self.onnx_trace = True",N,,
 179,youtube-dl,youtube-dl/youtube_dl/extractor/espn.py,extract_source,"def extract_source(source_url, source_id=None):
             if source_url in format_urls:
                 return
@@ -2564,9 +2564,9 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
                     })
                 if source_id == 'mezzanine':
                     f['preference'] = 1
-                formats.append(f)",,,
+                formats.append(f)",N,,
 180,gradio,gradio/gradio/deprecation.py,simple_deprecated_notice,"def simple_deprecated_notice(term: str) -> str:
-    return f""`{term}` parameter is deprecated, and it has no effect""",,,
+    return f""`{term}` parameter is deprecated, and it has no effect""",N,,
 181,numpy,numpy/numpy/_core/tests/test_datetime.py,test_datetime_array_find_type,"def test_datetime_array_find_type(self):
         dt = np.datetime64('1970-01-01', 'M')
         arr = np.array([dt])
@@ -2602,15 +2602,15 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         assert_equal(arr.dtype, np.dtype('M8[D]'))
 
         arr = np.array([dt, dt]).astype('datetime64')
-        assert_equal(arr.dtype, np.dtype('M8[us]'))",,,
+        assert_equal(arr.dtype, np.dtype('M8[us]'))",N,,
 182,visdom,visdom/py/visdom/__init__.py,on_close,"def on_close(ws):
-            self.socket_alive = False",,,
+            self.socket_alive = False",N,,
 183,keras,keras/keras/layers/regularization/alpha_dropout_test.py,test_AlphaDropout,"def test_AlphaDropout(self):
         test_utils.layer_test(
             keras.layers.AlphaDropout,
             kwargs={""rate"": 0.2},
             input_shape=(3, 2, 3),
-        )",,,
+        )",N,,
 184,scikit-learn,scikit-learn/sklearn/ensemble/tests/test_gradient_boosting.py,test_gradient_boosting_without_early_stopping,"def test_gradient_boosting_without_early_stopping():
     # When early stopping is not used, the number of trained estimators
     # must be the one specified.
@@ -2627,23 +2627,23 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
 
     # The number of trained estimators must be the one specified.
     assert gbc.n_estimators_ == 50
-    assert gbr.n_estimators_ == 30",,,
+    assert gbr.n_estimators_ == 30",N,,
 185,ray,ray/dashboard/tests/test_dashboard.py,prepare_test_files,"def prepare_test_files():
     module_path = ray.dashboard.modules.__path__[0]
     filename = os.path.join(module_path, ""test_for_bad_import.py"")
     logger.info(""Prepare test file: %s"", filename)
     with open(filename, ""w"") as f:
-        f.write("">>>"")",,,
+        f.write("">>>"")",N,,
 186,chalice,chalice/docs/source/samples/media-query/code/chalicelib/db.py,__init__,"def __init__(self, table_resource):
-        self._table = table_resource",,,
+        self._table = table_resource",N,,
 187,transformers,transformers/src/transformers/models/gpt2/tokenization_gpt2.py,prepare_for_tokenization,"def prepare_for_tokenization(self, text, is_split_into_words=False, **kwargs):
         add_prefix_space = kwargs.pop(""add_prefix_space"", self.add_prefix_space)
         if is_split_into_words or add_prefix_space:
             text = "" "" + text
-        return (text, kwargs)",,,
+        return (text, kwargs)",N,,
 188,altair,altair/altair/expr/core.py,__ne__,"def __ne__(self, other):
         comp_value = BinaryExpression(""!=="", self, other)
-        return self._from_expr(comp_value)",,,
+        return self._from_expr(comp_value)",N,,
 189,pwntools,pwntools/pwnlib/adb/adb.py,callback,"def callback(filename, data, size, chunk, chunk_size):
         have = len(data) + len(chunk)
         if size == 0:
@@ -2654,7 +2654,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
             size = misc.size(size)
         have = misc.size(have)
         w.status('%s/%s (%s%%)' % (have, size, percent))
-        return True",,,
+        return True",N,,
 190,jax,jax/jax/experimental/jax2tf/tests/shape_poly_test.py,test_shape_as_array,"def test_shape_as_array(self):
     def f_jax(x):
       # The entire x.shape is passed to jnp.array
@@ -2663,9 +2663,9 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
     check_shape_poly(self,
                      f_jax,
                      arg_descriptors=[RandArg((3, 4), _f32)],
-                     poly_axes=[0])",,,
+                     poly_axes=[0])",N,,
 191,keras,keras/keras/testing_infra/test_utils.py,get_small_subclass_mlp_with_custom_build,"def get_small_subclass_mlp_with_custom_build(num_hidden, num_classes):
-    return _SmallSubclassMLPCustomBuild(num_hidden, num_classes)",,,
+    return _SmallSubclassMLPCustomBuild(num_hidden, num_classes)",N,,
 192,mypy,mypy/mypy/fastparse.py,visit_For,"def visit_For(self, n: ast3.For) -> ForStmt:
         target_type = self.translate_type_comment(n, n.type_comment)
         node = ForStmt(
@@ -2675,7 +2675,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
             self.as_block(n.orelse),
             target_type,
         )
-        return self.set_line(node, n)",,,
+        return self.set_line(node, n)",N,,
 193,deep-learning-for-image-processing,deep-learning-for-image-processing/pytorch_object_detection/ssd/predict_test.py,main,"def main():
     # get devices
     device = torch.device(""cuda:0"" if torch.cuda.is_available() else ""cpu"")
@@ -2744,9 +2744,9 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         plt.imshow(plot_img)
         plt.show()
         # 保存预测的图片结果
-        plot_img.save(""test_result.jpg"")",,,
+        plot_img.save(""test_result.jpg"")",N,,
 194,tvm,tvm/python/tvm/auto_scheduler/cost_model/cost_model.py,__init__,"def __init__(self):
-        self.__init_handle_by_constructor__(_ffi_api.RandomModel)",,,
+        self.__init_handle_by_constructor__(_ffi_api.RandomModel)",N,,
 195,django,django/tests/admin_filters/tests.py,test_emptylistfieldfilter_genericrelation,"def test_emptylistfieldfilter_genericrelation(self):
         class BookmarkGenericRelation(ModelAdmin):
             list_filter = ((""tags"", EmptyFieldListFilter),)
@@ -2769,28 +2769,28 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
                 request.user = self.alfred
                 changelist = modeladmin.get_changelist_instance(request)
                 queryset = changelist.get_queryset(request)
-                self.assertCountEqual(queryset, expected_result)",,,
+                self.assertCountEqual(queryset, expected_result)",N,,
 196,portia,portia/slybot/slybot/starturls/generator.py,__call__,"def __call__(self, spec):
-        return spec",,,
+        return spec",N,,
 197,deepfacelive,deepfacelive/apps/DeepFaceLive/backend/FaceDetector.py,on_cs_sort_by,"def on_cs_sort_by(self, idx, sort_by):
         state, cs = self.get_state(), self.get_control_sheet()
         state.get_detector_state().sort_by = sort_by
         self.save_state()
-        self.reemit_frame_signal.send()",,,
+        self.reemit_frame_signal.send()",N,,
 198,dask,dask/dask/base.py,__call__,"def __call__(
         self, string: ReadableBuffer = b"""", *, usedforsecurity: bool = True
     ) -> hashlib._Hash:
-        ...",,,
+        ...",N,,
 199,mkdocs,mkdocs/mkdocs/tests/structure/file_tests.py,test_file_eq,"def test_file_eq(self):
         file = File('a.md', '/path/to/docs', '/path/to/site', use_directory_urls=False)
         self.assertTrue(
             file == File('a.md', '/path/to/docs', '/path/to/site', use_directory_urls=False)
-        )",,,
+        )",N,,
 200,ray,ray/rllib/examples/rl_module/random_rl_module.py,compile,"def compile(self, *args, **kwargs):
         """"""Dummy method for compatibility with TorchRLModule.
 
         This is hit when RolloutWorker tries to compile TorchRLModule.""""""
-        pass",,,
+        pass",N,,
 201,hydra,hydra/tests/test_compose.py,test_enum_with_removed_defaults_list,"def test_enum_with_removed_defaults_list(hydra_restore_singletons: Any) -> None:
     class Category(Enum):
         X = 0
@@ -2807,7 +2807,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
     cs.store(name=""conf"", node=Conf)
 
     cfg = compose(""conf"")
-    assert cfg == {""enum_dict"": {}, ""int_dict"": {}, ""str_dict"": {}}",,,
+    assert cfg == {""enum_dict"": {}, ""int_dict"": {}, ""str_dict"": {}}",N,,
 202,pandas,pandas/pandas/tests/plotting/common.py,_get_axes_layout,"def _get_axes_layout(self, axes):
         x_set = set()
         y_set = set()
@@ -2816,7 +2816,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
             points = ax.get_position().get_points()
             x_set.add(points[0][0])
             y_set.add(points[0][1])
-        return (len(y_set), len(x_set))",,,
+        return (len(y_set), len(x_set))",N,,
 203,transformers,transformers/src/transformers/models/switch_transformers/convert_big_switch.py,get_key_and_tensorstore_dict,"def get_key_and_tensorstore_dict(layer, checkpoint_info, switch_checkpoint_path):
     if ""metadata"" in layer:
         split_layer = layer.split(""metadata"")
@@ -2839,7 +2839,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
     else:
         content = checkpoint_info[layer]
 
-    return curr_real_layer_name, split_layer, content",,,
+    return curr_real_layer_name, split_layer, content",N,,
 204,django,django/tests/migrations/test_state.py,test_ignore_order_wrt,"def test_ignore_order_wrt(self):
         """"""
         Makes sure ProjectState doesn't include OrderWrt fields when
@@ -2869,12 +2869,12 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         self.assertEqual(
             list(project_state.models[""migrations"", ""book""].fields),
             [""id"", ""author""],
-        )",,,
+        )",N,,
 205,openage,openage/openage/convert/entity_object/conversion/aoc/genie_terrain.py,get_terrain,"def get_terrain(self) -> GenieTerrainObject:
         """"""
         Return the subterrain used for the graphics.
         """"""
-        return self.terrain",,,
+        return self.terrain",N,,
 206,scipy,scipy/scipy/signal/tests/test_filter_design.py,test_ba_output,"def test_ba_output(self):
         # Compare coefficients with Matlab ones
         # for the equivalent input:
@@ -2888,18 +2888,18 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
              9.9373647e-01
              ]
         assert_allclose(b, b2, rtol=1e-8)
-        assert_allclose(a, a2, rtol=1e-8)",,,
+        assert_allclose(a, a2, rtol=1e-8)",N,,
 207,universe,universe/universe/remotes/hardcoded_addresses.py,close,"def close(self):
-        pass",,,
+        pass",N,,
 208,fairseq,fairseq/fairseq/logging/progress_bar.py,__iter__,"def __iter__(self):
         for obj in self.iterable:
-            yield obj",,,
+            yield obj",N,,
 209,plotly.py,plotly.py/packages/python/plotly/plotly/graph_objs/_violin.py,yaxis,"def yaxis(self, val):
-        self[""yaxis""] = val",,,
+        self[""yaxis""] = val",N,,
 210,tvm,tvm/tests/python/frontend/pytorch/test_forward.py,test_fn_scatter_reduce,"def test_fn_scatter_reduce(dim, reduce):
         return lambda data, index, src: torch.scatter_reduce(
             data, dim=dim, index=index, src=src, reduce=reduce
-        )",,,
+        )",N,,
 211,pandas,pandas/pandas/tests/apply/test_frame_apply.py,test_infer_output_shape_listlike_columns_with_timestamp,"def test_infer_output_shape_listlike_columns_with_timestamp():
     # GH 17892
     df = DataFrame(
@@ -2921,7 +2921,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
 
     result = df.apply(fun, axis=1)
     expected = Series([(1, 2) for t in df.itertuples()])
-    tm.assert_series_equal(result, expected)",,,
+    tm.assert_series_equal(result, expected)",N,,
 212,xx-net,xx-net/code/default/lib/noarch/asn1crypto/core.py,native,"def native(self):
         """"""
         The native Python datatype representation of this value
@@ -2933,11 +2933,11 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         if self.contents is None:
             return None
 
-        return self.__bytes__()",,,
+        return self.__bytes__()",N,,
 213,certbot,certbot/certbot/certbot/_internal/tests/cli_test.py,setUp,"def setUp(self):
         # pylint: disable=protected-access
         self.default1 = cli._Default()
-        self.default2 = cli._Default()",,,
+        self.default2 = cli._Default()",N,,
 214,transformers,transformers/src/transformers/models/mpnet/tokenization_mpnet.py,_tokenize_chinese_chars,"def _tokenize_chinese_chars(self, text):
         """"""Adds whitespace around any CJK character.""""""
         output = []
@@ -2949,7 +2949,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
                 output.append("" "")
             else:
                 output.append(char)
-        return """".join(output)",,,
+        return """".join(output)",N,,
 215,jumpserver,jumpserver/apps/ops/ansible/inventory.py,make_account_vars,"def make_account_vars(self, host, asset, account, automation, protocol, platform, gateway):
         from accounts.const import AutomationTypes
         if not account:
@@ -2986,9 +2986,9 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
             else:
                 ansible_ssh_common_args = self.make_proxy_command(gateway)
                 host['jms_asset'].update(ansible_ssh_common_args)
-                host.update(ansible_ssh_common_args)",,,
+                host.update(ansible_ssh_common_args)",N,,
 216,fastapi,fastapi/tests/test_include_router_defaults_overrides.py,dep0,"async def dep0(response: Response):
-    response.headers[""x-level0""] = ""True""",,,
+    response.headers[""x-level0""] = ""True""",N,,
 217,qlib,qlib/qlib/utils/time.py,get_min_delta,"def get_min_delta(left_frq: str, right_freq: str):
         """"""Calculate freq delta
 
@@ -3011,7 +3011,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         left_minutes = left_freq.count * minutes_map[left_freq.base]
         right_freq = Freq(right_freq)
         right_minutes = right_freq.count * minutes_map[right_freq.base]
-        return left_minutes - right_minutes",,,
+        return left_minutes - right_minutes",N,,
 218,openbbterminal,openbbterminal/openbb_terminal/core/integration_tests/integration_controller.py,display_summary,"def display_summary(
     fails: Dict[str, Dict[str, Any]],
     n_successes: int,
@@ -3061,15 +3061,15 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         console.print(
             to_section_title(failures + successes + ""in "" + elapsed_time),
             style=""green"" if not n_failures else ""red"",
-        )",,,
+        )",N,,
 219,networkx,networkx/networkx/classes/tests/test_reportviews.py,test_nbunch,"def test_nbunch(self):
         dv = self.dview(self.G)
         dvn = dv(0)
         assert dvn == 0
         dvn = dv([2, 3])
-        assert sorted(dvn) == [(2, 1), (3, 2)]",,,
+        assert sorted(dvn) == [(2, 1), (3, 2)]",N,,
 220,plotly.py,plotly.py/packages/python/plotly/plotly/graph_objs/scattergeo/legendgrouptitle/_font.py,size,"def size(self, val):
-        self[""size""] = val",,,
+        self[""size""] = val",N,,
 221,django,django/django/db/models/fields/related_lookups.py,as_sql,"def as_sql(self, compiler, connection):
         if isinstance(self.lhs, MultiColSource):
             # For multicolumn lookups we need to build a multicolumn where clause.
@@ -3108,11 +3108,11 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
                     AND,
                 )
             return root_constraint.as_sql(compiler, connection)
-        return super().as_sql(compiler, connection)",,,
+        return super().as_sql(compiler, connection)",N,,
 222,paddlehub,paddlehub/modules/image/classification/repvgg_b3g4_imagenet/module.py,forward,"def forward(self, x):
         y = self.conv(x)
         y = self.bn(y)
-        return y",,,
+        return y",N,,
 223,models,models/research/object_detection/inputs_test.py,test_include_masks_in_data_augmentation,"def test_include_masks_in_data_augmentation(self):
     data_augmentation_options = [
         (preprocessor.resize_image, {
@@ -3142,11 +3142,11 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
     image, masks, mask_weights = self.execute_cpu(graph_fn, [])
     self.assertAllEqual(image.shape, [20, 20, 3])
     self.assertAllEqual(masks.shape, [2, 20, 20])
-    self.assertAllClose(mask_weights, [1.0, 0.0])",,,
+    self.assertAllClose(mask_weights, [1.0, 0.0])",N,,
 224,sentry,sentry/src/sentry/snuba/metrics/fields/base.py,get_meta_type,"def get_meta_type(self) -> Optional[str]:
-        return self.meta_type",,,
+        return self.meta_type",N,,
 225,zulip,zulip/zilencer/management/commands/profile_request.py,__init__,"def __init__(self) -> None:
-        self.modified = False",,,
+        self.modified = False",N,,
 226,imgaug,imgaug/test/augmenters/test_color.py,test_n_colors_tuple,"def test_n_colors_tuple(self):
         aug = self.augmenter(n_colors=(2, 1000))
         mock_quantize_func = mock.MagicMock(
@@ -3162,7 +3162,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         n_colors = [mock_quantize_func.call_args_list[i][0][1]
                     for i in sm.xrange(n_images)]
         assert all([2 <= n_colors_i <= 1000 for n_colors_i in n_colors])
-        assert len(set(n_colors)) > 1",,,
+        assert len(set(n_colors)) > 1",N,,
 227,numba,numba/numba/tests/test_function_type.py,test_in_choose,"def test_in_choose(self):
         """"""Functions are passed in as arguments and called conditionally.
 
@@ -3193,7 +3193,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
                     self.assertEqual(jit_(foo)(a_, b_, False),
                                      foo(a, b, False))
                     self.assertNotEqual(jit_(foo)(a_, b_, True),
-                                        foo(a, b, False))",,,
+                                        foo(a, b, False))",N,,
 228,rasa,rasa/tests/core/featurizers/test_precomputation.py,test_container_message_lookup,"def test_container_message_lookup():
     # create some messages with unique key attributes
     messages = [
@@ -3213,9 +3213,9 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
     assert len(message.features) == 1
     message = table.lookup_message(user_text=""B"")
     assert message
-    assert len(message.data) == 1",,,
+    assert len(message.data) == 1",N,,
 229,pandas,pandas/pandas/io/html.py,_equals_tag,"def _equals_tag(self, obj, tag):
-        return obj.name == tag",,,
+        return obj.name == tag",N,,
 230,erpnext,erpnext/erpnext/support/doctype/service_level_agreement/service_level_agreement.py,create_docfields,"def create_docfields(self, meta, service_level_agreement_fields):
 		last_index = len(meta.fields)
 
@@ -3246,7 +3246,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
 				self.reset_field_properties(existing_field, ""DocField"", field)
 
 		# to update meta and modified timestamp
-		frappe.get_doc(""DocType"", self.document_type).save(ignore_permissions=True)",,,
+		frappe.get_doc(""DocType"", self.document_type).save(ignore_permissions=True)",N,,
 231,hanlp,hanlp/plugins/hanlp_restful/tests/test_client.py,test_tokenize,"def test_tokenize(self):
         print(self.HanLP.tokenize('商品和服务。阿婆主来到北京立方庭参观自然语义科技公司'))
         print(self.HanLP.tokenize('商品和服务。阿婆主来到北京立方庭参观自然语义科技公司', coarse=True))
@@ -3254,7 +3254,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         print(self.HanLP.tokenize(
             ['In 2021, HanLPv2.1 delivers state-of-the-art multilingual NLP techniques to production environment.',
              '2021年、HanLPv2.1は次世代の最先端多言語NLP技術を本番環境に導入します。',
-             '2021年 HanLPv2.1为生产环境带来次世代最先进的多语种NLP技术。'], language='mul'))",,,
+             '2021年 HanLPv2.1为生产环境带来次世代最先进的多语种NLP技术。'], language='mul'))",N,,
 232,mlflow,mlflow/tests/transformers/test_transformers_model_export.py,test_instructional_pipeline_no_prompt_in_output,"def test_instructional_pipeline_no_prompt_in_output(model_path):
     architecture = ""databricks/dolly-v2-3b""
     dolly = transformers.pipeline(model=architecture, trust_remote_code=True)
@@ -3272,23 +3272,23 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
     inference = pyfunc_loaded.predict(""What is MLflow?"")
 
     assert not inference[0].startswith(""What is MLflow?"")
-    assert ""\n"" in inference[0]",,,
+    assert ""\n"" in inference[0]",N,,
 233,frida,frida/frida-python/frida/core.py,__repr__,"def __repr__(self) -> str:
-        return repr(self._impl)",,,
+        return repr(self._impl)",N,,
 234,localstack,localstack/localstack/testing/pytest/fixtures.py,es_client,"def es_client(aws_client):
-    return aws_client.es",,,
+    return aws_client.es",N,,
 235,models,models/research/object_detection/builders/dataset_builder_test.py,graph_fn,"def graph_fn():
       return self._get_dataset_next(
-          [self._shuffle_path_template % '*'], config, batch_size=10)",,,
+          [self._shuffle_path_template % '*'], config, batch_size=10)",N,,
 236,unilm,unilm/kosmos-2/fairseq/fairseq/models/speech_to_speech/s2s_transformer.py,s2ut_architecture_fisher,"def s2ut_architecture_fisher(args):
     args.encoder_embed_dim = getattr(args, ""encoder_embed_dim"", 256)
     args.encoder_attention_heads = getattr(args, ""encoder_attention_heads"", 4)
     args.dropout = getattr(args, ""dropout"", 0.1)
 
-    s2ut_architecture_base(args)",,,
+    s2ut_architecture_base(args)",N,,
 237,portia,portia/slybot/slybot/plugins/scrapely_annotations/processors.py,descriptor,"def descriptor(self):
         """"""Field descriptor and adaptor.""""""
-        return getattr(self.schema, u'attribute_map', {}).get(self.name)",,,
+        return getattr(self.schema, u'attribute_map', {}).get(self.name)",N,,
 238,models,models/official/nlp/modeling/layers/text_layers.py,_tokenize_with_offsets,"def _tokenize_with_offsets(self, text_input: tf.Tensor):
     tokens, begin, _ = self._basic_tokenizer.tokenize_with_offsets(text_input)
     wordpieces, wp_begin, wp_end = (
@@ -3296,7 +3296,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
     begin_expanded = tf.expand_dims(begin, axis=2)
     final_begin = begin_expanded + wp_begin
     final_end = begin_expanded + wp_end
-    return wordpieces, final_begin, final_end",,,
+    return wordpieces, final_begin, final_end",N,,
 239,mlflow,mlflow/tests/pyfunc/test_model_export_with_loader_module_and_data_path.py,test_signature_and_examples_are_saved_correctly,"def test_signature_and_examples_are_saved_correctly(sklearn_knn_model, iris_data):
     data = iris_data
     signature_ = infer_signature(*data)
@@ -3320,7 +3320,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
                 if example is None:
                     assert mlflow_model.saved_input_example_info is None
                 else:
-                    np.testing.assert_array_equal(_read_example(mlflow_model, path), example)",,,
+                    np.testing.assert_array_equal(_read_example(mlflow_model, path), example)",N,,
 240,keras,keras/keras/applications/resnet.py,ResNet101,"def ResNet101(
     include_top=True,
     weights=""imagenet"",
@@ -3350,7 +3350,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         pooling,
         classes,
         **kwargs,
-    )",,,
+    )",N,,
 241,unilm,unilm/speechlm/fairseq/examples/speech_text_joint_to_text/scripts/g2p_encode.py,load_reserve_word,"def load_reserve_word(reserve_word):
     if reserve_word == """":
         return []
@@ -3358,12 +3358,12 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         res_wrds = [x.strip().split() for x in fp.readlines() if x.strip() != """"]
         assert sum([0 if len(x) == 2 else 1 for x in res_wrds]) == 0
         res_wrds = dict(res_wrds)
-    return res_wrds",,,
+    return res_wrds",N,,
 242,pyxel,pyxel/python/pyxel/editor/widgets/widget.py,__on_is_enabled_change,"def __on_is_enabled_change(self, value):
-        self._trigger_enabled_event(value)",,,
+        self._trigger_enabled_event(value)",N,,
 243,openage,openage/openage/util/fslike/union.py,poll_watches,"def poll_watches(self):
         for _, pathobj, _ in self.mounts:
-            pathobj.poll_fs_watches()",,,
+            pathobj.poll_fs_watches()",N,,
 244,playwright-python,playwright-python/playwright/sync_api/_generated.py,frame_locator,"def frame_locator(self, selector: str) -> ""FrameLocator"":
         """"""Locator.frame_locator
 
@@ -3392,7 +3392,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         FrameLocator
         """"""
 
-        return mapping.from_impl(self._impl_obj.frame_locator(selector=selector))",,,
+        return mapping.from_impl(self._impl_obj.frame_locator(selector=selector))",N,,
 245,models,models/research/object_detection/legacy/evaluator.py,_extract_predictions_and_losses,"def _extract_predictions_and_losses(model,
                                     create_input_dict_fn,
                                     ignore_groundtruth=False):
@@ -3466,7 +3466,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
       class_agnostic=(
           fields.DetectionResultFields.detection_classes not in detections),
       scale_to_absolute=True)
-  return result_dict, losses_dict",,,
+  return result_dict, losses_dict",N,,
 246,erpnext,erpnext/erpnext/subcontracting/doctype/subcontracting_receipt/test_subcontracting_receipt.py,test_subcontracting_receipt_gl_entry,"def test_subcontracting_receipt_gl_entry(self):
 		sco = get_subcontracting_order(
 			company=""_Test Company with perpetual inventory"",
@@ -3525,7 +3525,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
 
 		scr.reload()
 		scr.cancel()
-		self.assertTrue(get_gl_entries(""Subcontracting Receipt"", scr.name))",,,
+		self.assertTrue(get_gl_entries(""Subcontracting Receipt"", scr.name))",N,,
 247,openbbterminal,openbbterminal/openbb_terminal/stocks/insider/businessinsider_model.py,get_insider_activity,"def get_insider_activity(symbol: str) -> pd.DataFrame:
     """"""Get insider activity. [Source: Business Insider]
 
@@ -3582,7 +3582,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
     df_insider[""Insider""] = l_names
     df_insider = df_insider.set_index(""Date"")
     df_insider = df_insider.sort_index(ascending=True)
-    return df_insider",,,
+    return df_insider",N,,
 248,django,django/tests/signing/tests.py,test_signature,"def test_signature(self):
         ""signature() method should generate a signature""
         signer = signing.Signer(key=""predictable-secret"")
@@ -3601,11 +3601,11 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
                     algorithm=signer.algorithm,
                 ),
             )
-            self.assertNotEqual(signer.signature(s), signer2.signature(s))",,,
+            self.assertNotEqual(signer.signature(s), signer2.signature(s))",N,,
 249,archivebox,archivebox/deb_dist/archivebox-0.4.24/build/lib/archivebox/core/admin.py,tag_list,"def tag_list(self, obj):
-        return ', '.join(obj.tags.values_list('name', flat=True))",,,
+        return ', '.join(obj.tags.values_list('name', flat=True))",N,,
 250,mmdetection,mmdetection/tests/test_structures/test_bbox/test_box_type.py,converter_E,"def converter_E(bboxes):
-            return bboxes",,,
+            return bboxes",N,,
 251,django,django/django/core/management/templates.py,add_arguments,"def add_arguments(self, parser):
         parser.add_argument(""name"", help=""Name of the application or project."")
         parser.add_argument(
@@ -3644,7 +3644,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
                 ""The directory name(s) to exclude, in addition to .git and ""
                 ""__pycache__. Can be used multiple times.""
             ),
-        )",,,
+        )",N,,
 252,plotly.py,plotly.py/packages/python/plotly/plotly/graph_objs/layout/_hoverlabel.py,bordercolor,"def bordercolor(self):
         """"""
         Sets the border color of all hover labels on graph.
@@ -3695,7 +3695,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         -------
         str
         """"""
-        return self[""bordercolor""]",,,
+        return self[""bordercolor""]",N,,
 253,jax,jax/tests/ode_test.py,test_closure_nondiff,"def test_closure_nondiff(self):
     # https://github.com/google/jax/issues/3584
 
@@ -3706,7 +3706,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
       y = odeint(dz_dt, z, jnp.arange(10.))
       return jnp.sum(y)
 
-    jax.grad(f)(jnp.ones(2))",,,
+    jax.grad(f)(jnp.ones(2))",N,,
 254,statsmodels,statsmodels/statsmodels/nonparametric/bandwidths.py,bw_silverman,"def bw_silverman(x, kernel=None):
     """"""
     Silverman's Rule of Thumb
@@ -3737,7 +3737,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
     """"""
     A = _select_sigma(x)
     n = len(x)
-    return .9 * A * n ** (-0.2)",,,
+    return .9 * A * n ** (-0.2)",N,,
 255,paramiko,paramiko/tests/auth.py,client_sha1_disabled_server_sha2_disabled_no_match,"def client_sha1_disabled_server_sha2_disabled_no_match(self):
         privkey = RSAKey.from_private_key_file(_support(""rsa.key""))
         with server(
@@ -3747,7 +3747,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
             server_init=_disable_sha2_pubkey,
             catch_error=True,
         ) as (tc, ts, err):
-            assert isinstance(err, AuthenticationException)",,,
+            assert isinstance(err, AuthenticationException)",N,,
 256,transformers,transformers/src/transformers/models/markuplm/modeling_markuplm.py,forward,"def forward(self, xpath_tags_seq=None, xpath_subs_seq=None):
         xpath_tags_embeddings = []
         xpath_subs_embeddings = []
@@ -3763,7 +3763,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
 
         xpath_embeddings = self.inner2emb(self.dropout(self.activation(self.xpath_unitseq2_inner(xpath_embeddings))))
 
-        return xpath_embeddings",,,
+        return xpath_embeddings",N,,
 257,qlib,qlib/scripts/check_dump_bin.py,__init__,"def __init__(
         self,
         qlib_dir: str,
@@ -3818,9 +3818,9 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         self.symbol_field_name = symbol_field_name
         self.date_field_name = date_field_name
         self.freq = freq
-        self.file_suffix = file_suffix",,,
+        self.file_suffix = file_suffix",N,,
 258,numpy,numpy/vendored-meson/meson-python/mesonpy/__init__.py,data_dir,"def data_dir(self) -> str:
-        return f'{self.basename}.data'",,,
+        return f'{self.basename}.data'",N,,
 259,sentry,sentry/tests/sentry/ingest/test_transaction_clusterer.py,test_transaction_clusterer_bumps_rules,"def test_transaction_clusterer_bumps_rules(_, default_organization):
     tmp_redis_storage = {}
 
@@ -3867,7 +3867,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         with mock.patch(""sentry.ingest.transaction_clusterer.rules._now"", lambda: 3):
             update_rules(project1, [])
         # After project options are updated, the last_seen should also be updated.
-        assert _get_rules(project1) == {""/user/*/**"": 2}",,,
+        assert _get_rules(project1) == {""/user/*/**"": 2}",N,,
 260,readthedocs.org,readthedocs.org/readthedocs/proxito/tests/test_hosting.py,test_flyout_subproject_urls,"def test_flyout_subproject_urls(self):
         translation = fixture.get(
             Project,
@@ -3931,15 +3931,15 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
                 ""url"": ""https://project.dev.readthedocs.io/projects/subproject/es/latest/"",
             },
         ]
-        assert r.json()[""addons""][""flyout""][""translations""] == expected_translations",,,
+        assert r.json()[""addons""][""flyout""][""translations""] == expected_translations",N,,
 261,sqlmodel,sqlmodel/tests/test_default.py,test_not_equality,"def test_not_equality() -> None:
     value1 = Default(""foo"")
     value2 = Default(""bar"")
 
-    assert not (value1 == value2)",,,
+    assert not (value1 == value2)",N,,
 262,saleor,saleor/saleor/graphql/checkout/resolvers.py,resolve_checkout_lines,"def resolve_checkout_lines():
     queryset = models.CheckoutLine.objects.all()
-    return queryset",,,
+    return queryset",N,,
 263,you-get,you-get/src/you_get/extractors/icourses.py,public_course_playlist,"def public_course_playlist(url, page=None):
     host = 'http://www.icourses.cn/'
     patt = r'<a href=""(.+?)""\s*title=""(.+?)"".+?>(?:.|\n)+?</a>'
@@ -3947,7 +3947,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
     if page is None:
         page = get_content(url)
     playlist = re.findall(patt, page)
-    return [(host+i[0], i[1]) for i in playlist]",,,
+    return [(host+i[0], i[1]) for i in playlist]",N,,
 264,elastalert,elastalert/tests/rules_test.py,test_metric_aggregation_complex_query_key,"def test_metric_aggregation_complex_query_key():
     rules = {'buffer_time': datetime.timedelta(minutes=5),
              'timestamp_field': '@timestamp',
@@ -3969,14 +3969,14 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
     assert rule.matches[0]['qk'] == 'qk_val'
     assert rule.matches[1]['qk'] == 'qk_val'
     assert rule.matches[0]['sub_qk'] == 'sub_qk_val1'
-    assert rule.matches[1]['sub_qk'] == 'sub_qk_val2'",,,
+    assert rule.matches[1]['sub_qk'] == 'sub_qk_val2'",N,,
 265,jumpserver,jumpserver/apps/terminal/utils/components.py,get_components,"def get_components(self):
         from ..models import Terminal
         components = Terminal.objects.filter(is_deleted=False).order_by('type')
         grouped_components = groupby(components, lambda c: c.type)
         grouped_components = [(i[0], list(i[1])) for i in grouped_components]
         self.grouped_components = grouped_components
-        self.components = components",,,
+        self.components = components",N,,
 266,wagtail,wagtail/wagtail/documents/tests/test_admin_views.py,setUp,"def setUp(self):
         add_doc_permission = Permission.objects.get(
             content_type__app_label=""wagtaildocs"", codename=""add_document""
@@ -4001,7 +4001,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         )
         user.groups.add(conspirators_group)
 
-        self.login(username=""moriarty"", password=""password"")",,,
+        self.login(username=""moriarty"", password=""password"")",N,,
 267,numpy,numpy/numpy/random/tests/test_generator_mt19937.py,test_random,"def test_random(self):
         random = Generator(MT19937(self.seed))
         actual = random.random((3, 2))
@@ -4012,7 +4012,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
 
         random = Generator(MT19937(self.seed))
         actual = random.random()
-        assert_array_almost_equal(actual, desired[0, 0], decimal=15)",,,
+        assert_array_almost_equal(actual, desired[0, 0], decimal=15)",N,,
 268,nginx-proxy,nginx-proxy/test/test_virtual-path/test_location_precedence.py,test_location_precedence_case3,"def test_location_precedence_case3(docker_compose, nginxproxy):
     r = nginxproxy.get(f""http://bar.nginx-proxy.test/web3/port"")
     assert r.status_code == 200
@@ -4021,7 +4021,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
     assert ""X-test-host"" not in r.headers
     assert ""X-test-path"" in r.headers
 
-    assert r.headers[""X-test-path""] == ""true""",,,
+    assert r.headers[""X-test-path""] == ""true""",N,,
 269,alphapose,alphapose/detector/yolo/video_demo.py,get_test_input,"def get_test_input(input_dim, CUDA):
     img = cv2.imread(""dog-cycle-car.png"")
     img = cv2.resize(img, (input_dim, input_dim)) 
@@ -4033,7 +4033,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
     if CUDA:
         img_ = img_.cuda()
     
-    return img_",,,
+    return img_",N,,
 270,numpy,numpy/numpy/_core/tests/test_simd.py,test_reorder,"def test_reorder(self):
         data_a, data_b  = self._data(), self._data(reverse=True)
         vdata_a, vdata_b = self.load(data_a), self.load(data_b)
@@ -4070,9 +4070,9 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         unzip = self.unzip(data_zipl, data_ziph)
         assert unzip == (data_a, data_b)
         unzip = self._x2(""load"")(list(data_zipl) + list(data_ziph))
-        assert unzip == (data_a, data_b)",,,
+        assert unzip == (data_a, data_b)",N,,
 271,vaex,vaex/benchmarks/strings.py,time_split,"def time_split(self, N):
-        self.df.s.str.split(""."").nop()",,,
+        self.df.s.str.split(""."").nop()",N,,
 272,pytorch-lightning,pytorch-lightning/src/lightning/pytorch/demos/transformer.py,__init__,"def __init__(self, dim: int, dropout: float = 0.1, max_len: int = 5000) -> None:
         super().__init__()
         self.dropout = nn.Dropout(p=dropout)
@@ -4083,7 +4083,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         pe[:, 0::2] = torch.sin(position * div_term)
         pe[:, 1::2] = torch.cos(position * div_term)
         pe = pe.unsqueeze(0).transpose(0, 1)
-        self.register_buffer(""pe"", pe)",,,
+        self.register_buffer(""pe"", pe)",N,,
 273,django,django/tests/decorators/test_http.py,test_require_http_methods_methods,"def test_require_http_methods_methods(self):
         @require_http_methods([""GET"", ""PUT""])
         def my_view(request):
@@ -4099,11 +4099,11 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         request.method = ""POST""
         self.assertIsInstance(my_view(request), HttpResponseNotAllowed)
         request.method = ""DELETE""
-        self.assertIsInstance(my_view(request), HttpResponseNotAllowed)",,,
+        self.assertIsInstance(my_view(request), HttpResponseNotAllowed)",N,,
 274,mitmproxy,mitmproxy/mitmproxy/addons/onboarding.py,__init__,"def __init__(self):
-        super().__init__(app, APP_HOST, None)",,,
+        super().__init__(app, APP_HOST, None)",N,,
 275,transformers,transformers/examples/research_projects/adversarial/utils_hans.py,get_labels,"def get_labels(self):
-            return self.label_list",,,
+            return self.label_list",N,,
 276,vaex,vaex/tests/dtypes_test.py,test_dtype_str,"def test_dtype_str():
     df = vaex.from_arrays(x=[""foo"", ""bars""], y=[1,2])
     assert df.data_type(df.x) == pa.string()
@@ -4129,7 +4129,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
     n = np.array([None, 'aap', 'noot'])
     df = vaex.from_arrays(n=n)
     assert df.n.dtype == pa.string()
-    assert df.copy().n.dtype == pa.string()",,,
+    assert df.copy().n.dtype == pa.string()",N,,
 277,transformers,transformers/src/transformers/models/marian/modeling_flax_marian.py,setup,"def setup(self):
         self.dropout_layer = nn.Dropout(rate=self.config.dropout)
 
@@ -4138,7 +4138,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         self.embed_scale = math.sqrt(self.config.d_model) if self.config.scale_embedding else 1.0
 
         self.embed_positions = create_sinusoidal_positions(self.config.max_position_embeddings, embed_dim)
-        self.layers = FlaxMarianDecoderLayerCollection(self.config, self.dtype)",,,
+        self.layers = FlaxMarianDecoderLayerCollection(self.config, self.dtype)",N,,
 278,mitmproxy,mitmproxy/test/mitmproxy/addons/test_proxyserver.py,test_reverse_quic_datagram,"async def test_reverse_quic_datagram(caplog_async, connection_strategy: str) -> None:
     caplog_async.set_level(""INFO"")
     ps = Proxyserver()
@@ -4171,7 +4171,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
                 assert await client.recv_datagram() == b""echo""
 
             tctx.configure(ps, server=False)
-            await caplog_async.await_log(""stopped"")",,,
+            await caplog_async.await_log(""stopped"")",N,,
 279,impacket,impacket/impacket/dot11.py,get_dBm_tx_power,"def get_dBm_tx_power( self ):
         ""Get the transmit power expressed as dBm (decibels from a 1 milliwatt""\
         "" reference). This is the absolute power level measured at the ""\
@@ -4180,7 +4180,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         values=self.__get_field_values(self.RTF_DBM_TX_POWER)
         if not values:
             return None
-        return values[0]",,,
+        return values[0]",N,,
 280,pandas,pandas/pandas/tests/reshape/merge/test_merge.py,test_merge_indicator_arg_validation,"def test_merge_indicator_arg_validation(self, dfs_for_indicator):
         # Check only accepts strings and booleans
         df1, df2 = dfs_for_indicator
@@ -4189,15 +4189,15 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         with pytest.raises(ValueError, match=msg):
             merge(df1, df2, on=""col1"", how=""outer"", indicator=5)
         with pytest.raises(ValueError, match=msg):
-            df1.merge(df2, on=""col1"", how=""outer"", indicator=5)",,,
+            df1.merge(df2, on=""col1"", how=""outer"", indicator=5)",N,,
 281,rich,rich/rich/style.py,current,"def current(self) -> Style:
         """"""Get the Style at the top of the stack.""""""
-        return self._stack[-1]",,,
+        return self._stack[-1]",N,,
 282,python-prompt-toolkit,python-prompt-toolkit/src/prompt_toolkit/widgets/base.py,document,"def document(self) -> Document:
         """"""
         The `Buffer` document (text + cursor position).
         """"""
-        return self.buffer.document",,,
+        return self.buffer.document",N,,
 283,unilm,unilm/speecht5/fairseq/tests/test_online_backtranslation.py,mk_sample,"def mk_sample(tokens: Sequence[int], batch_size: int = 2) -> Dict[str, Any]:
     batch = torch.stack([torch.tensor(tokens, dtype=torch.long)] * batch_size)
     sample = {
@@ -4208,7 +4208,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         },
         ""target"": batch[:, 1:],
     }
-    return sample",,,
+    return sample",N,,
 284,ansible,ansible/lib/ansible/plugins/shell/cmd.py,quote,"def quote(self, s):
         # cmd does not support single quotes that the shlex_quote uses. We need to override the quoting behaviour to
         # better match cmd.exe.
@@ -4229,7 +4229,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
                 # I can't find any docs that explicitly say this but to escape "", it needs to be prefixed with \^.
                 s = s.replace(c, (""\\^"" if c == '""' else ""^"") + c)
 
-        return '^""' + s + '^""'",,,
+        return '^""' + s + '^""'",N,,
 285,certbot,certbot/certbot/certbot/plugins/enhancements.py,enabled_enhancements,"def enabled_enhancements(
         config: configuration.NamespaceConfig) -> Generator[Dict[str, Any], None, None]:
     """"""
@@ -4240,9 +4240,9 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
     """"""
     for enh in _INDEX:
         if getattr(config, enh[""cli_dest""]):
-            yield enh",,,
+            yield enh",N,,
 286,tvm,tvm/python/tvm/exec/gpu_memory_bandwidth.py,_parse_list_int,"def _parse_list_int(source: str):
-        return [int(i) for i in source.split("","")]",,,
+        return [int(i) for i in source.split("","")]",N,,
 287,faceswap,faceswap/lib/gui/project.py,_set_gui_state_for_command,"def _set_gui_state_for_command(self, command, options):
         """""" Set the GUI state for the given command.
 
@@ -4263,7 +4263,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
                 continue
             logger.trace(""setting option: (srcopt: %s, optvar: %s, srcval: %s)"",
                          srcopt, optvar, srcval)
-            optvar.set(srcval)",,,
+            optvar.set(srcval)",N,,
 288,calibre,calibre/src/calibre/gui2/dialogs/exim.py,setup_export_panel,"def setup_export_panel(self):
         self.export_panel = w = QWidget(self)
         self.stack.addWidget(w)
@@ -4284,9 +4284,9 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
             i.setSelected(True)
         self.update_disk_usage.connect((
             lambda i, sz: self.lib_list.item(i).setText(self.export_lib_text(
-                self.lib_list.item(i).data(Qt.ItemDataRole.UserRole), sz))), type=Qt.ConnectionType.QueuedConnection)",,,
+                self.lib_list.item(i).data(Qt.ItemDataRole.UserRole), sz))), type=Qt.ConnectionType.QueuedConnection)",N,,
 289,pytest,pytest/src/_pytest/python_api.py,__ne__,"def __ne__(self, actual) -> bool:
-        return not (actual == self)",,,
+        return not (actual == self)",N,,
 290,plotly.py,plotly.py/packages/python/plotly/plotly/graph_objs/scatterpolargl/marker/colorbar/_tickfont.py,family,"def family(self):
         """"""
         HTML font family - the typeface that will be applied by the web
@@ -4309,32 +4309,32 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         -------
         str
         """"""
-        return self[""family""]",,,
+        return self[""family""]",N,,
 291,jina,jina/tests/unit/yaml/dummy_gateway.py,__init__,"def __init__(
         self, arg1: str = None, arg2: str = None, arg3: str = 'default-arg3', **kwargs
     ):
         super().__init__(**kwargs)
         self.arg1 = arg1
         self.arg2 = arg2
-        self.arg3 = arg3",,,
+        self.arg3 = arg3",N,,
 292,saleor,saleor/saleor/graphql/account/tests/test_account_events.py,_model_to_node_id,"def _model_to_node_id(instance: models.Model) -> str:
-    return graphene.Node.to_global_id(instance.__class__.__name__, instance.pk)",,,
+    return graphene.Node.to_global_id(instance.__class__.__name__, instance.pk)",N,,
 293,sentry,sentry/src/sentry/buffer/redis.py,_make_lock_key,"def _make_lock_key(self, key):
-        return f""l:{key}""",,,
+        return f""l:{key}""",N,,
 294,redis-py,redis-py/tests/test_cluster.py,test_command_with_quoted_key,"def test_command_with_quoted_key(self, r):
         key = ""{foo}1""
         node = r.get_node_from_key(key)
         with r.monitor(node) as m:
             r.get('{foo}""bar')
             response = wait_for_command(r, m, 'GET {foo}""bar', key=key)
-            assert response[""command""] == 'GET {foo}""bar'",,,
+            assert response[""command""] == 'GET {foo}""bar'",N,,
 295,models,models/official/projects/qat/vision/n_bit/nn_blocks.py,constructor,"def constructor(*arg, **kwargs):
     return tfmot.quantization.keras.QuantizeWrapperV2(
         cls(*arg, **kwargs),
-        quantize_config)",,,
+        quantize_config)",N,,
 296,chia-blockchain,chia-blockchain/chia/seeder/dns_server.py,handler,"async def handler(self, data: DNSRecord, caller: tuple[str, int]) -> None:
         r_data = await get_dns_reply(self.callback, data)  # process the request, returning a DNSRecord response.
-        await self.data_queue.put((r_data, caller))",,,
+        await self.data_queue.put((r_data, caller))",N,,
 297,models,models/research/delf/delf/python/training/model/delf_model.py,__init__,"def __init__(self, kernel_size=1, decay=_DECAY, name='attention'):
     """"""Initialization of attention model.
 
@@ -4361,9 +4361,9 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         kernel_regularizer=reg.l2(decay),
         padding='same',
         name='attn_conv2')
-    self.activation_layer = layers.Activation('softplus')",,,
+    self.activation_layer = layers.Activation('softplus')",N,,
 298,transformers,transformers/src/transformers/utils/dummy_pt_objects.py,__init__,"def __init__(self, *args, **kwargs):
-        requires_backends(self, [""torch""])",,,
+        requires_backends(self, [""torch""])",N,,
 299,synapse,synapse/synapse/util/caches/dictionary_cache.py,_update_subset,"def _update_subset(
         self, key: KT, value: Dict[DKT, DV], fetched_keys: Iterable[DKT]
     ) -> None:
@@ -4383,13 +4383,13 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
             if dict_key in value:
                 continue
 
-            self.cache[(key, dict_key)] = _PerKeyValue(_Sentinel.sentinel)",,,
+            self.cache[(key, dict_key)] = _PerKeyValue(_Sentinel.sentinel)",N,,
 300,falcon,falcon/tests/test_compiled_router.py,test_cannot_replace_compiled,"def test_cannot_replace_compiled():
     opt = CompiledRouterOptions()
     with pytest.raises(AttributeError, match='Cannot set'):
         opt.converters = {}
     with pytest.raises(AttributeError, match='object has no attribute'):
-        opt.other = 123",,,
+        opt.other = 123",N,,
 301,vaex,vaex/packages/vaex-core/vendor/pybind11/tests/test_stl.py,test_recursive_casting,"def test_recursive_casting():
     """"""Tests that stl casters preserve lvalue/rvalue context for container values""""""
     assert m.cast_rv_vector() == [""rvalue"", ""rvalue""]
@@ -4406,11 +4406,11 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
 
     # Issue #853 test case:
     z = m.cast_unique_ptr_vector()
-    assert z[0].value == 7 and z[1].value == 42",,,
+    assert z[0].value == 7 and z[1].value == 42",N,,
 302,reddit,reddit/r2/r2/lib/cache.py,get_multi,"def get_multi(self, keys, prefix='', **kw):
-        return prefix_keys(keys, prefix, lambda k: self.simple_get_multi(k, **kw))",,,
+        return prefix_keys(keys, prefix, lambda k: self.simple_get_multi(k, **kw))",N,,
 303,youtube-dl,youtube-dl/youtube_dl/swfinterp.py,__hash__,"def __hash__(self):
-        return 0",,,
+        return 0",N,,
 304,sentry,sentry/tests/sentry/integrations/msteams/notifications/test_regression.py,test_regression,"def test_regression(self, mock_send_card: MagicMock):
         """"""
         Test that the card for MS Teams notification is generated correctly when an issue regresses.
@@ -4444,7 +4444,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         assert (
             f""{self.project.slug} | [Notification Settings](http://testserver/settings/account/notifications/workflow/?referrer=regression\\_activity-msteams-user)""
             == body[3][""columns""][1][""items""][0][""text""]
-        )",,,
+        )",N,,
 305,deep-learning-for-image-processing,deep-learning-for-image-processing/pytorch_classification/Test3_vggnet/model.py,make_features,"def make_features(cfg: list):
     layers = []
     in_channels = 3
@@ -4455,9 +4455,9 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
             conv2d = nn.Conv2d(in_channels, v, kernel_size=3, padding=1)
             layers += [conv2d, nn.ReLU(True)]
             in_channels = v
-    return nn.Sequential(*layers)",,,
+    return nn.Sequential(*layers)",N,,
 306,thefuck,thefuck/tests/rules/test_git_commit_add.py,test_match,"def test_match(output, script):
-    assert match(Command(script, output))",,,
+    assert match(Command(script, output))",N,,
 307,edgedb,edgedb/edb/server/compiler/explain/pg_tree.py,_obj_to_name,"def _obj_to_name(
     sobj: so.Object,
     ctx: explain.AnalyzeContext,
@@ -4491,7 +4491,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
     if dotted:
         s = '.' + s
 
-    return s",,,
+    return s",N,,
 308,seaborn,seaborn/seaborn/_core/plot.py,_plot,"def _plot(self, pyplot: bool = False) -> Plotter:
 
         # TODO if we have _target object, pyplot should be determined by whether it
@@ -4526,15 +4526,15 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         plotter._make_legend(self)
         plotter._finalize_figure(self)
 
-        return plotter",,,
+        return plotter",N,,
 309,pattern,pattern/test/test_graph.py,traversable,"def traversable(node, edge):
             if edge.node2.id == ""e"":
-                return False",,,
+                return False",N,,
 310,transformers,transformers/src/transformers/models/esm/modeling_esmfold.py,infer_pdb,"def infer_pdb(self, seqs, *args, **kwargs) -> str:
         """"""Returns the pdb (file) string from the model given an input sequence.""""""
         assert type(seqs) is str
         output = self.infer(seqs, *args, **kwargs)
-        return self.output_to_pdb(output)[0]",,,
+        return self.output_to_pdb(output)[0]",N,,
 311,abu,abu/abupy/ExtBu/joblib/parallel.py,print_progress,"def print_progress(self):
         """"""Display the process of the parallel execution only a fraction
            of time, controlled by self.verbose.
@@ -4576,11 +4576,11 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
                          total_tasks,
                          short_format_time(elapsed_time),
                          short_format_time(remaining_time),
-                         ))",,,
+                         ))",N,,
 312,edgedb,edgedb/tests/test_edgeql_syntax.py,test_edgeql_syntax_describe_02,"def test_edgeql_syntax_describe_02(self):
         """"""
         DESCRIBE TYPE foo::Bar AS SDL;
-        """"""",,,
+        """"""",N,,
 313,transformers,transformers/tests/models/longt5/test_modeling_longt5.py,test_attention_outputs,"def test_attention_outputs(self):
         if not self.has_attentions:
             pass
@@ -4646,7 +4646,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
                 self.assertListEqual(
                     list(self_attentions[0].shape[-3:]),
                     [self.model_tester.num_attention_heads, block_len, 3 * block_len + global_seq_len],
-                )",,,
+                )",N,,
 314,erpnext,erpnext/erpnext/controllers/status_updater.py,_update_percent_field_in_targets,"def _update_percent_field_in_targets(self, args, update_modified=True):
 		""""""Update percent field in parent transaction""""""
 		if args.get(""percent_join_field_parent""):
@@ -4662,7 +4662,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
 			for name in distinct_transactions:
 				if name:
 					args[""name""] = name
-					self._update_percent_field(args, update_modified)",,,
+					self._update_percent_field(args, update_modified)",N,,
 315,detectron,detectron/detectron/datasets/task_evaluation.py,_empty_mask_results,"def _empty_mask_results():
     return OrderedDict({
         'mask':
@@ -4676,7 +4676,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
                 ('APl', -1),
             ]
         )
-    })",,,
+    })",N,,
 316,tvm,tvm/tests/python/frontend/tflite/test_forward.py,_test_forward_tile,"def _test_forward_tile(in_shape, reps, dtype):
     data = np.random.uniform(-5, 5, size=in_shape).astype(dtype)
 
@@ -4685,11 +4685,11 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
 
         out = array_ops.tile(in_data, reps)
 
-        compare_tflite_with_tvm(data, ""Placeholder:0"", [in_data], [out])",,,
+        compare_tflite_with_tvm(data, ""Placeholder:0"", [in_data], [out])",N,,
 317,django,django/django/template/defaulttags.py,create_var,"def create_var(self, value):
-        return TemplateLiteral(self.template_parser.compile_filter(value), value)",,,
+        return TemplateLiteral(self.template_parser.compile_filter(value), value)",N,,
 318,kornia,kornia/test/augmentation/test_augmentation.py,test_random_p_0,"def test_random_p_0(self):
-        self._test_random_p_0_implementation(params=self._default_param_set)",,,
+        self._test_random_p_0_implementation(params=self._default_param_set)",N,,
 319,pretrained-models.pytorch,pretrained-models.pytorch/pretrainedmodels/datasets/voc.py,__getitem__,"def __getitem__(self, index):
         path, target = self.images[index]
         img = Image.open(os.path.join(self.path_images, path + '.jpg')).convert('RGB')
@@ -4697,7 +4697,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
             img = self.transform(img)
         if self.target_transform is not None:
             target = self.target_transform(target)
-        return img, path, target",,,
+        return img, path, target",N,,
 320,edgedb,edgedb/edb/testbase/lang.py,_load_std_schema,"def _load_std_schema():
     global _std_schema
     if _std_schema is None:
@@ -4721,7 +4721,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
 
         _std_schema = schema
 
-    return _std_schema",,,
+    return _std_schema",N,,
 321,pandas,pandas/pandas/tests/computation/test_eval.py,test_eval_no_support_column_name,"def test_eval_no_support_column_name(request, column):
     # GH 44603
     if column in [""True"", ""False"", ""inf"", ""Inf""]:
@@ -4736,14 +4736,14 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
     expected = df[df[column] > 6]
     result = df.query(f""{column}>6"")
 
-    tm.assert_frame_equal(result, expected)",,,
+    tm.assert_frame_equal(result, expected)",N,,
 322,paddlehub,paddlehub/modules/video/classification/videotag_tsn_lstm/resource/metrics/youtube8m/eval_util.py,top_k_triplets,"def top_k_triplets(predictions, labels, k=20):
     """"""Get the top_k for a 1-d numpy array. Returns a sparse list of tuples in
   (prediction, class) format""""""
     m = len(predictions)
     k = min(k, m)
     indices = numpy.argpartition(predictions, -k)[-k:]
-    return [(index, predictions[index], labels[index]) for index in indices]",,,
+    return [(index, predictions[index], labels[index]) for index in indices]",N,,
 323,vaex,vaex/packages/vaex-core/vaex/dataframe.py,plot3d,"def plot3d(self, x, y, z, vx=None, vy=None, vz=None, vwhat=None, limits=None, grid=None, what=""count(*)"", shape=128, selection=[None, True], f=None,
                vcount_limits=None,
                smooth_pre=None, smooth_post=None, grid_limits=None, normalize=""normalize"", colormap=""afmhot"",
@@ -4761,9 +4761,9 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
                      grid_limits=grid_limits, vcount_limits=vcount_limits, normalize=normalize, colormap=colormap, **kwargs)
         if show:
             plot3d.show()
-        return plot3d",,,
+        return plot3d",N,,
 324,calibre,calibre/src/calibre/gui2/keyboard.py,editor_opened,"def editor_opened(self, index):
-        self.view.scrollTo(index, QAbstractItemView.ScrollHint.EnsureVisible)",,,
+        self.view.scrollTo(index, QAbstractItemView.ScrollHint.EnsureVisible)",N,,
 325,statsmodels,statsmodels/statsmodels/tsa/statespace/tests/test_dynamic_factor_mq.py,test_standardized_monthly,"def test_standardized_monthly(reset_randomstate, idiosyncratic_ar1, k_endog,
                               use_pandas):
     nobs = 100
@@ -4816,11 +4816,11 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
     res2 = mod2.smooth(params)
 
     # - Test results ---------------------------------------------------------
-    check_standardized_results(res1, res2)",,,
+    check_standardized_results(res1, res2)",N,,
 326,vaex,vaex/packages/vaex-ui/vaex/ui/plugin/transferfunction.py,setter,"def setter(value, update=True, i=i):
 			self.widget_volume.background_opacity = value
 			if update:
-				self.widget_volume.update()",,,
+				self.widget_volume.update()",N,,
 327,django-rest-framework,django-rest-framework/tests/test_viewsets.py,test_detail_view,"def test_detail_view(self):
         response = self.client.get('/api/actions/1/')
         view = response.view
@@ -4832,7 +4832,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
             # ""Unresolvable detail action"" excluded, since it's not resolvable
         ])
 
-        self.assertEqual(view.get_extra_action_url_map(), expected)",,,
+        self.assertEqual(view.get_extra_action_url_map(), expected)",N,,
 328,mitmproxy,mitmproxy/test/mitmproxy/utils/test_sliding_window.py,test_simple,"def test_simple():
     y = list(sliding_window.window(range(1000, 1005), 1, 2))
     assert y == [
@@ -4842,7 +4842,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         (1001, 1002, 1003, 1004),
         (1002, 1003, 1004, None),
         (1003, 1004, None, None),
-    ]",,,
+    ]",N,,
 329,lbry-sdk,lbry-sdk/lbry/wallet/wallet.py,upgrade,"def upgrade(self, json_dict):
         json_dict = json_dict.copy()
         version = json_dict.pop('version', -1)
@@ -4850,9 +4850,9 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
             pass
         upgraded = self._default.copy()
         upgraded.update(json_dict)
-        return json_dict",,,
+        return json_dict",N,,
 330,plotly.py,plotly.py/packages/python/plotly/plotly/graph_objs/_carpet.py,x,"def x(self, val):
-        self[""x""] = val",,,
+        self[""x""] = val",N,,
 331,pillow,pillow/Tests/test_color_lut.py,test_4_to_3_channels,"def test_4_to_3_channels(self):
         source = ImageFilter.Color3DLUT.generate(
             (3, 6, 5), lambda r, g, b: (r, g, b, 1), channels=4
@@ -4867,7 +4867,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         assert lut.table[:18] == [
             1.0, 1.0, 1.0,  0.75, 1.0, 1.0,  0.0, 1.0, 1.0,
             1.0, 0.96, 1.0,  0.75, 0.96, 1.0,  0.0, 0.96, 1.0]
-        # fmt: on",,,
+        # fmt: on",N,,
 332,tvm,tvm/tests/python/unittest/test_te_schedule_tensor_core.py,test_tensor_core_batch_conv,"def test_tensor_core_batch_conv():
     # The sizes of inputs and filters
     batch_size = 32
@@ -5044,7 +5044,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         c_std = conv2d_nhwc_python(
             a_np.astype(Conv.dtype), w_np.astype(Conv.dtype), (stride_h, stride_w), (pad_h, pad_w)
         ).astype(Conv.dtype)
-        np.testing.assert_allclose(c_np, c_std, rtol=1e-4, atol=1e-4)",,,
+        np.testing.assert_allclose(c_np, c_std, rtol=1e-4, atol=1e-4)",N,,
 333,fairseq,fairseq/examples/textless_nlp/gslm/unit2speech/tacotron2/model.py,forward,"def forward(self, attention_hidden_state, memory, processed_memory,
                 attention_weights_cat, mask):
         """"""
@@ -5066,15 +5066,15 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         attention_context = torch.bmm(attention_weights.unsqueeze(1), memory)
         attention_context = attention_context.squeeze(1)
 
-        return attention_context, attention_weights",,,
+        return attention_context, attention_weights",N,,
 334,plotly.py,plotly.py/packages/python/plotly/plotly/graph_objs/sunburst/marker/_colorbar.py,tickwidth,"def tickwidth(self, val):
-        self[""tickwidth""] = val",,,
+        self[""tickwidth""] = val",N,,
 335,http-prompt,http-prompt/tests/test_execution.py,test_simple_body_params,"def test_simple_body_params(self):
         execute('username=john password=123', self.context)
         self.assertEqual(self.context.body_params, {
             'username': 'john',
             'password': '123'
-        })",,,
+        })",N,,
 336,textual,textual/src/textual/document/_document.py,_utf8_encode,"def _utf8_encode(text: str) -> bytes:
     """"""Encode the input text as utf-8 bytes.
 
@@ -5086,15 +5086,15 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
     Returns:
         The utf-8 bytes representing the input string.
     """"""
-    return text.encode(""utf-8"")",,,
+    return text.encode(""utf-8"")",N,,
 337,numpy,numpy/numpy/_core/tests/test_dtype.py,test_ulong_dtype,"def test_ulong_dtype():
     # test for gh-21063
-    assert np.dtype(""ulong"") == np.dtype(np.uint)",,,
+    assert np.dtype(""ulong"") == np.dtype(np.uint)",N,,
 338,pwntools,pwntools/pwnlib/rop/ret2dlresolve.py,__bytes__,"def __bytes__(self):
-        return self.__flat__()",,,
+        return self.__flat__()",N,,
 339,machine_learning_examples,machine_learning_examples/ab_testing/server_starter.py,sample,"def sample(self):
     # TODO
-    return 1",,,
+    return 1",N,,
 340,dgl,dgl/tools/distpartitioning/data_shuffle.py,run,"def run(rank, world_size, func_exec, params, backend=""gloo""):
     """"""
     Init. function which is run by each process in the Gloo ProcessGroup
@@ -5124,12 +5124,12 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
     )
 
     # Invoke the main function to kick-off each process
-    func_exec(rank, world_size, params)",,,
+    func_exec(rank, world_size, params)",N,,
 341,ray,ray/python/ray/data/aggregate/_aggregate.py,accumulate_block,"def accumulate_block(a: AggType, block: Block) -> AggType:
                 block_acc = BlockAccessor.for_block(block)
                 for r in block_acc.iter_rows(public_row_format=False):
                     a = accumulate_row(a, r)
-                return a",,,
+                return a",N,,
 342,zulip,zulip/zerver/tests/test_markdown.py,test_url_embed_preview_enabled,"def test_url_embed_preview_enabled(self) -> None:
         sender_user_profile = self.example_user(""othello"")
         message = copy.deepcopy(
@@ -5160,7 +5160,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         self.assertTrue(ret)
 
         ret = url_embed_preview_enabled(message, no_previews=True)
-        self.assertFalse(ret)",,,
+        self.assertFalse(ret)",N,,
 343,qutebrowser,qutebrowser/tests/unit/javascript/conftest.py,__init__,"def __init__(self, tab, qtbot, config_stub):
         self.tab = tab
         self.qtbot = qtbot
@@ -5172,12 +5172,12 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
             'error': 'error',
             'unknown': 'error',
             'warning': 'error'
-        }",,,
+        }",N,,
 344,calibre,calibre/src/calibre/ebooks/oeb/transforms/flatcss.py,__init__,"def __init__(self, sbase, dbase):
-        self.dscale = float(dbase) / float(sbase)",,,
+        self.dscale = float(dbase) / float(sbase)",N,,
 345,mypy,mypy/mypy/copytype.py,visit_unpack_type,"def visit_unpack_type(self, t: UnpackType) -> ProperType:
         dup = UnpackType(t.type)
-        return self.copy_common(t, dup)",,,
+        return self.copy_common(t, dup)",N,,
 346,plotly.py,plotly.py/packages/python/plotly/plotly/graph_objs/layout/mapbox/_layer.py,source,"def source(self):
         """"""
         Sets the source data for this layer (mapbox.layer.source). When
@@ -5193,7 +5193,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         -------
         Any
         """"""
-        return self[""source""]",,,
+        return self[""source""]",N,,
 347,scikit-learn,scikit-learn/sklearn/decomposition/_nmf.py,fit,"def fit(self, X, y=None, **params):
         """"""Learn a NMF model for the data X.
 
@@ -5218,10 +5218,10 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         # param validation is done in fit_transform
 
         self.fit_transform(X, **params)
-        return self",,,
+        return self",N,,
 348,sygil-webui,sygil-webui/ldm/modules/x_transformer.py,forward,"def forward(self, x):
         x, gate = self.proj(x).chunk(2, dim=-1)
-        return x * F.gelu(gate)",,,
+        return x * F.gelu(gate)",N,,
 349,ipython,ipython/IPython/core/interactiveshell.py,prepare_user_module,"def prepare_user_module(self, user_module=None, user_ns=None):
         """"""Prepare the module and namespace in which user code will be run.
 
@@ -5264,7 +5264,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         if user_ns is None:
             user_ns = user_module.__dict__
 
-        return user_module, user_ns",,,
+        return user_module, user_ns",N,,
 350,unilm,unilm/deltalm/fairseq/examples/wav2vec/unsupervised/data/extracted_features_dataset.py,__getitem__,"def __getitem__(self, index):
         offset = self.offsets[index]
         end = self.sizes[index] + offset
@@ -5278,9 +5278,9 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
                 append_eos=False,
             )
 
-        return res",,,
+        return res",N,,
 351,plotly.py,plotly.py/packages/python/plotly/plotly/graph_objs/scatterternary/_hoverlabel.py,align,"def align(self, val):
-        self[""align""] = val",,,
+        self[""align""] = val",N,,
 352,sentry,sentry/src/sentry/spans/grouping/strategy/base.py,loose_normalized_db_span_in_condition_strategy,"def loose_normalized_db_span_in_condition_strategy(span: Span) -> Optional[Sequence[str]]:
     """"""This is identical to the above
     `normalized_db_span_in_condition_strategy` but it uses a looser regular
@@ -5289,7 +5289,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
     cleaned, count = LOOSE_IN_CONDITION_PATTERN.subn("" IN (%s)"", description)
     if count == 0:
         return None
-    return [cleaned]",,,
+    return [cleaned]",N,,
 353,pytest,pytest/src/_pytest/fixtures.py,get_scope_package,"def get_scope_package(
     node: nodes.Item,
     fixturedef: ""FixtureDef[object]"",
@@ -5303,7 +5303,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         current = current.parent  # type: ignore[assignment]
     if current is None:
         return node.session
-    return current",,,
+    return current",N,,
 354,fail2ban,fail2ban/fail2ban/tests/servertestcase.py,_testExecActions,"def _testExecActions(self, server):
 		jails = server._Server__jails
 
@@ -5336,9 +5336,9 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
 				action.unban(aInfos['ipv6'])
 				# test stop :
 				logSys.debug('# === stop ==='); self.pruneLog()
-				action.stop()",,,
+				action.stop()",N,,
 355,sentry,sentry/src/sentry/integrations/manager.py,__init__,"def __init__(self):
-        self.__values = {}",,,
+        self.__values = {}",N,,
 356,archivebox,archivebox/deb_dist/archivebox-0.5.6/archivebox/vendor/pocket/pocket.py,get_credentials,"def get_credentials(cls, consumer_key, code):
         '''
         Fetches access token from using the request token and consumer key
@@ -5353,7 +5353,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
             'code': code,
         }
 
-        return cls._make_request(url, payload, headers)[0]",,,
+        return cls._make_request(url, payload, headers)[0]",N,,
 357,sentry,sentry/tests/sentry/sentry_metrics/test_batch.py,test_all_resolved,"def test_all_resolved(caplog, settings):
     settings.SENTRY_METRICS_INDEXER_DEBUG_LOG_SAMPLE_RATE = 1.0
     outer_message = _construct_outer_message(
@@ -5488,10 +5488,10 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
             },
             [(""mapping_sources"", b""cd""), (""metric_type"", ""s"")],
         ),
-    ]",,,
+    ]",N,,
 358,theharvester,theharvester/theHarvester/discovery/zoomeyesearch.py,parse_hostnames,"async def parse_hostnames(self, content):
         rawres = myparser.Parser(content, self.word)
-        return await rawres.hostnames()",,,
+        return await rawres.hostnames()",N,,
 359,models,models/official/modeling/hyperparams/params_dict.py,_get_kv,"def _get_kv(dotted_string, params_dict):
       """"""Get keys and values indicated by dotted_string.""""""
       if _CONST_VALUE_RE.match(dotted_string) is not None:
@@ -5506,21 +5506,21 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         v = params_dict
         for t in tokenized_params:
           v = v[t]
-        return tokenized_params[-1], v",,,
+        return tokenized_params[-1], v",N,,
 360,theano,theano/doc/hpcs2011_tutorial/double_op.py,make_node,"def make_node(self, x):
         x = theano.tensor.as_tensor_variable(x)
-        return theano.Apply(self, [x], [x.type()])",,,
+        return theano.Apply(self, [x], [x.type()])",N,,
 361,numba,numba/numba/tests/test_hashing.py,test_bool,"def test_bool(self):
-        self.check_hash_values([False, True])",,,
+        self.check_hash_values([False, True])",N,,
 362,plotly.py,plotly.py/packages/python/chart-studio/chart_studio/plotly/plotly.py,get_dashboard_names,"def get_dashboard_names(cls):
         """"""Return list of all active dashboard names from users' account.""""""
         dashboards = cls._get_all_dashboards()
-        return [str(dboard[""filename""]) for dboard in dashboards]",,,
+        return [str(dboard[""filename""]) for dboard in dashboards]",N,,
 363,calibre,calibre/src/odf/odf2xhtml.py,s_text_line_break,"def s_text_line_break(self, tag, attrs):
         """""" Force a line break (<br/>) """"""
         self.writedata()
         self.emptytag('br')
-        self.purgedata()",,,
+        self.purgedata()",N,,
 364,gamestonkterminal,gamestonkterminal/openbb_terminal/stocks/stocks_helper.py,map_parse_choices,"def map_parse_choices(choices: List[str]) -> Dict[str, str]:
     """"""Create a mapping of clean arguments (keys) to original arguments (values).
 
@@ -5537,7 +5537,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
     """"""
     the_dict = {x.lower().replace("" "", ""_""): x for x in choices}
     the_dict[""""] = """"
-    return the_dict",,,
+    return the_dict",N,,
 365,hanlp,hanlp/plugins/hanlp_common/hanlp_common/util.py,prefix_match,"def prefix_match(target, sources: Iterable[str]):
     if target is None:
         return None
@@ -5545,7 +5545,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
         return target
     for each in sources:
         if each.startswith(target):
-            return each",,,
+            return each",N,,
 366,sentry,sentry/src/sentry/auth/access.py,project_ids_with_team_membership,"def project_ids_with_team_membership(self) -> FrozenSet[int]:
         """"""Return the IDs of projects to which the user has access via actual team membership.
 
@@ -5569,28 +5569,28 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
             span.set_data(""Project Count"", len(projects))
             span.set_data(""Team Count"", len(teams))
 
-        return projects",,,
+        return projects",N,,
 367,pyro,pyro/tests/infer/reparam/test_unit_jacobian.py,model,"def model():
         with pyro.plate_stack(""plates"", shape[:-1]):
             with pyro.plate(""particles"", 10000):
-                pyro.sample(""x"", dist.Normal(loc, scale).expand(shape).to_event(1))",,,
+                pyro.sample(""x"", dist.Normal(loc, scale).expand(shape).to_event(1))",N,,
 368,vit-pytorch,vit-pytorch/vit_pytorch/pit.py,forward,"def forward(self, x, **kwargs):
-        return self.fn(self.norm(x), **kwargs)",,,
+        return self.fn(self.norm(x), **kwargs)",N,,
 369,jumpserver,jumpserver/apps/terminal/api/applet/host.py,create,"def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         instance = serializer.save()
         instance.save_task(instance.id)
         transaction.on_commit(lambda: self.start_deploy(instance))
-        return Response({'task': str(instance.id)}, status=201)",,,
+        return Response({'task': str(instance.id)}, status=201)",N,,
 370,yapf,yapf/yapf/pyparser/split_penalty_visitor.py,visit_AsyncFor,"def visit_AsyncFor(self, node):
     # AsyncFor(target=Expr,
     #          iter=Expr,
     #          body=[...],
     #          orelse=[...])
-    return self.generic_visit(node)",,,
+    return self.generic_visit(node)",N,,
 371,altair,altair/altair/vegalite/v5/schema/channels.py,__init__,"def __init__(self, value, condition=Undefined, **kwds):
-        super(SizeValue, self).__init__(value=value, condition=condition, **kwds)",,,
+        super(SizeValue, self).__init__(value=value, condition=condition, **kwds)",N,,
 372,plotly.py,plotly.py/packages/python/plotly/plotly/tests/test_core/test_errors/test_dict_path_errors.py,test_solo_underscore_errors,"def test_solo_underscore_errors(some_fig):
     # get error string but alter it to form the final expected string
     def _raise_bad_property_path_form():
@@ -5610,10 +5610,10 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
             ('Did you mean ""boxgap""', 'Did you mean ""geo""'),
         ],
     )
-    check_error_string(_raise_bad_property_path_real, ValueError, correct_err_str, [])",,,
+    check_error_string(_raise_bad_property_path_real, ValueError, correct_err_str, [])",N,,
 373,telethon,telethon/telethon_generator/sourcebuilder.py,__str__,"def __str__(self):
         self.out_stream.seek(0)
-        return self.out_stream.read()",,,
+        return self.out_stream.read()",N,,
 374,d2l-zh,d2l-zh/d2l/paddle.py,__init__,"def __init__(self, num_hiddens, dropout, max_len=1000):
         super(PositionalEncoding, self).__init__()
         self.dropout = nn.Dropout(dropout)
@@ -5623,7 +5623,7 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
             (-1, 1)) / paddle.pow(paddle.to_tensor([10000.0]), paddle.arange(
             0, num_hiddens, 2, dtype=paddle.float32) / num_hiddens)
         self.P[:, :, 0::2] = paddle.sin(X)
-        self.P[:, :, 1::2] = paddle.cos(X)",,,
+        self.P[:, :, 1::2] = paddle.cos(X)",N,,
 375,erpnext,erpnext/erpnext/regional/report/uae_vat_201/test_uae_vat_201.py,make_sales_invoices_wrapper,"def make_sales_invoices_wrapper(emirate, item, tax=True, tourist_tax=False):
 		si = create_sales_invoice(
 			company=""_Test Company UAE VAT"",
@@ -5651,9 +5651,9 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
 			)
 		if tourist_tax:
 			si.tourist_tax_return = 2
-		si.submit()",,,
+		si.submit()",N,,
 376,jupyterhub,jupyterhub/jupyterhub/handlers/base.py,users,"def users(self):
-        return self.settings.setdefault('users', {})",,,
+        return self.settings.setdefault('users', {})",N,,
 377,statsmodels,statsmodels/statsmodels/genmod/bayes_mixed_glm.py,from_formula,"def from_formula(cls, formula, vc_formulas, data, vcp_p=1, fe_p=2):
 
         fam = families.Binomial()
@@ -5673,14 +5673,14 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
             vc_names=x.vc_names)
         mod.data = x.data
 
-        return mod",,,
+        return mod",N,,
 378,wagtail,wagtail/wagtail/users/tests/test_admin_views.py,test_simple,"def test_simple(self):
         response = self.get()
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, ""wagtailusers/users/results.html"")
         self.assertContains(response, ""testuser"")
         # response should not contain page furniture
-        self.assertNotContains(response, ""Add a user"")",,,
+        self.assertNotContains(response, ""Add a user"")",N,,
 379,django,django/tests/expressions/tests.py,test_in_lookup_allows_F_expressions_and_expressions_for_integers,"def test_in_lookup_allows_F_expressions_and_expressions_for_integers(self):
         # __in lookups can use F() expressions for integers.
         queryset = Company.objects.filter(num_employees__in=([F(""num_chairs"") - 10]))
@@ -5698,15 +5698,15 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
                 )
             ),
             [self.c5040, self.c5050, self.c5060],
-        )",,,
+        )",N,,
 380,calibre,calibre/src/calibre/gui2/dialogs/check_library.py,mark_for_fix,"def mark_for_fix(self):
         for it in self.top_level_items.values():
             if (it.flags() & Qt.ItemFlag.ItemIsUserCheckable and
                     it.data(1, Qt.ItemDataRole.UserRole) == self.is_fixable and
                     it.childCount() > 0):
-                it.setCheckState(1, Qt.CheckState.Checked)",,,
+                it.setCheckState(1, Qt.CheckState.Checked)",N,,
 381,ray,ray/rllib/algorithms/algorithm.py,_get_spaces,"def _get_spaces(self):
-                        return self.observation_space, self.action_space",,,
+                        return self.observation_space, self.action_space",N,,
 382,unilm,unilm/kosmos-g/fairseq/fairseq/data/audio/hubert_dataset.py,collater,"def collater(self, samples):
         # target = max(sizes) -> random_crop not used
         # target = max_sample_size -> random_crop used for long
@@ -5745,8 +5745,8 @@ id,project,file,function,func_body,has_mechanism,mechanism_found,notes
             batch[""target_lengths_list""] = lengths_list
             batch[""ntokens_list""] = ntokens_list
             batch[""target_list""] = targets_list
-        return batch",,,
+        return batch",N,,
 383,plotly.py,plotly.py/packages/python/plotly/plotly/graph_objs/_scatterternary.py,unselected,"def unselected(self, val):
-        self[""unselected""] = val",,,
+        self[""unselected""] = val",N,,
 384,deepspeed,deepspeed/accelerator/abstract_accelerator.py,set_device,"def set_device(self, device_index):
-        ...",,,
+        ...",N,,
