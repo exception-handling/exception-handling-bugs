@@ -1,10 +1,10 @@
 """
 Computes precision, recall, F1, and accuracy for the Exception Miner tool,
-using the three validated files as ground truth.
+using the four validated files as ground truth.
 
 Files:
-  Positive set  (miner flagged): tool_validation_eric.csv / tool_validation_jairo.csv
-  Negative set  (miner clean):   no_antipattern_sample_validated.csv
+  Positive set  (miner flagged): tool_validation_author1.csv / tool_validation_author2.csv
+  Negative set  (miner clean):   no_antipattern_sample_author1.csv / no_antipattern_sample_author2.csv
 
 Interpretation:
   TP  = positive-set row where validator says has_ap=Y (miner correctly flagged)
@@ -15,9 +15,10 @@ Interpretation:
 
 import pandas as pd
 
-ERIC_CSV   = "miner_val/tool_validation_eric.csv"
-JAIRO_CSV  = "miner_val/tool_validation_jairo.csv"
-NEG_CSV    = "miner_val/no_antipattern_sample_validated.csv"
+POS_A1 = "miner_val/tool_validation_author1.csv"
+POS_A2 = "miner_val/tool_validation_author2.csv"
+NEG_A1 = "miner_val/no_antipattern_sample_author1.csv"
+NEG_A2 = "miner_val/no_antipattern_sample_author2.csv"
 
 
 def metrics(tp, fp, tn, fn):
@@ -31,7 +32,7 @@ def metrics(tp, fp, tn, fn):
 
 
 def evaluate(pos_df, neg_df, label):
-    # skip NaN has_ap (legacy rows that were never rated)
+    # skip NaN has_ap (rows that were never rated)
     pos = pos_df.dropna(subset=["has_ap"])
     neg = neg_df.dropna(subset=["has_ap"])
 
@@ -70,41 +71,73 @@ def evaluate(pos_df, neg_df, label):
             "accuracy": acc, "precision": prec, "recall": rec, "f1": f1}
 
 
-eric  = pd.read_csv(ERIC_CSV)
-jairo = pd.read_csv(JAIRO_CSV)
-neg   = pd.read_csv(NEG_CSV)
+pos_a1 = pd.read_csv(POS_A1)
+pos_a2 = pd.read_csv(POS_A2)
+neg_a1 = pd.read_csv(NEG_A1)
+neg_a2 = pd.read_csv(NEG_A2)
 
 results = []
-results.append(evaluate(eric,  neg, "Eric"))
-results.append(evaluate(jairo, neg, "Jairo"))
+results.append(evaluate(pos_a1, neg_a1, "Author 1"))
+results.append(evaluate(pos_a2, neg_a2, "Author 2"))
 
 # CONSENSUS_MODE:
 #   "agreement" — Y only when both raters agree on Y (inter-rater agreement view)
 #   "union"     — Y if either rater says Y (conservative / pessimistic view of tool quality)
+#
+# Note: the two positive files may have different sizes (each author may have
+# rated a different subset of rows).  The consensus is computed only on the
+# rows that BOTH authors rated, joined on (project, file, function, anti_pattern).
+# The two negative files are joined on (project, file, function).
 CONSENSUS_MODE = "agreement"
 
-merged = eric[["project", "file", "function", "anti_pattern", "has_ap"]].copy()
-merged = merged.rename(columns={"has_ap": "has_ap_eric"})
-merged["has_ap_jairo"] = jairo["has_ap"].values
+# Join on the row index ("Unnamed: 0") rather than content-based keys to
+# avoid cartesian-product blowup from rows that share the same
+# (project, file, function, anti_pattern) but are genuinely distinct entries.
+# Both files are guaranteed to have the same "Unnamed: 0" sequence.
+POS_IDX = "Unnamed: 0"
+NEG_KEYS = ["project", "file", "function"]
+
+merged_pos = pd.merge(
+    pos_a1[[POS_IDX, "anti_pattern", "has_ap"]].rename(columns={"has_ap": "has_ap_a1"}),
+    pos_a2[[POS_IDX, "has_ap"]].rename(columns={"has_ap": "has_ap_a2"}),
+    on=POS_IDX,
+    how="inner",
+)
+merged_neg = pd.merge(
+    neg_a1[NEG_KEYS + ["has_ap"]].rename(columns={"has_ap": "has_ap_a1"}),
+    neg_a2[NEG_KEYS + ["has_ap"]].rename(columns={"has_ap": "has_ap_a2"}),
+    on=NEG_KEYS,
+    how="inner",
+)
+
+print(f"Rows rated by both authors — positive: {len(merged_pos)}, negative: {len(merged_neg)}")
 
 if CONSENSUS_MODE == "agreement":
-    merged["has_ap"] = merged.apply(
-        lambda r: "Y" if r["has_ap_eric"] == r["has_ap_jairo"] == "Y" else "N",
+    merged_pos["has_ap"] = merged_pos.apply(
+        lambda r: "Y" if r["has_ap_a1"] == r["has_ap_a2"] == "Y" else "N",
+        axis=1,
+    )
+    merged_neg["has_ap"] = merged_neg.apply(
+        lambda r: "Y" if r["has_ap_a1"] == r["has_ap_a2"] == "Y" else "N",
         axis=1,
     )
     consensus_label = "Consensus (agreement)"
 else:
-    merged["has_ap"] = merged.apply(
-        lambda r: "Y" if r["has_ap_eric"] == "Y" or r["has_ap_jairo"] == "Y" else "N",
+    merged_pos["has_ap"] = merged_pos.apply(
+        lambda r: "Y" if r["has_ap_a1"] == "Y" or r["has_ap_a2"] == "Y" else "N",
+        axis=1,
+    )
+    merged_neg["has_ap"] = merged_neg.apply(
+        lambda r: "Y" if r["has_ap_a1"] == "Y" or r["has_ap_a2"] == "Y" else "N",
         axis=1,
     )
     consensus_label = "Consensus (union)"
 
-results.append(evaluate(merged, neg, consensus_label))
+results.append(evaluate(merged_pos, merged_neg, consensus_label))
 
 # Summary table
 summary = pd.DataFrame(results)[["label", "accuracy", "precision", "recall", "f1"]]
-summary[["accuracy","precision","recall","f1"]] = \
-    summary[["accuracy","precision","recall","f1"]].map(lambda x: f"{x*100:.2f}%")
+summary[["accuracy", "precision", "recall", "f1"]] = \
+    summary[["accuracy", "precision", "recall", "f1"]].map(lambda x: f"{x*100:.2f}%")
 print("=== Summary ===")
 print(summary.to_string(index=False))

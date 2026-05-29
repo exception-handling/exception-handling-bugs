@@ -1,0 +1,7 @@
+Impact category,Description,Related root causes
+Crash or abrupt termination,Program execution is interrupted due to an unhandled or improperly propagated exception,"Unhandled Exception; Import-Related Exception"
+Incorrect behavior,Program continues execution but produces wrong behavior or reaches an invalid state,"Incorrect Handling Action; Missing Exception Raising Condition"
+Misleading diagnostics,Error messages are inaccurate incomplete or obscure the actual failure cause,Improper Exception Message
+Compatibility failure,Failure occurs due to API dependency or Python version differences,"API-Related Exception Handling Errors; Python Version Compatibility Issue"
+Resource cleanup problem,Resources are not properly released or cleanup logic is incorrectly executed,Improper Finally Block Usage
+Silent failure,The exception is suppressed or handled too broadly hiding the underlying problem,"Swallowing Exceptions; Too Broad Except"

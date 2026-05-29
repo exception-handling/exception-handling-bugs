@@ -1,0 +1,8 @@
+Domain,API-Related,Import-Related,Improper Msg,Finally Block,Incorrect Action,Incorrect Re-raise,Missing Raise Cond.,Py Version Compat.,Unexpected Raising,Unhandled Exc.,Wrong Exc. Type,Wrong Raise Type,Total
+ML & AI,1.0,0.7,8.4,0.7,23.3,2.1,16.0,0.0,2.8,41.5,2.1,1.4,100.0
+DevOps/Cloud,3.3,0.6,6.9,0.3,21.3,2.1,8.1,0.6,0.9,52.0,1.8,2.1,100.0
+Dev Tools,2.1,2.8,5.7,0.0,20.6,1.4,6.4,0.7,0.0,57.4,2.1,0.7,99.9
+End-user Apps,0.0,0.0,5.9,0.0,23.5,3.5,5.9,0.0,2.4,56.5,1.2,1.2,100.1
+Scientific,0.0,0.0,0.0,0.0,10.0,0.0,0.0,0.0,0.0,90.0,0.0,0.0,100.0
+Security/Net,2.4,0.0,0.0,0.0,26.2,0.0,7.1,0.0,2.4,57.1,4.8,0.0,100.0
+Web APIs,0.0,2.3,4.5,0.0,15.9,2.3,20.5,0.0,0.0,52.3,0.0,2.3,100.1

@@ -1,0 +1,80 @@
+Example: How Fixing a Bug Introduced a New Anti-pattern
+=========================================================
+
+Project : pandas
+Function : agg_series
+Commit  : 2e646147349bafa7f0b2e9ce26d1e27e3015d3b3
+Issue   : https://github.com/pandas-dev/pandas/issues/14620
+
+
+--- BEFORE THE FIX ---
+
+def agg_series(self, obj, func):
+    dummy = obj[:0]
+    grouper = lib.SeriesBinGrouper(obj, func, self.bins, dummy)
+    return grouper.get_result()
+
+
+--- AFTER THE FIX ---
+
+def agg_series(self, obj, func):
+    try:
+        return self._aggregate_series_fast(obj, func)
+    except Exception:
+        return self._aggregate_series_pure_python(obj, func)
+
+
+--- WHAT HAPPENED ---
+
+The original code crashed on certain inputs because the fast aggregation path
+(lib.SeriesBinGrouper) failed for some edge cases. The developer fixed the bug
+by replacing it with a try-except fallback: try the fast path first, and if it
+fails, fall back to the pure-Python implementation.
+
+This fix works, but it introduced the "Too Broad Except" anti-pattern: catching
+the base Exception class instead of the specific exception types expected to
+arise from the fast path (e.g., TypeError, ValueError). As a consequence:
+
+  - Any unexpected error inside _aggregate_series_fast (programming mistakes,
+    memory errors, corrupted state) is silently swallowed and masked by the
+    fallback.
+  - The slow pure-Python path is invoked even for errors that should surface
+    to the caller, making bugs in the fast path completely invisible.
+  - Performance regressions caused by errors are hidden with no warning.
+
+A better fix would have been:
+
+def agg_series(self, obj, func):
+    try:
+        return self._aggregate_series_fast(obj, func)
+    except (TypeError, ValueError):
+        return self._aggregate_series_pure_python(obj, func)
+
+
+--- ADDITIONAL EXAMPLE (redis-py / __del__) ---
+
+Project : redis-py
+Function : __del__
+Commit  : 8b58ebb73e03970fade4d3f9e2c961831713c228
+Issue   : https://github.com/andymccurdy/redis-py/issues/2628
+
+BEFORE:
+    def __del__(self):
+        self.close()
+
+AFTER:
+    def __del__(self):
+        try:
+            # if this object went out of scope prior to shutting down
+            # subscriptions, close the connection manually before
+            # returning it to the connection pool
+            self.reset()
+        except Exception:
+            pass
+
+Anti-patterns introduced: Too Broad Except + Swallowing Exceptions.
+
+The fix prevents a crash during garbage collection (when the connection pool
+may already be gone) by catching any exception and passing. While pragmatic
+for __del__ methods, it silently swallows all errors including connection leaks
+and resource cleanup failures, making them undetectable.
